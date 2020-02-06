@@ -69,9 +69,6 @@ export function getCycleDaysSortedByDate() {
   return db.objects('CycleDay').sorted('date', true)
 }
 
-export function getCycleStartsSortedByDate() {
-  return db.objects('CycleDay').filtered('isCycleStart = true').sorted('date', true)
-}
 export function saveSymptom(symptom, date, val) {
   let cycleDay = getCycleDay(date)
   if (!cycleDay) cycleDay = createCycleDay(date)
