@@ -3,7 +3,13 @@ const config = require('../package.json').detox;
 const adapter = require('detox/runners/mocha/adapter');
 
 before(async () => {
-  await detox.init(config);
+  await detox.init(config, { launchApp: false });
+
+  if (device.getPlatform() === 'ios') {
+    await device.launchApp({newInstance: false, permissions: {notifications: 'YES'}});
+  } else {
+    await device.launchApp({newInstance: false});
+  }
 });
 
 beforeEach(async function () {
