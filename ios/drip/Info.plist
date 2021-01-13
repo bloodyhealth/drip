@@ -42,19 +42,6 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
-		<string>EvilIcons.ttf</string>
-		<string>Feather.ttf</string>
-		<string>FontAwesome.ttf</string>
-		<string>FontAwesome5_Brands.ttf</string>
-		<string>FontAwesome5_Regular.ttf</string>
-		<string>FontAwesome5_Solid.ttf</string>
-		<string>Foundation.ttf</string>
-		<string>Ionicons.ttf</string>
-		<string>MaterialCommunityIcons.ttf</string>
-		<string>MaterialIcons.ttf</string>
-		<string>Octicons.ttf</string>
-		<string>SimpleLineIcons.ttf</string>
-		<string>Zocial.ttf</string>
 		<string>Glyphter.ttf</string>
 		<string>Prompt-Light.ttf</string>
 		<string>Prompt-Thin.ttf</string>
@@ -74,8 +61,14 @@
 		<string>OpenSans-Light.ttf</string>
 		<string>OpenSans-Regular.ttf</string>
 		<string>OpenSans-SemiBold.ttf</string>
-		<string>AntDesign.ttf</string>
 		<string>OpenSans-LightItalic.ttf</string>
+		<string>Jost-400-Book.otf</string>
+		<string>Jost-700-Bold.otf</string>
+		<string>Menu.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

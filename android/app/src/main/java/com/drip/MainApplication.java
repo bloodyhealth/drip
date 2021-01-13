@@ -7,7 +7,6 @@ import com.facebook.react.ReactApplication;
 import com.janeasystems.rn_nodejs_mobile.RNNodeJsMobilePackage;
 import com.avishayil.rnrestart.ReactNativeRestartPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
 import com.rnfs.RNFSPackage;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
 import cl.json.RNSharePackage;
