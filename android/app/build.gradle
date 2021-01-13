@@ -193,13 +193,6 @@ android {
 }
 
 dependencies {
-    implementation project(':realm')
-    implementation project(':react-native-share')
-    implementation project(':react-native-restart')
-    implementation project(':react-native-push-notification')
-    implementation project(':react-native-fs')
-    implementation project(':react-native-document-picker')
-    implementation project(':nodejs-mobile-react-native')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
