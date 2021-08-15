@@ -25,7 +25,11 @@ The app is built in React Native and currently developed for Android.
     
 Install [Android Studio](https://developer.android.com/studio/) - you'll need it to install some dependencies.
 
-#### 2. Node version
+#### 2. NVM version
+
+Make sure you have nvm v7+ installed. If you use earlier version, after installing all libraries, your local package-lock.json will be out of the date. More information on this topic you can find [here](https://docs.npmjs.com/cli/v7/configuring-npm/package-lock-json#lockfileversion).
+
+#### 3. Node version
 
 Make sure you are running Node 10 (newer versions won't work). It's easiest to switch Node versions using `nvm`, here's how to do it:
 
@@ -34,7 +38,7 @@ Make sure you are running Node 10 (newer versions won't work). It's easiest to s
     $ nvm install v10
 
 
-#### 3. Get this repository
+#### 4. Get this repository
 
 Clone it with SSH
 
@@ -49,11 +53,11 @@ and run
     $ cd drip
     $ npm install
 
-#### 4. More requirements from Android Studio
+#### 5. More requirements from Android Studio
 
 Open Android Studio and click on "Open an existing Android Studio project". Navigate to the drip repository you cloned and double click the android folder. It detects, downloads and cofigures requirements that might be missing, like the NDK and CMake to build the native code part of the project. Also see the [nodejs-mobile repository](https://github.com/janeasystems/nodejs-mobile) for the necessary prerequisites for your system.
 
-#### 5. Run the app on Android
+#### 6. Run the app on Android
 
 Either start a [virtual device in Android Studio](https://developer.android.com/studio/run/emulator) or [set your physical device like your Android phone up](https://developer.android.com/training/basics/firstapp/running-app) to run the app.
 
@@ -74,7 +78,7 @@ Either start a [virtual device in Android Studio](https://developer.android.com/
 
 1.  We recommend installing an [ESLint plugin in your editor](https://eslint.org/docs/user-guide/integrations#editors). There's an `.eslintrc` file in this project which will be used by the plugin to check your code for style errors and potential bugs.
 
-#### 6. Run app on iOS
+#### 7. Run app on iOS
 
 Minimum system requirements to run iOS app are as follows:
 - MacOS 10.15.7 for Mac users
@@ -114,6 +118,13 @@ If you get error messages about `adb` not being found on your path:
     ```
     $ ln -s ~/Library/Android/sdk/platform-tools/adb /usr/local/bin/adb
     ```
+
+### [MacOS] and XCode 12.5
+If you run XCode 12.5, more likely you'll have problems building app for iOS. Please use the following fix: https://stackoverflow.com/a/67320887.
+
+If you experience any further issues, please feel free to check out the following threads:
+- [react-native run-ios build failure on XCode 12.5 beta](https://github.com/react-native-community/cli/issues/1365)
+- [Xcode 12.5 troubleshooting guide (RN 0.61/0.62/0.63/0.64)](https://github.com/facebook/react-native/issues/31480)
 
 ### Clearing project cache
 If you would like to clear project cache and/or re-install project libraries, you can run clear script as follows:
