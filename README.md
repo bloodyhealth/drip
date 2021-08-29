@@ -15,70 +15,66 @@ Find more information on [our website](https://bloodyhealth.gitlab.io/).
 
 The app is built in React Native and currently developed for Android.
 
-▶ [How to contribute to the project](https://gitlab.com/bloodyhealth/drip/blob/master/CONTRIBUTING.md) 
+▶ [How to contribute to the project](https://gitlab.com/bloodyhealth/drip/blob/master/CONTRIBUTING.md)
 
 ▶ [How to release a new version](https://gitlab.com/bloodyhealth/drip/blob/master/RELEASE.md)
 
 ## Development setup
 
 #### 1. Android Studio
-    
+
 Install [Android Studio](https://developer.android.com/studio/) - you'll need it to install some dependencies.
 
-#### 2. NVM version
+#### 2. Node & npm version
 
-Make sure you have nvm v7+ installed. If you use earlier version, after installing all libraries, your local package-lock.json will be out of the date. More information on this topic you can find [here](https://docs.npmjs.com/cli/v7/configuring-npm/package-lock-json#lockfileversion).
-
-#### 3. Node version
-
-Make sure you are running Node 10 (newer versions won't work). It's easiest to switch Node versions using `nvm`, here's how to do it:
+Make sure you are running Node 10 and npm 6.x (newer versions won't work). It's easiest to switch Node versions using `nvm`, here's how to do it:
 
 
     $ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
     $ nvm install v10
 
 
-#### 4. Get this repository
+#### 3. Get this repository
 
 Clone it with SSH
 
     $ git clone git@gitlab.com:bloodyhealth/drip.git
 
 or clone it with HTTPS
-    
+
     $ git clone https://gitlab.com/bloodyhealth/drip.git
-    
+
 and run
-    
+
     $ cd drip
     $ npm install
 
-#### 5. More requirements from Android Studio
+#### 4. More requirements from Android Studio
 
 Open Android Studio and click on "Open an existing Android Studio project". Navigate to the drip repository you cloned and double click the android folder. It detects, downloads and cofigures requirements that might be missing, like the NDK and CMake to build the native code part of the project. Also see the [nodejs-mobile repository](https://github.com/janeasystems/nodejs-mobile) for the necessary prerequisites for your system.
 
-#### 6. Run the app on Android
+#### 5. Run the app on Android
 
 Either start a [virtual device in Android Studio](https://developer.android.com/studio/run/emulator) or [set your physical device like your Android phone up](https://developer.android.com/training/basics/firstapp/running-app) to run the app.
 
-1.  Open a terminal and run
+1. Open a terminal and run
     ```
     $ npm run android
     ```
 
-1.  To see logging output, run the following command in another tab: 
+2.  To see logging output, run the following command in another tab:
     ```
     $ npm run log
     ```
 
-1.  Run the following command and select enable hot reloading (see https://facebook.github.io/react-native/docs/debugging.html):
+3.  Run the following command and select enable hot reloading (see https://facebook.github.io/react-native/docs/debugging.html):
     ```
     $ adb shell input keyevent 82
     ```
 
-1.  We recommend installing an [ESLint plugin in your editor](https://eslint.org/docs/user-guide/integrations#editors). There's an `.eslintrc` file in this project which will be used by the plugin to check your code for style errors and potential bugs.
+4.  We recommend installing an [ESLint plugin in your editor](https://eslint.org/docs/user-guide/integrations#editors). There's an `.eslintrc` file in this project which will be used by the plugin to check your code for style errors and potential bugs.
 
-#### 7. Run app on iOS
+#### 6. Run app on iOS
 
 Minimum system requirements to run iOS app are as follows:
 - MacOS 10.15.7 for Mac users
@@ -163,7 +159,7 @@ You can run the tests with:
 3. Open Android Studio and go to -> Tools -> AVD manager -> `+Create virtual device` and select the device checked in the previous step
 4. Use the emulator on your machine to run it without heavy Android Studio, e.g. in `~/Android/Sdk/emulator` OR chose to run the emulator within Android Studio
 4.1 Here run: `$ ./emulator -avd NEXUS_DEVICE_OR_WHATEVER_SPECIFIED_DEVICE`
-4.2 You might need to specify the following environment variables in your zsh or bash file according to where you have it installed. You can find exact path in Android Studio (Android Studio Preferences → Appearance and Behavior → System Settings → Android SDK). After adding environment variables, you might need to restart your terminal or source the modified bash profile (i.e. "source ~/.bash_profile"). 
+4.2 You might need to specify the following environment variables in your zsh or bash file according to where you have it installed. You can find exact path in Android Studio (Android Studio Preferences → Appearance and Behavior → System Settings → Android SDK). After adding environment variables, you might need to restart your terminal or source the modified bash profile (i.e. "source ~/.bash_profile").
     ```
     export ANDROID_HOME="/home/myname/Android/Sdk"
     export ANDROID_SDK_ROOT="/home/myname/Android/Sdk"
