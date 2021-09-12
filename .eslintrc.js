@@ -25,7 +25,7 @@ module.exports = {
   },
   rules: {
     indent: ['error', 2],
-    'no-console': ['error', { 'allow': ['warn', 'error'] }],
+    'no-console': ['error', {allow: ['warn', 'error']}],
     'space-before-function-paren': 0,
     semi: ['warn', 'never'],
     'space-infix-ops': ['warn'],
@@ -36,11 +36,11 @@ module.exports = {
     'max-len': [
       1,
       {
-        'ignoreStrings': true,
-        'ignoreComments': true,
-        'ignoreTemplateLiterals': true
-      }
+        ignoreStrings: true,
+        ignoreComments: true,
+        ignoreTemplateLiterals: true,
+      },
     ],
     'no-multi-spaces': 2,
   },
-};
+}
