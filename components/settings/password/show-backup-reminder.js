@@ -15,14 +15,17 @@ export default function showBackUpReminder(okHandler, cancelHandler, isDelete) {
   Alert.alert(
     title,
     message,
-    [{
-      text: shared.cancel,
-      onPress: cancelHandler,
-      style: 'cancel'
-    }, {
-      text: shared.ok,
-      onPress: okHandler
-    }],
+    [
+      {
+        text: shared.cancel,
+        onPress: cancelHandler,
+        style: 'cancel',
+      },
+      {
+        text: shared.ok,
+        onPress: okHandler,
+      },
+    ],
     { onDismiss: cancelHandler }
   )
 }

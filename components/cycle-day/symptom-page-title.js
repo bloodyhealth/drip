@@ -28,14 +28,14 @@ const SymptomPageTitle = ({
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigate(false)} hitSlop={HIT_SLOP}>
-        <AppIcon name='chevron-left' color={Colors.orange}/>
+        <AppIcon name="chevron-left" color={Colors.orange} />
       </TouchableOpacity>
       <View style={styles.textContainer}>
         <AppText style={styles.title}>{title}</AppText>
         {subtitle && <AppText style={styles.subtitle}>{subtitle}</AppText>}
       </View>
       <TouchableOpacity onPress={() => navigate(true)} hitSlop={HIT_SLOP}>
-        <AppIcon name='chevron-right' color={Colors.orange}/>
+        <AppIcon name="chevron-right" color={Colors.orange} />
       </TouchableOpacity>
     </View>
   )

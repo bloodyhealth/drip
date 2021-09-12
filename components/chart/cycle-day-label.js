@@ -24,11 +24,11 @@ const CycleDayLabel = ({ height, date }) => {
         <AppText style={styles.text}>
           {isFirstDayOfMonth ? momentDate.format('MMM') : dayOfMonth}
         </AppText>
-        {!isFirstDayOfMonth &&
+        {!isFirstDayOfMonth && (
           <AppText style={styles.textLight}>
             {getOrdinalSuffix(dayOfMonth)}
           </AppText>
-        }
+        )}
       </View>
     </View>
   )
@@ -46,14 +46,14 @@ const styles = StyleSheet.create({
     left: 4,
   },
   containerRow: {
-    ...Containers.rowContainer
+    ...Containers.rowContainer,
   },
   text: {
     ...Typography.label,
     fontSize: Sizes.small,
   },
   textBold: {
-    ...Typography.labelBold
+    ...Typography.labelBold,
   },
   textLight: {
     ...Typography.labelLight,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-  }
+  },
 })
 
 export default CycleDayLabel

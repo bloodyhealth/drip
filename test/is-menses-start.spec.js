@@ -13,24 +13,24 @@ describe('isMensesStart', () => {
       },
       {
         date: '2018-05-03',
-        bleeding: { value: 1 }
+        bleeding: { value: 1 },
       },
       {
         date: '2018-05-02',
-        bleeding: { value: 1 }
+        bleeding: { value: 1 },
       },
       {
         date: '2018-05-01',
-        bleeding: { value: 1 }
+        bleeding: { value: 1 },
       },
       {
         date: '2018-04-30',
-      }
+      },
     ]
 
     const { isMensesStart } = cycleModule({
       cycleDaysSortedByDate,
-      bleedingDaysSortedByDate: cycleDaysSortedByDate.filter(d => d.bleeding)
+      bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
     const start = isMensesStart(cycleDaysSortedByDate[3])
     expect(start).to.be.true()
@@ -44,21 +44,21 @@ describe('isMensesStart', () => {
     const cycleDaysSortedByDate = [
       {
         date: '2018-06-01',
-        bleeding: { value: 2 }
+        bleeding: { value: 2 },
       },
       {
         date: '2018-05-01',
-        bleeding: { value: 2 }
+        bleeding: { value: 2 },
       },
       {
         date: '2018-04-30',
-        bleeding: { value: 2 , exclude: true}
+        bleeding: { value: 2, exclude: true },
       },
     ]
 
     const { isMensesStart } = cycleModule({
       cycleDaysSortedByDate,
-      bleedingDaysSortedByDate: cycleDaysSortedByDate.filter(d => d.bleeding)
+      bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
     const start = isMensesStart(cycleDaysSortedByDate[1])
     expect(start).to.be.true()
@@ -76,13 +76,13 @@ describe('isMensesStart', () => {
       },
       {
         date: '2018-04-30',
-        bleeding: { value: 2 , exclude: true}
+        bleeding: { value: 2, exclude: true },
       },
     ]
 
     const { isMensesStart } = cycleModule({
       cycleDaysSortedByDate,
-      bleedingDaysSortedByDate: cycleDaysSortedByDate.filter(d => d.bleeding)
+      bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
     const start = isMensesStart(cycleDaysSortedByDate[0])
     expect(start).to.be.false()
@@ -98,20 +98,20 @@ describe('isMensesStart', () => {
       },
       {
         date: '2018-04-30',
-        bleeding: { value: 2 }
+        bleeding: { value: 2 },
       },
       {
-        date: '2018-04-29'
+        date: '2018-04-29',
       },
       {
         date: '2018-04-28',
-        bleeding: { value: 2 }
+        bleeding: { value: 2 },
       },
     ]
 
     const { isMensesStart } = cycleModule({
       cycleDaysSortedByDate,
-      bleedingDaysSortedByDate: cycleDaysSortedByDate.filter(d => d.bleeding)
+      bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
     const start = isMensesStart(cycleDaysSortedByDate[2])
     expect(start).to.be.false()
@@ -127,20 +127,20 @@ describe('isMensesStart', () => {
       },
       {
         date: '2018-04-30',
-        bleeding: { value: 2 }
+        bleeding: { value: 2 },
       },
       {
-        date: '2018-04-29'
+        date: '2018-04-29',
       },
       {
         date: '2018-04-28',
-        bleeding: { value: 2 , exclude: true}
+        bleeding: { value: 2, exclude: true },
       },
     ]
 
     const { isMensesStart } = cycleModule({
       cycleDaysSortedByDate,
-      bleedingDaysSortedByDate: cycleDaysSortedByDate.filter(d => d.bleeding)
+      bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
     const start = isMensesStart(cycleDaysSortedByDate[2])
     expect(start).to.be.true()
@@ -149,42 +149,48 @@ describe('isMensesStart', () => {
     const maxBreakInBleeding = 3
 
     it('disregards bleeding breaks equal to maxAllowedBleedingBreak in a bleeding period', () => {
-      const bleedingDays = [{
-        date: '2018-05-14',
-        bleeding: {
-          value: 2
-        }
-      }, {
-        date: '2018-05-10',
-        bleeding: {
-          value: 2
-        }
-      }]
+      const bleedingDays = [
+        {
+          date: '2018-05-14',
+          bleeding: {
+            value: 2,
+          },
+        },
+        {
+          date: '2018-05-10',
+          bleeding: {
+            value: 2,
+          },
+        },
+      ]
 
       const isMensesStart = cycleModule({
         bleedingDaysSortedByDate: bleedingDays,
-        maxBreakInBleeding
+        maxBreakInBleeding,
       }).isMensesStart
       const result = isMensesStart(bleedingDays[0])
       expect(result).to.be.false()
     })
 
     it('counts bleeding breaks longer than maxAllowedBleedingBreak in a bleeding period', () => {
-      const bleedingDays = [{
-        date: '2018-05-14',
-        bleeding: {
-          value: 2
-        }
-      }, {
-        date: '2018-05-09',
-        bleeding: {
-          value: 2
-        }
-      }]
+      const bleedingDays = [
+        {
+          date: '2018-05-14',
+          bleeding: {
+            value: 2,
+          },
+        },
+        {
+          date: '2018-05-09',
+          bleeding: {
+            value: 2,
+          },
+        },
+      ]
 
       const isMensesStart = cycleModule({
         bleedingDaysSortedByDate: bleedingDays,
-        maxBreakInBleeding
+        maxBreakInBleeding,
       }).isMensesStart
       const result = isMensesStart(bleedingDays[0])
       expect(result).to.be.true()

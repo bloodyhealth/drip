@@ -6,5 +6,10 @@ import About from './about'
 import License from './license'
 
 export default {
-  Reminders, NfpSettings, DataManagement, Password, About, License
+  Reminders,
+  NfpSettings,
+  DataManagement,
+  Password,
+  About,
+  License,
 }

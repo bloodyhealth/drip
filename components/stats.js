@@ -7,8 +7,8 @@ import Segment from './common/segment'
 import Table from './common/table'
 
 import cycleModule from '../lib/cycle'
-import {getCycleLengthStats as getCycleInfo} from '../lib/cycle-length'
-import {stats as labels} from '../i18n/en/labels'
+import { getCycleLengthStats as getCycleInfo } from '../lib/cycle-length'
+import { stats as labels } from '../i18n/en/labels'
 
 import { Sizes, Spacing, Typography } from '../styles'
 import { fontRatio } from '../config'
@@ -20,13 +20,14 @@ const Stats = () => {
   const cycleLengths = cycleModule().getAllCycleLengths()
   const numberOfCycles = cycleLengths.length
   const hasAtLeastOneCycle = numberOfCycles >= 1
-  const cycleData = hasAtLeastOneCycle ? getCycleInfo(cycleLengths)
+  const cycleData = hasAtLeastOneCycle
+    ? getCycleInfo(cycleLengths)
     : { minimum: '—', maximum: '—', stdDeviation: '—' }
   const statsData = [
     [cycleData.minimum, labels.minLabel],
     [cycleData.maximum, labels.maxLabel],
     [cycleData.stdDeviation ? cycleData.stdDeviation : '—', labels.stdLabel],
-    [numberOfCycles, labels.basisOfStatsEnd]
+    [numberOfCycles, labels.basisOfStatsEnd],
   ]
   const height = screen.height * 0.2
   const marginTop = (height / 8 - Sizes.icon / fontRatio) / 4
@@ -36,7 +37,7 @@ const Stats = () => {
       <Segment last style={styles.pageContainer}>
         <AppText>{labels.cycleLengthExplainer}</AppText>
         {!hasAtLeastOneCycle && <AppText>{labels.emptyStats}</AppText>}
-        {hasAtLeastOneCycle &&
+        {hasAtLeastOneCycle && (
           <View style={styles.container}>
             <View style={styles.columnLeft}>
               <ImageBackground
@@ -63,7 +64,7 @@ const Stats = () => {
               <Table tableContent={statsData} />
             </View>
           </View>
-        }
+        )}
       </Segment>
     </AppPage>
   )
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
   },
   accentPurpleHuge: {
     ...Typography.accentPurpleHuge,
-    marginTop: Spacing.base * (-1),
+    marginTop: Spacing.base * -1,
   },
   container: {
     alignItems: 'center',
@@ -102,7 +103,6 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'contain',
-
   },
   imageContainter: {
     paddingTop: Spacing.large * 2,
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   },
   pageContainer: {
     marginTop: Spacing.base * 2,
-  }
+  },
 })
 
 export default Stats

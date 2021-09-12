@@ -17,7 +17,7 @@ export default class Settings extends Component {
     super(props)
 
     this.state = {
-      shouldUseCervix: useCervixObservable.value
+      shouldUseCervix: useCervixObservable.value,
     }
   }
 
@@ -28,8 +28,9 @@ export default class Settings extends Component {
 
   render() {
     const { shouldUseCervix } = this.state
-    const cervixText = shouldUseCervix ?
-      labels.useCervix.cervixModeOn : labels.useCervix.cervixModeOff
+    const cervixText = shouldUseCervix
+      ? labels.useCervix.cervixModeOn
+      : labels.useCervix.cervixModeOff
 
     return (
       <AppPage>
@@ -62,13 +63,13 @@ export default class Settings extends Component {
 
 const styles = StyleSheet.create({
   icon: {
-    marginRight: Spacing.base
+    marginRight: Spacing.base,
   },
   line: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   title: {
-    ...Typography.subtitle
-  }
+    ...Typography.subtitle,
+  },
 })

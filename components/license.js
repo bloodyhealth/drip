@@ -39,11 +39,11 @@ export default function License({ setLicense }) {
 }
 
 License.propTypes = {
-  setLicense: PropTypes.func.isRequired
+  setLicense: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({
   container: {
-    ...Containers.rowContainer
-  }
+    ...Containers.rowContainer,
+  },
 })

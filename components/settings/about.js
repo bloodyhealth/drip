@@ -9,7 +9,7 @@ import links from '../../i18n/en/links'
 
 const AboutSection = () => {
   return (
-    <AppPage title={labels.aboutSection.title} >
+    <AppPage title={labels.aboutSection.title}>
       <Segment>
         <AppText>{labels.aboutSection.text}</AppText>
       </Segment>

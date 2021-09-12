@@ -7,11 +7,7 @@ chai.use(dirtyChai)
 
 const cycleStartDay = { date: '2018-05-03' }
 
-const cycle = [
-  { date: '2018-05-05' },
-  { date: '2018-05-04' },
-  cycleStartDay,
-]
+const cycle = [{ date: '2018-05-05' }, { date: '2018-05-04' }, cycleStartDay]
 
 const cycleDaysSortedByDate = [
   { date: '2018-07-05' },
@@ -32,7 +28,6 @@ const cycleStartsSortedByDate = [
 
 describe('getCycleByStartDay', () => {
   it('gets cycle by cycle start day', () => {
-
     const { getCycleByStartDay } = cycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate,

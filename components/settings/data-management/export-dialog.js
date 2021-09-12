@@ -36,10 +36,8 @@ export default async function exportData() {
       showAppsToView: true,
       failOnCancel: false,
     })
-
   } catch (err) {
     console.error(err)
     return alertError(labels.errors.problemSharing)
   }
 }
-

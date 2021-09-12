@@ -30,7 +30,6 @@ const cycleStartsSortedByDate = [
 
 describe('getPreviousCycle', () => {
   it('gets previous cycle', () => {
-
     const { getPreviousCycle } = cycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate,
@@ -40,7 +39,6 @@ describe('getPreviousCycle', () => {
   })
 
   it('returns null when target day is not in a cyle', () => {
-
     const { getPreviousCycle } = cycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate: [],
@@ -50,7 +48,6 @@ describe('getPreviousCycle', () => {
   })
 
   it('returns null when there is no previous cycle', () => {
-
     const { getPreviousCycle } = cycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate,
@@ -60,7 +57,6 @@ describe('getPreviousCycle', () => {
   })
 
   it('returns null when the previous cycle > maxcyclelength', () => {
-
     const { getPreviousCycle } = cycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate,

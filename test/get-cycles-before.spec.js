@@ -35,7 +35,6 @@ const cycleStartsSortedByDate = [
 
 describe('getCyclesBefore', () => {
   it('gets previous cycles', () => {
-
     const { getCyclesBefore } = cycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate,
@@ -43,19 +42,18 @@ describe('getCyclesBefore', () => {
     const cyclesBeforeJuly = getCyclesBefore(...julyCycle)
 
     expect(cyclesBeforeJuly.length).to.eql(3)
-    expect(cyclesBeforeJuly).to.eql([ juneCycle, mayCycle, aprilCycle ])
+    expect(cyclesBeforeJuly).to.eql([juneCycle, mayCycle, aprilCycle])
   })
 
   it('skips cycles that are longer than max', () => {
-
     const { getCyclesBefore } = cycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate,
-      maxCycleLength: 30
+      maxCycleLength: 30,
     })
     const cyclesBeforeJuly = getCyclesBefore(...julyCycle)
 
     expect(cyclesBeforeJuly.length).to.eql(1)
-    expect(cyclesBeforeJuly).to.eql([ juneCycle ])
+    expect(cyclesBeforeJuly).to.eql([juneCycle])
   })
 })
