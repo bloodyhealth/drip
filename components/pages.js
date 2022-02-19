@@ -1,77 +1,75 @@
 import settingsViews from './settings'
 
-import settingsLabels from '../i18n/en/settings'
-const labels = settingsLabels.menuItems
-
-export const isSettingsView =
-  (page) => Object.keys(settingsViews).includes(page)
+export const isSettingsView = (page) =>
+  Object.keys(settingsViews).includes(page)
 
 export const pages = [
   {
     component: 'Home',
     icon: 'home',
-    label: 'Home',
+    label: 'home',
   },
   {
     component: 'Calendar',
     icon: 'calendar',
     isInMenu: true,
-    label: 'Calendar',
+    label: 'calendar',
     parent: 'Home',
   },
   {
     component: 'Chart',
     icon: 'chart',
     isInMenu: true,
-    label: 'Chart',
+    label: 'chart',
     parent: 'Home',
   },
   {
     component: 'Stats',
     icon: 'statistics',
     isInMenu: true,
-    label: 'Stats',
+    label: 'stats',
     parent: 'Home',
   },
   {
     children: Object.keys(settingsViews),
     component: 'SettingsMenu',
     icon: 'settings',
-    label: 'Settings',
+    label: 'settings',
     parent: 'Home',
   },
   {
     component: 'Reminders',
-    label: labels.reminders.name,
+    label: 'reminders',
     parent: 'SettingsMenu',
   },
   {
     component: 'NfpSettings',
-    label: labels.nfpSettings.name,
+    label: 'nfpSettings',
     parent: 'SettingsMenu',
   },
   {
     component: 'DataManagement',
-    label: labels.dataManagement.name,
+    label: 'dataManagement',
     parent: 'SettingsMenu',
   },
   {
     component: 'Password',
-    label: labels.password.name,
+    label: 'password',
     parent: 'SettingsMenu',
   },
   {
     component: 'About',
-    label: 'About',
+    label: 'about',
     parent: 'SettingsMenu',
   },
   {
     component: 'License',
-    label: 'License',
+    label: 'license',
     parent: 'SettingsMenu',
   },
   {
     component: 'CycleDay',
+    label: 'cycleDay',
     parent: 'Home',
-  }
+  },
 ]
