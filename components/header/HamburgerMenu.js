@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 
 import AppIcon from '../common/app-icon'
 import CloseIcon from '../common/close-icon'
-import MenuItem from './menu-item'
+import HeaderMenuItem from './HeaderMenuItem'
 
 import { Colors, Sizes } from '../../styles'
 import { HIT_SLOP } from '../../config'
@@ -24,9 +24,9 @@ function HamburgerMenu() {
   }
 
   const settingsMenuItems = [
-    { name: t('settings.menuItems.settings'), component: 'SettingsMenu' },
-    { name: t('settings.menuItems.about'), component: 'About' },
-    { name: t('settings.menuItems.license'), component: 'License' },
+    { title: t('settings.menuItems.settings'), component: 'SettingsMenu' },
+    { title: t('settings.menuItems.about'), component: 'About' },
+    { title: t('settings.menuItems.license'), component: 'License' },
   ]
 
   return (
@@ -52,7 +52,11 @@ function HamburgerMenu() {
               <CloseIcon color={'black'} onClose={toggleMenu} />
             </View>
             {settingsMenuItems.map((item) => (
-              <MenuItem item={item} key={item.name} closeMenu={toggleMenu} />
+              <HeaderMenuItem
+                item={item}
+                key={item.title}
+                closeMenu={toggleMenu}
+              />
             ))}
           </View>
         </Modal>

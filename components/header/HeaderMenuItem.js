@@ -9,39 +9,39 @@ import { navigate } from '../../slices/navigation'
 
 import { Typography } from '../../styles'
 
-const MenuItem = ({ item, navigate, closeMenu }) => {
-  const { component, name } = item
+const HeaderMenuItem = ({ item, navigate, closeMenu }) => {
+  const { component, title } = item
   const onPress = () => {
     closeMenu()
     navigate(component)
   }
 
-  return(
+  return (
     <TouchableOpacity onPress={onPress}>
-      <AppText style={styles.text}>{name}</AppText>
+      <AppText style={styles.text}>{title}</AppText>
     </TouchableOpacity>
   )
 }
 
-MenuItem.propTypes = {
-  item: PropTypes.object.isRequired,
+HeaderMenuItem.propTypes = {
+  item: PropTypes.shape({
+    component: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
   navigate: PropTypes.func.isRequired,
-  closeMenu: PropTypes.func.isRequired
+  closeMenu: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({
   text: {
-    ...Typography.subtitle
-  }
+    ...Typography.subtitle,
+  },
 })
 
 const mapDispatchToProps = (dispatch) => {
-  return({
+  return {
     navigate: (page) => dispatch(navigate(page)),
-  })
+  }
 }
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(MenuItem)
+export default connect(null, mapDispatchToProps)(HeaderMenuItem)
