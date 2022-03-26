@@ -1,77 +1,64 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import {
   Modal,
   Platform,
   StyleSheet,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native'
+import { useTranslation } from 'react-i18next'
 
 import AppIcon from '../common/app-icon'
 import CloseIcon from '../common/close-icon'
 import MenuItem from './menu-item'
 
 import { Colors, Sizes } from '../../styles'
-import settingsLabels from '../../i18n/en/settings'
 import { HIT_SLOP } from '../../config'
 
-const { menuItems } = settingsLabels
+function HamburgerMenu() {
+  const { t } = useTranslation()
+  const [shouldShowMenu, setShouldShowMenu] = useState(false)
 
-const settingsMenuItems = [
-  { name: menuItems.settings, component: 'SettingsMenu' },
-  { name: menuItems.about, component: 'About' },
-  { name: menuItems.license, component: 'License' },
-]
-
-export default class HamburgerMenu extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = { shouldShowMenu: false }
+  const toggleMenu = () => {
+    setShouldShowMenu(!shouldShowMenu)
   }
 
-  toggleMenu = () => {
-    this.setState({ shouldShowMenu: !this.state.shouldShowMenu })
-  }
+  const settingsMenuItems = [
+    { name: t('settings.menuItems.settings'), component: 'SettingsMenu' },
+    { name: t('settings.menuItems.about'), component: 'About' },
+    { name: t('settings.menuItems.license'), component: 'License' },
+  ]
 
-  render() {
-    const { shouldShowMenu } = this.state
-
-    return (
-      <React.Fragment>
-        {!shouldShowMenu && (
-          <TouchableOpacity onPress={this.toggleMenu} hitSlop={HIT_SLOP}>
-            <AppIcon name='dots-three-vertical' color={Colors.orange} />
-          </TouchableOpacity>
-        )}
-        {shouldShowMenu && (
-          <Modal
-            animationType='fade'
-            onRequestClose={this.toggleMenu}
-            transparent={true}
-            visible={shouldShowMenu}
-          >
-            <TouchableOpacity
-              onPress={this.toggleMenu}
-              style={styles.blackBackground}
-            ></TouchableOpacity>
-            <View style={styles.menu}>
-              <View style={styles.iconContainer}>
-                <CloseIcon color={'black'} onClose={() => this.toggleMenu()} />
-              </View>
-              {settingsMenuItems.map((item) => (
-                <MenuItem
-                  item={item}
-                  key={item.name}
-                  closeMenu={this.toggleMenu}
-                />
-              ))}
+  return (
+    <React.Fragment>
+      {!shouldShowMenu && (
+        <TouchableOpacity onPress={toggleMenu} hitSlop={HIT_SLOP}>
+          <AppIcon name="dots-three-vertical" color={Colors.orange} />
+        </TouchableOpacity>
+      )}
+      {shouldShowMenu && (
+        <Modal
+          animationType="fade"
+          onRequestClose={toggleMenu}
+          transparent={true}
+          visible={shouldShowMenu}
+        >
+          <TouchableOpacity
+            onPress={toggleMenu}
+            style={styles.blackBackground}
+          ></TouchableOpacity>
+          <View style={styles.menu}>
+            <View style={styles.iconContainer}>
+              <CloseIcon color={'black'} onClose={toggleMenu} />
             </View>
-          </Modal>
-        )}
-      </React.Fragment>
-    )
-  }
+            {settingsMenuItems.map((item) => (
+              <MenuItem item={item} key={item.name} closeMenu={toggleMenu} />
+            ))}
+          </View>
+        </Modal>
+      )}
+    </React.Fragment>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -94,3 +81,5 @@ const styles = StyleSheet.create({
     width: '60%',
   },
 })
+
+export default HamburgerMenu
