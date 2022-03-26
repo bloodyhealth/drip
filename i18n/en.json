@@ -4,19 +4,166 @@
       "noPrediction": "As soon as you have tracked 3 menstrual cycles, drip will make predictions for the next ones."
     },
     "home": {
+      "addDataForToday": "add data for today",
       "cycleDay": " day of your cycle",
-      "cyclePhase": " cycle phase - ",
-      "addDataForToday": "add data for today"
-    },    
+      "cyclePhase": " cycle phase - "
+    },
     "shared": {
       "cancel": "Cancel",
       "ok": "OK"
     }
   },
+
+  "pages": {
+    "about": "About",
+    "calendar": "Calendar",
+    "chart": "Chart",
+    "cycleDay": "Cycle day",
+    "dataManagement": "Data",
+    "home": "Home",
+    "license": "License",
+    "nfpSettings": "NFP settings",
+    "password": "Password",
+    "reminders": "Reminders",
+    "settings": "Settings",
+    "stats": "Stats"
+  },
   "settings": {
+    "aboutSection": {
+      "text": "Please note that your data is stored locally on your phone and not on a server. This means your data cannot be read by anyone else unless they have access to your phone. We want to ensure that you stay in control of your own data. If you are planning to switch or reset your phone, please remember to export your data before doing so. You can reinstall the app afterwards and import your data.\n\nIf you encounter any technical issues, don't hesitate to contact us via email. You can also contribute to the code base on Gitlab and visit our website.",
+      "title": "About"
+    },
+    "credits": {
+      "note": "We love the drip team. Thanks and lots of <3 to all of our condriputors. Thanks to Paula Härtel for the symptom tracking icons. All the other icons are made by {{links.smashicons.url}}, {{links.pause08.url}}, {{links.kazachek.url}} & {{links.freepik.url}} from {{links.flaticon.url}}.",
+      "title": "Credits"
+    },
+    "deleteSegment": {
+      "confirmation": "Delete app data permanently",
+      "errors": {
+        "couldNotDeleteFile": "Could not delete data",
+        "noData": "There is no data to delete",
+        "postFix": "No data was deleted or changed"
+      },
+      "explainer": "Delete app data from this phone",
+      "message": "Please note that deletion of the app data is permanent and irreversible. We recommend exporting existing data before deletion.",
+      "question": "Do you want to delete app data from this phone?",
+      "success": {
+        "message": "App data successfully deleted"
+      },
+      "title": "Delete app data"
+    },
+    "donate": {
+      "note": "The drips are always grateful for donations, big or small, that help us maintain this app and develop new features. You can donate via Ko-fi. Thank you! You're awesome.",
+      "title": "Buy us a coffee!"
+    },
+    "export": {
+      "button": "Export data",
+      "errors": {
+        "couldNotConvert": "Could not convert data to CSV",
+        "noData": "There is no data to export",
+        "problemSharing": "There was a problem sharing the data export file"
+      },
+      "segmentExplainer": "Export data in CSV format for backup or so you can use it elsewhere",
+      "subject": "My drip data export",
+      "title": "My drip data export"
+    },
+    "import": {
+      "button": "Import data",
+      "deleteOption": "Import and delete existing",
+      "errors": {
+        "couldNotOpenFile": "Could not open file",
+        "futureEdit": "Future dates may only contain a note, no other symptoms",
+        "postFix": "No data was imported or changed"
+      },
+      "message": "There are two options for the import:\n1. Keep existing cycle days and replace only the ones in the import file.\n2. Delete all existing cycle days and import cycle days from file.",
+      "replaceOption": "Import and replace",
+      "segmentExplainer": "Import data in CSV format",
+      "success": {
+        "message": "Data successfully imported"
+      },
+      "title": "Keep existing data?"
+    },
     "license": {
       "title": "drip is an open-source cycle tracking app",
-      "text": "Copyright (C) {{currentYear}} Bloody Health GbR\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details: https://www.gnu.org/licenses/gpl-3.0.html\n\nYou can contact us by drip@mailbox.org."
+      "text": "Copyright (C) {{currentYear}} Bloody Health GbR\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details: https://www.gnu.org/licenses/gpl-3.0.html\n\nYou can contact us by drip@mailbox.org.",
+      "cyclePhase": " cycle phase - "
+    },
+    "menuItems": {
+      "about": "About",
+      "dataManagement": {
+        "text": "import, export or delete your data",
+        "title": "Data"
+      },
+      "license": "License",
+      "nfpSettings": {
+        "text": "define how you want to use NFP",
+        "title": "NFP settings"
+      },
+      "password": {
+        "text": "",
+        "title": "Password"
+      },
+      "reminders": {
+        "text": "turn on/off reminders",
+        "title": "Reminders"
+      },
+      "settings": "Settings"
+    },
+    "passwordSettings": {
+      "backupReminder": "Just to be safe, please backup your data using the export function before making changes to your password.\n\nLonger passwords are better! Consider using a passphrase.\n\nPlease also make sure you do not lose your password. There is no way to recover your data if you do.\n\nMaking any changes to your password setting will keep your data as it was before and restart the app.",
+      "backupReminderTitle": "Read this before making changes to your password",
+      "changePassword": "Change password",
+      "confirmPassword": "Please confirm your password",
+      "deleteBackupReminder": "Deleting your password means your data will no longer be encrypted.\n\nJust to be safe, please backup your data using the export function before deleting your password.\n\nMaking any changes to your password setting will keep your data as it was before and restart the app.",
+      "deleteBackupReminderTitle": "Read this before deleting your password",
+      "deletePassword": "Delete password",
+      "enterCurrent": "Please enter your current password",
+      "enterNew": "Please enter a new password",
+      "explainerDisabled": "Encrypt the app's database with a password. You need to enter the password every time the app is started.",
+      "explainerEnabled": "Password protection and database encryption is currently enabled",
+      "passwordsDontMatch": "Password and confirmation don't match",
+      "savePassword": "Save password",
+      "setPassword": "Set password",
+      "title": "App password"
+    },
+    "periodReminder": {
+      "notification": "Your next period is likely to start in 3 to {{daysToEndOfPrediction}} days.",
+      "reminderText": "Get a notification 3 days before your next period is likely to start.",
+      "title": "Next period reminder"
+    },
+    "philosophy": {
+      "text": "drip makes period predictions for you and helps you apply NFP fertility awareness rules. But please remember that this app is made by humans, and humans make mistakes. Always think for yourself: \"Does this make sense?\" Remember, you don't need an app to understand your cycle! However, drip wants to support you and make period tracking easier, more transparent and secure.",
+      "title": "Remember to think for yourself"
+    },
+    "preOvu": {
+      "note": "drip applies NFP's rules for calculating infertile days at the start of the cycle (see {{wiki.url}} for more info). However, drip does not currently apply the so called 20-day-rule, which determines infertile days at the cycle start from past cycle lengths in case no past symptothermal info is available.",
+      "title": "Infertile days at cycle start"
+    },
+    "tempReminder": {
+      "noTimeSet": "Set a time for a daily reminder to take your temperature",
+      "notification": "Record your morning temperature",
+      "timeSet": "Daily reminder set for {{time}}",
+      "title": "Temperature reminder"
+    },
+    "tempScale": {
+      "loadError": "Could not load saved temperature scale settings",
+      "max": "Max",
+      "min": "Min",
+      "saveError": "Could not save temperature scale settings",
+      "segmentExplainer": "Change the minimum and maximum value for the temperature chart",
+      "segmentTitle": "Temperature scale"
+    },
+    "title": "Settings",
+    "useCervix": {
+      "cervixModeOff": "By default, cervical mucus values are being used for symptothermal fertility detection. You can switch here to use cervix values for symptothermal fertility detection",
+      "cervixModeOn": "Cervix values are being used for symptothermal fertility detection. You can switch here to use cervical mucus values for symptothermal fertility detection",
+      "title": "Secondary symptom"
+    },
+    "version": {
+      "title": "Version"
+    },
+    "website": {
+      "title": "Website"
     }
   }
 }
