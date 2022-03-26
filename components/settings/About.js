@@ -7,14 +7,15 @@ import Segment from '../common/segment'
 import Button from '../common/button'
 import ButtonRow from '../common/button-row'
 
-import labels from '../../i18n/en/settings'
 import links from '../../i18n/en/links'
+import { useTranslation } from 'react-i18next'
 
 const AboutSection = () => {
+  const { t } = useTranslation()
   return (
-    <AppPage title={labels.aboutSection.title}>
+    <AppPage title={t('settings.aboutSection.title')}>
       <Segment>
-        <AppText>{labels.aboutSection.text}</AppText>
+        <AppText>{t('settings.aboutSection.text')}</AppText>
         <ButtonRow>
           {[links.email, links.gitlab, links.website].map((link) => (
             <Button
@@ -28,19 +29,19 @@ const AboutSection = () => {
           ))}
         </ButtonRow>
       </Segment>
-      <Segment title={labels.philosophy.title}>
-        <AppText>{labels.philosophy.text}</AppText>
+      <Segment title={t('settings.philosophy.title')}>
+        <AppText>{t('settings.philosophy.text')}</AppText>
       </Segment>
-      <Segment title={labels.credits.title}>
-        <AppText>{labels.credits.note}</AppText>
+      <Segment title={t('settings.credits.title')}>
+        <AppText>{t('settings.credits.note', { links })}</AppText>
       </Segment>
-      <Segment title={labels.donate.title}>
-        <AppText>{labels.donate.note}</AppText>
+      <Segment title={t('settings.donate.title')}>
+        <AppText>{t('settings.donate.note')}</AppText>
         <Button isCTA isSmall onPress={() => Linking.openURL(links.donate.url)}>
           {links.donate.text}
         </Button>
       </Segment>
-      <Segment title={labels.version.title} last>
+      <Segment title={t('settings.version.title')} last>
         <AppText>{require('../../package.json').version}</AppText>
       </Segment>
     </AppPage>
