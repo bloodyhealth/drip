@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Platform } from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 
 import AppSwitch from '../../common/app-switch'
@@ -58,6 +59,8 @@ export default class TemperatureReminder extends Component {
           mode="time"
           onConfirm={this.onPickDate}
           onCancel={this.onPickDateCancel}
+          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+          headerTextIOS="Pick a time"
         />
       </React.Fragment>
     )

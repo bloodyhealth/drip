@@ -127,7 +127,8 @@ class Temperature extends Component {
             mode="time"
             onConfirm={this.setTime}
             onCancel={this.onCancelTimePicker}
-            display={Platform.OS === "ios" ? "spinner" : "default"}
+            display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+            headerTextIOS="Pick a time"
           />
         </Segment>
       </React.Fragment>
