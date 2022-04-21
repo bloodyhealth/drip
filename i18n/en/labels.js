@@ -45,6 +45,7 @@ export const headerTitles = {
   Password: settingsTitles.password.name,
   About: 'About',
   License: 'License',
+  PrivacyPolicy: 'Privacy Policy',
   bleeding: 'Bleeding',
   temperature: 'Temperature',
   mucus: 'Cervical Mucus',

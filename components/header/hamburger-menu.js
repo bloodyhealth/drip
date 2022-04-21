@@ -21,6 +21,7 @@ const settingsMenuItems = [
   { name: menuItems.settings, component: 'SettingsMenu' },
   { name: menuItems.about, component: 'About' },
   { name: menuItems.license, component: 'License' },
+  { name: menuItems.privacyPolicy, component: 'PrivacyPolicy' },
 ]
 
 export default class HamburgerMenu extends Component {

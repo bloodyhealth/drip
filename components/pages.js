@@ -71,6 +71,11 @@ export const pages = [
     parent: 'SettingsMenu',
   },
   {
+    component: 'PrivacyPolicy',
+    label: 'PrivacyPolicy',
+    parent: 'SettingsMenu',
+  },
+  {
     component: 'CycleDay',
     parent: 'Home',
   }
