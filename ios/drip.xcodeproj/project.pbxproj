@@ -120,6 +120,7 @@
 		54DFE73C25D94DED0025C3FC /* cycle-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cycle-icon.png"; path = "../assets/cycle-icon.png"; sourceTree = "<group>"; };
 		54E1D49823E7588F003FA37B /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		5ABC2C1190B4D25AC0398D09 /* Pods-dripTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dripTests.release.xcconfig"; path = "Target Support Files/Pods-dripTests/Pods-dripTests.release.xcconfig"; sourceTree = "<group>"; };
+		5C649EDC281151BC005FED46 /* dripRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = dripRelease.entitlements; path = drip/dripRelease.entitlements; sourceTree = "<group>"; };
 		6466AE2461BE4FA88B8372F0 /* nodejs-project */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "nodejs-project"; path = "../nodejs-assets/nodejs-project"; sourceTree = "<group>"; };
 		6B7C2A0A7AAA83BBEFBD0B6A /* libPods-drip-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-drip-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A2844C0BAD8FC5464A8A33A /* Pods_drip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_drip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +206,7 @@
 		13B07FAE1A68108700A75B9A /* drip */ = {
 			isa = PBXGroup;
 			children = (
+				5C649EDC281151BC005FED46 /* dripRelease.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -368,7 +370,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = NLN65U2B6Z;
+						DevelopmentTeam = 6AD72X6W26;
 					};
 				};
 			};
@@ -812,7 +814,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = NLN65U2B6Z;
+				DEVELOPMENT_TEAM = 6AD72X6W26;
 				ENABLE_BITCODE = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -835,6 +837,7 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = drip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
@@ -870,11 +873,13 @@
 					"\"${PODS_ROOT}/../../node_modules/realm/vendor/realm-ios\"",
 					"$(inherited)",
 				);
+				MARKETING_VERSION = 1.2204.22;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.heartofcode.drip.cycle.tracking;
 				PRODUCT_NAME = drip;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -885,8 +890,9 @@
 			baseConfigurationReference = E1C5175D0AEA2ABCC690D6E2 /* Pods-drip.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = drip/dripRelease.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NLN65U2B6Z;
+				DEVELOPMENT_TEAM = 6AD72X6W26;
 				ENABLE_BITCODE = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -909,6 +915,7 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = drip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
@@ -944,11 +951,13 @@
 					"\"${PODS_ROOT}/../../node_modules/realm/vendor/realm-ios\"",
 					"$(inherited)",
 				);
+				MARKETING_VERSION = 1.2204.22;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.heartofcode.drip.cycle.tracking;
 				PRODUCT_NAME = drip;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -989,7 +998,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1025,7 +1034,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
