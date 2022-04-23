@@ -1,7 +1,7 @@
 {
   "labels": {
     "bleedingPrediction": {
-      "noPrediction": "As soon as you have tracked 3 menstrual cycles, drip will make predictions for the next ones."
+      "noPrediction": "As soon as you have tracked 3 menstrual cycles, drip. will make predictions for the next ones."
     },
     "home": {
       "cycleDay": " day of your cycle",
@@ -16,7 +16,7 @@
   },
   "settings": {
     "license": {
-      "title": "drip is an open-source cycle tracking app",
+      "title": "drip. an open-source cycle tracking app",
       "text": "Copyright (C) {{currentYear}} Heart of Code e.V.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details: https://www.gnu.org/licenses/gpl-3.0.html\n\nYou can contact us at drip@mailbox.org."
     },
     "privacyPolicy": {

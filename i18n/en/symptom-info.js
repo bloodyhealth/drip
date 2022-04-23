@@ -11,7 +11,7 @@ export const generalInfo = {
   3. and menstrual bleeding
 the app helps you identify in which phase of the menstrual cycle you are.
 
-drip makes period predictions for you and helps you apply NFP fertility awareness rules. But please remember that this app is made by humans, and humans make mistakes. Always think for yourself: "Does this make sense?" Remember, you don't need an app to understand your cycle! However, drip wants to support you and make period tracking easier, more transparent and secure.
+drip. makes period predictions for you and helps you apply NFP fertility awareness rules. But please remember that this app is made by humans, and humans make mistakes. Always think for yourself: "Does this make sense?" Remember, you don't need an app to understand your cycle! However, drip. wants to support you and make period tracking easier, more transparent and secure.
 
 Please find more info on the sympto-thermal method in ${links.wiki.url}.`,
   noNfpSymptom: `The app allows you to track this symptom for your information, it is not taken into account for any calculation. On the chart you can check how often you track this symptom.`
@@ -22,7 +22,7 @@ export default {
     title: `Tracking menstrual bleeding`,
     text: `Tracking menstrual bleeding allows you to know the beginning and the end of a menstrual cycle.
 
-After tracking at least 3 menstrual cycles, drip will give you an overview of
+After tracking at least 3 menstrual cycles, drip. will give you an overview of
 · how long your cycles last on average (in "stats"),
 · whether the length of your cycles varied significantly (in "stats" and in bleeding predictions)
 · and predict your next 3 cycles with a range of 3 or 5 days (on home screen and "calendar").
@@ -42,7 +42,7 @@ Tracking how open or closed and how firm or soft the cervix feels can help deter
 By default, the secondary symptom the app uses for NFP evaluation is cervical mucus, but you can change it to cervix in "Settings" -> "NFP Settings".
 
 · How to identify a fertile cervix?
-A fertile cervix is open and feels soft like your earlobes. In contrast, an infertile cervix feels closed and hard, like the tip of your nose. If the cervix feels anything other than closed and hard, drip takes it as a sign of fertility. On the chart, a fertile cervix is colored in dark yellow, and infertile cervix is colored in light yellow.
+A fertile cervix is open and feels soft like your earlobes. In contrast, an infertile cervix feels closed and hard, like the tip of your nose. If the cervix feels anything other than closed and hard, drip. takes it as a sign of fertility. On the chart, a fertile cervix is colored in dark yellow, and infertile cervix is colored in light yellow.
 
 ${generalInfo.chartNfp}
 
@@ -77,7 +77,7 @@ ${generalInfo.curiousNfp}`
 By default the secondary symptom the app uses for NFP evaluation is cervical mucus.
 
 · How to identify fertile cervical mucus?
-Tracking the feeling and the texture of your cervical mucus on a daily basis helps you identify changes of the quality of the cervical mucus. The values you enter for both feeling and texture of your cervical mucus are combined by drip into one of five NFP-conforming values.
+Tracking the feeling and the texture of your cervical mucus on a daily basis helps you identify changes of the quality of the cervical mucus. The values you enter for both feeling and texture of your cervical mucus are combined by drip. into one of five NFP-conforming values.
 From lowest to best quality:
 · t = (dry feeling + no texture),
 · ∅ = (no feeling + no texture),
@@ -87,7 +87,7 @@ From lowest to best quality:
 
 On the chart, cervical mucus is colored in blue: the darker the shade of blue the better the quality of your cervical mucus.
 
-Please note that drip does not yet support "parenthesis values": According to NFP rules, you can qualify a cervical mucus value by putting parentheses around it, to indicate that it doesn't fully meet the descriptors of one of the five categories, and instead is in between. This functionality will be supported in the future.
+Please note that drip. does not yet support "parenthesis values": According to NFP rules, you can qualify a cervical mucus value by putting parentheses around it, to indicate that it doesn't fully meet the descriptors of one of the five categories, and instead is in between. This functionality will be supported in the future.
 
 ${generalInfo.chartNfp}
 
