@@ -48,7 +48,6 @@
 		54DFE73E25D94DED0025C3FC /* cycle-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 54DFE73C25D94DED0025C3FC /* cycle-icon.png */; };
 		54E1D49923E7588F003FA37B /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E1D49823E7588F003FA37B /* JavaScriptCore.framework */; };
 		62F2A4645AC84CDC9506FF27 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEBF0735214455AAEDF56D5 /* libc++.tbd */; };
-		8EA186B6112C41D1B206762D /* NodeMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C225FC4966694B9FBD32E946 /* NodeMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		933D8701A95E8E4DE86B81C5 /* Pods_dripTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF24CA7E00CF7BB37FEAE9A /* Pods_dripTests.framework */; };
 		A16B351C3F3644CF95F104D2 /* builtin_modules in Resources */ = {isa = PBXBuildFile; fileRef = 36F1B55D0DEE47AA9AF4BBDD /* builtin_modules */; };
 		BD7041F2826E4A2CBE6CB87D /* RealmJSTests.xctest in Frameworks */ = {isa = PBXBuildFile; fileRef = F79F72C5390646E0A06AAE68 /* RealmJSTests.xctest */; };
@@ -67,26 +66,12 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		2B572382D4504B8FB4B9D251 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				8EA186B6112C41D1B206762D /* NodeMobile.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* dripTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dripTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* dripTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dripTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* drip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = drip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* drip..app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = drip..app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = drip/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = drip/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -300,7 +285,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* drip.app */,
+				13B07F961A680F5B00A75B9A /* drip..app */,
 				00E356EE1AD99517003FC87E /* dripTests.xctest */,
 			);
 			name = Products;
@@ -337,7 +322,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				2B572382D4504B8FB4B9D251 /* Embed Frameworks */,
 				DE9DD9049EBE47E5A1EA3F5D /* Build NodeJS Mobile Native Modules */,
 				6C10CEE2CE544C7F9400F1B4 /* Sign NodeJS Mobile Native Modules */,
 				B93B657279074F0DB95BCDE2 /* Remove NodeJS Mobile Framework Simulator Strips */,
@@ -353,7 +337,7 @@
 			);
 			name = drip;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* drip.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* drip..app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -873,14 +857,14 @@
 					"\"${PODS_ROOT}/../../node_modules/realm/vendor/realm-ios\"",
 					"$(inherited)",
 				);
-				MARKETING_VERSION = 1.2204.30;
+				MARKETING_VERSION = 1.2205.10;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.heartofcode.drip.cycle.tracking;
-				PRODUCT_NAME = drip;
+				PRODUCT_NAME = drip.;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -951,14 +935,14 @@
 					"\"${PODS_ROOT}/../../node_modules/realm/vendor/realm-ios\"",
 					"$(inherited)",
 				);
-				MARKETING_VERSION = 1.2204.30;
+				MARKETING_VERSION = 1.2205.10;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.heartofcode.drip.cycle.tracking;
-				PRODUCT_NAME = drip;
+				PRODUCT_NAME = drip.;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
