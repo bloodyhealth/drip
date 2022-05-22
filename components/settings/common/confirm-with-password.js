@@ -16,33 +16,31 @@ export default class ConfirmWithPassword extends Component {
     super()
 
     this.state = { password: null }
-    nodejs.channel.addListener('password-check', this.checkPassword, this)
+    nodejs.channel.addListener('check-pw', this.checkPassword, this)
   }
 
   componentWillUnmount() {
-    nodejs.channel.removeListener('password-check', this.checkPassword)
+    nodejs.channel.removeListener('check-pw', this.checkPassword)
   }
 
   resetPasswordInput = () => {
     this.setState({ password: null })
   }
 
-
   onIncorrectPassword = () => {
-    Alert.alert(
-      shared.incorrectPassword,
-      shared.incorrectPasswordMessage,
-      [{
+    Alert.alert(shared.incorrectPassword, shared.incorrectPasswordMessage, [
+      {
         text: shared.cancel,
-        onPress: this.props.onCancel
-      }, {
+        onPress: this.props.onCancel,
+      },
+      {
         text: shared.tryAgain,
-        onPress: this.resetPasswordInput
-      }]
-    )
+        onPress: this.resetPasswordInput,
+      },
+    ])
   }
 
-  checkPassword = async hash => {
+  checkPassword = async (hash) => {
     try {
       await openDb(hash)
       this.props.onSuccess()
@@ -56,7 +54,7 @@ export default class ConfirmWithPassword extends Component {
   }
 
   initPasswordCheck = () => {
-    requestHash('password-check', this.state.password)
+    requestHash('check-pw', this.state.password)
   }
 
   render() {
@@ -73,9 +71,7 @@ export default class ConfirmWithPassword extends Component {
           secureTextEntry={true}
         />
         <View style={styles.container}>
-          <Button onPress={this.props.onCancel}>
-            {shared.cancel}
-          </Button>
+          <Button onPress={this.props.onCancel}>{shared.cancel}</Button>
           <Button
             disabled={!isPassword}
             isCTA={isPassword}
@@ -86,17 +82,16 @@ export default class ConfirmWithPassword extends Component {
         </View>
       </React.Fragment>
     )
-
   }
 }
 
 ConfirmWithPassword.propTypes = {
   onSuccess: PropTypes.func,
-  onCancel: PropTypes.func
+  onCancel: PropTypes.func,
 }
 
 const styles = StyleSheet.create({
   container: {
-    ...Containers.rowContainer
-  }
+    ...Containers.rowContainer,
+  },
 })
