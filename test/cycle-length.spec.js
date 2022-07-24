@@ -1,5 +1,4 @@
 import chai from 'chai'
-import { AssertionError } from 'assert'
 
 import { getCycleLengthStats as cycleInfo } from '../lib/cycle-length'
 
@@ -84,19 +83,19 @@ describe('getCycleLengthStats', () => {
   describe('when args are wrong', () => {
     it('throws when arg object is an empty array', () => {
       const cycleLengths = []
-      expect(() => cycleInfo(cycleLengths).to.throw(AssertionError))
+      expect(() => cycleInfo(cycleLengths)).to.throw(Error)
     }),
       it('throws when arg object is not in right format', () => {
         const wrongObject = { hello: 'world' }
-        expect(() => cycleInfo(wrongObject).to.throw(AssertionError))
+        expect(() => cycleInfo(wrongObject)).to.throw(Error)
       }),
       it('throws when arg array contains a string', () => {
         const wrongElement = [4, 1, 15, '2', 20, 5]
-        expect(() => cycleInfo(wrongElement).to.throw(AssertionError))
+        expect(() => cycleInfo(wrongElement)).to.throw(Error)
       }),
       it('throws when arg array contains a NaN', () => {
         const wrongElement = [4, 1, 15, NaN, 20, 5]
-        expect(() => cycleInfo(wrongElement).to.throw(AssertionError))
+        expect(() => cycleInfo(wrongElement)).to.throw(Error)
       })
   })
 })
