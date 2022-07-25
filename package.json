@@ -35,7 +35,7 @@
     "assert": "^1.4.1",
     "csvtojson": "^2.0.8",
     "i18next": "^21.8.14",
-    "isobject": "^3.0.1",
+    "isobject": "^4.0.0",
     "js-joda": "^1.8.2",
     "moment": "^2.22.2",
     "nodejs-mobile-react-native": "^0.6.2",
