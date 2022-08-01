@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet } from 'react-native'
 
-import { Surface, Path } from 'react-native/Libraries/ART/ReactNativeART'
+import { Surface, Path } from '@react-native-community/art'
 
 import ChartLine from './chart-line'
 import DotAndLine from './dot-and-line'

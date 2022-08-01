@@ -31,6 +31,7 @@
   "dependencies": {
     "@js-joda/core": "^5.2.0",
     "@ptomasroos/react-native-multi-slider": "^2.2.0",
+    "@react-native-community/art": "^1.2.0",
     "@react-native-community/datetimepicker": "^6.3.1",
     "@react-native-community/push-notification-ios": "^1.8.0",
     "csvtojson": "^2.0.8",

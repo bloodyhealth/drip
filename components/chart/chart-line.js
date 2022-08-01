@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Shape } from 'react-native/Libraries/ART/ReactNativeART'
+import { Shape } from '@react-native-community/art'
 
 import { Colors } from '../../styles'
 import {
