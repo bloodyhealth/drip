@@ -13,7 +13,6 @@ import settings from '../../../i18n/en/settings'
 const LISTENER_TYPE = 'create-or-change-pw'
 
 export default class EnterNewPassword extends Component {
-
   constructor() {
     super()
     this.state = {
@@ -52,15 +51,11 @@ export default class EnterNewPassword extends Component {
     this.setState({ passwordConfirmation })
   }
 
-  render () {
-    const {
-      password,
-      passwordConfirmation,
-      shouldShowErrorMessage
-    } = this.state
+  render() {
+    const { password, passwordConfirmation, shouldShowErrorMessage } =
+      this.state
+    const isPasswordEntered = Boolean(password)
     const labels = settings.passwordSettings
-    const isButtonActive =
-      (password.length > 0) && (passwordConfirmation.length > 0)
 
     return (
       <React.Fragment>
@@ -80,10 +75,14 @@ export default class EnterNewPassword extends Component {
           value={passwordConfirmation}
           secureTextEntry={true}
         />
-        {shouldShowErrorMessage &&
+        {shouldShowErrorMessage && (
           <AppText style={styles.error}>{labels.passwordsDontMatch}</AppText>
-        }
-        <Button isCTA={isButtonActive} onPress={this.savePassword}>
+        )}
+        <Button
+          disabled={!isPasswordEntered}
+          isCTA={isPasswordEntered}
+          onPress={this.savePassword}
+        >
           {labels.savePassword}
         </Button>
       </React.Fragment>
@@ -94,6 +93,6 @@ export default class EnterNewPassword extends Component {
 const styles = StyleSheet.create({
   error: {
     color: Colors.orange,
-    marginTop: Spacing.base
-  }
+    marginTop: Spacing.base,
+  },
 })
