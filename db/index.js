@@ -205,7 +205,7 @@ export async function changeEncryptionAndRestartApp(hash) {
   const copyPath = dir.join('/')
   const exists = await fs.exists(copyPath)
   if (exists) await fs.unlink(copyPath)
-  db.writeCopyTo({ path: copyPath, key })
+  db.writeCopyTo({ path: copyPath, encryptionKey: key })
   db.close()
   await fs.unlink(defaultPath)
   await fs.moveFile(copyPath, defaultPath)
