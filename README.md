@@ -185,7 +185,7 @@ or just a random string to check if this piece of code is actually running:
 ### Android emulator
 
 - Import/export to the local drive don't work.
-- Email button on the Settings > About doesn't work - throws a yellow error message "Possible unhangled promise rejection...".
+- Email button on the Hamburger menu > About doesn't work - throws a yellow error message "Possible unhandled promise rejection...".
 
 ## NFP rules
 
