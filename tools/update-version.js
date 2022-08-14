@@ -11,7 +11,6 @@ const fs = require('fs')
 
 module.exports = () => {
   return new Promise((resolve, reject) => {
-
     const currentVersion = JSON.parse(fs.readFileSync('./package.json')).version
 
     const rl = readline.createInterface({
@@ -42,28 +41,34 @@ module.exports = () => {
       process.exit(1)
     }
 
-    rl.question('Next version will be `' + nextVersion + '`, okay? y/n ', async yn => {
-      if (yn !== 'y' && yn !== 'Y') {
-        reject('Release cancelled.\n')
-        return
+    rl.question(
+      'Next version will be `' + nextVersion + '`, okay? y/n ',
+      async (yn) => {
+        if (yn !== 'y' && yn !== 'Y') {
+          reject('Release cancelled.\n')
+          return
+        }
+
+        const pkgJSON = JSON.parse(fs.readFileSync('./package.json'))
+        const pkgLockJSON = JSON.parse(fs.readFileSync('./package-lock.json'))
+        pkgJSON.version = nextVersion
+        pkgLockJSON.version = nextVersion
+        fs.writeFileSync('./package.json', JSON.stringify(pkgJSON, null, 2))
+        fs.writeFileSync(
+          './package-lock.json',
+          JSON.stringify(pkgLockJSON, null, 2)
+        )
+
+        await ReactNativeVersion.version(
+          {
+            neverAmend: true,
+            target: 'android',
+          },
+          path.resolve(__dirname, '../')
+        )
+        rl.close()
+        resolve()
       }
-
-      const pkgJSON = JSON.parse(fs.readFileSync('./package.json'))
-      const pkgLockJSON = JSON.parse(fs.readFileSync('./package-lock.json'))
-      pkgJSON.version = nextVersion
-      pkgLockJSON.version = nextVersion
-      fs.writeFileSync('./package.json', JSON.stringify(pkgJSON, null, 2))
-      fs.writeFileSync('./package-lock.json', JSON.stringify(pkgLockJSON, null, 2))
-
-      await ReactNativeVersion.version(
-        {
-          neverAmend: true,
-          target: 'android',
-        },
-        path.resolve(__dirname, '../'),
-      )
-      rl.close()
-      resolve()
-    })
+    )
   })
 }
