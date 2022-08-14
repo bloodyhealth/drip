@@ -5,7 +5,6 @@
 
 const ReactNativeVersion = require('react-native-version')
 const readline = require('readline')
-const leftPad = require('left-pad')
 const path = require('path')
 const fs = require('fs')
 
@@ -21,7 +20,8 @@ module.exports = () => {
     function createTodaysVersion(attempt) {
       const today = new Date()
       const yy = today.getFullYear() - 2000 // So it's two digits
-      const mm = leftPad(today.getMonth() + 1, 2, '0')
+      const monthString = (today.getMonth() + 1).toString()
+      const mm = monthString.padStart(2, '0')
       const d = today.getDate()
       if (attempt === 0) {
         return `1.${yy}${mm}.${d}`
