@@ -10,17 +10,18 @@ then
     exit
   fi
 
+  echo "\x1b[35;01m""Do you want to clear general cache(y/n)?""\x1b[39;49;00m"
+  read cache
+
+  echo "\x1b[35;01m""Do you want to re-install project libraries?""\x1b[39;49;00m"
+  read libraries
+
   echo "\x1b[35;01m""Do you want to clear ios project(y/n)?""\x1b[39;49;00m"
   read ios
 
   echo "\x1b[35;01m""Do you want to clear android project(y/n)?""\x1b[39;49;00m"
   read android
 
-  echo "\x1b[35;01m""Do you want to clear general cache(y/n)?""\x1b[39;49;00m"
-  read cache
-
-  echo "\x1b[35;01m""Do you want to re-install project libraries?""\x1b[39;49;00m"
-  read libraries
 else
   while [[ $# -gt 0 ]]; do
     key="$1"
@@ -49,20 +50,11 @@ else
   done
 fi
 
+echo "\x1b[35;01m""Clearing of the following components is starting...""\x1b[39;49;00m"
 echo "ios " $ios
 echo "android " $android
 echo "cache " $cache
 echo "npm " $libraries
-
-if [[ $ios == "y" ]] || [[ $1 == "all" ]];
-then
-  . scripts/clear-ios.sh
-fi
-
-if [[ $android == "y" ]] || [[ $1 == "all" ]];
-then
-  . scripts/clear-android.sh
-fi
 
 if [[ $cache == "y" ]] || [[ $1 == "all" ]];
 then
@@ -72,6 +64,16 @@ fi
 if [[ $libraries == "y" ]] || [[ $1 == "all" ]];
 then
   . scripts/reinstall-project.sh
+fi
+
+if [[ $ios == "y" ]] || [[ $1 == "all" ]];
+then
+  . scripts/clear-ios.sh
+fi
+
+if [[ $android == "y" ]] || [[ $1 == "all" ]];
+then
+  . scripts/clear-android.sh
 fi
 
 echo "\x1b[35;01m""Clearing is completed. You're ready to go!""\x1b[39;49;00m"
