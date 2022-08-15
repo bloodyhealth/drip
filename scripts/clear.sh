@@ -58,22 +58,22 @@ echo "npm " $libraries
 
 if [[ $cache == "y" ]] || [[ $1 == "all" ]];
 then
-  . scripts/clear-cache.sh
+  . scripts/clear-cache.sh || true
 fi
 
 if [[ $libraries == "y" ]] || [[ $1 == "all" ]];
 then
-  . scripts/reinstall-project.sh
+  . scripts/reinstall-project.sh || true
 fi
 
 if [[ $ios == "y" ]] || [[ $1 == "all" ]];
 then
-  . scripts/clear-ios.sh
+  . scripts/clear-ios.sh || true
 fi
 
 if [[ $android == "y" ]] || [[ $1 == "all" ]];
 then
-  . scripts/clear-android.sh
+  . scripts/clear-android.sh || true
 fi
 
 echo "\x1b[35;01m""Clearing is completed. You're ready to go!""\x1b[39;49;00m"
