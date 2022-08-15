@@ -43,6 +43,13 @@ else
         libraries="y"
         shift
         ;;
+      all)
+        ios="y"
+        android="y"
+        cache="y"
+        libraries="y"
+        shift
+        ;;
       *)
         shift
         ;;
