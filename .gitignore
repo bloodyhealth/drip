@@ -37,7 +37,6 @@ local.properties
 #
 node_modules/
 npm-debug.log
-yarn-error.log
 
 # BUCK
 buck-out/
@@ -80,3 +79,4 @@ nodejs-assets/build-native-modules-MacOS-helper-script-npm.sh
 
 # yarn
 .yarn/*
+yarn-error.log
