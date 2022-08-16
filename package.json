@@ -42,7 +42,7 @@
     "obv": "0.0.1",
     "prop-types": "^15.8.1",
     "react": "16.11.0",
-    "react-i18next": "^11.18.3",
+    "react-i18next": "^11.18.4",
     "react-native": "0.62.0",
     "react-native-calendars": "^1.1287.0",
     "react-native-document-picker": "^8.1.1",
