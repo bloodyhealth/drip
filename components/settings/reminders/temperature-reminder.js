@@ -68,7 +68,6 @@ class TemperatureReminder extends Component {
           onConfirm={this.onPickDate}
           onCancel={this.onPickDateCancel}
           display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-          headerTextIOS={t('labels.shared.dateTimePickerTitle')}
         />
       </React.Fragment>
     )

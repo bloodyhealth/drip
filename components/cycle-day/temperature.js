@@ -96,7 +96,6 @@ const Temperature = ({ data, date, save }) => {
           onConfirm={setTime}
           onCancel={() => setIsTimePickerVisible(false)}
           display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-          headerTextIOS={t('labels.shared.dateTimePickerTitle')}
         />
       </Segment>
     </React.Fragment>
