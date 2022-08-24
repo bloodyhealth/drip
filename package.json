@@ -44,7 +44,7 @@
     "react": "17.0.1",
     "react-i18next": "^11.18.3",
     "react-native": "0.64.3",
-    "react-native-calendars": "^1.1287.0",
+    "react-native-calendars": "^1.1288.2",
     "react-native-document-picker": "^8.1.1",
     "react-native-fs": "^2.20.0",
     "react-native-hyperlink": "0.0.19",
