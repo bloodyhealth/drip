@@ -889,7 +889,7 @@
 					"\"${PODS_ROOT}/../../node_modules/realm/vendor/realm-ios\"",
 					"$(inherited)",
 				);
-				MARKETING_VERSION = 1.2208.11;
+				MARKETING_VERSION = 1.2209.04;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -972,7 +972,7 @@
 					"\"${PODS_ROOT}/../../node_modules/realm/vendor/realm-ios\"",
 					"$(inherited)",
 				);
-				MARKETING_VERSION = 1.2208.11;
+				MARKETING_VERSION = 1.2209.04;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1020,7 +1020,7 @@
 				ENABLE_BITCODE = "$(inherited)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1083,7 +1083,7 @@
 				ENABLE_BITCODE = "$(inherited)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
