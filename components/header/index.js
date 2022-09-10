@@ -17,7 +17,7 @@ const Header = ({ isStatic, navigate }) => {
           <TouchableOpacity onPress={() => navigate('Home')}>
             <Logo />
           </TouchableOpacity>
-          <HamburgerMenu />
+          <HamburgerMenu navigate={navigate} />
         </>
       )}
     </View>
