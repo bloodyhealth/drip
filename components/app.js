@@ -63,7 +63,7 @@ class App extends Component {
   }
 
   render() {
-    const { navigation, goBack, restartApp } = this.props
+    const { navigate, navigation, goBack, restartApp } = this.props
     const { date } = this.state
     const { currentPage } = navigation
 
@@ -80,6 +80,7 @@ class App extends Component {
     const headerProps = {
       title,
       handleBack: isSettingsSubView ? goBack : null,
+      navigate,
     }
 
     const pageProps = {
