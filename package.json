@@ -38,7 +38,7 @@
     "csvtojson": "^2.0.8",
     "i18next": "^21.9.0",
     "moment": "^2.29.4",
-    "nodejs-mobile-react-native": "^0.6.3",
+    "nodejs-mobile-react-native": "^0.8.2",
     "object-path": "^0.11.4",
     "obv": "0.0.1",
     "prop-types": "^15.8.1",

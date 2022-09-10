@@ -6152,10 +6152,10 @@ nodejs-mobile-gyp@^0.3.1:
     tar "^4.4.8"
     which "1"
 
-nodejs-mobile-react-native@^0.6.3:
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/nodejs-mobile-react-native/-/nodejs-mobile-react-native-0.6.4.tgz#2bfbfe529229049eb7aaa8f6858a14be4c1042d3"
-  integrity sha512-cIHWo2iz+tttMILDJgcc42K6wxKLbanoi42r/hwdY0LEWYrKF9MFOZlxdC/BlnZxLvsbjaHJgDtgV3Qsk+Ht6A==
+nodejs-mobile-react-native@^0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/nodejs-mobile-react-native/-/nodejs-mobile-react-native-0.8.2.tgz#bf3d18602d970419967212fd9d4a4c28f9953a18"
+  integrity sha512-+W0cYzZdA8SANe0/gi84NyOxoPE7ttwJeGr7r9DZvwek3xhEUhpiUk6JdxgrvjTx+J+jPXBcXbsCuLElp+JxHw==
   dependencies:
     mkdirp "^0.5.1"
     ncp "^2.0.0"
