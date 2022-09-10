@@ -87,6 +87,7 @@ class App extends Component {
       date,
       setDate: this.setDate,
       isTemperatureEditView,
+      navigate,
     }
 
     return (
