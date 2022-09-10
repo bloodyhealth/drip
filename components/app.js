@@ -94,7 +94,7 @@ class App extends Component {
       <View style={styles.container}>
         <Header {...headerProps} />
         <Page {...pageProps} restartApp={restartApp} />
-        <Menu />
+        <Menu currentPage={currentPage} navigate={navigate} />
       </View>
     )
   }
