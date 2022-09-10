@@ -16,7 +16,7 @@
     "log": "react-native log-android",
     "test": "jest test && npm run lint",
     "test-watch": "jest --watch test",
-    "lint": "eslint components lib test styles slices db",
+    "lint": "eslint components lib test styles db",
     "devtool": "adb shell input keyevent 82",
     "build-android-release": "cd android && ./gradlew clean && ./gradlew assembleRelease && cd ..",
     "update-version": "node ./tools/bin/update-version.js",
