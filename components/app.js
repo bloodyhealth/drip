@@ -36,7 +36,7 @@ class App extends Component {
       currentPage: 'Home',
     }
 
-    setupNotifications(this.navigate, this.props.setDate)
+    setupNotifications(this.navigate, this.setDate)
   }
 
   navigate = (page) => {
