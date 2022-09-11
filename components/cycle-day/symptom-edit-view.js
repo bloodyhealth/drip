@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 
@@ -23,26 +23,19 @@ import { Colors, Containers, Sizes, Spacing } from '../../styles'
 const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const symptomConfig = symtomPage[symptom]
   const [data, setData] = useState(symptomData ? symptomData : blank[symptom])
-  const [shouldShowExclude, setShouldShowExclude] = useState(
-    shouldShow(symptomConfig.excludeText)
-  )
   const [shouldShowInfo, setShouldShowInfo] = useState(false)
-  const [shouldShowNote, setShouldShowNote] = useState(
-    shouldShow(symptomConfig.note)
-  )
-  const [shouldBoxGroup, setShouldBoxGroup] = useState(
-    shouldShow(symptomConfig.selectBoxGroups)
-  )
-  const [shouldTabGroup, setShouldTabGroup] = useState(
-    shouldShow(symptomConfig.selectTabGroups)
-  )
-
-  const saveData = (shouldDeleteData) =>
-    save[symptom](data, date, shouldDeleteData)
-
-  useEffect(() => saveData(), [data])
-
   const getParsedData = () => JSON.parse(JSON.stringify(data))
+  const onPressLearnMore = () => setShouldShowInfo(!shouldShowInfo)
+  const saveData = (shouldDeleteData) => {
+    if (JSON.stringify(data) === JSON.stringify(symptomData)) return
+
+    const warning = shouldDeleteData
+      ? sharedLabels.dataDeleted
+      : sharedLabels.dataSaved
+
+    save[symptom](data, date, shouldDeleteData)
+    showToast(warning)
+  }
 
   const onEditNote = (note) => {
     const parsedData = getParsedData()
@@ -64,17 +57,13 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
     setData(parsedData)
   }
 
-  const onPressLearnMore = () => setShouldShowInfo(!shouldShowInfo)
-
   const onRemove = () => {
     saveData(true)
-    showToast(sharedLabels.dataDeleted)
     onClose()
   }
 
   const onSave = () => {
     saveData()
-    showToast(sharedLabels.dataSaved)
     onClose()
   }
 
@@ -117,23 +106,17 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
 
     setData(parsedData)
   }
-
-  const closeView = () => {
-    showToast(sharedLabels.dataSaved)
-    onClose()
-  }
-
   const iconName = shouldShowInfo ? 'chevron-up' : 'chevron-down'
   const noteText = symptom === 'note' ? data.value : data.note
 
   return (
-    <AppModal onClose={closeView}>
+    <AppModal onClose={onSave}>
       <ScrollView
         contentContainerStyle={styles.modalContainer}
         style={styles.modalWindow}
       >
         <View style={styles.headerContainer}>
-          <CloseIcon onClose={closeView} />
+          <CloseIcon onClose={onSave} />
         </View>
         {symptom === 'temperature' && (
           <Temperature
@@ -142,7 +125,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             save={(value, field) => onSaveTemperature(value, field)}
           />
         )}
-        {shouldTabGroup &&
+        {shouldShow(symptomConfig.selectTabGroups) &&
           symtomPage[symptom].selectTabGroups.map((group) => {
             return (
               <Segment key={group.key} style={styles.segmentBorder}>
@@ -155,7 +138,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
               </Segment>
             )
           })}
-        {shouldBoxGroup &&
+        {shouldShow(symptomConfig.selectBoxGroups) &&
           symtomPage[symptom].selectBoxGroups.map((group) => {
             const isOtherSelected =
               data['other'] !== null &&
@@ -181,7 +164,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
               </Segment>
             )
           })}
-        {shouldShowExclude && (
+        {shouldShow(symptomConfig.excludeText) && (
           <Segment style={styles.segmentBorder}>
             <AppSwitch
               onToggle={onExcludeToggle}
@@ -190,7 +173,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             />
           </Segment>
         )}
-        {shouldShowNote && (
+        {shouldShow(symptomConfig.note) && (
           <Segment style={styles.segmentBorder}>
             <AppText>{symtomPage[symptom].note}</AppText>
             <AppTextInput
