@@ -43,30 +43,31 @@ class CycleChart extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {}
+    this.state = {
+      isCalculating: true,
+      shouldShowHint: true,
+    }
+
     this.cycleDaysSortedByDate = getCycleDaysSortedByDate()
     this.getFhmAndLtlInfo = nfpLines()
     this.shouldShowTemperatureColumn = false
 
-    this.checkShouldShowHint()
     this.prepareSymptomData()
+  }
+
+  componentDidMount() {
+    this.checkShouldShowHint()
+    this.calculateChartInfo()
   }
 
   checkShouldShowHint = async () => {
     const flag = await getChartFlag()
-    const shouldShowHint = flag === 'true' ? true : false
-    this.setState({ shouldShowHint })
+    this.setState({ shouldShowHint: flag === 'true' })
   }
 
   setShouldShowHint = async () => {
     await setChartFlag()
     this.setState({ shouldShowHint: false })
-  }
-
-  onLayout = () => {
-    if (this.state.chartHeight) return false
-
-    this.reCalculateChartInfo()
   }
 
   prepareSymptomData = () => {
@@ -100,7 +101,7 @@ class CycleChart extends Component {
     )
   }
 
-  reCalculateChartInfo = () => {
+  calculateChartInfo = () => {
     const { width, height } = Dimensions.get('window')
 
     this.xAxisHeight = height * 0.7 * CHART_XAXIS_HEIGHT_RATIO
@@ -113,13 +114,18 @@ class CycleChart extends Component {
         this.symptomRowSymptoms.length * this.symptomHeight
       ) + CHART_GRID_LINE_HORIZONTAL_WIDTH
     this.columnHeight = remainingHeight - this.symptomRowHeight
+
     const chartHeight = this.shouldShowTemperatureColumn
       ? height * 0.7
       : this.symptomRowHeight + this.xAxisHeight
     const numberOfColumnsToRender = Math.round(width / CHART_COLUMN_WIDTH)
     const columns = makeColumnInfo()
-
-    this.setState({ columns, chartHeight, numberOfColumnsToRender })
+    this.setState({
+      columns,
+      chartHeight,
+      numberOfColumnsToRender,
+      isCalculating: false,
+    })
   }
 
   render() {
@@ -128,21 +134,28 @@ class CycleChart extends Component {
       chartLoaded,
       shouldShowHint,
       numberOfColumnsToRender,
+      isCalculating,
     } = this.state
+
+    const { navigate } = this.props
+
     const hasDataToDisplay = this.chartSymptoms.length > 0
+
+    if (!hasDataToDisplay) {
+      return <NoData navigate={navigate} />
+    }
+
+    if (isCalculating) {
+      return <AppLoadingView />
+    }
 
     return (
       <AppPage
         contentContainerStyle={styles.pageContainer}
-        onLayout={this.onLayout}
         scrollViewStyle={styles.page}
       >
-        {!hasDataToDisplay && <NoData navigate={this.props.navigate} />}
-        {hasDataToDisplay && !chartHeight && !chartLoaded && <AppLoadingView />}
         <View style={styles.chartContainer}>
-          {shouldShowHint && chartLoaded && (
-            <Tutorial onClose={this.setShouldShowHint} />
-          )}
+          {shouldShowHint && <Tutorial onClose={this.setShouldShowHint} />}
           {hasDataToDisplay &&
             chartLoaded &&
             !this.shouldShowTemperatureColumn && (
