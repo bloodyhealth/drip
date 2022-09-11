@@ -15,9 +15,6 @@ import { closeDb } from '../db'
 const App = ({ restartApp }) => {
   const [date, setDate] = useState(LocalDate.now().toString())
   const [currentPage, setCurrentPage] = useState('Home')
-
-  setupNotifications(setCurrentPage, setDate)
-
   const goBack = () => {
     if (currentPage === 'Home') {
       closeDb()
@@ -36,10 +33,11 @@ const App = ({ restartApp }) => {
       'hardwareBackPress',
       goBack
     )
+
     return () => backHandler.remove()
   })
 
-  if (!currentPage) return false
+  useEffect(() => setupNotifications(setCurrentPage, setDate), [])
 
   const Page = viewsList[currentPage]
   const isTemperatureEditView = currentPage === 'TemperatureEditView'
