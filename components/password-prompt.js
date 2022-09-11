@@ -38,7 +38,7 @@ const PasswordPrompt = ({ enableShowApp }) => {
   useEffect(() => {
     nodejs.channel.addListener('check-pw', passHashToDb, this)
 
-    return () => nodejs.channel.removeListener('check-pw', passHashToDb)
+    return () => nodejs.channel.remove('check-pw', passHashToDb)
   }, [])
 
   const onDeleteDataConfirmation = async () => {
@@ -65,7 +65,7 @@ const PasswordPrompt = ({ enableShowApp }) => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <Header isStatic />
       <AppPage contentContainerStyle={styles.contentContainer}>
         <AppTextInput
@@ -85,7 +85,7 @@ const PasswordPrompt = ({ enableShowApp }) => {
           </Button>
         </View>
       </AppPage>
-    </React.Fragment>
+    </>
   )
 }
 
