@@ -20,12 +20,7 @@ import Tutorial from './tutorial'
 import YAxis from './y-axis'
 
 import { getCycleDaysSortedByDate } from '../../db'
-import nothingChanged from '../../db/db-unchanged'
-import {
-  getChartFlag,
-  scaleObservable,
-  setChartFlag,
-} from '../../local-storage'
+import { getChartFlag, setChartFlag } from '../../local-storage'
 import { makeColumnInfo, nfpLines } from '../helpers/chart'
 
 import {
@@ -57,11 +52,6 @@ class CycleChart extends Component {
     this.prepareSymptomData()
   }
 
-  componentWillUnmount() {
-    this.cycleDaysSortedByDate.removeListener(this.handleDbChange)
-    this.removeObvListener()
-  }
-
   checkShouldShowHint = async () => {
     const flag = await getChartFlag()
     const shouldShowHint = flag === 'true' ? true : false
@@ -77,7 +67,6 @@ class CycleChart extends Component {
     if (this.state.chartHeight) return false
 
     this.reCalculateChartInfo()
-    this.updateListeners(this.reCalculateChartInfo)
   }
 
   prepareSymptomData = () => {
@@ -131,22 +120,6 @@ class CycleChart extends Component {
     const columns = makeColumnInfo()
 
     this.setState({ columns, chartHeight, numberOfColumnsToRender })
-  }
-
-  updateListeners(dataUpdateHandler) {
-    // remove existing listeners
-    if (this.handleDbChange) {
-      this.cycleDaysSortedByDate.removeListener(this.handleDbChange)
-    }
-    if (this.removeObvListener) this.removeObvListener()
-
-    this.handleDbChange = (_, changes) => {
-      if (nothingChanged(changes)) return
-      dataUpdateHandler()
-    }
-
-    this.cycleDaysSortedByDate.addListener(this.handleDbChange)
-    this.removeObvListener = scaleObservable(dataUpdateHandler, false)
   }
 
   render() {
