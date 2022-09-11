@@ -14,16 +14,14 @@ const PrivacyPolicy = () => {
 
   return (
     <AppPage title={t('settings.privacyPolicy.title')}>
-      {sections.map((sectionItem) => {
-        return (
-          <Segment last key={sectionItem}>
-            <AppText style={styles.title}>
-              {t(`settings.privacyPolicy.${sectionItem}.title`)}
-            </AppText>
-            <AppText>{t(`settings.privacyPolicy.${sectionItem}.text`)}</AppText>
-          </Segment>
-        )
-      })}
+      {sections.map((sectionItem) => (
+        <Segment last key={sectionItem}>
+          <AppText style={styles.title}>
+            {t(`settings.privacyPolicy.${sectionItem}.title`)}
+          </AppText>
+          <AppText>{t(`settings.privacyPolicy.${sectionItem}.text`)}</AppText>
+        </Segment>
+      ))}
     </AppPage>
   )
 }
