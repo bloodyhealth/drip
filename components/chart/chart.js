@@ -131,7 +131,6 @@ class CycleChart extends Component {
   render() {
     const {
       chartHeight,
-      chartLoaded,
       shouldShowHint,
       numberOfColumnsToRender,
       isCalculating,
@@ -156,53 +155,39 @@ class CycleChart extends Component {
       >
         <View style={styles.chartContainer}>
           {shouldShowHint && <Tutorial onClose={this.setShouldShowHint} />}
-          {hasDataToDisplay &&
-            chartLoaded &&
-            !this.shouldShowTemperatureColumn && (
-              <View style={styles.centerItem}>
-                <AppText style={styles.warning}>
-                  {shared.noTemperatureWarning}
-                </AppText>
-              </View>
-            )}
-          {hasDataToDisplay && (
-            <View style={styles.chartArea}>
-              {chartHeight && chartLoaded && (
-                <YAxis
-                  height={this.columnHeight}
-                  symptomsToDisplay={this.symptomRowSymptoms}
-                  symptomsSectionHeight={this.symptomRowHeight}
-                  shouldShowTemperatureColumn={this.shouldShowTemperatureColumn}
-                  xAxisHeight={this.xAxisHeight}
-                />
-              )}
-
-              {chartHeight && (
-                <FlatList
-                  horizontal={true}
-                  inverted={true}
-                  showsHorizontalScrollIndicator={false}
-                  data={this.state.columns}
-                  renderItem={this.renderColumn}
-                  keyExtractor={(item) => item}
-                  initialNumToRender={numberOfColumnsToRender}
-                  windowSize={30}
-                  onLayout={() => this.setState({ chartLoaded: true })}
-                  onEndReached={() => this.setState({ end: true })}
-                  ListFooterComponent={<LoadingMoreView end={this.state.end} />}
-                  updateCellsBatchingPeriod={800}
-                  contentContainerStyle={{ height: chartHeight }}
-                />
-              )}
-              {chartHeight && chartLoaded && (
-                <React.Fragment>
-                  {this.shouldShowTemperatureColumn && (
-                    <HorizontalGrid height={this.columnHeight} />
-                  )}
-                </React.Fragment>
-              )}
+          {!this.shouldShowTemperatureColumn && (
+            <View style={styles.centerItem}>
+              <AppText style={styles.warning}>
+                {shared.noTemperatureWarning}
+              </AppText>
             </View>
           )}
+          <View style={styles.chartArea}>
+            <YAxis
+              height={this.columnHeight}
+              symptomsToDisplay={this.symptomRowSymptoms}
+              symptomsSectionHeight={this.symptomRowHeight}
+              shouldShowTemperatureColumn={this.shouldShowTemperatureColumn}
+              xAxisHeight={this.xAxisHeight}
+            />
+            <FlatList
+              horizontal={true}
+              inverted={true}
+              showsHorizontalScrollIndicator={false}
+              data={this.state.columns}
+              renderItem={this.renderColumn}
+              keyExtractor={(item) => item}
+              initialNumToRender={numberOfColumnsToRender}
+              windowSize={30}
+              onEndReached={() => this.setState({ end: true })}
+              ListFooterComponent={<LoadingMoreView end={this.state.end} />}
+              updateCellsBatchingPeriod={800}
+              contentContainerStyle={{ height: chartHeight }}
+            />
+            {this.shouldShowTemperatureColumn && (
+              <HorizontalGrid height={this.columnHeight} />
+            )}
+          </View>
         </View>
       </AppPage>
     )
