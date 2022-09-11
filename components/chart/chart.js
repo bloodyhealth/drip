@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-  ActivityIndicator,
   Dimensions,
   FlatList,
   PixelRatio,
@@ -15,6 +14,7 @@ import AppText from '../common/app-text'
 
 import DayColumn from './day-column'
 import HorizontalGrid from './horizontal-grid'
+import LoadingMoreView from './loading-more'
 import NoData from './no-data'
 import Tutorial from './tutorial'
 import YAxis from './y-axis'
@@ -36,7 +36,7 @@ import {
   SYMPTOMS,
 } from '../../config'
 import { shared } from '../../i18n/en/labels'
-import { Colors, Spacing } from '../../styles'
+import { Spacing } from '../../styles'
 
 class CycleChart extends Component {
   static propTypes = {
@@ -223,29 +223,12 @@ class CycleChart extends Component {
   }
 }
 
-function LoadingMoreView({ end }) {
-  return (
-    <View style={styles.loadingContainer}>
-      {!end && <ActivityIndicator size={'large'} color={Colors.orange} />}
-    </View>
-  )
-}
-
-LoadingMoreView.propTypes = {
-  end: PropTypes.bool,
-}
-
 const styles = StyleSheet.create({
   chartArea: {
     flexDirection: 'row',
   },
   chartContainer: {
     flexDirection: 'column',
-  },
-  loadingContainer: {
-    height: '100%',
-    backgroundColor: Colors.turquoiseLight,
-    justifyContent: 'center',
   },
   page: {
     marginVertical: Spacing.small,
