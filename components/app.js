@@ -7,9 +7,8 @@ import { LocalDate } from '@js-joda/core'
 import Header from './header'
 import Menu from './menu'
 import { viewsList } from './views'
-import { isSettingsView, pages } from './pages'
+import { pages } from './pages'
 
-import { headerTitles } from '../i18n/en/labels'
 import setupNotifications from '../lib/notifications'
 import { closeDb } from '../db'
 
@@ -19,42 +18,32 @@ const App = ({ restartApp }) => {
 
   setupNotifications(setCurrentPage, setDate)
 
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      goBack
-    )
-
-    return () => backHandler.remove()
-  }, [])
-
   const goBack = () => {
-    const { currentPage } = this.state
-
     if (currentPage === 'Home') {
       closeDb()
       BackHandler.exitApp()
     } else {
       const { parent } = pages.find((p) => p.component === currentPage)
+
       setCurrentPage(parent)
     }
 
     return true
   }
 
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      goBack
+    )
+    return () => backHandler.remove()
+  })
+
   if (!currentPage) return false
 
   const Page = viewsList[currentPage]
-
-  const isSettingsSubView = isSettingsView(currentPage)
   const isTemperatureEditView = currentPage === 'TemperatureEditView'
-
-  const headerProps = {
-    title: headerTitles[currentPage],
-    handleBack: isSettingsSubView ? goBack : null,
-    navigate: setCurrentPage,
-  }
-
+  const headerProps = { navigate: setCurrentPage }
   const pageProps = {
     date,
     setDate,
