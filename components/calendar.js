@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, View } from 'react-native'
 import { CalendarList } from 'react-native-calendars'
@@ -13,76 +13,69 @@ import {
   todayToCalFormat,
 } from './helpers/calendar'
 
-class CalendarView extends Component {
-  static propTypes = {
-    setDate: PropTypes.func.isRequired,
-    navigate: PropTypes.func.isRequired,
-  }
+const CalendarView = ({ setDate, navigate }) => {
+  const bleedingDays = getBleedingDaysSortedByDate()
+  const predictedMenses = cycleModule().getPredictedMenses()
 
-  constructor(props) {
-    super(props)
-    this.bleedingDays = getBleedingDaysSortedByDate()
-    const predictedMenses = cycleModule().getPredictedMenses()
-    this.state = {
-      bleedingDaysInCalFormat: toCalFormat(this.bleedingDays),
-      predictedBleedingDaysInCalFormat: predictionToCalFormat(predictedMenses),
-      todayInCalFormat: todayToCalFormat(),
+  const [bleedingDaysInCalFormat, setBleedingDaysInCalFormat] = useState(
+    toCalFormat(bleedingDays)
+  )
+  const [
+    predictedBleedingDaysInCalFormat,
+    setPredictedBleedingDaysInCalFormat,
+  ] = useState(predictionToCalFormat(predictedMenses))
+  const [todayInCalFormat, setTodayInCalFormat] = useState(todayToCalFormat())
+
+  useEffect(() => {
+    bleedingDays.addListener(setStateWithCalFormattedDays)
+    return () => {
+      bleedingDays.removeListener(setStateWithCalFormattedDays)
     }
+  }, [])
 
-    this.bleedingDays.addListener(this.setStateWithCalFormattedDays)
-  }
-
-  setStateWithCalFormattedDays = (_, changes) => {
+  const setStateWithCalFormattedDays = (_, changes) => {
     if (nothingChanged(changes)) return
     const predictedMenses = cycleModule().getPredictedMenses()
-    this.setState({
-      bleedingDaysInCalFormat: toCalFormat(this.bleedingDays),
-      predictedBleedingDaysInCalFormat: predictionToCalFormat(predictedMenses),
-      todayInCalFormat: todayToCalFormat(),
-    })
+    setBleedingDaysInCalFormat(toCalFormat(bleedingDays))
+    setPredictedBleedingDaysInCalFormat(predictionToCalFormat(predictedMenses))
+    setTodayInCalFormat(todayToCalFormat())
   }
 
-  componentWillUnmount() {
-    this.bleedingDays.removeListener(this.setStateWithCalFormattedDays)
+  const passDateToDayView = (result) => {
+    setDate(result.dateString)
+    navigate('CycleDay')
   }
 
-  passDateToDayView = (result) => {
-    this.props.setDate(result.dateString)
-    this.props.navigate('CycleDay')
-  }
+  const markedDates = Object.assign(
+    {},
+    todayInCalFormat,
+    bleedingDaysInCalFormat,
+    predictedBleedingDaysInCalFormat
+  )
 
-  render() {
-    const {
-      todayInCalFormat,
-      bleedingDaysInCalFormat,
-      predictedBleedingDaysInCalFormat,
-    } = this.state
-    const markedDates = Object.assign(
-      {},
-      todayInCalFormat,
-      bleedingDaysInCalFormat,
-      predictedBleedingDaysInCalFormat
-    )
-
-    return (
-      <View style={styles.container}>
-        <CalendarList
-          // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
-          firstDay={1}
-          onDayPress={this.passDateToDayView.bind(this)}
-          markedDates={markedDates}
-          markingType="custom"
-          theme={calendarTheme}
-          // Max amount of months allowed to scroll to the past.
-          pastScrollRange={120}
-        />
-      </View>
-    )
-  }
+  return (
+    <View style={styles.container}>
+      <CalendarList
+        // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
+        firstDay={1}
+        onDayPress={passDateToDayView}
+        markedDates={markedDates}
+        markingType="custom"
+        theme={calendarTheme}
+        // Max amount of months allowed to scroll to the past.
+        pastScrollRange={120}
+      />
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
 })
+
+CalendarView.propTypes = {
+  setDate: PropTypes.func.isRequired,
+  navigate: PropTypes.func.isRequired,
+}
 
 export default CalendarView
