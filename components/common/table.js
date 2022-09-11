@@ -65,18 +65,11 @@ const styles = StyleSheet.create({
   },
   cellLeft: {
     alignItems: 'flex-end',
-    flex: 5,
+    flex: 3,
     justifyContent: 'center',
   },
-  cellRight: {
-    flex: 5,
-    justifyContent: 'center',
-  },
-  row: {
-    flexDirection: 'row',
-    marginBottom: Spacing.tiny,
-    marginLeft: Spacing.tiny,
-  },
+  cellRight: { flex: 5 },
+  row: { flexDirection: 'row' },
 })
 
 export default Table
