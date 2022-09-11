@@ -10,12 +10,12 @@ import {
 
 import AppLoadingView from '../common/app-loading'
 import AppPage from '../common/app-page'
-import AppText from '../common/app-text'
 
 import DayColumn from './day-column'
 import HorizontalGrid from './horizontal-grid'
 import LoadingMoreView from './loading-more'
 import NoData from './no-data'
+import NoTemperature from './no-temperature'
 import Tutorial from './tutorial'
 import YAxis from './y-axis'
 
@@ -30,7 +30,6 @@ import {
   CHART_XAXIS_HEIGHT_RATIO,
   SYMPTOMS,
 } from '../../config'
-import { shared } from '../../i18n/en/labels'
 import { Spacing } from '../../styles'
 
 class CycleChart extends Component {
@@ -155,13 +154,7 @@ class CycleChart extends Component {
       >
         <View style={styles.chartContainer}>
           {shouldShowHint && <Tutorial onClose={this.setShouldShowHint} />}
-          {!this.shouldShowTemperatureColumn && (
-            <View style={styles.centerItem}>
-              <AppText style={styles.warning}>
-                {shared.noTemperatureWarning}
-              </AppText>
-            </View>
-          )}
+          {!this.shouldShowTemperatureColumn && <NoTemperature />}
           <View style={styles.chartArea}>
             <YAxis
               height={this.columnHeight}
@@ -206,9 +199,6 @@ const styles = StyleSheet.create({
   },
   pageContainer: {
     paddingHorizontal: Spacing.base,
-  },
-  warning: {
-    padding: Spacing.large,
   },
 })
 
