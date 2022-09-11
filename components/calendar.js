@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, View } from 'react-native'
 import { CalendarList } from 'react-native-calendars'
 
 import { getBleedingDaysSortedByDate } from '../db'
 import cycleModule from '../lib/cycle'
-import nothingChanged from '../db/db-unchanged'
 import {
   calendarTheme,
   predictionToCalFormat,
@@ -17,40 +16,16 @@ const CalendarView = ({ setDate, navigate }) => {
   const bleedingDays = getBleedingDaysSortedByDate()
   const predictedMenses = cycleModule().getPredictedMenses()
 
-  const [bleedingDaysInCalFormat, setBleedingDaysInCalFormat] = useState(
-    toCalFormat(bleedingDays)
-  )
-  const [
-    predictedBleedingDaysInCalFormat,
-    setPredictedBleedingDaysInCalFormat,
-  ] = useState(predictionToCalFormat(predictedMenses))
-  const [todayInCalFormat, setTodayInCalFormat] = useState(todayToCalFormat())
-
-  useEffect(() => {
-    bleedingDays.addListener(setStateWithCalFormattedDays)
-    return () => {
-      bleedingDays.removeListener(setStateWithCalFormattedDays)
-    }
-  }, [])
-
-  const setStateWithCalFormattedDays = (_, changes) => {
-    if (nothingChanged(changes)) return
-    const predictedMenses = cycleModule().getPredictedMenses()
-    setBleedingDaysInCalFormat(toCalFormat(bleedingDays))
-    setPredictedBleedingDaysInCalFormat(predictionToCalFormat(predictedMenses))
-    setTodayInCalFormat(todayToCalFormat())
-  }
-
-  const passDateToDayView = (result) => {
-    setDate(result.dateString)
+  const passDateToDayView = ({ dateString }) => {
+    setDate(dateString)
     navigate('CycleDay')
   }
 
   const markedDates = Object.assign(
     {},
-    todayInCalFormat,
-    bleedingDaysInCalFormat,
-    predictedBleedingDaysInCalFormat
+    todayToCalFormat(),
+    toCalFormat(bleedingDays),
+    predictionToCalFormat(predictedMenses)
   )
 
   return (
