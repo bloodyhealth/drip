@@ -36,9 +36,9 @@ const DataManagement = () => {
     openImportDialog(startImportFlow)
   }
 
-  const isDeletingData = currentAction === ACTION_DELETE
-
   if (isLoading) return <AppLoadingView />
+
+  const isDeletingData = currentAction === ACTION_DELETE
 
   return (
     <AppPage>

@@ -11,9 +11,9 @@ import labels from '../../../i18n/en/settings'
 import { TEMP_MIN, TEMP_MAX, TEMP_SLIDER_STEP } from '../../../config'
 
 const TemperatureSlider = () => {
-  const { min, max } = scaleObservable.value
-  const [minTemperature, setMinTemperature] = useState(min)
-  const [maxTemperature, setMaxTemperature] = useState(max)
+  const savedValue = scaleObservable.value
+  const [minTemperature, setMinTemperature] = useState(savedValue.min)
+  const [maxTemperature, setMaxTemperature] = useState(savedValue.max)
 
   const onTemperatureSliderChange = ([min, max]) => {
     setMinTemperature(min)

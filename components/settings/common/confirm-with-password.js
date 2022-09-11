@@ -56,7 +56,7 @@ const ConfirmWithPassword = ({ onSuccess, onCancel }) => {
         onChangeText={setPassword}
         placeholder={labels.enterCurrent}
         value={password}
-        secureTextEntry={true}
+        secureTextEntry
       />
       <View style={styles.container}>
         <Button onPress={onCancel}>{shared.cancel}</Button>
