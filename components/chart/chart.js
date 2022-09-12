@@ -21,7 +21,7 @@ import YAxis from './y-axis'
 
 import { getCycleDaysSortedByDate } from '../../db'
 import { getChartFlag, setChartFlag } from '../../local-storage'
-import { makeColumnInfo, nfpLines } from '../helpers/chart'
+import { makeColumnInfo } from '../helpers/chart'
 
 import {
   CHART_COLUMN_WIDTH,
@@ -48,7 +48,6 @@ class CycleChart extends Component {
     }
 
     this.cycleDaysSortedByDate = getCycleDaysSortedByDate()
-    this.getFhmAndLtlInfo = nfpLines()
     this.shouldShowTemperatureColumn = false
 
     this.prepareSymptomData()
@@ -70,31 +69,30 @@ class CycleChart extends Component {
   }
 
   prepareSymptomData = () => {
-    this.symptomRowSymptoms = SYMPTOMS.filter((symptomName) => {
-      return this.cycleDaysSortedByDate.some((cycleDay) => {
-        return symptomName !== 'temperature' && cycleDay[symptomName]
-      })
-    })
-    this.chartSymptoms = [...this.symptomRowSymptoms]
-    if (this.cycleDaysSortedByDate.some((day) => day.temperature)) {
-      this.chartSymptoms.push('temperature')
-      this.shouldShowTemperatureColumn = true
-    }
+    const getSymptomsFromCycleDays = (cycleDays) =>
+      SYMPTOMS.filter((symptom) =>
+        cycleDays.some((cycleDay) => cycleDay[symptom])
+      )
+
+    this.chartSymptoms = getSymptomsFromCycleDays(this.cycleDaysSortedByDate)
+    this.symptomRowSymptoms = this.chartSymptoms.filter(
+      (symptom) => symptom !== 'temperature'
+    )
+    this.shouldShowTemperatureColumn =
+      this.chartSymptoms.indexOf('temperature') > -1
   }
 
-  renderColumn = ({ item, index }) => {
+  renderColumn = ({ item }) => {
     return (
       <DayColumn
         setDate={this.props.setDate}
         dateString={item}
-        index={index}
         navigate={this.props.navigate}
         symptomHeight={this.symptomHeight}
         columnHeight={this.columnHeight}
         symptomRowSymptoms={this.symptomRowSymptoms}
         chartSymptoms={this.chartSymptoms}
         shouldShowTemperatureColumn={this.shouldShowTemperatureColumn}
-        getFhmAndLtlInfo={this.getFhmAndLtlInfo}
         xAxisHeight={this.xAxisHeight}
       />
     )
@@ -102,6 +100,7 @@ class CycleChart extends Component {
 
   calculateChartInfo = () => {
     const { width, height } = Dimensions.get('window')
+    const numberOfColumnsToRender = Math.round(width / CHART_COLUMN_WIDTH)
 
     this.xAxisHeight = height * 0.7 * CHART_XAXIS_HEIGHT_RATIO
     const remainingHeight = height * 0.7 - this.xAxisHeight
@@ -117,8 +116,9 @@ class CycleChart extends Component {
     const chartHeight = this.shouldShowTemperatureColumn
       ? height * 0.7
       : this.symptomRowHeight + this.xAxisHeight
-    const numberOfColumnsToRender = Math.round(width / CHART_COLUMN_WIDTH)
+
     const columns = makeColumnInfo()
+
     this.setState({
       columns,
       chartHeight,
@@ -133,6 +133,7 @@ class CycleChart extends Component {
       shouldShowHint,
       numberOfColumnsToRender,
       isCalculating,
+      columns,
     } = this.state
 
     const { navigate } = this.props
@@ -167,7 +168,7 @@ class CycleChart extends Component {
               horizontal={true}
               inverted={true}
               showsHorizontalScrollIndicator={false}
-              data={this.state.columns}
+              data={columns}
               renderItem={this.renderColumn}
               keyExtractor={(item) => item}
               initialNumToRender={numberOfColumnsToRender}
