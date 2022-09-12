@@ -1,19 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  Dimensions,
-  FlatList,
-  PixelRatio,
-  StyleSheet,
-  View,
-} from 'react-native'
+import { Dimensions, PixelRatio, StyleSheet, View } from 'react-native'
 
 import AppLoadingView from '../common/app-loading'
 import AppPage from '../common/app-page'
 
 import DayColumn from './day-column'
 import HorizontalGrid from './horizontal-grid'
-import LoadingMoreView from './loading-more'
+import MainGrid from './main-grid'
 import NoData from './no-data'
 import NoTemperature from './no-temperature'
 import Tutorial from './tutorial'
@@ -35,7 +29,6 @@ import { Spacing } from '../../styles'
 class CycleChart extends Component {
   static propTypes = {
     navigate: PropTypes.func,
-    end: PropTypes.bool,
     setDate: PropTypes.func,
   }
 
@@ -164,18 +157,10 @@ class CycleChart extends Component {
               shouldShowTemperatureColumn={this.shouldShowTemperatureColumn}
               xAxisHeight={this.xAxisHeight}
             />
-            <FlatList
-              horizontal={true}
-              inverted={true}
-              showsHorizontalScrollIndicator={false}
+            <MainGrid
               data={columns}
               renderItem={this.renderColumn}
-              keyExtractor={(item) => item}
               initialNumToRender={numberOfColumnsToRender}
-              windowSize={30}
-              onEndReached={() => this.setState({ end: true })}
-              ListFooterComponent={<LoadingMoreView end={this.state.end} />}
-              updateCellsBatchingPeriod={800}
               contentContainerStyle={{ height: chartHeight }}
             />
             {this.shouldShowTemperatureColumn && (
