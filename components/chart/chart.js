@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Dimensions, PixelRatio, StyleSheet, View } from 'react-native'
 
@@ -13,7 +13,7 @@ import Tutorial from './tutorial'
 import YAxis from './y-axis'
 
 import { getCycleDaysSortedByDate } from '../../db'
-import { getChartFlag } from '../../local-storage'
+import { getChartFlag, setChartFlag } from '../../local-storage'
 import { makeColumnInfo } from '../helpers/chart'
 
 import {
@@ -31,12 +31,15 @@ const getSymptomsFromCycleDays = (cycleDays) =>
 const CycleChart = ({ navigate, setDate }) => {
   const [shouldShowHint, setShouldShowHint] = useState(true)
 
-  const checkShouldShowHint = async () => {
+  useEffect(async () => {
     const flag = await getChartFlag()
     setShouldShowHint(flag === 'true')
-  }
+  }, [])
 
-  checkShouldShowHint()
+  const hideHint = () => {
+    setShouldShowHint(false)
+    setChartFlag()
+  }
 
   const cycleDaysSortedByDate = getCycleDaysSortedByDate()
 
@@ -94,7 +97,7 @@ const CycleChart = ({ navigate, setDate }) => {
       scrollViewStyle={styles.page}
     >
       <View style={styles.chartContainer}>
-        {shouldShowHint && <Tutorial onClose={setShouldShowHint} />}
+        {shouldShowHint && <Tutorial onClose={hideHint} />}
         {!shouldShowTemperatureColumn && <NoTemperature />}
         <View style={styles.chartArea}>
           <YAxis
