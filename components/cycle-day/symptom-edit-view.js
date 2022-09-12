@@ -26,11 +26,6 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const [shouldShowInfo, setShouldShowInfo] = useState(false)
   const getParsedData = () => JSON.parse(JSON.stringify(data))
   const onPressLearnMore = () => setShouldShowInfo(!shouldShowInfo)
-  const hasDataChanged = () => {
-    const initialData = symptomData ? symptomData : blank[symptom]
-
-    return JSON.stringify(data) !== JSON.stringify(initialData)
-  }
 
   const onEditNote = (note) => {
     const parsedData = getParsedData()
@@ -59,6 +54,12 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   }
 
   const onSave = () => {
+    const hasDataChanged = () => {
+      const initialData = symptomData ? symptomData : blank[symptom]
+
+      return JSON.stringify(data) !== JSON.stringify(initialData)
+    }
+
     if (hasDataChanged()) {
       save[symptom](data, date, false)
       showToast(sharedLabels.dataSaved)
