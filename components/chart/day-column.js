@@ -65,10 +65,6 @@ const DayColumn = ({
     navigate('CycleDay')
   }
 
-  // shouldComponentUpdate() {
-  //   return false
-  // }
-
   return (
     <TouchableOpacity onPress={() => onDaySelect(dateString)} activeOpacity={1}>
       {shouldShowTemperatureColumn && (
