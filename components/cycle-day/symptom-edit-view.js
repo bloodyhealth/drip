@@ -112,98 +112,97 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
 
   return (
     <AppModal onClose={onSave}>
-      <ScrollView
-        contentContainerStyle={styles.modalContainer}
-        style={styles.modalWindow}
-      >
+      <View style={styles.modalWindow}>
         <View style={styles.headerContainer}>
           <CloseIcon onClose={onSave} />
         </View>
-        {symptom === 'temperature' && (
-          <Temperature
-            date={date}
-            data={data}
-            save={(value, field) => onSaveTemperature(value, field)}
-          />
-        )}
-        {shouldShow(symptomConfig.selectTabGroups) &&
-          symtomPage[symptom].selectTabGroups.map((group) => {
-            return (
-              <Segment key={group.key} style={styles.segmentBorder}>
-                <AppText style={styles.title}>{group.title}</AppText>
-                <SelectTabGroup
-                  activeButton={data[group.key]}
-                  buttons={group.options}
-                  onSelect={(value) => onSelectTab(group, value)}
-                />
-              </Segment>
-            )
-          })}
-        {shouldShow(symptomConfig.selectBoxGroups) &&
-          symtomPage[symptom].selectBoxGroups.map((group) => {
-            const isOtherSelected =
-              data['other'] !== null &&
-              data['other'] !== false &&
-              Object.keys(group.options).includes('other')
-
-            return (
-              <Segment key={group.key} style={styles.segmentBorder}>
-                <AppText style={styles.title}>{group.title}</AppText>
-                <SelectBoxGroup
-                  labels={group.options}
-                  onSelect={(value) => onSelectBox(value)}
-                  optionsState={data}
-                />
-                {isOtherSelected && (
-                  <AppTextInput
-                    multiline={true}
-                    placeholder={sharedLabels.enter}
-                    value={data.note}
-                    onChangeText={(value) => onSelectBoxNote(value)}
+        <ScrollView contentContainerStyle={styles.modalContainer}>
+          {symptom === 'temperature' && (
+            <Temperature
+              date={date}
+              data={data}
+              save={(value, field) => onSaveTemperature(value, field)}
+            />
+          )}
+          {shouldShow(symptomConfig.selectTabGroups) &&
+            symtomPage[symptom].selectTabGroups.map((group) => {
+              return (
+                <Segment key={group.key} style={styles.segmentBorder}>
+                  <AppText style={styles.title}>{group.title}</AppText>
+                  <SelectTabGroup
+                    activeButton={data[group.key]}
+                    buttons={group.options}
+                    onSelect={(value) => onSelectTab(group, value)}
                   />
-                )}
-              </Segment>
-            )
-          })}
-        {shouldShow(symptomConfig.excludeText) && (
-          <Segment style={styles.segmentBorder}>
-            <AppSwitch
-              onToggle={onExcludeToggle}
-              text={symtomPage[symptom].excludeText}
-              value={data.exclude}
-            />
-          </Segment>
-        )}
-        {shouldShow(symptomConfig.note) && (
-          <Segment style={styles.segmentBorder}>
-            <AppText>{symtomPage[symptom].note}</AppText>
-            <AppTextInput
-              multiline={true}
-              numberOfLines={3}
-              onChangeText={onEditNote}
-              placeholder={sharedLabels.enter}
-              testID="noteInput"
-              value={noteText !== null ? noteText : ''}
-            />
-          </Segment>
-        )}
-        <View style={styles.buttonsContainer}>
-          <Button iconName={iconName} isSmall onPress={onPressLearnMore}>
-            {sharedLabels.learnMore}
-          </Button>
-          <Button isSmall onPress={onRemove}>
-            {sharedLabels.remove}
-          </Button>
-          <Button isCTA isSmall onPress={onSave}>
-            {sharedLabels.save}
-          </Button>
-        </View>
-        {shouldShowInfo && (
-          <Segment last style={styles.segmentBorder}>
-            <AppText>{info[symptom].text}</AppText>
-          </Segment>
-        )}
-      </ScrollView>
+                </Segment>
+              )
+            })}
+          {shouldShow(symptomConfig.selectBoxGroups) &&
+            symtomPage[symptom].selectBoxGroups.map((group) => {
+              const isOtherSelected =
+                data['other'] !== null &&
+                data['other'] !== false &&
+                Object.keys(group.options).includes('other')
+
+              return (
+                <Segment key={group.key} style={styles.segmentBorder}>
+                  <AppText style={styles.title}>{group.title}</AppText>
+                  <SelectBoxGroup
+                    labels={group.options}
+                    onSelect={(value) => onSelectBox(value)}
+                    optionsState={data}
+                  />
+                  {isOtherSelected && (
+                    <AppTextInput
+                      multiline={true}
+                      placeholder={sharedLabels.enter}
+                      value={data.note}
+                      onChangeText={(value) => onSelectBoxNote(value)}
+                    />
+                  )}
+                </Segment>
+              )
+            })}
+          {shouldShow(symptomConfig.excludeText) && (
+            <Segment style={styles.segmentBorder}>
+              <AppSwitch
+                onToggle={onExcludeToggle}
+                text={symtomPage[symptom].excludeText}
+                value={data.exclude}
+              />
+            </Segment>
+          )}
+          {shouldShow(symptomConfig.note) && (
+            <Segment style={styles.segmentBorder}>
+              <AppText>{symtomPage[symptom].note}</AppText>
+              <AppTextInput
+                multiline={true}
+                numberOfLines={3}
+                onChangeText={onEditNote}
+                placeholder={sharedLabels.enter}
+                testID="noteInput"
+                value={noteText !== null ? noteText : ''}
+              />
+            </Segment>
+          )}
+          <View style={styles.buttonsContainer}>
+            <Button iconName={iconName} isSmall onPress={onPressLearnMore}>
+              {sharedLabels.learnMore}
+            </Button>
+            <Button isSmall onPress={onRemove}>
+              {sharedLabels.remove}
+            </Button>
+            <Button isCTA isSmall onPress={onSave}>
+              {sharedLabels.save}
+            </Button>
+          </View>
+          {shouldShowInfo && (
+            <Segment last style={styles.segmentBorder}>
+              <AppText>{info[symptom].text}</AppText>
+            </Segment>
+          )}
+        </ScrollView>
+      </View>
     </AppModal>
   )
 }
@@ -222,20 +221,23 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    paddingVertical: Spacing.tiny,
+    paddingTop: Spacing.base,
+    paddingHorizontal: Spacing.base,
+    position: 'absolute',
+    width: '100%',
   },
   modalContainer: {
-    flex: 1,
-    padding: Spacing.base,
+    paddingHorizontal: Spacing.base,
+    paddingVertical: Spacing.large * 2,
   },
   modalWindow: {
     alignSelf: 'center',
     backgroundColor: 'white',
     borderRadius: 10,
-    marginVertical: Sizes.huge * 2,
+    marginTop: Sizes.huge * 2,
     position: 'absolute',
     minHeight: '40%',
-    maxHeight: Dimensions.get('window').height * 0.7,
+    maxHeight: Dimensions.get('window').height * 0.8,
   },
   segmentBorder: {
     borderBottomColor: Colors.greyLight,
