@@ -225,6 +225,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.base,
     position: 'absolute',
     width: '100%',
+    zIndex: 3, // works on ios
+    elevation: 3, // works on android
   },
   modalContainer: {
     paddingHorizontal: Spacing.base,
