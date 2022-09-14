@@ -116,7 +116,10 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
         <View style={styles.headerContainer}>
           <CloseIcon onClose={onSave} />
         </View>
-        <ScrollView contentContainerStyle={styles.modalContainer}>
+        <ScrollView
+          contentContainerStyle={styles.modalContainer}
+          keyboardDismissMode="on-drag"
+        >
           {symptom === 'temperature' && (
             <Temperature
               date={date}
@@ -217,6 +220,8 @@ SymptomEditView.propTypes = {
 const styles = StyleSheet.create({
   buttonsContainer: {
     ...Containers.rowContainer,
+    paddingHorizontal: Spacing.base,
+    paddingBottom: Spacing.base,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -230,7 +235,7 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     paddingHorizontal: Spacing.base,
-    paddingVertical: Spacing.large * 2,
+    paddingTop: Spacing.large * 2,
   },
   modalWindow: {
     alignSelf: 'center',
@@ -239,7 +244,7 @@ const styles = StyleSheet.create({
     marginTop: Sizes.huge * 2,
     position: 'absolute',
     minHeight: '40%',
-    maxHeight: Dimensions.get('window').height * 0.8,
+    maxHeight: Dimensions.get('window').height * 0.7,
   },
   segmentBorder: {
     borderBottomColor: Colors.greyLight,
