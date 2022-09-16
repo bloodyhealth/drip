@@ -233,6 +233,9 @@ const styles = StyleSheet.create({
     zIndex: 3, // works on ios
     elevation: 3, // works on android
   },
+  input: {
+    height: Sizes.base * 5,
+  },
   modalContainer: {
     paddingHorizontal: Spacing.base,
   },
