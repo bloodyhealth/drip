@@ -6,19 +6,18 @@ import MenuItem from './menu-item'
 
 import settingsLabels from '../../i18n/en/settings'
 
-const { menuItems } = settingsLabels
-const menu = [
-  { ...menuItems.reminders, component: 'Reminders' },
-  { ...menuItems.nfpSettings, component: 'NfpSettings' },
-  { ...menuItems.dataManagement, component: 'DataManagement' },
-  { ...menuItems.password, component: 'Password' },
+const menuItems = [
+  { label: 'reminders', componentName: 'Reminders' },
+  { label: 'nfpSettings', componentName: 'NfpSettings' },
+  { label: 'dataManagement', componentName: 'DataManagement' },
+  { label: 'password', componentName: 'Password' },
 ]
 
 const SettingsMenu = ({ navigate }) => {
   return (
     <AppPage title={settingsLabels.title}>
-      {menu.map((menuItem, i) => {
-        const last = menu.length === i + 1
+      {menuItems.map((menuItem, i) => {
+        const last = menuItems.length === i + 1
 
         return (
           <MenuItem item={menuItem} key={i} last={last} navigate={navigate} />
