@@ -13,21 +13,21 @@ import CloseIcon from '../common/close-icon'
 import MenuItem from './menu-item'
 
 import { Colors, Sizes } from '../../styles'
-import settingsLabels from '../../i18n/en/settings'
 import { HIT_SLOP } from '../../config'
-
-const { menuItems } = settingsLabels
+import { useTranslation } from 'react-i18next'
 
 const settingsMenuItems = [
-  { name: menuItems.settings, component: 'SettingsMenu' },
-  { name: menuItems.about, component: 'About' },
-  { name: menuItems.license, component: 'License' },
-  { name: menuItems.privacyPolicy, component: 'PrivacyPolicy' },
+  { label: 'settings', componentName: 'SettingsMenu' },
+  { label: 'about', componentName: 'About' },
+  { label: 'license', componentName: 'License' },
+  { label: 'privacyPolicy', componentName: 'PrivacyPolicy' },
 ]
 
 const HamburgerMenu = ({ navigate }) => {
   const [isOpen, setIsOpen] = useState(false)
   const closeMenu = () => setIsOpen(false)
+
+  const { t } = useTranslation(null, { keyPrefix: 'settings.menuMain' })
 
   if (!isOpen)
     return (
@@ -37,18 +37,16 @@ const HamburgerMenu = ({ navigate }) => {
     )
 
   return (
-    <Modal animationType="fade" onRequestClose={closeMenu} transparent={true}>
-      <TouchableOpacity
-        onPress={closeMenu}
-        style={styles.blackBackground}
-      ></TouchableOpacity>
+    <Modal animationType="fade" onRequestClose={closeMenu} transparent>
+      <TouchableOpacity onPress={closeMenu} style={styles.blackBackground} />
       <View style={styles.menu}>
         <View style={styles.iconContainer}>
           <CloseIcon color={'black'} onClose={closeMenu} />
         </View>
         {settingsMenuItems.map((item) => (
           <MenuItem
-            item={item}
+            componentName={item.componentName}
+            label={t(item.label)}
             key={item.name}
             closeMenu={closeMenu}
             navigate={navigate}
