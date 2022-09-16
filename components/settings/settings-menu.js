@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import AppPage from '../common/app-page'
 import MenuItem from './menu-item'
 
-import settingsLabels from '../../i18n/en/settings'
+import { useTranslation } from 'react-i18next'
 
 const menuItems = [
   { label: 'reminders', componentName: 'Reminders' },
@@ -14,8 +14,9 @@ const menuItems = [
 ]
 
 const SettingsMenu = ({ navigate }) => {
+  const { t } = useTranslation()
   return (
-    <AppPage title={settingsLabels.title}>
+    <AppPage title={t('settings.settings.title')}>
       {menuItems.map((menuItem, i) => {
         const last = menuItems.length === i + 1
 

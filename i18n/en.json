@@ -97,7 +97,8 @@
           "name": "Reminders",
           "text": "turn on/off reminders"
         }
-      }
+      },
+      "title": "Settings"
     }
   },
   "stats": {

@@ -1,7 +1,6 @@
 import links from './links'
 
 export default {
-  title: 'Settings',
   menuItems: {
     reminders: {
       name: 'Reminders',
