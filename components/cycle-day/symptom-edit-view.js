@@ -235,13 +235,13 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     paddingHorizontal: Spacing.base,
-    paddingTop: Spacing.large * 2,
   },
   modalWindow: {
     alignSelf: 'center',
     backgroundColor: 'white',
     borderRadius: 10,
     marginTop: Sizes.huge * 2,
+    paddingTop: Spacing.large * 2,
     position: 'absolute',
     minHeight: '40%',
     maxHeight: Dimensions.get('window').height * 0.7,
