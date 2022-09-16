@@ -69,7 +69,6 @@ const PasswordPrompt = ({ enableShowApp }) => {
       <Header isStatic />
       <AppPage contentContainerStyle={styles.contentContainer}>
         <AppTextInput
-          isKeyboardOffset={false}
           onChangeText={setPassword}
           secureTextEntry={true}
           placeholder={labels.enterPassword}

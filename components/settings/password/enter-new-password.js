@@ -43,7 +43,6 @@ const EnterNewPassword = ({ changeEncryptionAndRestart }) => {
   return (
     <>
       <AppTextInput
-        isKeyboardOffset={false}
         onChangeText={setPassword}
         placeholder={labels.enterNew}
         textContentType="password"
@@ -51,7 +50,6 @@ const EnterNewPassword = ({ changeEncryptionAndRestart }) => {
         secureTextEntry={true}
       />
       <AppTextInput
-        isKeyboardOffset={false}
         onChangeText={setPasswordConfirmation}
         placeholder={labels.confirmPassword}
         textContentType="password"
