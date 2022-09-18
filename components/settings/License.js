@@ -1,13 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import { StyleSheet, Linking } from 'react-native'
 
 import AppPage from '../common/app-page'
 import AppText from '../common/app-text'
+import AppLink from '../common/AppLink'
 import Segment from '../common/segment'
-
-import { Colors } from '../../styles'
 
 const License = ({ children }) => {
   const { t } = useTranslation(null, { keyPrefix: 'settings.license' })
@@ -17,9 +15,7 @@ const License = ({ children }) => {
     <AppPage title={t('title')}>
       <Segment last>
         <AppText>{t('text', { currentYear })}</AppText>
-        <AppText style={styles.link} onPress={() => Linking.openURL(link)}>
-          {link}
-        </AppText>
+        <AppLink link={link}>{link}</AppLink>
         {children}
       </Segment>
     </AppPage>
@@ -29,12 +25,5 @@ const License = ({ children }) => {
 License.propTypes = {
   children: PropTypes.node,
 }
-
-const styles = StyleSheet.create({
-  link: {
-    color: Colors.purple,
-    textDecorationLine: 'underline',
-  },
-})
 
 export default License
