@@ -3,6 +3,7 @@ import { Platform, Linking } from 'react-native'
 
 import AppPage from '../common/app-page'
 import AppText from '../common/app-text'
+import AppLink from '../common/AppLink'
 import Segment from '../common/segment'
 import Button from '../common/button'
 import ButtonRow from '../common/button-row'
@@ -35,13 +36,15 @@ const AboutSection = () => {
       </Segment>
       <Segment title={t('credits.title')}>
         <AppText>
-          {t('credits.text', {
-            smashicons: links.smashicons.url,
-            pause08: links.pause08.url,
-            kazachek: links.kazachek.url,
-            freepik: links.freepik.url,
-            flaticon: links.flaticon.url,
-          })}
+          {t('credits.text')}{' '}
+          <AppLink link={links.flaticon.url}>flaticon</AppLink>.{' '}
+        </AppText>
+        <AppText>
+          {t('credits.madeBy')}{' '}
+          <AppLink link={links.smashicons.url}>smashicons</AppLink>,{' '}
+          <AppLink link={links.pause08.url}>pause08</AppLink>,{' '}
+          <AppLink link={links.kazachek.url}>kazachek</AppLink>,{' '}
+          <AppLink link={links.freepik.url}>freepik</AppLink>.
         </AppText>
       </Segment>
       <Segment title={t('donate.title')}>
