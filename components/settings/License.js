@@ -10,13 +10,13 @@ import Segment from '../common/segment'
 import { Colors } from '../../styles'
 
 const License = ({ children }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation(null, { keyPrefix: 'settings.license' })
   const currentYear = new Date().getFullYear()
   const link = 'https://www.gnu.org/licenses/gpl-3.0.html'
   return (
-    <AppPage title={t('settings.license.title')}>
+    <AppPage title={t('title')}>
       <Segment last>
-        <AppText>{t('settings.license.text', { currentYear })}</AppText>
+        <AppText>{t('text', { currentYear })}</AppText>
         <AppText style={styles.link} onPress={() => Linking.openURL(link)}>
           {link}
         </AppText>
