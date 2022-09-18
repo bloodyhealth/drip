@@ -109,6 +109,13 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   }
   const iconName = shouldShowInfo ? 'chevron-up' : 'chevron-down'
   const noteText = symptom === 'note' ? data.value : data.note
+  const inputProps = {
+    multiline: true,
+    numberOfLines: 3,
+    scrollEnabled: false,
+    style: styles.input,
+    textAlignVertical: 'top',
+  }
 
   return (
     <AppModal onClose={onSave}>
