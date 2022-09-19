@@ -12,9 +12,15 @@ const formatDuration = (duration) =>
 
 const Item = ({ data }) => (
   <View style={styles.row}>
-    <AppText>{data?.date}</AppText>
-    <AppText>{formatDuration(data?.cycleLength)}</AppText>
-    <AppText>{formatDuration(data?.bleedingLength)}</AppText>
+    <View style={styles.accentCell}>
+      <AppText>{data?.date}</AppText>
+    </View>
+    <View style={styles.cell}>
+      <AppText>{formatDuration(data?.cycleLength)}</AppText>
+    </View>
+    <View style={styles.cell}>
+      <AppText>{formatDuration(data?.bleedingLength)}</AppText>
+    </View>
   </View>
 )
 
@@ -44,9 +50,15 @@ const ItemDivider = () => <View style={styles.divider} />
 
 const FlatListHeader = () => (
   <View style={styles.row}>
-    <AppText style={styles.header}>{'Cycle Start'}</AppText>
-    <AppText style={styles.header}>{'Cycle Length'}</AppText>
-    <AppText style={styles.header}>{'Bleeding'}</AppText>
+    <View style={styles.accentCell}>
+      <AppText style={styles.header}>{'Cycle Start'}</AppText>
+    </View>
+    <View style={styles.cell}>
+      <AppText style={styles.header}>{'Cycle Length'}</AppText>
+    </View>
+    <View style={styles.cell}>
+      <AppText style={styles.header}>{'Bleeding'}</AppText>
+    </View>
   </View>
 )
 
@@ -69,6 +81,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: Spacing.tiny,
     backgroundColor: Colors.turquoiseLight,
+  },
+  cell: {
+    flex: 2,
+    justifyContent: 'center',
+  },
+  accentCell: {
+    flex: 3,
+    justifyContent: 'center',
   },
   container: {
     paddingHorizontal: Spacing.base,
