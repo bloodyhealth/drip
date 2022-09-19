@@ -15,10 +15,12 @@ StatsOverview.propTypes = {
 }
 
 const Row = ({ rowContent }) => {
+  const showHelp = rowContent[1].includes('deviation') ? true : false
+
   return (
     <View style={styles.row}>
       <Cell content={rowContent[0]} isLeft />
-      <Cell content={rowContent[1]} />
+      <Cell content={rowContent[1]} showHelp={showHelp} />
     </View>
   )
 }
@@ -27,7 +29,7 @@ Row.propTypes = {
   rowContent: PropTypes.array.isRequired,
 }
 
-const Cell = ({ content, isLeft }) => {
+const Cell = ({ content, isLeft, showHelp }) => {
   const styleContainer = isLeft ? styles.cellLeft : styles.cellRight
   const styleText = isLeft ? styles.accentPurpleBig : styles.accentOrange
   const numberOfLines = isLeft ? 1 : 2
@@ -42,6 +44,7 @@ const Cell = ({ content, isLeft }) => {
       >
         {content}
       </AppText>
+      {showHelp && <AppText style={styles.accentPurpleBig}>*</AppText>}
     </View>
   )
 }
@@ -49,6 +52,7 @@ const Cell = ({ content, isLeft }) => {
 Cell.propTypes = {
   content: PropTypes.node.isRequired,
   isLeft: PropTypes.bool,
+  showHelp: PropTypes.bool,
 }
 
 const styles = StyleSheet.create({
@@ -66,7 +70,10 @@ const styles = StyleSheet.create({
     flex: 3,
     justifyContent: 'center',
   },
-  cellRight: { flex: 5 },
+  cellRight: {
+    flex: 5,
+    flexDirection: 'row',
+  },
   row: { flexDirection: 'row' },
 })
 
