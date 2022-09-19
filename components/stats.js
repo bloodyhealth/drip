@@ -1,7 +1,11 @@
-import React from 'react'
-import { ImageBackground, View } from 'react-native'
+import React, { useState } from 'react'
+import { ImageBackground, SafeAreaView, ScrollView, View } from 'react-native'
 import { ScaledSheet } from 'react-native-size-matters'
+import { useTranslation } from 'react-i18next'
 
+import Button from './common/button'
+import AppHelp from './common/AppHelp'
+import AppModal from './common/app-modal'
 import AppText from './common/app-text'
 import StatsOverview from './common/StatsOverview'
 import StatsTable from './common/StatsTable'
@@ -15,6 +19,10 @@ import { Containers, Sizes, Spacing, Typography } from '../styles'
 const image = require('../assets/cycle-icon.png')
 
 const Stats = () => {
+  const [isStatsVisible, setIsStatsVisible] = useState(false)
+
+  const { t } = useTranslation(null, { keyPrefix: 'stats' })
+
   const cycleLengths = cycleModule().getAllCycleLengths()
   const numberOfCycles = cycleLengths.length
   const hasAtLeastOneCycle = numberOfCycles >= 1
@@ -22,48 +30,58 @@ const Stats = () => {
     ? getCycleInfo(cycleLengths)
     : { minimum: '—', maximum: '—', stdDeviation: '—' }
   const statsData = [
-    [cycleData.minimum, labels.minLabel],
-    [cycleData.maximum, labels.maxLabel],
-    [cycleData.stdDeviation ? cycleData.stdDeviation : '—', labels.stdLabel],
-    [numberOfCycles, labels.basisOfStatsEnd],
+    [cycleData.minimum, t('min')],
+    [cycleData.maximum, t('max')],
+    [
+      cycleData.stdDeviation ? cycleData.stdDeviation : '—',
+      t('standard_deviation'),
+    ],
+    [numberOfCycles, t('completed_cycles')],
   ]
 
   return (
-    <View style={styles.pageContainer}>
-      <View style={styles.overviewContainer}>
-        <AppText>{labels.cycleLengthExplainer}</AppText>
-        {!hasAtLeastOneCycle && <AppText>{labels.emptyStats}</AppText>}
+    <SafeAreaView style={styles.pageContainer}>
+      <ScrollView contentContainerStyle={styles.overviewContainer}>
+        <AppText>{t('cycle_length_explainer')}</AppText>
+        {!hasAtLeastOneCycle && <AppText>{t('no_data')}</AppText>}
         {hasAtLeastOneCycle && (
-          <View style={styles.container}>
-            <View style={styles.columnLeft}>
-              <ImageBackground
-                source={image}
-                imageStyle={styles.image}
-                style={styles.imageContainter}
-              >
-                <AppText
-                  numberOfLines={1}
-                  ellipsizeMode="clip"
-                  style={styles.accentPurpleGiant}
+          <>
+            <View style={styles.container}>
+              <View style={styles.columnLeft}>
+                <ImageBackground
+                  source={image}
+                  imageStyle={styles.image}
+                  style={styles.imageContainter}
                 >
-                  {cycleData.mean}
-                </AppText>
-                <AppText style={styles.accentPurpleHuge}>
-                  {labels.daysLabel}
-                </AppText>
-              </ImageBackground>
-              <AppText style={styles.accentOrange}>
-                {labels.averageLabel}
-              </AppText>
+                  <AppText
+                    numberOfLines={1}
+                    ellipsizeMode="clip"
+                    style={styles.accentPurpleGiant}
+                  >
+                    {cycleData.mean}
+                  </AppText>
+                  <AppText style={styles.accentPurpleHuge}>{t('days')}</AppText>
+                </ImageBackground>
+                <AppText style={styles.accentOrange}>{t('average')}</AppText>
+              </View>
+              <View style={styles.columnRight}>
+                <StatsOverview data={statsData} />
+              </View>
             </View>
-            <View style={styles.columnRight}>
-              <StatsOverview data={statsData} />
-            </View>
-          </View>
+            <Button isCTA onPress={() => setIsStatsVisible(true)}>
+              {t('show_stats')}
+            </Button>
+            <AppHelp text={t('standard_deviation_help')} />
+          </>
         )}
-      </View>
-      <StatsTable />
-    </View>
+      </ScrollView>
+
+      {isStatsVisible && (
+        <AppModal onClose={() => setIsStatsVisible(false)}>
+          <StatsTable onClose={() => setIsStatsVisible(false)} />
+        </AppModal>
+      )}
+    </SafeAreaView>
   )
 }
 
