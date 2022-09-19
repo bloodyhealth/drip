@@ -164,7 +164,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
                   />
                   {isOtherSelected && (
                     <AppTextInput
-                      multiline={true}
+                      {...inputProps}
                       placeholder={sharedLabels.enter}
                       value={data.note}
                       onChangeText={(value) => onSelectBoxNote(value)}
@@ -186,8 +186,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             <Segment style={styles.segmentBorder}>
               <AppText>{symtomPage[symptom].note}</AppText>
               <AppTextInput
-                multiline={true}
-                numberOfLines={3}
+                {...inputProps}
                 onChangeText={onEditNote}
                 placeholder={sharedLabels.enter}
                 testID="noteInput"
