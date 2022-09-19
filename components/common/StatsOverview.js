@@ -6,14 +6,12 @@ import AppText from './app-text'
 
 import { Sizes, Spacing, Typography } from '../../styles'
 
-const Table = ({ tableContent }) => {
-  return tableContent.map((rowContent, i) => (
-    <Row key={i} rowContent={rowContent} />
-  ))
+const StatsOverview = ({ data }) => {
+  return data.map((rowContent, i) => <Row key={i} rowContent={rowContent} />)
 }
 
-Table.propTypes = {
-  tableContent: PropTypes.array.isRequired,
+StatsOverview.propTypes = {
+  data: PropTypes.array.isRequired,
 }
 
 const Row = ({ rowContent }) => {
@@ -72,4 +70,4 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row' },
 })
 
-export default Table
+export default StatsOverview

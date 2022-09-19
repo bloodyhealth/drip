@@ -3,7 +3,7 @@ import { ImageBackground, View } from 'react-native'
 import { ScaledSheet } from 'react-native-size-matters'
 
 import AppText from './common/app-text'
-import Table from './common/table'
+import StatsOverview from './common/StatsOverview'
 import StatsTable from './common/StatsTable'
 
 import cycleModule from '../lib/cycle'
@@ -57,7 +57,7 @@ const Stats = () => {
               </AppText>
             </View>
             <View style={styles.columnRight}>
-              <Table tableContent={statsData} />
+              <StatsOverview data={statsData} />
             </View>
           </View>
         )}
