@@ -12,16 +12,20 @@ import { humanizeDate } from '../helpers/format-date'
 const Item = ({ data }) => {
   const { t } = useTranslation(null, { keyPrefix: 'plurals' })
 
+  if (!data) return false
+
+  const { date, cycleLength, bleedingLength } = data
+
   return (
     <View style={styles.row}>
       <View style={styles.accentCell}>
-        <AppText>{humanizeDate(data?.date)}</AppText>
+        <AppText>{humanizeDate(date)}</AppText>
       </View>
       <View style={styles.cell}>
-        <AppText>{t('day', { count: data?.cycleLength })}</AppText>
+        <AppText>{t('day', { count: cycleLength })}</AppText>
       </View>
       <View style={styles.cell}>
-        <AppText>{t('day', { count: data?.bleedingLength })}</AppText>
+        <AppText>{t('day', { count: bleedingLength })}</AppText>
       </View>
     </View>
   )
@@ -33,11 +37,13 @@ Item.propTypes = {
 
 const StatsTable = () => {
   const renderItem = ({ item }) => <Item data={item} />
-  const { getStats } = cycleModule()
+  const data = cycleModule().getStats()
+
+  if (!data || data.length === 0) return false
 
   return (
     <FlatList
-      data={getStats()}
+      data={data}
       renderItem={renderItem}
       keyExtractor={(item) => item.date}
       ItemSeparatorComponent={ItemDivider}
