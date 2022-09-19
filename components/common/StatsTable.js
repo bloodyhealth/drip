@@ -67,19 +67,23 @@ StatsTable.propTypes = {
 
 const ItemDivider = () => <View style={styles.divider} />
 
-const FlatListHeader = () => (
-  <View style={styles.row}>
-    <View style={styles.accentCell}>
-      <AppText style={styles.header}>{'Cycle Start'}</AppText>
+const FlatListHeader = () => {
+  const { t } = useTranslation(null, { keyPrefix: 'stats' })
+
+  return (
+    <View style={styles.row}>
+      <View style={styles.accentCell}>
+        <AppText style={styles.header}>{t('cycle_start')}</AppText>
+      </View>
+      <View style={styles.cell}>
+        <AppText style={styles.header}>{t('cycle_length')}</AppText>
+      </View>
+      <View style={styles.cell}>
+        <AppText style={styles.header}>{t('bleeding')}</AppText>
+      </View>
     </View>
-    <View style={styles.cell}>
-      <AppText style={styles.header}>{'Cycle Length'}</AppText>
-    </View>
-    <View style={styles.cell}>
-      <AppText style={styles.header}>{'Bleeding'}</AppText>
-    </View>
-  </View>
-)
+  )
+}
 
 const styles = StyleSheet.create({
   accentCell: {
