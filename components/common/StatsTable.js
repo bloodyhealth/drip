@@ -7,6 +7,7 @@ import AppText from './app-text'
 
 import cycleModule from '../../lib/cycle'
 import { Spacing, Typography, Colors } from '../../styles'
+import { humanizeDate } from '../helpers/format-date'
 
 const Item = ({ data }) => {
   const { t } = useTranslation(null, { keyPrefix: 'plurals' })
@@ -14,7 +15,7 @@ const Item = ({ data }) => {
   return (
     <View style={styles.row}>
       <View style={styles.accentCell}>
-        <AppText>{data?.date}</AppText>
+        <AppText>{humanizeDate(data?.date)}</AppText>
       </View>
       <View style={styles.cell}>
         <AppText>{t('day', { count: data?.cycleLength })}</AppText>
