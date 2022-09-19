@@ -31,9 +31,12 @@ const getSymptomsFromCycleDays = (cycleDays) =>
 const CycleChart = ({ navigate, setDate }) => {
   const [shouldShowHint, setShouldShowHint] = useState(true)
 
-  useEffect(async () => {
-    const flag = await getChartFlag()
-    setShouldShowHint(flag === 'true')
+  useEffect(() => {
+    async function checkShouldShowHint() {
+      const flag = await getChartFlag()
+      setShouldShowHint(flag === 'true')
+    }
+    checkShouldShowHint()
   }, [])
 
   const hideHint = () => {
