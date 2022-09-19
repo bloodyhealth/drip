@@ -1,28 +1,30 @@
 import React from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
 import AppText from './app-text'
 
 import cycleModule from '../../lib/cycle'
 import { Spacing, Typography, Colors } from '../../styles'
 
-const formatDuration = (duration) =>
-  duration === 1 ? `${duration} day` : `${duration} days`
+const Item = ({ data }) => {
+  const { t } = useTranslation(null, { keyPrefix: 'plurals' })
 
-const Item = ({ data }) => (
-  <View style={styles.row}>
-    <View style={styles.accentCell}>
-      <AppText>{data?.date}</AppText>
+  return (
+    <View style={styles.row}>
+      <View style={styles.accentCell}>
+        <AppText>{data?.date}</AppText>
+      </View>
+      <View style={styles.cell}>
+        <AppText>{t('day', { count: data?.cycleLength })}</AppText>
+      </View>
+      <View style={styles.cell}>
+        <AppText>{t('day', { count: data?.bleedingLength })}</AppText>
+      </View>
     </View>
-    <View style={styles.cell}>
-      <AppText>{formatDuration(data?.cycleLength)}</AppText>
-    </View>
-    <View style={styles.cell}>
-      <AppText>{formatDuration(data?.bleedingLength)}</AppText>
-    </View>
-  </View>
-)
+  )
+}
 
 Item.propTypes = {
   data: PropTypes.object.isRequired,
