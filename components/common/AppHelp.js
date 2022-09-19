@@ -14,7 +14,6 @@ const AppHelp = ({ text }) => (
 )
 
 AppHelp.propTypes = {
-  onClose: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
 }
 
