@@ -3,6 +3,7 @@ import { FlatList, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 
+import AppModal from '../common/app-modal'
 import AppText from '../common/app-text'
 
 import cycleModule from '../../lib/cycle'
@@ -42,16 +43,20 @@ const PeriodDetailsModal = ({ onClose }) => {
   if (!data || data.length === 0) return false
 
   return (
-    <FlatList
-      data={data}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.date}
-      ItemSeparatorComponent={ItemDivider}
-      ListHeaderComponent={FlatListHeader}
-      ListHeaderComponentStyle={styles.headerDivider}
-      stickyHeaderIndices={[0]}
-      contentContainerStyle={styles.container}
-    />
+    <AppModal onClose={onClose}>
+      <View>
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.date}
+          ItemSeparatorComponent={ItemDivider}
+          ListHeaderComponent={FlatListHeader}
+          ListHeaderComponentStyle={styles.headerDivider}
+          stickyHeaderIndices={[0]}
+          contentContainerStyle={styles.container}
+        />
+      </View>
+    </AppModal>
   )
 }
 
@@ -93,7 +98,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: Spacing.tiny,
-    backgroundColor: Colors.turquoiseLight,
+    backgroundColor: 'white',
   },
   cell: {
     flex: 2,
@@ -104,6 +109,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   container: {
+    minHeight: '40%',
+    minWidth: '95%',
     paddingHorizontal: Spacing.base,
   },
 })
