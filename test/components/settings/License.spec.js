@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react-native'
-import License from '../components/settings/License'
+import License from '../../../components/settings/License'
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({

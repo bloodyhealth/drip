@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react-native'
-import AcceptLicense from '../components/AcceptLicense'
+import AcceptLicense from '../../components/AcceptLicense'
 
-import { saveLicenseFlag } from '../local-storage'
+import { saveLicenseFlag } from '../../local-storage'
 
-jest.mock('../local-storage', () => ({
+jest.mock('../../local-storage', () => ({
   saveLicenseFlag: jest.fn(() => Promise.resolve()),
 }))
 
