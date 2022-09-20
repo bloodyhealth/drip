@@ -1,14 +1,7 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react-native'
-import License from '../../../components/settings/License'
 
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (str, options) => {
-      return str + (options ? JSON.stringify(options) : '')
-    },
-  }),
-}))
+import License from '../../../components/settings/License'
 
 describe('License screen', () => {
   test('It should have a correct year', async () => {

@@ -1,14 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react-native'
-import AppHelp from '../../../components/common/AppHelp'
 
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (str, options) => {
-      return str + (options ? JSON.stringify(options) : '')
-    },
-  }),
-}))
+import AppHelp from '../../../components/common/AppHelp'
 
 describe('AppHelp screen', () => {
   test('when provided text, should render it', async () => {

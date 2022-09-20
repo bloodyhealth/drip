@@ -1,19 +1,12 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react-native'
+
 import AcceptLicense from '../../components/AcceptLicense'
 
 import { saveLicenseFlag } from '../../local-storage'
 
 jest.mock('../../local-storage', () => ({
   saveLicenseFlag: jest.fn(() => Promise.resolve()),
-}))
-
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (str, options) => {
-      return str + (options ? JSON.stringify(options) : '')
-    },
-  }),
 }))
 
 describe('AcceptLicense', () => {

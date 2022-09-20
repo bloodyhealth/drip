@@ -8,12 +8,6 @@ jest.mock('../../components/common/StatsOverview', () => 'StatsOverview')
 jest.mock('../../components/common/StatsTable', () => 'StatsTable')
 jest.mock('../../assets/cycle-icon.png', () => 'image')
 
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (str, options) => str + (options ? JSON.stringify(options) : ''),
-  }),
-}))
-
 const mockGetAllCycleLengths = jest
   .fn()
   .mockImplementationOnce(() => [])

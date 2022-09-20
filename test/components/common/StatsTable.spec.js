@@ -3,12 +3,6 @@ import { render } from '@testing-library/react-native'
 
 import StatsTable from '../../../components/common/StatsTable'
 
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (str, options) => str + (options ? JSON.stringify(options) : ''),
-  }),
-}))
-
 const mockGetStats = jest
   .fn()
   .mockImplementationOnce(() => [
