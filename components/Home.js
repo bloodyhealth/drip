@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 
 import AppText from './common/app-text'
+import Asterisk from './common/Asterisk'
 import Button from './common/button'
 
 import cycleModule from '../lib/cycle'
@@ -81,14 +82,7 @@ const Home = ({ navigate, setDate }) => {
   )
 }
 
-const Asterisk = () => {
-  return <AppText style={styles.asterisk}>*</AppText>
-}
-
 const styles = StyleSheet.create({
-  asterisk: {
-    color: Colors.orange,
-  },
   container: {
     backgroundColor: Colors.purple,
     flex: 1,
