@@ -60,7 +60,7 @@ exports[`Stats screen when provided data, renders stats 1`] = `
             }
           >
             <Image
-              source="image"
+              source={123}
               style={
                 Array [
                   Object {

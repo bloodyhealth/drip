@@ -6,7 +6,6 @@ import Stats from '../../components/stats'
 jest.mock('../../components/common/AppHelp', () => 'AppHelp')
 jest.mock('../../components/common/StatsOverview', () => 'StatsOverview')
 jest.mock('../../components/common/StatsTable', () => 'StatsTable')
-jest.mock('../../assets/cycle-icon.png', () => 'image')
 
 const mockGetAllCycleLengths = jest
   .fn()
