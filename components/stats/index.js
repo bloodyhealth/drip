@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { ImageBackground, View } from 'react-native'
+import { ImageBackground, SafeAreaView, ScrollView, View } from 'react-native'
 import { ScaledSheet } from 'react-native-size-matters'
 import { useTranslation } from 'react-i18next'
 
 import AppText from '../common/app-text'
 import Button from '../common/button'
+import Footnote from '../common/Footnote'
 import StatsOverview from './StatsOverview'
 import PeriodDetailsModal from './PeriodDetailsModal'
 
@@ -37,8 +38,8 @@ const Stats = () => {
   ]
 
   return (
-    <View style={styles.pageContainer}>
-      <View style={styles.overviewContainer}>
+    <SafeAreaView style={styles.pageContainer}>
+      <ScrollView contentContainerStyle={styles.overviewContainer}>
         <AppText>{t('intro')}</AppText>
         {numberOfCycles === 0 ? (
           <AppText>{t('noData')}</AppText>
@@ -70,14 +71,15 @@ const Stats = () => {
             </View>
           </View>
         )}
-      </View>
-      <Button isCTA onPress={() => setIsStatsVisible(true)}>
-        {t('showStats')}
-      </Button>
-      {isStatsVisible && (
-        <PeriodDetailsModal onClose={() => setIsStatsVisible(false)} />
-      )}
-    </View>
+        <Button isCTA onPress={() => setIsStatsVisible(true)}>
+          {t('showStats')}
+        </Button>
+        {isStatsVisible && (
+          <PeriodDetailsModal onClose={() => setIsStatsVisible(false)} />
+        )}
+        <Footnote>{t('footnote')}</Footnote>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 
