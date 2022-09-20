@@ -19,10 +19,10 @@ const Stats = () => {
 
   const cycleLengths = cycleModule().getAllCycleLengths()
   const numberOfCycles = cycleLengths.length
-  const hasAtLeastOneCycle = numberOfCycles >= 1
-  const cycleData = hasAtLeastOneCycle
-    ? getCycleInfo(cycleLengths)
-    : { minimum: '—', maximum: '—', stdDeviation: '—' }
+  const cycleData =
+    numberOfCycles > 0
+      ? getCycleInfo(cycleLengths)
+      : { minimum: '—', maximum: '—', stdDeviation: '—' }
   const standardDeviation = cycleData.stdDeviation
     ? cycleData.stdDeviation
     : '—'
@@ -37,8 +37,9 @@ const Stats = () => {
     <View style={styles.pageContainer}>
       <View style={styles.overviewContainer}>
         <AppText>{t('intro')}</AppText>
-        {!hasAtLeastOneCycle && <AppText>{t('noData')}</AppText>}
-        {hasAtLeastOneCycle && (
+        {numberOfCycles === 0 ? (
+          <AppText>{t('noData')}</AppText>
+        ) : (
           <View style={styles.container}>
             <View style={styles.columnLeft}>
               <ImageBackground
