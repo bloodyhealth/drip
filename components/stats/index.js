@@ -44,40 +44,42 @@ const Stats = () => {
         {numberOfCycles === 0 ? (
           <AppText>{t('noData')}</AppText>
         ) : (
-          <View style={styles.container}>
-            <View style={styles.columnLeft}>
-              <ImageBackground
-                source={image}
-                imageStyle={styles.image}
-                style={styles.imageContainter}
-              >
-                <AppText
-                  numberOfLines={1}
-                  ellipsizeMode="clip"
-                  style={styles.accentPurpleGiant}
+          <>
+            <View style={styles.container}>
+              <View style={styles.columnLeft}>
+                <ImageBackground
+                  source={image}
+                  imageStyle={styles.image}
+                  style={styles.imageContainter}
                 >
-                  {cycleData.mean}
+                  <AppText
+                    numberOfLines={1}
+                    ellipsizeMode="clip"
+                    style={styles.accentPurpleGiant}
+                  >
+                    {cycleData.mean}
+                  </AppText>
+                  <AppText style={styles.accentPurpleHuge}>
+                    {t('overview.days')}
+                  </AppText>
+                </ImageBackground>
+                <AppText style={styles.accentOrange}>
+                  {t('overview.average')}
                 </AppText>
-                <AppText style={styles.accentPurpleHuge}>
-                  {t('overview.days')}
-                </AppText>
-              </ImageBackground>
-              <AppText style={styles.accentOrange}>
-                {t('overview.average')}
-              </AppText>
+              </View>
+              <View style={styles.columnRight}>
+                <StatsOverview data={statsData} />
+              </View>
             </View>
-            <View style={styles.columnRight}>
-              <StatsOverview data={statsData} />
-            </View>
-          </View>
+            <Button isCTA onPress={() => setIsStatsVisible(true)}>
+              {t('showStats')}
+            </Button>
+            {isStatsVisible && (
+              <PeriodDetailsModal onClose={() => setIsStatsVisible(false)} />
+            )}
+            <Footnote>{t('footnote')}</Footnote>
+          </>
         )}
-        <Button isCTA onPress={() => setIsStatsVisible(true)}>
-          {t('showStats')}
-        </Button>
-        {isStatsVisible && (
-          <PeriodDetailsModal onClose={() => setIsStatsVisible(false)} />
-        )}
-        <Footnote>{t('footnote')}</Footnote>
       </ScrollView>
     </SafeAreaView>
   )
