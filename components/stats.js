@@ -12,7 +12,6 @@ import StatsTable from './common/StatsTable'
 
 import cycleModule from '../lib/cycle'
 import { getCycleLengthStats as getCycleInfo } from '../lib/cycle-length'
-import { stats as labels } from '../i18n/en/labels'
 
 import { Containers, Sizes, Spacing, Typography } from '../styles'
 
