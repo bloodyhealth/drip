@@ -23,7 +23,7 @@ const Stats = () => {
   const { t } = useTranslation(null, { keyPrefix: 'stats' })
 
   const cycleLengths = cycleModule().getAllCycleLengths()
-  const numberOfCycles = cycleLengths.length
+  const numberOfCycles = cycleLengths?.length
   const hasAtLeastOneCycle = numberOfCycles >= 1
   const cycleData = hasAtLeastOneCycle
     ? getCycleInfo(cycleLengths)
