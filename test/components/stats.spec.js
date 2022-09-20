@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react-native'
+import { fireEvent, render } from '@testing-library/react-native'
 
 import Stats from '../../components/stats'
 
@@ -13,6 +13,7 @@ const mockGetAllCycleLengths = jest
   .mockImplementationOnce(() => [30, 31, 30])
   .mockImplementationOnce(() => null)
   .mockImplementationOnce(() => undefined)
+  .mockImplementationOnce(() => [30, 31, 30])
 
 jest.mock('../../lib/cycle', () => ({
   __esModule: true,
@@ -44,5 +45,14 @@ describe('Stats screen', () => {
     const { toJSON } = render(<Stats />)
 
     expect(toJSON()).toMatchSnapshot()
+  })
+
+  test('when button is clicked, StatsTable is rendered', async () => {
+    const { getByText, findByTestId } = render(<Stats />)
+    const button = getByText('show_stats')
+
+    fireEvent(button, 'click')
+
+    await expect(findByTestId('statsTable')).toBeTruthy()
   })
 })

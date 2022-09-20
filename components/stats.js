@@ -77,7 +77,10 @@ const Stats = () => {
 
       {isStatsVisible && (
         <AppModal onClose={() => setIsStatsVisible(false)}>
-          <StatsTable onClose={() => setIsStatsVisible(false)} />
+          <StatsTable
+            onClose={() => setIsStatsVisible(false)}
+            testID="statsTable"
+          />
         </AppModal>
       )}
     </SafeAreaView>
