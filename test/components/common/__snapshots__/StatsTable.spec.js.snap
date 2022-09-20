@@ -1,0 +1,433 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatsTable screen when provided correct data set, renders it 1`] = `
+<View
+  style={
+    Object {
+      "alignSelf": "center",
+      "backgroundColor": "#E9F2ED",
+      "marginTop": 137.14285714285714,
+      "maxHeight": 933.8,
+      "minHeight": "40%",
+      "position": "absolute",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "paddingRight": 34.285714285714285,
+        "paddingTop": 34.285714285714285,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      hitSlop={
+        Object {
+          "bottom": 39.23529411764706,
+          "left": 42.857142857142854,
+          "right": 42.857142857142854,
+          "top": 39.23529411764706,
+        }
+      }
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignSelf": "flex-start",
+          "marginBottom": 34.285714285714285,
+          "opacity": 1,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        selectable={false}
+        style={
+          Array [
+            Object {
+              "color": undefined,
+              "fontSize": 12,
+            },
+            Array [
+              Object {
+                "fontSize": 47.14285714285714,
+              },
+              undefined,
+              Object {
+                "color": "#F38337",
+              },
+            ],
+            Object {
+              "fontFamily": "Entypo",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>
+  <RCTScrollView
+    ItemSeparatorComponent={[Function]}
+    ListHeaderComponent={[Function]}
+    ListHeaderComponentStyle={
+      Object {
+        "borderBottomColor": "#3A2671",
+        "borderBottomWidth": 2,
+      }
+    }
+    contentContainerStyle={
+      Object {
+        "paddingHorizontal": 34.285714285714285,
+      }
+    }
+    data={
+      Array [
+        Object {
+          "bleedingLength": 5,
+          "cycleLength": 31,
+          "date": "2022-07-01",
+        },
+        Object {
+          "bleedingLength": 5,
+          "cycleLength": 31,
+          "date": "2022-06-01",
+        },
+      ]
+    }
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    viewabilityConfigCallbackPairs={Array []}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "borderBottomColor": "#3A2671",
+            "borderBottomWidth": 2,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#E9F2ED",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingVertical": 8.571428571428571,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 3,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#555",
+                    "fontFamily": "Jost-Book",
+                    "fontSize": 34.285714285714285,
+                  },
+                  Object {
+                    "color": "#F38337",
+                    "fontFamily": "Jost-Bold",
+                    "fontSize": 27.857142857142858,
+                    "paddingVertical": 21.428571428571427,
+                    "textAlignVertical": "center",
+                    "textTransform": "uppercase",
+                  },
+                ]
+              }
+            >
+              cycle_start
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 2,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#555",
+                    "fontFamily": "Jost-Book",
+                    "fontSize": 34.285714285714285,
+                  },
+                  Object {
+                    "color": "#F38337",
+                    "fontFamily": "Jost-Bold",
+                    "fontSize": 27.857142857142858,
+                    "paddingVertical": 21.428571428571427,
+                    "textAlignVertical": "center",
+                    "textTransform": "uppercase",
+                  },
+                ]
+              }
+            >
+              cycle_length
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 2,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#555",
+                    "fontFamily": "Jost-Book",
+                    "fontSize": 34.285714285714285,
+                  },
+                  Object {
+                    "color": "#F38337",
+                    "fontFamily": "Jost-Bold",
+                    "fontSize": 27.857142857142858,
+                    "paddingVertical": 21.428571428571427,
+                    "textAlignVertical": "center",
+                    "textTransform": "uppercase",
+                  },
+                ]
+              }
+            >
+              bleeding
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#E9F2ED",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingVertical": 8.571428571428571,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 3,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#555",
+                    "fontFamily": "Jost-Book",
+                    "fontSize": 34.285714285714285,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              01. Jul 22
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 2,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#555",
+                    "fontFamily": "Jost-Book",
+                    "fontSize": 34.285714285714285,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              day{"count":31}
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 2,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#555",
+                    "fontFamily": "Jost-Book",
+                    "fontSize": 34.285714285714285,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              day{"count":5}
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#888",
+              "height": 1,
+              "width": "100%",
+            }
+          }
+        />
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#E9F2ED",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingVertical": 8.571428571428571,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 3,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#555",
+                    "fontFamily": "Jost-Book",
+                    "fontSize": 34.285714285714285,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              01. Jun 22
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 2,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#555",
+                    "fontFamily": "Jost-Book",
+                    "fontSize": 34.285714285714285,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              day{"count":31}
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 2,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#555",
+                    "fontFamily": "Jost-Book",
+                    "fontSize": 34.285714285714285,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              day{"count":5}
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`StatsTable screen when provided no data, renders nothing 1`] = `null`;
+
+exports[`StatsTable screen when provided null, renders nothing 1`] = `null`;
+
+exports[`StatsTable screen when provided undefined, renders nothing 1`] = `null`;
