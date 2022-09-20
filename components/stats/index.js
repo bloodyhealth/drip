@@ -3,16 +3,16 @@ import { ImageBackground, View } from 'react-native'
 import { ScaledSheet } from 'react-native-size-matters'
 import { useTranslation } from 'react-i18next'
 
-import AppText from './common/app-text'
-import StatsOverview from './common/StatsOverview'
-import StatsTable from './common/StatsTable'
+import AppText from '../common/app-text'
+import StatsOverview from './StatsOverview'
+import StatsTable from './StatsTable'
 
-import cycleModule from '../lib/cycle'
-import { getCycleLengthStats as getCycleInfo } from '../lib/cycle-length'
+import cycleModule from '../../lib/cycle'
+import { getCycleLengthStats as getCycleInfo } from '../../lib/cycle-length'
 
-import { Containers, Sizes, Spacing, Typography } from '../styles'
+import { Containers, Sizes, Spacing, Typography } from '../../styles'
 
-const image = require('../assets/cycle-icon.png')
+const image = require('../../assets/cycle-icon.png')
 
 const Stats = () => {
   const { t } = useTranslation(null, { keyPrefix: 'stats' })
