@@ -7,14 +7,18 @@ import Asterisk from '../common/Asterisk'
 
 import { Colors, Spacing } from '../../styles'
 
-const Footnote = ({ children }) => (
-  <View style={styles.container}>
-    <Asterisk />
-    <AppText linkStyle={styles.link} style={styles.text}>
-      {children}
-    </AppText>
-  </View>
-)
+const Footnote = ({ children }) => {
+  if (!children) return false
+
+  return (
+    <View style={styles.container}>
+      <Asterisk />
+      <AppText linkStyle={styles.link} style={styles.text}>
+        {children}
+      </AppText>
+    </View>
+  )
+}
 
 Footnote.propTypes = {
   children: PropTypes.node,
