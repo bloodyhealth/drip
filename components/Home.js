@@ -6,6 +6,7 @@ import moment from 'moment'
 import AppText from './common/app-text'
 import Asterisk from './common/Asterisk'
 import Button from './common/button'
+import Footnote from './common/Footnote'
 
 import cycleModule from '../lib/cycle'
 import { getFertilityStatusForDay } from '../lib/sympto-adapter'
@@ -70,14 +71,7 @@ const Home = ({ navigate, setDate }) => {
       <Button isCTA isSmall={false} onPress={navigateToCycleDayView}>
         {t('labels.home.addDataForToday')}
       </Button>
-      {phase && (
-        <View style={styles.asteriskLine}>
-          <Asterisk />
-          <AppText linkStyle={styles.whiteText} style={styles.greyText}>
-            {statusText}
-          </AppText>
-        </View>
-      )}
+      {phase && <Footnote>{statusText}</Footnote>}
     </ScrollView>
   )
 }
@@ -98,12 +92,6 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.tiny,
     marginTop: Spacing.small,
   },
-  asteriskLine: {
-    flexDirection: 'row',
-    alignContent: 'flex-start',
-    marginBottom: Spacing.tiny,
-    marginTop: Spacing.small,
-  },
   title: {
     color: Colors.purpleLight,
     fontFamily: Fonts.bold,
@@ -117,13 +105,6 @@ const styles = StyleSheet.create({
   whiteSubtitle: {
     color: 'white',
     fontSize: Sizes.subtitle,
-  },
-  whiteText: {
-    color: 'white',
-  },
-  greyText: {
-    color: Colors.greyLight,
-    paddingLeft: Spacing.base,
   },
 })
 
