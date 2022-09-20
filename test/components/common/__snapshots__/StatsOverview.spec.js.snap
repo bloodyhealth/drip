@@ -1,0 +1,321 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatsOverview screen when provided correct, renders it 1`] = `
+Array [
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "flex": 3,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        ellipsizeMode="clip"
+        numberOfLines={1}
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            Object {
+              "color": "#3A2671",
+              "fontFamily": "Jost-Bold",
+              "fontSize": 64.28571428571428,
+              "marginRight": 8.571428571428571,
+              "textAlignVertical": "center",
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        21
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 5,
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        ellipsizeMode="tail"
+        numberOfLines={2}
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            Object {
+              "color": "#F38337",
+              "fontFamily": "Jost-Bold",
+              "fontSize": 27.857142857142858,
+              "margin": 15,
+              "textAlignVertical": "center",
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        shortest
+      </Text>
+    </View>
+  </View>,
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "flex": 3,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        ellipsizeMode="clip"
+        numberOfLines={1}
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            Object {
+              "color": "#3A2671",
+              "fontFamily": "Jost-Bold",
+              "fontSize": 64.28571428571428,
+              "marginRight": 8.571428571428571,
+              "textAlignVertical": "center",
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        21
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 5,
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        ellipsizeMode="tail"
+        numberOfLines={2}
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            Object {
+              "color": "#F38337",
+              "fontFamily": "Jost-Bold",
+              "fontSize": 27.857142857142858,
+              "margin": 15,
+              "textAlignVertical": "center",
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        longest
+      </Text>
+    </View>
+  </View>,
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "flex": 3,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        ellipsizeMode="clip"
+        numberOfLines={1}
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            Object {
+              "color": "#3A2671",
+              "fontFamily": "Jost-Bold",
+              "fontSize": 64.28571428571428,
+              "marginRight": 8.571428571428571,
+              "textAlignVertical": "center",
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        0
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 5,
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        ellipsizeMode="tail"
+        numberOfLines={2}
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            Object {
+              "color": "#F38337",
+              "fontFamily": "Jost-Bold",
+              "fontSize": 27.857142857142858,
+              "margin": 15,
+              "textAlignVertical": "center",
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        standard deviation
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            Object {
+              "color": "#3A2671",
+              "fontFamily": "Jost-Bold",
+              "fontSize": 64.28571428571428,
+              "marginRight": 8.571428571428571,
+              "textAlignVertical": "center",
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        *
+      </Text>
+    </View>
+  </View>,
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "flex": 3,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        ellipsizeMode="clip"
+        numberOfLines={1}
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            Object {
+              "color": "#3A2671",
+              "fontFamily": "Jost-Bold",
+              "fontSize": 64.28571428571428,
+              "marginRight": 8.571428571428571,
+              "textAlignVertical": "center",
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        2
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 5,
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        ellipsizeMode="tail"
+        numberOfLines={2}
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            Object {
+              "color": "#F38337",
+              "fontFamily": "Jost-Bold",
+              "fontSize": 27.857142857142858,
+              "margin": 15,
+              "textAlignVertical": "center",
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        completed cycles
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`StatsOverview screen when provided empty data, renders nothing (does not break) 1`] = `null`;
