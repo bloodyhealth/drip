@@ -32,11 +32,20 @@ const CycleChart = ({ navigate, setDate }) => {
   const [shouldShowHint, setShouldShowHint] = useState(true)
 
   useEffect(() => {
+    let isMounted = true
+
     async function checkShouldShowHint() {
       const flag = await getChartFlag()
-      setShouldShowHint(flag === 'true')
+      if (isMounted) {
+        setShouldShowHint(flag === 'true')
+      }
     }
+
     checkShouldShowHint()
+
+    return () => {
+      isMounted = false
+    }
   }, [])
 
   const hideHint = () => {
