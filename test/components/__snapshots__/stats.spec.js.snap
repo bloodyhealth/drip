@@ -1,0 +1,395 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stats screen when provided data, renders stats 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "backgroundColor": "#E9F2ED",
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "paddingHorizontal": 34.285714285714285,
+        "paddingTop": 34.285714285714285,
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            undefined,
+          ]
+        }
+      >
+        cycle_length_explainer
+      </Text>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 3,
+              "flexDirection": "column",
+            }
+          }
+        >
+          <View
+            accessibilityIgnoresInvertColors={true}
+            style={
+              Object {
+                "marginBottom": 42.857142857142854,
+                "paddingTop": 107.14285714285714,
+              }
+            }
+          >
+            <Image
+              source="image"
+              style={
+                Array [
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  Object {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  Object {
+                    "resizeMode": "contain",
+                  },
+                ]
+              }
+            />
+            <Text
+              ellipsizeMode="clip"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#555",
+                    "fontFamily": "Jost-Book",
+                    "fontSize": 34.285714285714285,
+                  },
+                  Object {
+                    "color": "#3A2671",
+                    "fontFamily": "Jost-Bold",
+                    "fontSize": 85.71428571428571,
+                    "marginTop": -68.57142857142857,
+                    "textAlignVertical": "center",
+                    "textTransform": "uppercase",
+                  },
+                ]
+              }
+            >
+              30.33
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#555",
+                    "fontFamily": "Jost-Book",
+                    "fontSize": 34.285714285714285,
+                  },
+                  Object {
+                    "color": "#3A2671",
+                    "fontFamily": "Jost-Bold",
+                    "fontSize": 68.57142857142857,
+                    "marginTop": -34.285714285714285,
+                    "textAlignVertical": "center",
+                    "textTransform": "uppercase",
+                  },
+                ]
+              }
+            >
+              days
+            </Text>
+          </View>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#555",
+                  "fontFamily": "Jost-Book",
+                  "fontSize": 34.285714285714285,
+                },
+                Object {
+                  "color": "#F38337",
+                  "fontFamily": "Jost-Bold",
+                  "fontSize": 27.857142857142858,
+                  "textAlignVertical": "center",
+                  "textTransform": "uppercase",
+                },
+              ]
+            }
+          >
+            average
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 5,
+              "flexDirection": "column",
+              "paddingTop": 21.428571428571427,
+            }
+          }
+        >
+          <StatsOverview
+            data={
+              Array [
+                Array [
+                  30,
+                  "min",
+                ],
+                Array [
+                  31,
+                  "max",
+                ],
+                Array [
+                  0.58,
+                  "standard_deviation",
+                ],
+                Array [
+                  3,
+                  "completed_cycles",
+                ],
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "alignSelf": "center",
+            "backgroundColor": "#F38337",
+            "borderRadius": 25,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "marginTop": 34.285714285714285,
+            "minWidth": "15%",
+            "opacity": 1,
+            "paddingHorizontal": 8.571428571428571,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#555",
+                "fontFamily": "Jost-Book",
+                "fontSize": 34.285714285714285,
+              },
+              Array [
+                Object {
+                  "color": "white",
+                  "fontFamily": "Jost-Bold",
+                },
+                Object {
+                  "fontSize": 27.857142857142858,
+                  "padding": 21.428571428571427,
+                  "textTransform": "uppercase",
+                },
+              ],
+            ]
+          }
+        >
+          show_stats
+        </Text>
+      </View>
+      <AppHelp
+        text="standard_deviation_help"
+      />
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
+`;
+
+exports[`Stats screen when provided no data, renders no_data text 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "backgroundColor": "#E9F2ED",
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "paddingHorizontal": 34.285714285714285,
+        "paddingTop": 34.285714285714285,
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            undefined,
+          ]
+        }
+      >
+        cycle_length_explainer
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            undefined,
+          ]
+        }
+      >
+        no_data
+      </Text>
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
+`;
+
+exports[`Stats screen when provided null, renders no_data text 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "backgroundColor": "#E9F2ED",
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "paddingHorizontal": 34.285714285714285,
+        "paddingTop": 34.285714285714285,
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            undefined,
+          ]
+        }
+      >
+        cycle_length_explainer
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            undefined,
+          ]
+        }
+      >
+        no_data
+      </Text>
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
+`;
+
+exports[`Stats screen when provided undefined, renders no_data text 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "backgroundColor": "#E9F2ED",
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "paddingHorizontal": 34.285714285714285,
+        "paddingTop": 34.285714285714285,
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            undefined,
+          ]
+        }
+      >
+        cycle_length_explainer
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#555",
+              "fontFamily": "Jost-Book",
+              "fontSize": 34.285714285714285,
+            },
+            undefined,
+          ]
+        }
+      >
+        no_data
+      </Text>
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
+`;
