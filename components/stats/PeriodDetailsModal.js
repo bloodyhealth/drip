@@ -35,7 +35,7 @@ Item.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
-const StatsTable = () => {
+const PeriodDetailsModal = ({ onClose }) => {
   const renderItem = ({ item }) => <Item data={item} />
   const data = cycleModule().getStats()
 
@@ -53,6 +53,10 @@ const StatsTable = () => {
       contentContainerStyle={styles.container}
     />
   )
+}
+
+PeriodDetailsModal.propTypes = {
+  onClose: PropTypes.func,
 }
 
 const ItemDivider = () => <View style={styles.divider} />
@@ -104,4 +108,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default StatsTable
+export default PeriodDetailsModal

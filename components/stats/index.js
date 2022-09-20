@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ImageBackground, View } from 'react-native'
 import { ScaledSheet } from 'react-native-size-matters'
 import { useTranslation } from 'react-i18next'
 
 import AppText from '../common/app-text'
+import Button from '../common/button'
 import StatsOverview from './StatsOverview'
-import StatsTable from './StatsTable'
+import PeriodDetailsModal from './PeriodDetailsModal'
 
 import cycleModule from '../../lib/cycle'
 import { getCycleLengthStats as getCycleInfo } from '../../lib/cycle-length'
@@ -15,6 +16,8 @@ import { Containers, Sizes, Spacing, Typography } from '../../styles'
 const image = require('../../assets/cycle-icon.png')
 
 const Stats = () => {
+  const [isStatsVisible, setIsStatsVisible] = useState(false)
+
   const { t } = useTranslation(null, { keyPrefix: 'stats' })
 
   const cycleLengths = cycleModule().getAllCycleLengths()
@@ -68,7 +71,12 @@ const Stats = () => {
           </View>
         )}
       </View>
-      <StatsTable />
+      <Button isCTA onPress={() => setIsStatsVisible(true)}>
+        {t('showStats')}
+      </Button>
+      {isStatsVisible && (
+        <PeriodDetailsModal onClose={() => setIsStatsVisible(false)} />
+      )}
     </View>
   )
 }

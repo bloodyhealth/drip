@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     maxHeight: Dimensions.get('window').height * 0.7,
     zIndex: 2, // works on ios
     elevation: 2, // works on android
+    minWidth: '80%',
   },
 })
 
