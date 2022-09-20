@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppHelp screen when provided text, should render it 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "padding": 34.285714285714285,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#555",
+          "fontFamily": "Jost-Book",
+          "fontSize": 34.285714285714285,
+        },
+        Object {
+          "alignSelf": "flex-start",
+          "color": "#3A2671",
+          "fontFamily": "Jost-Bold",
+          "fontSize": 27.857142857142858,
+          "paddingRight": 34.285714285714285,
+          "textAlignVertical": "center",
+          "textTransform": "uppercase",
+        },
+      ]
+    }
+  >
+    *
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#555",
+          "fontFamily": "Jost-Book",
+          "fontSize": 34.285714285714285,
+        },
+        undefined,
+      ]
+    }
+  >
+    Some help test
+  </Text>
+</View>
+`;
