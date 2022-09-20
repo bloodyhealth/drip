@@ -1,6 +1,7 @@
 import React from 'react'
 import { ImageBackground, View } from 'react-native'
 import { ScaledSheet } from 'react-native-size-matters'
+import { useTranslation } from 'react-i18next'
 
 import AppText from './common/app-text'
 import StatsOverview from './common/StatsOverview'
@@ -8,31 +9,35 @@ import StatsTable from './common/StatsTable'
 
 import cycleModule from '../lib/cycle'
 import { getCycleLengthStats as getCycleInfo } from '../lib/cycle-length'
-import { stats as labels } from '../i18n/en/labels'
 
 import { Containers, Sizes, Spacing, Typography } from '../styles'
 
 const image = require('../assets/cycle-icon.png')
 
 const Stats = () => {
+  const { t } = useTranslation(null, { keyPrefix: 'stats' })
+
   const cycleLengths = cycleModule().getAllCycleLengths()
   const numberOfCycles = cycleLengths.length
   const hasAtLeastOneCycle = numberOfCycles >= 1
   const cycleData = hasAtLeastOneCycle
     ? getCycleInfo(cycleLengths)
     : { minimum: '—', maximum: '—', stdDeviation: '—' }
+  const standardDeviation = cycleData.stdDeviation
+    ? cycleData.stdDeviation
+    : '—'
   const statsData = [
-    [cycleData.minimum, labels.minLabel],
-    [cycleData.maximum, labels.maxLabel],
-    [cycleData.stdDeviation ? cycleData.stdDeviation : '—', labels.stdLabel],
-    [numberOfCycles, labels.basisOfStatsEnd],
+    [cycleData.minimum, t('overview.min')],
+    [cycleData.maximum, t('overview.max')],
+    [standardDeviation, t('overview.standardDeviation')],
+    [numberOfCycles, t('overview.completedCycles')],
   ]
 
   return (
     <View style={styles.pageContainer}>
       <View style={styles.overviewContainer}>
-        <AppText>{labels.cycleLengthExplainer}</AppText>
-        {!hasAtLeastOneCycle && <AppText>{labels.emptyStats}</AppText>}
+        <AppText>{t('intro')}</AppText>
+        {!hasAtLeastOneCycle && <AppText>{t('noData')}</AppText>}
         {hasAtLeastOneCycle && (
           <View style={styles.container}>
             <View style={styles.columnLeft}>
@@ -49,11 +54,11 @@ const Stats = () => {
                   {cycleData.mean}
                 </AppText>
                 <AppText style={styles.accentPurpleHuge}>
-                  {labels.daysLabel}
+                  {t('overview.days')}
                 </AppText>
               </ImageBackground>
               <AppText style={styles.accentOrange}>
-                {labels.averageLabel}
+                {t('overview.average')}
               </AppText>
             </View>
             <View style={styles.columnRight}>
