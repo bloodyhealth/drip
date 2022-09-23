@@ -7,20 +7,20 @@ import {
   View,
 } from 'react-native'
 import PropTypes from 'prop-types'
+import AppText from '../common/app-text'
 
 import AppIcon from '../common/app-icon'
 import CloseIcon from '../common/close-icon'
-import MenuItem from './menu-item'
 
-import { Colors, Sizes } from '../../styles'
+import { Colors, Sizes, Typography } from '../../styles'
 import { HIT_SLOP } from '../../config'
 import { useTranslation } from 'react-i18next'
 
 const settingsMenuItems = [
-  { label: 'settings', componentName: 'SettingsMenu' },
-  { label: 'about', componentName: 'About' },
-  { label: 'license', componentName: 'License' },
-  { label: 'privacyPolicy', componentName: 'PrivacyPolicy' },
+  { labelKey: 'settings', componentName: 'SettingsMenu' },
+  { labelKey: 'about', componentName: 'About' },
+  { labelKey: 'license', componentName: 'License' },
+  { labelKey: 'privacyPolicy', componentName: 'PrivacyPolicy' },
 ]
 
 const HamburgerMenu = ({ navigate }) => {
@@ -36,6 +36,11 @@ const HamburgerMenu = ({ navigate }) => {
       </TouchableOpacity>
     )
 
+  function onPress(componentName) {
+    closeMenu()
+    navigate(componentName)
+  }
+
   return (
     <Modal animationType="fade" onRequestClose={closeMenu} transparent>
       <TouchableOpacity onPress={closeMenu} style={styles.blackBackground} />
@@ -43,14 +48,13 @@ const HamburgerMenu = ({ navigate }) => {
         <View style={styles.iconContainer}>
           <CloseIcon color={'black'} onClose={closeMenu} />
         </View>
-        {settingsMenuItems.map((item) => (
-          <MenuItem
-            componentName={item.componentName}
-            label={t(item.label)}
-            key={item.label}
-            closeMenu={closeMenu}
-            navigate={navigate}
-          />
+        {settingsMenuItems.map(({ labelKey, componentName }) => (
+          <TouchableOpacity
+            onPress={() => onPress(componentName)}
+            key={labelKey}
+          >
+            <AppText style={styles.menuItem}>{t(labelKey)}</AppText>
+          </TouchableOpacity>
         ))}
       </View>
     </Modal>
@@ -82,4 +86,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '60%',
   },
+  menuItem: Typography.subtitle,
 })
