@@ -18,9 +18,11 @@ import {
 import { Colors, Fonts, Sizes, Spacing } from '../styles'
 import { LocalDate } from '@js-joda/core'
 import { useTranslation } from 'react-i18next'
+import { useDate } from '../hooks/useDate'
 
-const Home = ({ navigate, setDate }) => {
+const Home = ({ navigate }) => {
   const { t } = useTranslation()
+  const { setDate } = useDate()
 
   function navigateToCycleDayView() {
     setDate(todayDateString)
@@ -110,7 +112,6 @@ const styles = StyleSheet.create({
 
 Home.propTypes = {
   navigate: PropTypes.func,
-  setDate: PropTypes.func,
 }
 
 export default Home

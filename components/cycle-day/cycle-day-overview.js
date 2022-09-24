@@ -9,10 +9,13 @@ import SymptomPageTitle from './symptom-page-title'
 import { getCycleDay } from '../../db'
 import { getData, nextDate, prevDate } from '../helpers/cycle-day'
 
+import { useDate } from '../../hooks/useDate'
+
 import { Spacing } from '../../styles'
 import { SYMPTOMS } from '../../config'
 
-const CycleDayOverView = ({ date, setDate, isTemperatureEditView }) => {
+const CycleDayOverView = ({ isTemperatureEditView }) => {
+  const { date, setDate } = useDate()
   const cycleDay = getCycleDay(date)
 
   const [editedSymptom, setEditedSymptom] = useState(
@@ -58,8 +61,6 @@ const CycleDayOverView = ({ date, setDate, isTemperatureEditView }) => {
 
 CycleDayOverView.propTypes = {
   cycleDay: PropTypes.object,
-  date: PropTypes.string,
-  setDate: PropTypes.func,
   isTemperatureEditView: PropTypes.bool,
 }
 

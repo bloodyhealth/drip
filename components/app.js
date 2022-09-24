@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { BackHandler, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 
-import { LocalDate } from '@js-joda/core'
+import { useDate } from '../hooks/useDate'
 
 import Header from './header'
 import Menu from './menu'
@@ -13,7 +13,8 @@ import setupNotifications from '../lib/notifications'
 import { closeDb } from '../db'
 
 const App = ({ restartApp }) => {
-  const [date, setDate] = useState(LocalDate.now().toString())
+  const { setDate } = useDate()
+
   const [currentPage, setCurrentPage] = useState('Home')
   const goBack = () => {
     if (currentPage === 'Home') {
@@ -43,8 +44,6 @@ const App = ({ restartApp }) => {
   const isTemperatureEditView = currentPage === 'TemperatureEditView'
   const headerProps = { navigate: setCurrentPage }
   const pageProps = {
-    date,
-    setDate,
     isTemperatureEditView,
     navigate: setCurrentPage,
   }

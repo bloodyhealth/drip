@@ -28,7 +28,7 @@ import { Spacing } from '../../styles'
 const getSymptomsFromCycleDays = (cycleDays) =>
   SYMPTOMS.filter((symptom) => cycleDays.some((cycleDay) => cycleDay[symptom]))
 
-const CycleChart = ({ navigate, setDate }) => {
+const CycleChart = ({ navigate }) => {
   const [shouldShowHint, setShouldShowHint] = useState(true)
 
   useEffect(() => {
@@ -84,7 +84,6 @@ const CycleChart = ({ navigate, setDate }) => {
   const renderColumn = ({ item }) => {
     return (
       <DayColumn
-        setDate={setDate}
         dateString={item}
         navigate={navigate}
         symptomHeight={symptomHeight}
@@ -136,7 +135,6 @@ const CycleChart = ({ navigate, setDate }) => {
 
 CycleChart.propTypes = {
   navigate: PropTypes.func,
-  setDate: PropTypes.func,
 }
 
 const styles = StyleSheet.create({

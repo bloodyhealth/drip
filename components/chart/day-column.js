@@ -8,6 +8,8 @@ import SymptomCell from './symptom-cell'
 import TemperatureColumn from './temperature-column'
 import CycleDayLabel from './cycle-day-label'
 
+import { useDate } from '../../hooks/useDate'
+
 import {
   symptomColorMethods,
   getTemperatureProps,
@@ -19,13 +21,13 @@ const DayColumn = ({
   dateString,
   chartSymptoms,
   columnHeight,
-  setDate,
   navigate,
   shouldShowTemperatureColumn,
   symptomHeight,
   symptomRowSymptoms,
   xAxisHeight,
 }) => {
+  const { setDate } = useDate()
   const cycleDayData = getCycleDay(dateString)
   let data = {}
 
@@ -105,7 +107,6 @@ DayColumn.propTypes = {
   chartSymptoms: PropTypes.array,
   columnHeight: PropTypes.number.isRequired,
   navigate: PropTypes.func.isRequired,
-  setDate: PropTypes.func.isRequired,
   shouldShowTemperatureColumn: PropTypes.bool,
   symptomHeight: PropTypes.number.isRequired,
   symptomRowSymptoms: PropTypes.array,

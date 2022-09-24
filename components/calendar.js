@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { StyleSheet, View } from 'react-native'
 import { CalendarList } from 'react-native-calendars'
 
+import { useDate } from '../hooks/useDate'
+
 import { getBleedingDaysSortedByDate } from '../db'
 import cycleModule from '../lib/cycle'
 import {
@@ -12,7 +14,8 @@ import {
   todayToCalFormat,
 } from './helpers/calendar'
 
-const CalendarView = ({ setDate, navigate }) => {
+const CalendarView = ({ navigate }) => {
+  const { setDate } = useDate()
   const bleedingDays = getBleedingDaysSortedByDate()
   const predictedMenses = cycleModule().getPredictedMenses()
 
@@ -49,7 +52,6 @@ const styles = StyleSheet.create({
 })
 
 CalendarView.propTypes = {
-  setDate: PropTypes.func.isRequired,
   navigate: PropTypes.func.isRequired,
 }
 
