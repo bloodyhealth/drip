@@ -10,6 +10,8 @@ import AppStatusBar from './common/app-status-bar'
 import AcceptLicense from './AcceptLicense'
 import PasswordPrompt from './password-prompt'
 
+import { DateProvider } from '../hooks/useDate'
+
 export default function AppWrapper() {
   const [isLoading, setIsLoading] = useState(true)
   const [isLicenseAccepted, setIsLicenseAccepted] = useState(false)
@@ -47,7 +49,9 @@ export default function AppWrapper() {
       {isDbEncrypted ? (
         <PasswordPrompt enableShowApp={() => setIsDbEncrypted(false)} />
       ) : (
-        <App restartApp={() => checkIsDbEncrypted()} />
+        <DateProvider>
+          <App restartApp={() => checkIsDbEncrypted()} />
+        </DateProvider>
       )}
     </>
   )
