@@ -27,7 +27,7 @@ const HamburgerMenu = ({ navigate }) => {
   const [isOpen, setIsOpen] = useState(false)
   const closeMenu = () => setIsOpen(false)
 
-  const { t } = useTranslation(null, { keyPrefix: 'settings.menuMain' })
+  const { t } = useTranslation(null, { keyPrefix: 'hamburgerMenu.menuMain' })
 
   if (!isOpen)
     return (
@@ -47,7 +47,7 @@ const HamburgerMenu = ({ navigate }) => {
           <MenuItem
             componentName={item.componentName}
             label={t(item.label)}
-            key={item.name}
+            key={item.label}
             closeMenu={closeMenu}
             navigate={navigate}
           />
