@@ -55,9 +55,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     marginTop: Sizes.huge * 2,
-    paddingTop: Spacing.large * 2,
+    paddingVertical: Spacing.large * 2,
     position: 'absolute',
-    minHeight: '40%',
     maxHeight: Dimensions.get('window').height * 0.7,
     zIndex: 2, // works on ios
     elevation: 2, // works on android
