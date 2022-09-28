@@ -7,17 +7,17 @@ import HamburgerMenu from './hamburger-menu'
 
 import { Colors, Containers, Sizes } from '../../styles'
 
-const Header = ({ isStatic, navigate }) => {
+const Header = ({ isStatic, navigation }) => {
   return (
     <View style={styles.header}>
       {isStatic ? (
         <Logo />
       ) : (
         <>
-          <TouchableOpacity onPress={() => navigate('Home')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
             <Logo />
           </TouchableOpacity>
-          <HamburgerMenu navigate={navigate} />
+          <HamburgerMenu navigate={navigation.navigate} />
         </>
       )}
     </View>
@@ -26,7 +26,9 @@ const Header = ({ isStatic, navigate }) => {
 
 Header.propTypes = {
   isStatic: PropTypes.bool,
-  navigate: PropTypes.func,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 }
 
 Header.defaultProps = {

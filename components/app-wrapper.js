@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { getLicenseFlag, saveEncryptionFlag } from '../local-storage'
-import { openDb } from '../db'
+import { closeDb, openDb } from '../db'
 
 import App from './app'
 import AppLoadingView from './common/app-loading'
@@ -29,6 +29,8 @@ export default function AppWrapper() {
   useEffect(() => {
     checkIsLicenseAccepted()
     checkIsDbEncrypted()
+
+    return () => closeDb()
   }, [])
 
   if (isLoading) {
