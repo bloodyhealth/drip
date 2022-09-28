@@ -1510,10 +1510,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@js-joda/core@^5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@js-joda/core/-/core-5.3.0.tgz#b6f01fa510c9d360134a77f7a2820bdca3a396bf"
-  integrity sha512-3uObVJ08i0vSbtsTWQ8omy8XUlVDnoest5MOLp6delLUZev8bu++S+3Aua7xWPPWzQt9pcuwDqjEOKslQVDj8g==
+"@js-joda/core@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@js-joda/core/-/core-5.4.0.tgz#f241281fa0de9729f04ea9517851feb19ada29d3"
+  integrity sha512-AeQQWcDiuUtI6BXX59VR9KkdF4sLOeaicwpQKnNu8iBKJ8O1+M9FLs7ZCbdAMWmDLMoeaG1HG8PMbkuyuMTVgw==
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
