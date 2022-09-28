@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 import moment from 'moment'
@@ -10,6 +10,7 @@ import Footnote from './common/Footnote'
 
 import cycleModule from '../lib/cycle'
 import { getFertilityStatusForDay } from '../lib/sympto-adapter'
+import setupNotifications from '../lib/notifications'
 import {
   determinePredictionText,
   formatWithOrdinalSuffix,
@@ -19,13 +20,10 @@ import { Colors, Fonts, Sizes, Spacing } from '../styles'
 import { LocalDate } from '@js-joda/core'
 import { useTranslation } from 'react-i18next'
 
-const Home = ({ navigate, setDate }) => {
+const Home = ({ navigation }) => {
   const { t } = useTranslation()
 
-  function navigateToCycleDayView() {
-    setDate(todayDateString)
-    navigate('CycleDay')
-  }
+  useEffect(() => setupNotifications(navigation), [])
 
   const todayDateString = LocalDate.now().toString()
   const { getCycleDayNumber, getPredictedMenses } = cycleModule()
@@ -33,10 +31,13 @@ const Home = ({ navigate, setDate }) => {
   const { status, phase, statusText } =
     getFertilityStatusForDay(todayDateString)
   const prediction = determinePredictionText(getPredictedMenses(), t)
-
   const cycleDayText = cycleDayNumber
     ? formatWithOrdinalSuffix(cycleDayNumber)
     : ''
+
+  function navigateToCycleDayView() {
+    navigation.navigate('CycleDayOverview', { date: todayDateString })
+  }
 
   return (
     <ScrollView
@@ -109,8 +110,9 @@ const styles = StyleSheet.create({
 })
 
 Home.propTypes = {
-  navigate: PropTypes.func,
-  setDate: PropTypes.func,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 }
 
 export default Home

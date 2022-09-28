@@ -19,8 +19,7 @@ const DayColumn = ({
   dateString,
   chartSymptoms,
   columnHeight,
-  setDate,
-  navigate,
+  navigation,
   shouldShowTemperatureColumn,
   symptomHeight,
   symptomRowSymptoms,
@@ -60,10 +59,8 @@ const DayColumn = ({
     columnHeight
   )
 
-  const onDaySelect = (date) => {
-    setDate(date)
-    navigate('CycleDay')
-  }
+  const onDaySelect = (date) =>
+    navigation.navigate('CycleDayOverview', { date })
 
   return (
     <TouchableOpacity onPress={() => onDaySelect(dateString)} activeOpacity={1}>
@@ -104,12 +101,13 @@ DayColumn.propTypes = {
   dateString: PropTypes.string.isRequired,
   chartSymptoms: PropTypes.array,
   columnHeight: PropTypes.number.isRequired,
-  navigate: PropTypes.func.isRequired,
-  setDate: PropTypes.func.isRequired,
   shouldShowTemperatureColumn: PropTypes.bool,
   symptomHeight: PropTypes.number.isRequired,
   symptomRowSymptoms: PropTypes.array,
   xAxisHeight: PropTypes.number,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 }
 
 export default DayColumn

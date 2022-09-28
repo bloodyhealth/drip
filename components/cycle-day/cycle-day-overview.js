@@ -12,7 +12,8 @@ import { getData, nextDate, prevDate } from '../helpers/cycle-day'
 import { Spacing } from '../../styles'
 import { SYMPTOMS } from '../../config'
 
-const CycleDayOverView = ({ date, setDate, isTemperatureEditView }) => {
+const CycleDayOverView = ({ route }) => {
+  const { date, isTemperatureEditView } = route.params
   const cycleDay = getCycleDay(date)
 
   const [editedSymptom, setEditedSymptom] = useState(
@@ -20,11 +21,11 @@ const CycleDayOverView = ({ date, setDate, isTemperatureEditView }) => {
   )
 
   const showNextCycleDay = () => {
-    setDate(nextDate(date))
+    //setDate(nextDate(date))
   }
 
   const showPrevCycleDay = () => {
-    setDate(prevDate(date))
+    //setDate(prevDate(date))
   }
 
   return (
@@ -57,10 +58,12 @@ const CycleDayOverView = ({ date, setDate, isTemperatureEditView }) => {
 }
 
 CycleDayOverView.propTypes = {
-  cycleDay: PropTypes.object,
-  date: PropTypes.string,
-  setDate: PropTypes.func,
-  isTemperatureEditView: PropTypes.bool,
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      date: PropTypes.string,
+      isTemperatureEditView: PropTypes.bool,
+    }),
+  }),
 }
 
 const styles = StyleSheet.create({

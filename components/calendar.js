@@ -12,13 +12,12 @@ import {
   todayToCalFormat,
 } from './helpers/calendar'
 
-const CalendarView = ({ setDate, navigate }) => {
+const CalendarView = ({ navigation }) => {
   const bleedingDays = getBleedingDaysSortedByDate()
   const predictedMenses = cycleModule().getPredictedMenses()
 
   const passDateToDayView = ({ dateString }) => {
-    setDate(dateString)
-    navigate('CycleDay')
+    navigation.navigate('CycleDayOverview', { date: dateString })
   }
 
   const markedDates = Object.assign(
@@ -49,8 +48,9 @@ const styles = StyleSheet.create({
 })
 
 CalendarView.propTypes = {
-  setDate: PropTypes.func.isRequired,
-  navigate: PropTypes.func.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 }
 
 export default CalendarView
