@@ -12,9 +12,11 @@ const Tick = ({ yPosition, height, isBold, shouldShowLabel, label }) => {
   const containerStyle = [styles.container, { flexBasis: height, height, top }]
   const textStyle = isBold ? styles.textBold : styles.textNormal
 
+  if (!shouldShowLabel) return null
+
   return (
     <View style={containerStyle}>
-      <AppText style={textStyle}>{shouldShowLabel && label}</AppText>
+      <AppText style={textStyle}>{label}</AppText>
     </View>
   )
 }
@@ -36,6 +38,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     width: CHART_TICK_WIDTH,
+    minHeight: Sizes.base + 2,
   },
   textBold: {
     fontSize: Sizes.base,
