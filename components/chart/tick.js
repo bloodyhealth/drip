@@ -8,7 +8,7 @@ import { Sizes } from '../../styles'
 import { CHART_TICK_WIDTH } from '../../config'
 
 const Tick = ({ yPosition, height, isBold, shouldShowLabel, label }) => {
-  const top = yPosition - height / 2
+  const top = yPosition - height / 2 - 4
   const containerStyle = [styles.container, { flexBasis: height, height, top }]
   const textStyle = isBold ? styles.textBold : styles.textNormal
 
