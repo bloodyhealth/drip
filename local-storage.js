@@ -12,10 +12,16 @@ export const unitObservable = Observable()
 unitObservable.set(TEMP_SCALE_UNITS)
 scaleObservable((scale) => {
   const scaleRange = scale.max - scale.min
-  if (scaleRange <= 1.5) {
-    unitObservable.set(0.1)
-  } else {
-    unitObservable.set(0.5)
+
+  switch (true) {
+    case scaleRange <= 1:
+      unitObservable.set(0.1)
+      break
+    case scaleRange > 1 && scaleRange <= 2:
+      unitObservable.set(0.2)
+      break
+    default:
+      unitObservable.set(0.5)
   }
 })
 

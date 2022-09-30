@@ -3,6 +3,7 @@ import { LocalDate } from '@js-joda/core'
 import { scaleObservable, unitObservable } from '../../local-storage'
 import { getCycleStatusForDay } from '../../lib/sympto-adapter'
 import { getCycleDay, getAmountOfCycleDays } from '../../db'
+import { Sizes } from '../../styles'
 
 //YAxis helpers
 
@@ -50,15 +51,19 @@ export function getTickList(columnHeight) {
     const label = tick.toFixed(1)
     let shouldShowLabel
 
-    // when temp range <= 2, units === 0.1 we show temp values with step 0.2
-    // when temp range > 2, units === 0.5 we show temp values with step 0.5
+    // when units === 0.1 and tick height is big enough, we show temp values with step 0.2
+    // when units === 0.5 and tick height is not big enough, we show temp values with step 1
+    // otherwise we show temp values with step 0.5
 
-    if (unit === 0.1) {
-      // show label with step 0.2
-      shouldShowLabel = !((label * 10) % 2)
-    } else {
-      // show label with step 0.5
-      shouldShowLabel = !((label * 10) % 5)
+    switch (true) {
+      case unit === 0.1 && tickHeight > Sizes.base + 2:
+        shouldShowLabel = !((label * 10) % 2)
+        break
+      case unit === 0.5 && tickHeight <= Sizes.base + 2:
+        shouldShowLabel = !((label * 10) % 10)
+        break
+      default:
+        shouldShowLabel = !((label * 10) % 5)
     }
 
     // don't show label, if first or last tick
