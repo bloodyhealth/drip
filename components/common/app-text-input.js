@@ -1,30 +1,15 @@
 import React from 'react'
-import { KeyboardAvoidingView, StyleSheet, TextInput } from 'react-native'
+import { StyleSheet, TextInput } from 'react-native'
 import PropTypes from 'prop-types'
 
 import { Colors, Spacing, Typography } from '../../styles'
 
-const AppTextInput = ({ style, isKeyboardOffset, ...props }) => {
-  const behavior = isKeyboardOffset ? "padding" : "height"
-  const keyboardVerticalOffset = isKeyboardOffset ? 300 : 0
-
-  return (
-    <KeyboardAvoidingView
-      behavior={behavior}
-      keyboardVerticalOffset={keyboardVerticalOffset}
-    >
-      <TextInput style={[styles.input, style]} {...props} />
-    </KeyboardAvoidingView>
-  )
-}
+const AppTextInput = ({ style, ...props }) => (
+  <TextInput style={[styles.input, style]} {...props} />
+)
 
 AppTextInput.propTypes = {
   style: PropTypes.object,
-  isKeyboardOffset: PropTypes.bool,
-}
-
-AppTextInput.defultProps = {
-  isKeyboardOffset: true,
 }
 
 const styles = StyleSheet.create({
@@ -39,8 +24,8 @@ const styles = StyleSheet.create({
     minWidth: '80%',
     paddingHorizontal: Spacing.base,
     paddingVertical: Spacing.tiny,
-    ...Typography.mainText
-  }
+    ...Typography.mainText,
+  },
 })
 
 export default AppTextInput

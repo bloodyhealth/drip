@@ -1,91 +1,65 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BackHandler, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 
-import { connect } from 'react-redux'
-
-import { getDate } from '../slices/date'
-import { getNavigation, navigate, goBack } from '../slices/navigation'
+import { LocalDate } from '@js-joda/core'
 
 import Header from './header'
 import Menu from './menu'
 import { viewsList } from './views'
-import { isSettingsView } from './pages'
+import { pages } from './pages'
 
-import { headerTitles } from '../i18n/en/labels'
 import setupNotifications from '../lib/notifications'
-import { getCycleDay, closeDb } from '../db'
+import { closeDb } from '../db'
 
-class App extends Component {
-  static propTypes = {
-    date: PropTypes.string,
-    navigation: PropTypes.object.isRequired,
-    navigate: PropTypes.func,
-    goBack: PropTypes.func,
-    restartApp: PropTypes.func,
-  }
-
-  constructor(props) {
-    super(props)
-
-    this.backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      this.goBack
-    )
-
-    setupNotifications(this.props.navigate)
-  }
-
-  goBack = () => {
-    const { currentPage } = this.props.navigation
-
+const App = ({ restartApp }) => {
+  const [date, setDate] = useState(LocalDate.now().toString())
+  const [currentPage, setCurrentPage] = useState('Home')
+  const goBack = () => {
     if (currentPage === 'Home') {
       closeDb()
       BackHandler.exitApp()
     } else {
-      this.props.goBack()
+      const { parent } = pages.find((p) => p.component === currentPage)
+
+      setCurrentPage(parent)
     }
 
     return true
   }
 
-  componentWillUnmount() {
-    this.backHandler.remove()
-  }
-
-  render() {
-    const { date, navigation, goBack, restartApp } = this.props
-    const { currentPage } = navigation
-
-    if (!currentPage) {
-      return false
-    }
-
-    const Page = viewsList[currentPage]
-    const title = headerTitles[currentPage]
-
-    const isSettingsSubView = isSettingsView(currentPage)
-    const isTemperatureEditView = currentPage === 'TemperatureEditView'
-
-    const headerProps = {
-      title,
-      handleBack: isSettingsSubView ? goBack : null,
-    }
-
-    const pageProps = {
-      cycleDay: date && getCycleDay(date),
-      date,
-      isTemperatureEditView,
-    }
-
-    return (
-      <View style={styles.container}>
-        <Header {...headerProps} />
-        <Page {...pageProps} restartApp={restartApp} />
-        <Menu />
-      </View>
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      goBack
     )
+
+    return () => backHandler.remove()
+  })
+
+  useEffect(() => setupNotifications(setCurrentPage, setDate), [])
+
+  const Page = viewsList[currentPage]
+  const isTemperatureEditView = currentPage === 'TemperatureEditView'
+  const headerProps = { navigate: setCurrentPage }
+  const pageProps = {
+    date,
+    setDate,
+    isTemperatureEditView,
+    navigate: setCurrentPage,
   }
+
+  return (
+    <View style={styles.container}>
+      <Header {...headerProps} />
+      <Page {...pageProps} restartApp={restartApp} />
+      <Menu currentPage={currentPage} navigate={setCurrentPage} />
+    </View>
+  )
+}
+
+App.propTypes = {
+  restartApp: PropTypes.func,
 }
 
 const styles = StyleSheet.create({
@@ -94,18 +68,4 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapStateToProps = (state) => {
-  return {
-    date: getDate(state),
-    navigation: getNavigation(state),
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    navigate: (page) => dispatch(navigate(page)),
-    goBack: () => dispatch(goBack()),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App

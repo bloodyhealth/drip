@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Provider } from 'react-redux'
-import nodejs from 'nodejs-mobile-react-native'
 
 import { getLicenseFlag, saveEncryptionFlag } from '../local-storage'
 import { openDb } from '../db'
@@ -8,10 +6,8 @@ import { openDb } from '../db'
 import App from './app'
 import AppLoadingView from './common/app-loading'
 import AppStatusBar from './common/app-status-bar'
-import License from './License'
+import AcceptLicense from './AcceptLicense'
 import PasswordPrompt from './password-prompt'
-
-import store from '../store'
 
 export default function AppWrapper() {
   const [isLoading, setIsLoading] = useState(true)
@@ -31,7 +27,6 @@ export default function AppWrapper() {
   }
 
   useEffect(() => {
-    nodejs.start('main.js')
     checkIsLicenseAccepted()
     checkIsDbEncrypted()
   }, [])
@@ -41,17 +36,17 @@ export default function AppWrapper() {
   }
 
   if (!isLicenseAccepted) {
-    return <License setLicense={() => setIsLicenseAccepted(true)} />
+    return <AcceptLicense setLicense={() => setIsLicenseAccepted(true)} />
   }
 
   return (
-    <Provider store={store}>
+    <>
       <AppStatusBar />
       {isDbEncrypted ? (
         <PasswordPrompt enableShowApp={() => setIsDbEncrypted(false)} />
       ) : (
         <App restartApp={() => checkIsDbEncrypted()} />
       )}
-    </Provider>
+    </>
   )
 }

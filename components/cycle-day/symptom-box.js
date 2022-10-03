@@ -7,12 +7,10 @@ import AppText from '../common/app-text'
 import DripIcon from '../../assets/drip-icons'
 import SymptomEditView from './symptom-edit-view'
 
-import { connect } from 'react-redux'
-import { getDate } from '../../slices/date'
 import { isDateInFuture } from '../helpers/cycle-day'
 
 import { Colors, Sizes, Spacing } from '../../styles'
-import { headerTitles as symptomTitles } from '../../i18n/en/labels'
+import { useTranslation } from 'react-i18next'
 
 const SymptomBox = ({
   date,
@@ -22,6 +20,7 @@ const SymptomBox = ({
   editedSymptom,
   setEditedSymptom,
 }) => {
+  const { t } = useTranslation(null, { keyPrefix: 'cycleDay.symptomBox' })
   const isSymptomEdited = editedSymptom === symptom
   const isSymptomDisabled = isDateInFuture(date) && symptom !== 'note'
   const isExcluded = symptomData !== null ? symptomData.exclude : false
@@ -43,6 +42,7 @@ const SymptomBox = ({
     <>
       {isSymptomEdited && (
         <SymptomEditView
+          date={date}
           symptom={symptom}
           symptomData={symptomData}
           onClose={() => setEditedSymptom('')}
@@ -62,9 +62,7 @@ const SymptomBox = ({
           size={Sizes.icon}
         />
         <View style={styles.textContainer}>
-          <AppText style={symptomNameStyle}>
-            {symptomTitles[symptom].toLowerCase()}
-          </AppText>
+          <AppText style={symptomNameStyle}>{t(symptom)}</AppText>
           {symptomDataToDisplay && (
             <AppText style={textStyle} numberOfLines={4}>
               {symptomDataToDisplay}
@@ -128,10 +126,4 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapStateToProps = (state) => {
-  return {
-    date: getDate(state),
-  }
-}
-
-export default connect(mapStateToProps, null)(SymptomBox)
+export default SymptomBox
