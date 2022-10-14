@@ -15,7 +15,7 @@ export default function ImportData({ resetIsDeletingData, setIsLoading }) {
     keyPrefix: 'hamburgerMenu.settings.data.import',
   })
 
-  async function startImportFlow(shouldDeleteExistingData) {
+  async function startImport(shouldDeleteExistingData) {
     setIsLoading(true)
     await importData(shouldDeleteExistingData)
     setIsLoading(false)
@@ -67,11 +67,11 @@ export default function ImportData({ resetIsDeletingData, setIsLoading }) {
       },
       {
         text: t('dialog.replace'),
-        onPress: () => startImportFlow(false),
+        onPress: () => startImport(false),
       },
       {
         text: t('dialog.delete'),
-        onPress: () => startImportFlow(true),
+        onPress: () => startImport(true),
       },
     ])
   }
