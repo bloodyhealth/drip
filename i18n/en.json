@@ -89,6 +89,16 @@
     },
     "settings": {
       "data": {
+        "export": {
+          "button": "Export data",
+          "error": {
+            "convert": "Could not convert data to CSV",
+            "data": "There is no data to export",
+            "share": "There was a problem sharing the data export file"
+          },
+          "text": "Export data in CSV format for backup or so you can use it elsewhere",
+          "title": "My drip. data export"
+        },
         "import": {
           "button": "Import data",
           "dialog": {
