@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 
 import AppLoadingView from '../../common/app-loading'
 import AppPage from '../../common/app-page'
-
-import DeleteData from './delete-data'
+import DeleteData from './DeleteData'
 import ImportData from './ImportData'
 import ExportData from './ExportData'
 
