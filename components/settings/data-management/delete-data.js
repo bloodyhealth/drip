@@ -11,9 +11,10 @@ import alertError from '../common/alert-error'
 import { clearDb, isDbEmpty } from '../../../db'
 import { showToast } from '../../helpers/general'
 import { hasEncryptionObservable } from '../../../local-storage'
-import settings from '../../../i18n/en/settings'
-import { shared as sharedLabels } from '../../../i18n/en/labels'
 import { EXPORT_FILE_NAME } from './constants'
+import Segment from '../../common/segment'
+import AppText from '../../common/app-text'
+import { useTranslation } from 'react-i18next'
 
 const exportedFilePath = `${RNFS.DocumentDirectoryPath}/${EXPORT_FILE_NAME}`
 
@@ -21,6 +22,10 @@ const DeleteData = ({ onStartDeletion, isDeletingData }) => {
   const isPasswordSet = hasEncryptionObservable.value
   const [isConfirmingWithPassword, setIsConfirmingWithPassword] =
     useState(false)
+
+  const { t } = useTranslation(null, {
+    keyPrefix: 'hamburgerMenu.settings.data.delete',
+  })
 
   const onAlertConfirmation = () => {
     onStartDeletion()
@@ -32,17 +37,16 @@ const DeleteData = ({ onStartDeletion, isDeletingData }) => {
   }
 
   const alertBeforeDeletion = async () => {
-    const { question, message, confirmation, errors } = settings.deleteSegment
     if (isDbEmpty() && !(await RNFS.exists(exportedFilePath))) {
-      alertError(errors.noData)
+      alertError(t('error.noData'))
     } else {
-      Alert.alert(question, message, [
+      Alert.alert(t('dialog.title'), t('dialog.message'), [
         {
-          text: confirmation,
+          text: t('dialog.delete'),
           onPress: onAlertConfirmation,
         },
         {
-          text: sharedLabels.cancel,
+          text: t('dialog.cancel'),
           style: 'cancel',
           onPress: cancelConfirmationWithPassword,
         },
@@ -57,16 +61,14 @@ const DeleteData = ({ onStartDeletion, isDeletingData }) => {
   }
 
   const deleteAppData = async () => {
-    const { errors, success } = settings.deleteSegment
-
     try {
       if (!isDbEmpty()) {
         clearDb()
       }
       await deleteExportedFile()
-      showToast(success.message)
+      showToast(t('success.message'))
     } catch (err) {
-      alertError(errors.couldNotDeleteFile)
+      alertError(t('error.delete'))
     }
     cancelConfirmationWithPassword()
   }
@@ -85,9 +87,12 @@ const DeleteData = ({ onStartDeletion, isDeletingData }) => {
   }
 
   return (
-    <Button isCTA onPress={alertBeforeDeletion}>
-      {settings.deleteSegment.title}
-    </Button>
+    <Segment title={t('title')} last>
+      <AppText>{t('subTitle')}</AppText>
+      <Button isCTA onPress={alertBeforeDeletion}>
+        {t('title')}
+      </Button>
+    </Segment>
   )
 }
 
