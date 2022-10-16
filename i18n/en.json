@@ -90,9 +90,10 @@
             "replace": "Import and replace",
             "title": "Keep existing data?"
           },
-          "errors": {
+          "error": {
             "couldNotOpenFile": "Could not open file",
             "futureEdit": "Future dates may only contain a note, no other symptoms",
+            "incorrectColumns": "Expected CSV column titles to be {{incorrectColumns}}",
             "noDataImported": "{{message}}\n\nNo data was imported or changed"
           },
           "segmentExplainer": "Import data in CSV format",

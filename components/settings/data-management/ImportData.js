@@ -41,7 +41,7 @@ export default function ImportData({ resetIsDeletingData, setIsLoading }) {
       const fileContent = await rnfs.readFile(fileInfo.uri, 'utf8')
       return fileContent
     } catch (err) {
-      return showImportErrorAlert(t('errors.couldNotOpenFile'))
+      return showImportErrorAlert(t('error.couldNotOpenFile'))
     }
   }
 
@@ -50,7 +50,7 @@ export default function ImportData({ resetIsDeletingData, setIsLoading }) {
     if (!fileContent) return
 
     try {
-      await importCsv(fileContent, shouldDeleteExistingData)
+      await importCsv(fileContent, shouldDeleteExistingData, t)
       Alert.alert(t('success.title'), t('success.message'))
     } catch (err) {
       showImportErrorAlert(err.message)
@@ -77,7 +77,7 @@ export default function ImportData({ resetIsDeletingData, setIsLoading }) {
   }
 
   function showImportErrorAlert(message) {
-    const errorMessage = t('errors.noDataImported', { message })
+    const errorMessage = t('error.noDataImported', { message })
     alertError(errorMessage)
   }
 
