@@ -26,17 +26,6 @@ export const shared = {
   learnMore: 'Learn more',
 }
 
-export const stats = {
-  cycleLengthExplainer: 'Basic statistics about the length of your cycles.',
-  emptyStats: 'At least one completed cycle is needed to display stats.',
-  daysLabel: 'days',
-  basisOfStatsEnd: 'completed\ncycles',
-  averageLabel: 'Average cycle',
-  minLabel: `Shortest`,
-  maxLabel: `Longest`,
-  stdLabel: `Standard\ndeviation`,
-}
-
 export const bleedingPrediction = {
   predictionInFuture: (startDays, endDays) =>
     `Your next period is likely to start in ${startDays} to ${endDays} days.`,
