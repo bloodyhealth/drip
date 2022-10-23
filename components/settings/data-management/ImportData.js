@@ -50,7 +50,7 @@ export default function ImportData({ resetIsDeletingData, setIsLoading }) {
     if (!fileContent) return
 
     try {
-      await importCsv(fileContent, shouldDeleteExistingData, t)
+      await importCsv(fileContent, shouldDeleteExistingData)
       Alert.alert(t('success.title'), t('success.message'))
     } catch (err) {
       showImportErrorAlert(err.message)
