@@ -3,10 +3,9 @@ import { initReactI18next } from 'react-i18next'
 
 // translation files
 import en from './en.json'
-import enCommon from './en/common.json'
 
 const resources = {
-  en: { common: enCommon, translation: en },
+  en: { translation: en },
 }
 
 i18n

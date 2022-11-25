@@ -16,9 +16,12 @@ import { useTranslation } from 'react-i18next'
 const PasswordPrompt = ({ enableShowApp }) => {
   const [password, setPassword] = useState(null)
 
-  const { t } = useTranslation()
+  const { t } = useTranslation(null, { keyPrefix: 'password' })
 
-  const cancelButton = { text: t('common:cancel'), style: 'cancel' }
+  const cancelButton = {
+    text: t('forgotPasswordDialog.cancel'),
+    style: 'cancel',
+  }
 
   const unlockApp = async () => {
     const hash = new SHA512().hex(password)
@@ -26,11 +29,11 @@ const PasswordPrompt = ({ enableShowApp }) => {
 
     if (!connected) {
       Alert.alert(
-        t('common:incorrectPassword'),
-        t('common:incorrectPasswordMessage'),
+        t('incorrectPasswordDialog.incorrectPassword'),
+        t('incorrectPasswordDialog.incorrectPasswordMessage'),
         [
           {
-            text: t('common:tryAgain'),
+            text: t('incorrectPasswordDialog.tryAgain'),
             onPress: () => setPassword(null),
           },
         ]
@@ -47,31 +50,23 @@ const PasswordPrompt = ({ enableShowApp }) => {
   }
 
   const onDeleteData = () => {
-    Alert.alert(
-      t('password.confirmationDialog.title'),
-      t('password.confirmationDialog.text'),
-      [
-        cancelButton,
-        {
-          text: t('password.confirmationDialog.confirm'),
-          onPress: onDeleteDataConfirmation,
-        },
-      ]
-    )
+    Alert.alert(t('confirmationDialog.title'), t('confirmationDialog.text'), [
+      cancelButton,
+      {
+        text: t('confirmationDialog.confirm'),
+        onPress: onDeleteDataConfirmation,
+      },
+    ])
   }
 
   const onConfirmDeletion = async () => {
-    Alert.alert(
-      t('password.forgotPassword'),
-      t('password.forgotPasswordDialog.text'),
-      [
-        cancelButton,
-        {
-          text: t('password.forgotPasswordDialog.confirm'),
-          onPress: onDeleteData,
-        },
-      ]
-    )
+    Alert.alert(t('forgotPassword'), t('forgotPasswordDialog.text'), [
+      cancelButton,
+      {
+        text: t('forgotPasswordDialog.confirm'),
+        onPress: onDeleteData,
+      },
+    ])
   }
 
   return (
@@ -82,14 +77,12 @@ const PasswordPrompt = ({ enableShowApp }) => {
           <AppTextInput
             onChangeText={setPassword}
             secureTextEntry
-            placeholder={t('password.enterPassword')}
+            placeholder={t('enterPassword')}
           />
           <View style={styles.containerButtons}>
-            <Button onPress={onConfirmDeletion}>
-              {t('password.forgotPassword')}
-            </Button>
+            <Button onPress={onConfirmDeletion}>{t('forgotPassword')}</Button>
             <Button disabled={!password} isCTA={!!password} onPress={unlockApp}>
-              {t('password.unlockApp')}
+              {t('unlockApp')}
             </Button>
           </View>
         </KeyboardAvoidingView>
