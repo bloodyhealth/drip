@@ -2,12 +2,496 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.2307.25
+
+- Adds arm64-v8a and x86_64 for supporting 64-bit architecture
+- Adds Mariya & Sofiya as contributors &lt;3
+- Add clearing of metro cache
+- Update realm to support 64bit
+- Update package-lock.json
+- Uses built-in JS functionality for getting currentYear, thanks to @sdvig
+- Sets current year instead of hard coded
+- Fixes the error on app exiting on via the device back button
+- Allows to enter note in the future
+- Chart navigation bug fix.
+- Change clear to lowercase to make it case sensitive and executable
+- fix 306 by setting other-note empty as contraception method 'other' is deactivated
+- Resolve "don't show temperature chart part of chart when temp not tracked"
+- Bring in different shades for desire dots on chart
+- Splits the rest of the tests without modifying them
+- Moves out the test for getCyclesBefore method of cycle module
+- Moves out the test for getPReviousCycle method of cycle module
+- Lint rule react prop types addition
+- Cleans up the eslint rules
+- Adds test and fixes getCycleByStartDate method of cycle module
+- Moves out the tests for getCycleDayNumber and organises them
+- Adds propTypes definition
+- Gets rid of a top level prop passed down through a tree of components
+- Cleanups symptom view
+- Removes unnecessary prop and defines the missing propTypes
+- Adds propTypes definition
+- Gets rid of the redundant state on Home
+- Moves out home helpers from the component
+- Moves out HomeElement component
+- Moves out IconText component
+- Update .eslintrc
+- Resets the date in store for today date when navigating home
+- Sets initial value of date in the store
+- Removes redundant state and corrects the cycle day prop
+- Use new published sympto
+- Fixes missing navigation state on exiting the app
+- Adds linter rule for no multi spaces
+- Add e2e test device config for Nexus 5
+- Removes linter complaint about react version not being specified
+- Removes linter warning
+- De-duplicate line
+- Fixes navigation logic
+- Add go back functionality
+- Adds navigation tree to define the hierarchy
+- Moves navigation to the state
+- Removes the lowercasing to the header title component
+- Remove now superfluous check for bleeding symptom
+- Add remaining tests for maybeSetNewCycleStart
+- Add test for deleted bleeding value
+- Extract maybeSetNewCycleStart into own module
+- Set new cycle start when bleeding value excluded
+- Changes the name of the main component
+- Makes drip work on iOS
+- Adds a handy script to clear builds/cache/etc
+- Fix bug - not showing maximum value of mucus in chart
+- Move calculations functions to helpers file
+- Move YAxis & HorizontalGrid components in a common conditional expression
+- Move auxiliary functions from day-column.js component file to helpers file
+- Move Surface element to TemperatureColumn component
+- Introduces CycleDayLabel component
+- Introduces TemperatureColumn component
+- Introduces ChartLine component
+- Formatting fix
+- Introduces SymptomCell component
+- Introduces HorizontalGrid component
+- Moves out chart (data modelling) helpers to a separate file
+- Introduces Tick & TickList components
+- Introduces ChartLegend component
+- Introduces SymptomIcon component
+- Rafactors symptom color definition
+- Introduces YAxis component
+- Use updated sympto
+- Fixes typo, and removes a redundant line
+- Naming update: isFertile>isClosedAndHard, getSymptomColorIndex>symptomColorMethods; update of symptom index retrieval for the sake of readibility
+- Naming update, change switch to object, fertility logic review
+- make graph display for incomplete mucus and cervix values
+- Fixes some warnings on build
+- Updates the RN version to 0.59.10
+- Re-add missing build script
+- Updates the RN version to 0.59
+- Move metadata directory to root of project. So fdroid can find it.
+- Cleans the console.log
+- Adds test for data deletion
+- Refactors the header
+- Replaces the inheritance with composition pattern in the Symptom view
+- Adds e2e symptom data input tests and necessary testIDs to the existing components
+- Splits the temperature view to simplify it
+- Update README.md
+- Update README.md
+- Fixes the cycle day data is not being passed to the symptom view
+- Fixes the date not being set on changing cycle day, and adds a test for this case
+- Starts using redux store for storing the date
+- Redux initial setup
+- Implements review feedback
+- Splits &lt;CycleDayOverView /> to smaller components, to simplify it
+- Adds e2e test setup to README
+- Adding more tests
+- Adds initial tests
+- Introducing detox
+- Move app store metadata for here from fdroiddata repo
+- Set minSdk to Marshmallow (earlier versions don't work)
+- Only show timestamp when it has a value
+- Refactors App wrapper component
+- Fixes reopenning after back button
+- Make home screen centered
+- Add release wizard
+- Update nodejs-mobile to fix security issue
+
+- Fix hint display on chart
+- lowercase symptom names as before
+- Revert json conversion
+- Fix outdated snapshot
+- Chore/update babel dependencies
+- 618 Refactor import section to use translation lib
+- 614 Uppercase tutorial component
+- 624 Use translation library for chart tutorial
+- Bump react-i18next from 11.18.3 to 12.0.0
+- Bump i18next from 21.9.0 to 22.0.2
+- 619 Create test utils for react testing library
+- Exclude @babel/core library from dependabot updates
+- 617 Remove reference to weblate from readme
+- 615 Remove unused page labels
+- 615 Use translation library for bottom menu
+- 614 Use translation library for settings menu
+- Feature: add stats explainer take2
+- Chore: add translations to stats
+- Chore: add footnote component
+- Fix useEffect callback cannot be async
+- Add more data to stats
+- Cleanup
+- Use jshashes on Enter new password
+- Use jshashes on Confirmation with password
+- Use jshashes on Password prompt screen
+- Add jshashes dependency
+- Chore/extend license test
+- Chore/Retire hyperlink library
+- Fix: Define isKeyboardOffset based on Platform
+- Bring back License
+- Delete license.js
+- Delete License.js
+- Bring back the test
+- Distinction between License and AcceptLicense screens
+- Chore/testing library
+- Chore(deps-dev): bump @babel/eslint-parser from 7.16.3 to 7.19.1
+- Chore/update RN 0.67.4
+- Chore/update RN 0.66.4
+- Fix: temperature screen
+- 613 Use translation library for symptom boxes
+- Change the API to remove nodejs listeners
+- Chore/make function components 5
+- Chore: make function components 6
+- Chore/make function components 7
+- Fix: warning on privacy policy page
+- 611 Use key prefix in about section and restructure tree in translation file
+- Chore/make function components 3
+- Chore/make function components 4
+- 611 Use translation library in about section
+- Bump react-native-modal-datetime-picker from 10.2.0 to 14.0.0
+- Chore/make function components 2
+- Components using hooks part 1
+- Chore/retire redux
+- Chore/retire npm
+- Update react-native to v0.65.2
+- Chore/remove date usage
+- Fix/async storage
+- Prettify rest of the components files except stats
+- Bump react-native-modal-datetime-picker from 8.0.0 to 10.2.0
+- Prettify settings files
+- Prettify misc files
+- Prettify common files
+- Prettify chart files
+- Bump react-native-share from 7.8.0 to 7.9.0
+- Update react-native to v0.64.3
+- Revert "Merge branch 'chore/cleanup-date-usage' into 'main'"
+- Chore: add default MR template
+- Chore/cleanup date usage
+- Chore: migrate project to yarn v1
+- Update react-native to v0.63.4
+- Refactor app wrapper
+- Bump react-native-share from 3.8.5 to 7.8.0
+- Bump react-native-vector-icons from 9.1.0 to 9.2.0
+- Ignore patches versions when running dependabot
+- Bump react-native-document-picker from 4.3.0 to 8.1.1
+- Bump @js-joda/core from 5.2.0 to 5.3.0
+- Chore/retire left pad
+- Ignore react-native-push-notifications in dependabot settings
+- Chore/update clear script
+- Fix after merge conflicts
+- Setting for ITSAppUsesNonExemptEncryption
+- Bump version number 1.2208.11
+- Fixes linter failing
+- Cleanup
+- Reset app state without closing/restarting it
+- Prettify files before other changes
+- Remove email and hence typo from text
+- Fix deprecated way of using writeCopyTo - realm method
+- Bump version number 1.2208.8
+- Disable button when no input
+- Prettify enter-new-password
+- Fix path to the cli
+- Chore/jest
+- Chore: Add a link to test protocol & document known issues in android emulator
+- Bump react-native-fs from 2.19.0 to 2.20.0
+- Update react-native to v0.62.0
+- Fix dependabot job
+- Bump react-native-calendars from 1.1286.0 to 1.1287.0
+- Bump i18next from 21.8.16 to 21.9.0
+- Bump react-native-calendars from 1.1266.0 to 1.1286.0
+- Change the name of the job to be more descriptive
+- Ignore react-native dependency when running dependabot
+- Bump react-i18next from 11.12.0 to 11.18.3
+- Bump @react-native-community/datetimepicker from 6.3.0 to 6.3.1
+- Bump prop-types from 15.7.2 to 15.8.1
+- Exclude react from dependabot
+- Ignore node-js-mobile by dependabot
+- Bump version to 1.2208.2
+- Remove unused jase dependency
+- Remove unused jest dependency
+- Chore/retire dirty chai
+- Force light mode for iOS
+- Bump i18next from 21.8.14 to 21.8.16
+- Bump @react-native-community/datetimepicker from 6.2.2 to 6.3.0
+- Chore/remove is object
+- Bump isobject from 3.0.1 to 4.0.0
+- Upgrading js-joda
+- Chore/retire assert
+- Chore/prettify for joda
+- Bump moment from 2.29.1 to 2.29.4
+- Bump @react-native-community/datetimepicker from 6.2.0 to 6.2.2
+- Ignore realm from dependabot check
+- Remove unused dependency - react-native eslint config
+- Bump i18next from 20.6.1 to 21.8.14
+- Final touches to setup Dependabot
+- Bump @react-native-community/datetimepicker from 3.5.2 to 6.2.0
+- Update gitlab-cy.yml
+- Update gitlab-cy.yml
+- Schedule dependabot
+- Change dependabot configuration
+- Refactor cycle day overview screen
+- Disable temperature slider for iOS only
+- Remove ios from text bc it applies to android as well
+- Update https website link
+- Bump version number 1.2207.10
+- Update the link to our website with the brand new domain
+- Cleanup donation button fork on iOS
+- Make date format more compact for cycle day
+- Use xcode 13
+- Use brew for installing cocoapods
+- Correct formatting for code snippets
+- Correct nvm how to install info
+- Update text for support
+- Feature: Remove donate button for iOS
+- Update README.md
+- Fix invalid json file
+- Update husky version 7 -> 8
+- Remove .flowconfig
+- Add alert before closing
+- Fork restart functionality for different platforms
+- Add package-lock.json after clear script
+- Update wordings to advise user that app will close
+- Add react-native-exit-app-v2
+- Update husky version 6 -> 7
+- Specify node and npm version
+- Add missing 'key' prop for element in iterator
+- Feature: Adds privacy policy
+- Update package-lock after rebase
+- Prepare for archiving
+- Bump version number to 1.2206.19
+- Regenerate package-lock.json with correct npm version
+- Update .gitlab-ci.yml file
+- Bump up the node version of the image in the CI pipline
+- Revert README changes
+- Rename to drip.
+- Rename drip to drip.
+- Switch button order to match explainer text
+- Map realm object on the export only
+- Pachage-lock.json update after rebase
+- Make app buils on Xcode13
+- Fix sex, mood & pain symptoms not showing data on the overview
+- Fix when the object from db is empty
+- Update readme
+- Update realm version 3.6.5 -> 10.16.0
+- Chart styling adaption: Temporarily disbale temp scale settings
+- Cycle Day styling improvements
+- Cycle day styling: Remove new line for better display of mucus
+- Remove idle code
+- Stats styling improvement
+- Add picker title to labels
+- Fix: Specify the title for timePicker in IOS
+- 540 Refactor temperature to functional component
+- 540 Rename method to get previous temperature
+- fix indentation
+- fix indentation
+- Implement review feedback
+- Make temp reminder work for android & ios
+- Fix: Target reminder with correct id
+- Chore: exchange icons for learn more
+- Revert "Update readme and engines definition in package.json"
+- Revert "Update realm version 3.6.5 -> 5.0.9"
+- Adding paddingTop to title of symptom box
+- Return some button styling to fix button display on simptom edit
+- Increase box size and change back number of lines to display to 4
+- More fine-tuning of calendar and symptom box
+- Remove fontratio (I think we don't need it any more)
+- Update buttons styling to make them not that horizontally big
+- Font size fine-tuning
+- Add note to remove images fix after RN update
+- Elipsise date on day overview
+- Fix adding images to final build
+- Fix symptom-box text overflow
+- Fix buttons on simptom edit view for small screens
+- Fix styling
+- Fix today day styling in calendar
+- Fix linter errors
+- Update symptom box styling
+- Update stats page styling
+- Install react-native-size-matters library for better layout
+- Remove unused file
+- Dot notation
+- Dot notation
+- Chore: Implement review feedback
+- Chore: Adds buttons instead of links to about
+- Correct email
+- Chore: Remove unspported platforms for gradle
+- Update readme and engines definition in package.json
+- Update realm version 3.6.5 -> 5.0.9
+- 518 Run eslint on missing directories
+- 518 Update eslint config
+- 518 Replace deprecated eslint parser
+- Update README.md to linkt to Version 8 instread of Version 5
+- Install husky and prettier to format staged files
+- Add info on nvm requirement and xcode 12.5 fix
+- Adds dependabot config
+- Add toast to saving/deleting symptom data
+- Move toast showing function to helper
+- Package-lock.json commit
+- 511 Use translation function in license components
+- 511 Rename component
+- Refactor existing Toast
+- Install react-native-simple-toast
+- Update phone screenshots
+- Update description text
+- Update icon and banner
+- Chore: add react native clean project
+- Chore: adds instructions on how to run app on ios to readme
+- Add ios icons and launch screen
+- Update Twitter handle
+- Update README.md
+- Added translation using Weblate (German)
+- 162 Update structure of english translation file
+- 162 Fix lint issue
+- 162 Remove component path from translation key
+- 162 Use hook to merge component path with translation key
+- 162 Use translation function in home component
+- 162 Refactor Home component to functional component
+- 162 Uppercase home component name
+- 162 Add configuration for i18next
+- 162 Install dependencies for i18next
+- Feature/ios launch
+- Upgrade RN and friends
+- Give exported csv drip-data name
+- Update CONTRIBUTING.md
+- Update CONTRIBUTING.md
+- Adding back detox
+- Release: 1.2102.28
+- Adds flexWrap 'wrap' to phase text
+- Less space for title
+- Remove wiki link
+- Adds text for end of 2nd phase before infertility
+- Remove detox for now to fix npm i errors
+- Fixes SymptomEditView centering
+- Update stats layout
+- Very small fixes in the README
+- Fix/incorrect password error not showing on login screen
+- Fix/bottom padding after input field
+- Changes temp range and default values
+- Block invalid input of temperature value
+- Manual version code update to 7
+- Release: 1.2101.9
+- Update createVersion tag for production releases
+- Add Lisa as condriputor &lt;3
+- Better wording for prediction text
+- Fix drip typo
+- Fixes the date label on chart from breaking
+- Adds updated text about credits.
+- Adds missing notification icon
+- Changes the icon
+- Adds back computed mucus value to be saved
+- Fix chart dots and lines
+- Fixes error on highes/lowest scale values
+- Fixes extra horizontal grid line on chart
+- Change font color of marked calendar days
+- Check for falsy value
+- Resolve "Stats"
+- Update AppTextInput behavior, when Keyboard is visible
+- No warning msg if there is no temp data
+- Add secureTextEntry to password AppTextInput
+- Fix error occurring when navigating back from settings section
+- Resolve "Redesign fix: Homepage fix"
+- Updates styling of Stats page
+- Fix error occurring when navigating back from settings section
+- Adds padding between keyboard and text input
+- Fix redirect to TemperatureEditView from reminder
+- Updates settings menu styling
+- Fixes ordinal number suffix on chart date labels
+- Limit line length on text of symptom box
+- Fixes bug when .8 and .3 labels are not shown in chart
+- Add tests to the getOrdinalSuffix function
+- Make use of formatWithOrdinalSuffix function
+- Fix getOrdinalSuffix and add a formatting function
+- Fix ordinal suffix for numbers greater than 10
+- Remove line-through textDecoration for excluded values
+- Resolve "Cycle day overview"
+- Resolve "Chart"
+- Increase hitSlop of menu icon and navigation arrows
+- Roll back alert dialog styling
+- Update home page with more color contrast for grey
+- Sets calendar pastScrollRange to 10 years
+- Fix unlocking app with password
+- Fix linter issue
+- Fix react-native-vector-icon
+- Fix styles issue
+- Update README.md
+- Calendar redesign
+- Symptom view redesign
+- Redesign chart
+- Post-review updates
+- Fix after rebase
+- Introduces RN Alert component styling update
+- Introduces PasswordPrompt component redesign
+- Adds isSideMenuEnabled prop to Header component
+- Adds contentContainerStyle prop to AppPage component
+- Introduces Stats page redesign
+- Refactors AppText and Segment components
+- Introduces License page redesign
+- Updates SymptomSection component to fix lint rule
+- Styling fix of DataManagement component
+- Adds disabled prop to Button, style change name in AppSwitch component
+- Fixes AppLoadingView component centering
+- Sets default button type to small and moves action names to config file
+- Separates TemperatureSlider component, adds minor post-review changes
+- Removes extra space
+- Updates variable name to improve code readibility
+- Updates button activity definition when entering new password
+- Introduces style definition update of Button component
+- Separates TemperatureReminder component
+- Introduces NFP section redesign, upgrades slider version
+- Introduces data management section redesign
+- Introduces password management section redesign
+- Introduces AppTextInput and Button components styling update
+- Introduces Reminders page redesign
+- Introduces Home component redesign
+- SideMenu fix
+- AppIcon fix
+- Introduces bottom menu redesign (Menu component)
+- AppIcon props update
+- Moves MenuItem component from Header to separate file, naming update
+- Moves Logo component to separate file
+- Moves Segment stiles to local file, separates MenuItem component.
+- Introduces Header redesign along with some global styles changes
+- Introduces SettingsMenu component redesign
+- Removes unnecessary spaces
+- Moves unique styles of:
+  - AppPage component to local file
+  - AppTextInput to local file and does some cleanup
+  - Button component from common to local file
+  - Link component from common to local file
+  - Segment component from common files to local one
+- Renames FramedSegment to Segment
+- Fix color naming
+- Introduces License and About components redesign
+- Introduces AppLoading, AppTextInput, Button components redesign
+- Introduces AppText, Link and FramedSegment redesign
+- AppLoading/AppText/AppTextInput/Button/FramedSegment/Link -> ./common
+- Forbids landscape orientation for app
+- Adds new font
+- Add new RELEASE file
+- Update sdk 28 -> 29 and migrate to androidx
+- Release: 0.2007.12-beta
+
 ## v1.2102.28
 
 ### Changes
+
 - Temperature range is now between 35 - 39°C and its default values are now set to 35.5 - 37.5°C
 
 ### Fixed
+
 - Blocks invalid input of temperature value
 - Error message for incorrect password on login screen
 - Phase text on home screen for last fertile day
@@ -61,7 +545,7 @@ All notable changes to this project will be documented in this file.
 ### Adds
 
 - Allows chart not to show temperature part, when temperature is not tracked and corresponding refactoring
-- Detox support for e2e testing and addition of the e2e tests 
+- Detox support for e2e testing and addition of the e2e tests
 - Introduces Redux global state (date and navigation are stored locally now)
 - Introduces clear.sh script to the project automising clearing project caches and packages reinstallation
 
@@ -80,7 +564,7 @@ All notable changes to this project will be documented in this file.
 
 - Fixed adding notes to the future dates
 - Fixed app exiting with error when hitting back button on device
-- Fixed Sex symptom showing on y axis of chart even though the contraception method was deleted 
+- Fixed Sex symptom showing on y axis of chart even though the contraception method was deleted
 - Fixed of the clear.sh file name in package.json
 - Fixed of navigation from chart to the cycle day overview
 - Bug fix for maximum value of mucus not showing on chart
