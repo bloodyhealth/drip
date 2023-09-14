@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "241841234573",
+    "project_id": "drip-85766",
+    "storage_bucket": "drip-85766.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241841234573:android:7c0982e58c72af5357b8c4",
+        "android_client_info": {
+          "package_name": "com.drip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241841234573-3ad7e9j5rdj2rdhfamlahlsc0thdeatl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWn4QkDPxEYguLE9nqEhOv8q7fL18q6Pc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241841234573-3ad7e9j5rdj2rdhfamlahlsc0thdeatl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

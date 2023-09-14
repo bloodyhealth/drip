@@ -9,6 +9,8 @@ import cl.json.ShareApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.google.firebase.FirebaseApp;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -45,6 +47,7 @@ public class MainApplication extends Application implements ReactApplication, Sh
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+    FirebaseApp.initializeApp(this);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
   /**
