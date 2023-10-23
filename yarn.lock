@@ -6308,7 +6308,7 @@ react-native-modal-datetime-picker@14.0.0:
 
 "react-native-push-notification@github:bl00dymarie/react-native-push-notification":
   version "8.1.1"
-  resolved "https://codeload.github.com/bl00dymarie/react-native-push-notification/tar.gz/76e44f48f8bcf3ee74201786743bdd0e7669c89e"
+  resolved "https://codeload.github.com/bl00dymarie/react-native-push-notification/tar.gz/b7f4ff917ec9d3c04706f4ff922b6fdec34bfadb"
 
 react-native-share@^7.9.0:
   version "7.9.1"
