@@ -53,6 +53,9 @@
             <meta-data  
                 android:name="com.dieam.reactnativepushnotification.notification_color"
                 android:resource="@android:color/white"/>
+            <meta-data
+                android:name="com.dieam.reactnativepushnotification.default_notification_channel_id"
+                android:value="..."/>
         </provider>
 
         <receiver 
