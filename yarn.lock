@@ -6309,6 +6309,11 @@ react-native-modal-datetime-picker@14.0.0:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-permissions@^3.10.0:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-3.10.0.tgz#946fa7e07908ed90620b3f07eb652f20f482196d"
+  integrity sha512-6SB6JInfC0u54Wco8M1QsRoOGThnVjrhaks5IDWyYgwfi6JpXfTIi+F9fZZmRycyyPCgU8vGtht/5gF4VWEB/A==
+
 "react-native-push-notification@github:bl00dymarie/react-native-push-notification":
   version "8.1.1"
   resolved "https://codeload.github.com/bl00dymarie/react-native-push-notification/tar.gz/b7f4ff917ec9d3c04706f4ff922b6fdec34bfadb"
