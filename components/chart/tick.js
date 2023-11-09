@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     right: 0,
     width: CHART_TICK_WIDTH,
     minHeight: Sizes.base + 2,
-    backgroundColor: 'red',
   },
   textBold: {
     fontSize: Sizes.base,
