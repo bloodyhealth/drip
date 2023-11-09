@@ -70,6 +70,7 @@ const CycleChart = ({ navigate, setDate }) => {
   const symptomHeight = PixelRatio.roundToNearestPixel(
     remainingHeight * CHART_SYMPTOM_HEIGHT_RATIO
   )
+  console.log('symptomHeight', symptomHeight)
   const symptomRowHeight =
     PixelRatio.roundToNearestPixel(symptomRowSymptoms.length * symptomHeight) +
     CHART_GRID_LINE_HORIZONTAL_WIDTH

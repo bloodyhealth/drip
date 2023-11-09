@@ -8,6 +8,7 @@ import {
   CHART_COLUMN_WIDTH,
   CHART_COLUMN_MIDDLE,
   CHART_DOT_RADIUS,
+  CHART_DOT_RADIUS_TEMP,
   CHART_STROKE_WIDTH,
 } from '../../config'
 
@@ -35,9 +36,9 @@ const DotAndLine = ({
   }
 
   const dot = new Path()
-    .moveTo(CHART_COLUMN_MIDDLE, y - CHART_DOT_RADIUS)
-    .arc(0, CHART_DOT_RADIUS * 2, CHART_DOT_RADIUS)
-    .arc(0, CHART_DOT_RADIUS * -2, CHART_DOT_RADIUS)
+    .moveTo(CHART_COLUMN_MIDDLE, y - CHART_DOT_RADIUS_TEMP)
+    .arc(0, CHART_DOT_RADIUS_TEMP * 2, CHART_DOT_RADIUS_TEMP)
+    .arc(0, CHART_DOT_RADIUS_TEMP * -2, CHART_DOT_RADIUS_TEMP)
   const dotColor = exclude ? Colors.turquoise : Colors.turquoiseDark
   const lineColorLeft = excludeLeftLine
     ? Colors.turquoise
@@ -64,7 +65,7 @@ const DotAndLine = ({
         d={dot}
         stroke={dotColor}
         strokeWidth={CHART_STROKE_WIDTH}
-        fill="white"
+        fill={Colors.turquoiseDark}
         key="dot"
       />
     </React.Fragment>

@@ -68,6 +68,7 @@ TemperatureColumn.propTypes = {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
+    // backgroundColor: 'yellow',
   },
 })
 
