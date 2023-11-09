@@ -81,6 +81,21 @@ const CycleChart = ({ navigate, setDate }) => {
 
   const columns = makeColumnInfo()
 
+  // Monitor scrolling to show proper month abbreviation in symptom chart
+
+  const [currentScrollPosition, setCurrentScrollPosition] = useState(0)
+
+  const handleScroll = (event) => {
+    const currentPosition = event.nativeEvent.contentOffset.x
+    setCurrentScrollPosition(currentPosition)
+  }
+
+  const getDateInView = () => {
+    const columnIndex = Math.floor(currentScrollPosition / CHART_COLUMN_WIDTH)
+    //detect day in the middle of the chart, otherwise would only update month when leftmost date is in month
+    return columns[columnIndex + 4]
+  }
+
   const renderColumn = ({ item }) => {
     return (
       <DayColumn
@@ -118,12 +133,15 @@ const CycleChart = ({ navigate, setDate }) => {
             symptomsSectionHeight={symptomRowHeight}
             shouldShowTemperatureColumn={shouldShowTemperatureColumn}
             xAxisHeight={xAxisHeight}
+            computedDate={getDateInView()}
           />
           <MainGrid
             data={columns}
             renderItem={renderColumn}
             initialNumToRender={numberOfColumnsToRender}
             contentContainerStyle={{ height: chartHeight }}
+            onScroll={handleScroll}
+            scrollEventThrottle={16} // Detects scroll events at roughly 60fps
           />
           {shouldShowTemperatureColumn && (
             <HorizontalGrid height={columnHeight} />

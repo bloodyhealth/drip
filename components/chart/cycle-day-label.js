@@ -15,20 +15,15 @@ const CycleDayLabel = ({ height, date }) => {
 
   const momentDate = moment(date)
   const dayOfMonth = momentDate.date()
-  const isFirstDayOfMonth = dayOfMonth === 1
 
   return (
     <View style={[styles.container, { height }]}>
       <AppText style={styles.textBold}>{cycleDayLabel}</AppText>
       <View style={styles.dateLabel}>
-        <AppText style={styles.text}>
-          {isFirstDayOfMonth ? momentDate.format('MMM') : dayOfMonth}
+        <AppText style={styles.text}>{dayOfMonth}</AppText>
+        <AppText style={styles.textLight}>
+          {getOrdinalSuffix(dayOfMonth)}
         </AppText>
-        {!isFirstDayOfMonth && (
-          <AppText style={styles.textLight}>
-            {getOrdinalSuffix(dayOfMonth)}
-          </AppText>
-        )}
       </View>
     </View>
   )
