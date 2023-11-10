@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, View } from 'react-native'
 
-import { Colors, Containers } from '../../styles'
+import { Colors, Containers, Sizes } from '../../styles'
 import {
   CHART_COLUMN_WIDTH,
-  CHART_DOT_RADIUS,
+  CHART_DOT_RADIUS_SYMPTOM,
   CHART_GRID_LINE_HORIZONTAL_WIDTH,
 } from '../../config'
 
@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
     borderTopWidth: CHART_GRID_LINE_HORIZONTAL_WIDTH,
   },
   dot: {
-    width: CHART_DOT_RADIUS * 2,
-    height: CHART_DOT_RADIUS * 2,
+    width: CHART_DOT_RADIUS_SYMPTOM * 2,
+    height: CHART_DOT_RADIUS_SYMPTOM * 2,
     borderRadius: 50,
   },
 })
