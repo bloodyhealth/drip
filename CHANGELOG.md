@@ -40,6 +40,7 @@ All notable changes to this project will be documented in this file.
 - Stats: Show period details, including cycle start, cycle length and amount of days with bleeding
 - Stats: Explainer text for standard deviation
 - Settings: Privacy Policy
+- Chart: New dynamic month label
 - App asks for permissions for notifications right at the start, which allows you to set reminders (this is a new requirement for Android 13)
 - Buttons can now be displayed as row
 
