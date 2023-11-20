@@ -17,7 +17,7 @@ const TemperatureSchema = {
 const BleedingSchema = {
   name: 'Bleeding',
   properties: {
-    value: 'int',
+    value: { type: 'int', optional: true },
     exclude: 'bool',
     pad: { type: 'bool', optional: true },
     tampon: { type: 'bool', optional: true },
@@ -26,6 +26,7 @@ const BleedingSchema = {
     softTampon: { type: 'bool', optional: true },
     none: { type: 'bool', optional: true },
     other: { type: 'bool', optional: true },
+    note: { type: 'string', optional: true },
   },
 }
 
@@ -174,11 +175,10 @@ export default {
   schemaVersion: 5,
   migration: (oldRealm, newRealm) => {
     if (oldRealm.schemaVersion < 5) {
-      const oldObjects = oldRealm.objects('Bleeding')
       const newObjects = newRealm.objects('Bleeding')
 
       // loop through all objects and assign a default value for new properties
-      for (let i = 0; i < oldObjects.length; i++) {
+      for (let i = 0; i < newObjects.length; i++) {
         newObjects[i].pad = false
         newObjects[i].tampon = false
         newObjects[i].underwear = false
@@ -186,6 +186,7 @@ export default {
         newObjects[i].softTampon = false
         newObjects[i].none = false
         newObjects[i].other = false
+        newObjects[i].note = null
       }
     }
   },

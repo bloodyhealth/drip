@@ -65,6 +65,7 @@ export function getBleedingDaysSortedByDate() {
   return db
     .objects('CycleDay')
     .filtered('bleeding != null')
+    .filtered('bleeding.value != null')
     .sorted('date', true)
 }
 export function getTemperatureDaysSortedByDate() {
@@ -88,9 +89,8 @@ export function getCycleStartsSortedByDate() {
 export function saveSymptom(symptom, date, val) {
   let cycleDay = getCycleDay(date)
   if (!cycleDay) cycleDay = createCycleDay(date)
-
   db.write(() => {
-    if (symptom === 'bleeding') {
+    if (symptom === 'bleeding' && val != null && val.value != null) {
       const mensesDaysAfter = getMensesDaysRightAfter(cycleDay)
       maybeSetNewCycleStart({
         val,
