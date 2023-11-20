@@ -13,6 +13,20 @@ export const bleeding = {
   },
 }
 
+export const products = {
+  categories: {
+    pad: 'pad',
+    tampon: 'tampon',
+    underwear: 'underwear',
+    cup: 'cup',
+    softTampon: 'soft tampon',
+    none: 'none',
+    other: 'other',
+  },
+  header: 'period products',
+  explainer: 'Did you use period products?',
+}
+
 export const cervix = {
   subcategories: {
     opening: 'opening',
