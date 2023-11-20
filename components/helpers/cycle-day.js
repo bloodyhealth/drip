@@ -23,8 +23,16 @@ const noteDescription = labels.noteExplainer
 const painLabels = labels.pain.categories
 const sexLabels = labels.sex.categories
 const temperatureLabels = labels.temperature
+const productLabels = labels.products.categories
 
 const minutes = ChronoUnit.MINUTES
+
+const getOptionsFromCategories = (categories) => {
+  return Object.keys(categories).map((key, _) => ({
+    label: categories[key],
+    value: key, // or index, depending on what you want to use as the value
+  }))
+}
 
 const isNumber = (value) => typeof value === 'number'
 export const shouldShow = (value) => (value !== null ? true : false)
@@ -56,6 +64,13 @@ export const blank = {
   bleeding: {
     exclude: false,
     value: null,
+    pad: null,
+    tampon: null,
+    underwear: null,
+    cup: null,
+    softTampon: null,
+    none: null,
+    other: null,
   },
   cervix: {
     exclude: false,
@@ -125,12 +140,18 @@ export const symtomPage = {
   bleeding: {
     excludeText: labels.bleeding.exclude.explainer,
     note: null,
-    selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'value',
         options: getLabelsList(bleedingLabels),
         title: labels.bleeding.heaviness.explainer,
+      },
+    ],
+    selectBoxGroups: [
+      {
+        key: 'products',
+        options: productLabels,
+        title: 'Product',
       },
     ],
   },
@@ -242,12 +263,12 @@ export const symtomPage = {
 
 export const save = {
   bleeding: (data, date, shouldDeleteData) => {
-    const { exclude, value } = data
-    const isDataEntered = isNumber(value)
-    const valuesToSave =
-      shouldDeleteData || !isDataEntered ? null : { value, exclude }
+    //const { exclude, value, products } = data
+    //const isDataEntered = isNumber(value)
+    //const valuesToSave =
+    //  shouldDeleteData || !isDataEntered ? null : { value, exclude, products }
 
-    saveSymptom('bleeding', date, valuesToSave)
+    saveBoxSymptom(data, date, shouldDeleteData, 'bleeding')
   },
   cervix: (data, date, shouldDeleteData) => {
     const { opening, firmness, position, exclude } = data
@@ -325,10 +346,36 @@ const saveBoxSymptom = (data, date, shouldDeleteData, symptom) => {
 }
 
 const label = {
-  bleeding: ({ value, exclude }) => {
-    if (isNumber(value)) {
-      const bleedingLabel = bleedingLabels[value]
-      return exclude ? `(${bleedingLabel})` : bleedingLabel
+  bleeding: (bleeding) => {
+    bleeding = mapRealmObjToJsObj(bleeding)
+    console.log(bleeding)
+    const bleedingLabel = []
+    if (bleeding && Object.values({ ...bleeding }).some((val) => val)) {
+      Object.keys(bleeding).forEach((key) => {
+        if (key == 'value') {
+          console.log(bleedingLabel)
+          bleedingLabel.push(bleedingLabels[bleeding[key]])
+        }
+        if (
+          bleeding[key] &&
+          key !== 'other' &&
+          key !== 'note' &&
+          key != 'value' &&
+          key != 'exclude'
+        ) {
+          console.log(bleedingLabel)
+          bleedingLabel.push(bleedingLabels[key] || productLabels[key])
+        }
+        if (key === 'other' && bleeding.other) {
+          let label = productLabels[key]
+          if (bleeding.note) {
+            label = `${label} (${bleeding.note})`
+          }
+          console.log(bleedingLabel)
+          bleedingLabel.push(label)
+        }
+      })
+      return bleedingLabel.join(', ')
     }
   },
   temperature: ({ value, time, exclude }) => {

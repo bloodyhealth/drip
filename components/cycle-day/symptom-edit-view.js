@@ -25,7 +25,6 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const [shouldShowInfo, setShouldShowInfo] = useState(false)
   const getParsedData = () => JSON.parse(JSON.stringify(data))
   const onPressLearnMore = () => setShouldShowInfo(!shouldShowInfo)
-
   const onEditNote = (note) => {
     const parsedData = getParsedData()
 
@@ -135,7 +134,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
               <Segment key={group.key} style={styles.segmentBorder}>
                 <AppText style={styles.title}>{group.title}</AppText>
                 <SelectTabGroup
-                  activeButton={data[group.key]}
+                  activeButton={data[group.key]} //this is supposed to be a number
                   buttons={group.options}
                   onSelect={(value) => onSelectTab(group, value)}
                 />
