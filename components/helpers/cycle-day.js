@@ -130,7 +130,7 @@ export const blank = {
   },
 }
 
-export const symtomPage = {
+export const symptomPage = {
   bleeding: {
     excludeText: labels.bleeding.exclude.explainer,
     note: null,
