@@ -27,13 +27,6 @@ const productLabels = labels.products.categories
 
 const minutes = ChronoUnit.MINUTES
 
-const getOptionsFromCategories = (categories) => {
-  return Object.keys(categories).map((key, _) => ({
-    label: categories[key],
-    value: key, // or index, depending on what you want to use as the value
-  }))
-}
-
 const isNumber = (value) => typeof value === 'number'
 export const shouldShow = (value) => (value !== null ? true : false)
 
@@ -75,6 +68,7 @@ export const blank = {
     softTampon: null,
     none: null,
     other: null,
+    note: null,
   },
   cervix: {
     exclude: false,
@@ -155,7 +149,7 @@ export const symtomPage = {
       {
         key: 'products',
         options: productLabels,
-        title: 'Product',
+        title: labels.products.explainer,
       },
     ],
   },
@@ -267,11 +261,6 @@ export const symtomPage = {
 
 export const save = {
   bleeding: (data, date, shouldDeleteData) => {
-    //const { exclude, value, products } = data
-    //const isDataEntered = isNumber(value)
-    //const valuesToSave =
-    //  shouldDeleteData || !isDataEntered ? null : { value, exclude, products }
-
     saveBoxSymptom(data, date, shouldDeleteData, 'bleeding')
   },
   cervix: (data, date, shouldDeleteData) => {
@@ -352,22 +341,23 @@ const saveBoxSymptom = (data, date, shouldDeleteData, symptom) => {
 const label = {
   bleeding: (bleeding) => {
     bleeding = mapRealmObjToJsObj(bleeding)
-    console.log(bleeding)
     const bleedingLabel = []
     if (bleeding && Object.values({ ...bleeding }).some((val) => val)) {
       Object.keys(bleeding).forEach((key) => {
-        if (key == 'value') {
-          console.log(bleedingLabel)
-          bleedingLabel.push(bleedingLabels[bleeding[key]])
+        if (bleeding[key] != null && key === 'value') {
+          bleedingLabel.push(
+            bleeding.exclude
+              ? `(${bleedingLabels[bleeding[key]]})`
+              : bleedingLabels[bleeding[key]]
+          )
         }
         if (
           bleeding[key] &&
           key !== 'other' &&
           key !== 'note' &&
-          key != 'value' &&
-          key != 'exclude'
+          key !== 'value' &&
+          key !== 'exclude'
         ) {
-          console.log(bleedingLabel)
           bleedingLabel.push(bleedingLabels[key] || productLabels[key])
         }
         if (key === 'other' && bleeding.other) {
@@ -375,7 +365,6 @@ const label = {
           if (bleeding.note) {
             label = `${label} (${bleeding.note})`
           }
-          console.log(bleedingLabel)
           bleedingLabel.push(label)
         }
       })

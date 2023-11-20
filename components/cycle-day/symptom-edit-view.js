@@ -136,7 +136,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
               <Segment key={group.key} style={styles.segmentBorder}>
                 <AppText style={styles.title}>{group.title}</AppText>
                 <SelectTabGroup
-                  activeButton={data[group.key]} //this is supposed to be a number
+                  activeButton={data[group.key]}
                   buttons={group.options}
                   onSelect={(value) => onSelectTab(group, value)}
                 />

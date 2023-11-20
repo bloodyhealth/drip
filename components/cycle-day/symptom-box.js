@@ -63,11 +63,11 @@ const SymptomBox = ({
         />
         <View style={styles.textContainer}>
           <AppText style={symptomNameStyle}>{t(symptom)}</AppText>
-          {symptomDataToDisplay && (
+          {symptomDataToDisplay ? (
             <AppText style={textStyle} numberOfLines={4}>
               {symptomDataToDisplay}
             </AppText>
-          )}
+          ) : null}
         </View>
       </TouchableOpacity>
     </>
