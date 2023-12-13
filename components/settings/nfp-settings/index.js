@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Platform, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 import AppIcon from '../../common/app-icon'
 import AppPage from '../../common/app-page'
@@ -35,13 +35,10 @@ const Settings = () => {
           value={shouldUseCervix}
         />
       </Segment>
-      {/* for iOS disabled temporarily, TODO https://gitlab.com/bloodyhealth/drip/-/issues/545 */}
-      {Platform.OS !== 'ios' && (
-        <Segment title={labels.tempScale.segmentTitle}>
-          <AppText>{labels.tempScale.segmentExplainer}</AppText>
-          <TemperatureSlider />
-        </Segment>
-      )}
+      <Segment title={labels.tempScale.segmentTitle}>
+        <AppText>{labels.tempScale.segmentExplainer}</AppText>
+        <TemperatureSlider />
+      </Segment>
       <Segment last>
         <View style={styles.line}>
           <AppIcon
