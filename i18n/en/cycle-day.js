@@ -20,6 +20,7 @@ export const products = {
     underwear: 'underwear',
     cup: 'cup',
     softTampon: 'soft tampon',
+    disk: 'disk',
     none: 'none',
     other: 'other',
   },

@@ -24,6 +24,7 @@ const BleedingSchema = {
     underwear: { type: 'bool', optional: true },
     cup: { type: 'bool', optional: true },
     softTampon: { type: 'bool', optional: true },
+    disk: { type: 'bool', optional: true },
     none: { type: 'bool', optional: true },
     other: { type: 'bool', optional: true },
     note: { type: 'string', optional: true },
@@ -184,6 +185,7 @@ export default {
         newObjects[i].underwear = false
         newObjects[i].cup = false
         newObjects[i].softTampon = false
+        newObjects[i].disk = false
         newObjects[i].none = false
         newObjects[i].other = false
         newObjects[i].note = null
