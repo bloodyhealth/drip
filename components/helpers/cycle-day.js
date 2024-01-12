@@ -62,6 +62,7 @@ export const blank = {
     underwear: null,
     cup: null,
     softTampon: null,
+    disk: null,
     none: null,
     other: null,
     note: null,

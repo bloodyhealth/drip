@@ -114,6 +114,15 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
     style: styles.input,
     textAlignVertical: 'top',
   }
+  const excludeToggle = shouldShow(symptomConfig.excludeText) && (
+    <Segment style={styles.segmentBorder}>
+      <AppSwitch
+        onToggle={onExcludeToggle}
+        text={symptomPage[symptom].excludeText}
+        value={data.exclude}
+      />
+    </Segment>
+  )
 
   return (
     <AppModal onClose={onSave}>
@@ -141,6 +150,10 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
               </Segment>
             )
           })}
+
+        {/*for bleeding, we want to move the "exclude" toggle up between the tab and box groups, all other symptoms should still have it at the bottom*/}
+        {symptom === 'bleeding' && excludeToggle}
+
         {shouldShow(symptomConfig.selectBoxGroups) &&
           symptomPage[symptom].selectBoxGroups.map((group) => {
             const isOtherSelected =
@@ -167,15 +180,9 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
               </Segment>
             )
           })}
-        {shouldShow(symptomConfig.excludeText) && (
-          <Segment style={styles.segmentBorder}>
-            <AppSwitch
-              onToggle={onExcludeToggle}
-              text={symptomPage[symptom].excludeText}
-              value={data.exclude}
-            />
-          </Segment>
-        )}
+
+        {symptom !== 'bleeding' && excludeToggle}
+
         {shouldShow(symptomConfig.note) && (
           <Segment style={styles.segmentBorder}>
             <AppText>{symptomPage[symptom].note}</AppText>
