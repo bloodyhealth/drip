@@ -47,7 +47,7 @@ export const cervix = {
     explainer: 'How high up in the vagina is the cervix?',
   },
   excludeExplainer:
-    "You can exclude this value if you don't want to use it for fertility detection.",
+    "You can exclude these values if you don't want to use them for fertility detection.",
 }
 
 export const mucus = {
@@ -65,7 +65,7 @@ export const mucus = {
       'Looking at and touching your cervical mucus, which describes it best?',
   },
   excludeExplainer:
-    "You can exclude this value if you don't want to use it for fertility detection",
+    "You can exclude these values if you don't want to use them for fertility detection",
 }
 
 export const desire = {

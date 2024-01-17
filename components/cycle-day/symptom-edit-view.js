@@ -24,6 +24,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const symptomConfig = symptomPage[symptom]
   const [data, setData] = useState(symptomData ? symptomData : blank[symptom])
   const [shouldShowInfo, setShouldShowInfo] = useState(false)
+  const isBleeding = symptom === 'bleeding'
   const getParsedData = () => JSON.parse(JSON.stringify(data))
   const onPressLearnMore = () => setShouldShowInfo(!shouldShowInfo)
   const isFertilityTrackingEnabled = fertilityTrackingObservable.value
@@ -139,10 +140,16 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             save={(value, field) => onSaveTemperature(value, field)}
           />
         )}
+
+        {/* There should not be a line between the bleeding tab group and the exclude toggle */}
         {shouldShow(symptomConfig.selectTabGroups) &&
           symptomPage[symptom].selectTabGroups.map((group) => {
             return (
-              <Segment key={group.key} style={styles.segmentBorder}>
+              <Segment
+                key={group.key}
+                style={styles.segmentBorder}
+                last={isBleeding}
+              >
                 <AppText style={styles.title}>{group.title}</AppText>
                 <SelectTabGroup
                   activeButton={data[group.key]}
@@ -154,7 +161,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
           })}
 
         {/*for bleeding, we want to move the "exclude" toggle up between the tab and box groups, all other symptoms should still have it at the bottom*/}
-        {symptom === 'bleeding' && excludeToggle}
+        {isBleeding && excludeToggle}
 
         {shouldShow(symptomConfig.selectBoxGroups) &&
           symptomPage[symptom].selectBoxGroups.map((group) => {
@@ -195,7 +202,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             </Segment>
           )}
 
-        {symptom !== 'bleeding' && excludeToggle}
+        {!isBleeding && excludeToggle}
 
         {shouldShow(symptomConfig.note) && (
           <Segment style={styles.segmentBorder}>
