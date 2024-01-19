@@ -10,6 +10,7 @@ import { getCycleDay } from '../../db'
 import { getData, nextDate, prevDate } from '../helpers/cycle-day'
 
 import { sexTrackingCategoryObservable } from '../../local-storage'
+import { bleedingTrackingCategoryObservable } from '../../local-storage'
 import { Spacing } from '../../styles'
 import { SYMPTOMS } from '../../config'
 
@@ -27,19 +28,24 @@ const CycleDayOverView = ({ date, setDate, isTemperatureEditView }) => {
   const showPrevCycleDay = () => {
     setDate(prevDate(date))
   }
+  console.log('SYMPTOMS :>> ', SYMPTOMS)
+  console.log(
+    'bleedingTrackingCategoryObservable  :>> ',
+    bleedingTrackingCategoryObservable
+  )
+  // maybe: observables are never declared if done with looping over the symptoms
+  // const bleedingTrackingCategoryObservable = { value: true }
+  // const temperatureTrackingCategoryObservable = {}
 
-  const isSexEnabled = sexTrackingCategoryObservable.value
-  const allesymptoms = SYMPTOMS.map((symptom) => {
-    if (symptom === 'sex') {
-      if (isSexEnabled) {
-        return symptom
-      }
-    } else {
-      return symptom
-    }
+  const allEnabledSymptoms = SYMPTOMS.filter((symptom) => {
+    const observableName = `${symptom}TrackingCategoryObservable`
+    const isSymptomEnabled = new Function(`return ${observableName}.value`)()
+    console.log('isSymptomEnabled :>> ', isSymptomEnabled)
+    console.log('typeof isSymptomEnabled :>> ', typeof isSymptomEnabled)
+    return isSymptomEnabled === true
   })
 
-  const cleanSymptoms = allesymptoms.filter(Boolean)
+  console.log(allEnabledSymptoms)
 
   return (
     <AppPage>
@@ -49,7 +55,7 @@ const CycleDayOverView = ({ date, setDate, isTemperatureEditView }) => {
         onPrevCycleDay={showPrevCycleDay}
       />
       <View style={styles.container}>
-        {cleanSymptoms.map((symptom) => {
+        {allEnabledSymptoms.map((symptom) => {
           const symptomData =
             cycleDay && cycleDay[symptom] ? cycleDay[symptom] : null
 
