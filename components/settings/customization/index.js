@@ -7,18 +7,8 @@ import TemperatureSlider from './temperature-slider'
 import Segment from '../../common/segment'
 
 import {
-  desireTrackingCategoryObservable,
-  moodTrackingCategoryObservable,
-  noteTrackingCategoryObservable,
-  painTrackingCategoryObservable,
-  sexTrackingCategoryObservable,
-  saveDesireTrackingCategory,
-  saveMoodTrackingCategory,
-  saveNoteTrackingCategory,
-  savePainTrackingCategory,
-  savePeriodPrediction,
-  saveSexTrackingCategory,
-  saveUseCervix,
+  allTrackingCategoryObservables,
+  saveTrackingCategory,
   periodPredictionObservable,
   useCervixObservable,
 } from '../../../local-storage'
@@ -34,49 +24,16 @@ const Settings = () => {
     periodPredictionObservable.value
   )
 
-  const [isSexTrackingCategoryEnabled, setSexTrackingCategory] = useState(
-    sexTrackingCategoryObservable.value
-  )
-
-  const [isDesireTrackingCategoryEnabled, setDesireTrackingCategory] = useState(
-    desireTrackingCategoryObservable.value
-  )
-
-  const [isPainTrackingCategoryEnabled, setPainTrackingCategory] = useState(
-    painTrackingCategoryObservable.value
-  )
-
-  const [isMoodTrackingCategoryEnabled, setMoodTrackingCategory] = useState(
-    moodTrackingCategoryObservable.value
-  )
-
-  const [isNoteTrackingCategoryEnabled, setNoteTrackingCategory] = useState(
-    noteTrackingCategoryObservable.value
+  const [isTrackingCategoryEnabled, setTrackingCategory] = useState(
+    allTrackingCategoryObservables[symptom].value
   )
 
   const [isEnabled, setIsEnabled] = useState(false)
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState)
 
-  const sexTrackingCategoryToggle = (value) => {
-    setSexTrackingCategory(value)
-    saveSexTrackingCategory(value)
-  }
-
-  const desireTrackingCategoryToggle = (value) => {
-    setDesireTrackingCategory(value)
-    saveDesireTrackingCategory(value)
-  }
-  const painTrackingCategoryToggle = (value) => {
-    setPainTrackingCategory(value)
-    savePainTrackingCategory(value)
-  }
-  const moodTrackingCategoryToggle = (value) => {
-    setMoodTrackingCategory(value)
-    saveMoodTrackingCategory(value)
-  }
-  const noteTrackingCategoryToggle = (value) => {
-    setNoteTrackingCategory(value)
-    saveNoteTrackingCategory(value)
+  const trackingCategoryToggle = (symptom, value) => {
+    setTrackingCategory(symptom, value)
+    saveTrackingCategory(symptom, value)
   }
 
   const onPeriodPredictionToggle = (value) => {
@@ -99,37 +56,21 @@ const Settings = () => {
 
   return (
     <AppPage title={'Customization'}>
+      {/* for each symptom create a toggle switch */}
       <Segment title={'Tracking categories'}>
-        <AppSwitch
-          onToggle={sexTrackingCategoryToggle}
-          text={"sex: when turned off it won't show"}
-          value={isSexTrackingCategoryEnabled}
-          trackColor={{ true: Colors.turquoiseDark }}
-        />
-        <AppSwitch
-          onToggle={desireTrackingCategoryToggle}
-          text={"desire: when turned off it won't show"}
-          value={isDesireTrackingCategoryEnabled}
-          trackColor={{ true: Colors.turquoiseDark }}
-        />
-        <AppSwitch
-          onToggle={painTrackingCategoryToggle}
-          text={"pain: when turned off it won't show"}
-          value={isPainTrackingCategoryEnabled}
-          trackColor={{ true: Colors.turquoiseDark }}
-        />
-        <AppSwitch
-          onToggle={moodTrackingCategoryToggle}
-          text={"mood: when turned off it won't show"}
-          value={isMoodTrackingCategoryEnabled}
-          trackColor={{ true: Colors.turquoiseDark }}
-        />
-        <AppSwitch
-          onToggle={noteTrackingCategoryToggle}
-          text={"note: when turned off it won't show"}
-          value={isNoteTrackingCategoryEnabled}
-          trackColor={{ true: Colors.turquoiseDark }}
-        />
+        {allTrackingCategoryObservables.map((symptom) => {
+          const trackingToggle = trackingCategoryToggle(symptom)
+          const isEnabled = allTrackingCategoryObservables[symptom].value
+
+          return (
+            <AppSwitch
+              onToggle={trackingToggle}
+              text={symptom}
+              value={isEnabled}
+              trackColor={{ true: Colors.turquoiseDark }}
+            />
+          )
+        })}
       </Segment>
 
       <Segment title={'Fertility feature'}>

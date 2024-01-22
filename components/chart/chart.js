@@ -16,11 +16,7 @@ import { getCycleDaysSortedByDate } from '../../db'
 import {
   getChartFlag,
   setChartFlag,
-  desireTrackingCategoryObservable,
-  moodTrackingCategoryObservable,
-  noteTrackingCategoryObservable,
-  painTrackingCategoryObservable,
-  sexTrackingCategoryObservable,
+  allTrackingCategoryObservables,
 } from '../../local-storage'
 import { makeColumnInfo } from '../helpers/chart'
 
@@ -69,19 +65,7 @@ const CycleChart = ({ navigate, setDate }) => {
   )
 
   const symptomRowEnabledSymptoms = symptomRowSymptoms.filter((symptom) => {
-    if (symptom === 'sex') {
-      return sexTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'desire') {
-      return desireTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'pain') {
-      return painTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'mood') {
-      return moodTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'note') {
-      return noteTrackingCategoryObservable.value ? symptom : null
-    } else {
-      return symptom
-    }
+    return trackingCategoryObservable[symptom].value ? symptom : null
   })
 
   const shouldShowTemperatureColumn = chartSymptoms.indexOf('temperature') > -1

@@ -1,6 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import Observable from 'obv'
-import { TEMP_SCALE_MIN, TEMP_SCALE_MAX, TEMP_SCALE_UNITS } from './config'
+import {
+  TEMP_SCALE_MIN,
+  TEMP_SCALE_MAX,
+  TEMP_SCALE_UNITS,
+  SYMPTOMS,
+} from './config'
 
 export const scaleObservable = Observable()
 setObvWithInitValue('tempScale', scaleObservable, {
@@ -92,45 +97,27 @@ export async function setChartFlag() {
   await AsyncStorage.setItem('isFirstChartView', JSON.stringify(false))
 }
 
-export const sexTrackingCategoryObservable = Observable()
-setObvWithInitValue('sex', sexTrackingCategoryObservable, true)
+// new function for creating observables
+export const allTrackingCategoryObservables = SYMPTOMS.map((symptom) => {
+  const trackingCategoryObservable = Observable()
+  setObvWithInitValue(symptom, trackingCategoryObservable, true)
+  allTrackingCategoryObservables[symptom] = trackingCategoryObservable
+})
 
-export async function saveSexTrackingCategory(bool) {
-  await AsyncStorage.setItem('sex', JSON.stringify(bool))
-  sexTrackingCategoryObservable.set(bool)
+allTrackingCategoryObservables = {
+  sex: sexTrackingCategoryObservable,
 }
 
-export const desireTrackingCategoryObservable = Observable()
-setObvWithInitValue('desire', desireTrackingCategoryObservable, true)
+allTrackingCategoryObservables['sex']
+allTrackingCategoryObservables.symptom
 
-export async function saveDesireTrackingCategory(bool) {
-  await AsyncStorage.setItem('desire', JSON.stringify(bool))
-  desireTrackingCategoryObservable.set(bool)
+// new function for saving the obs
+export async function saveTrackingCategory(symptom, bool) {
+  await AsyncStorage.setItem(symptom, JSON.stringify(bool))
+  allTrackingCategoryObservables[symptom].set(bool)
 }
 
-export const painTrackingCategoryObservable = Observable()
-setObvWithInitValue('pain', painTrackingCategoryObservable, true)
-
-export async function savePainTrackingCategory(bool) {
-  await AsyncStorage.setItem('pain', JSON.stringify(bool))
-  painTrackingCategoryObservable.set(bool)
-}
-
-export const moodTrackingCategoryObservable = Observable()
-setObvWithInitValue('mood', moodTrackingCategoryObservable, true)
-
-export async function saveMoodTrackingCategory(bool) {
-  await AsyncStorage.setItem('mood', JSON.stringify(bool))
-  moodTrackingCategoryObservable.set(bool)
-}
-
-export const noteTrackingCategoryObservable = Observable()
-setObvWithInitValue('note', noteTrackingCategoryObservable, true)
-
-export async function saveNoteTrackingCategory(bool) {
-  await AsyncStorage.setItem('note', JSON.stringify(bool))
-  noteTrackingCategoryObservable.set(bool)
-}
+console.log(allTrackingCategoryObservables)
 
 async function setObvWithInitValue(key, obv, defaultValue) {
   const result = await AsyncStorage.getItem(key)

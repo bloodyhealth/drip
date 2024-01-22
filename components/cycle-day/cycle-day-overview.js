@@ -9,13 +9,7 @@ import SymptomPageTitle from './symptom-page-title'
 import { getCycleDay } from '../../db'
 import { getData, nextDate, prevDate } from '../helpers/cycle-day'
 
-import {
-  desireTrackingCategoryObservable,
-  moodTrackingCategoryObservable,
-  noteTrackingCategoryObservable,
-  painTrackingCategoryObservable,
-  sexTrackingCategoryObservable,
-} from '../../local-storage'
+import { allTrackingCategoryObservables } from '../../local-storage'
 import { Spacing } from '../../styles'
 import { SYMPTOMS } from '../../config'
 
@@ -35,20 +29,9 @@ const CycleDayOverView = ({ date, setDate, isTemperatureEditView }) => {
   }
 
   const allEnabledSymptoms = SYMPTOMS.map((symptom) => {
-    if (symptom === 'sex') {
-      return sexTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'desire') {
-      return desireTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'pain') {
-      return painTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'mood') {
-      return moodTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'note') {
-      return noteTrackingCategoryObservable.value ? symptom : null
-    } else {
-      return symptom
-    }
+    allTrackingCategoryObservables[symptom].value ? symptom : null
   })
+
   const cleanSymptoms = allEnabledSymptoms.filter(Boolean)
 
   return (
