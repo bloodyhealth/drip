@@ -72,6 +72,8 @@ export default {
       'Cervix values are being used for symptothermal fertility detection. You can switch here to use cervical mucus values for symptothermal fertility detection',
     cervixModeOff:
       'By default, cervical mucus values are being used for symptothermal fertility detection. You can switch here to use cervix values for symptothermal fertility detection',
+    secondarySymptomCervicalMucus: 'cervical mucus',
+    secondarySymptomCervix: 'cervix',
   },
   periodPrediction: {
     title: 'Period predictions',
