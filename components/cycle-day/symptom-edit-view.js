@@ -112,7 +112,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const inputProps = {
     multiline: true,
     numberOfLines: 3,
-    scrollEnabled: false,
+    scrollEnabled: true,
     style: styles.input,
     textAlignVertical: 'top',
   }
