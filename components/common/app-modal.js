@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Dimensions,
+  KeyboardAvoidingView,
   Modal,
   StyleSheet,
   TouchableOpacity,
@@ -19,13 +20,15 @@ const AppModal = ({ children, onClose }) => (
     transparent={true}
     visible={true}
   >
-    <TouchableOpacity onPress={onClose} style={styles.blackBackground} />
-    <View style={styles.modalWindow}>
-      <View style={styles.headerContainer}>
-        <CloseIcon onClose={onClose} />
+    <KeyboardAvoidingView behavior={'padding'} style={styles.safeAreaView}>
+      <TouchableOpacity onPress={onClose} style={styles.blackBackground} />
+      <View style={styles.modalWindow}>
+        <View style={styles.headerContainer}>
+          <CloseIcon onClose={onClose} />
+        </View>
+        {children}
       </View>
-      {children}
-    </View>
+    </KeyboardAvoidingView>
   </Modal>
 )
 
@@ -61,6 +64,11 @@ const styles = StyleSheet.create({
     zIndex: 2, // works on ios
     elevation: 2, // works on android
     minWidth: '80%',
+  },
+  safeAreaView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })
 
