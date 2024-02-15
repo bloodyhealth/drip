@@ -180,7 +180,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
           <Segment style={styles.segmentBorder}>
             <AppText>{symtomPage[symptom].note}</AppText>
             <AppTextInput
-              {...inputProps}
+              multiline={true}
               onChangeText={onEditNote}
               placeholder={sharedLabels.enter}
               testID="noteInput"
