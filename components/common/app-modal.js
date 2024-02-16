@@ -3,6 +3,7 @@ import {
   Dimensions,
   KeyboardAvoidingView,
   Modal,
+  Platform,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -13,6 +14,10 @@ import CloseIcon from './close-icon'
 
 import { Sizes, Spacing } from '../../styles'
 
+const keyboardVerticalOffsetPlatformDependent = Platform.OS === 'ios' ? 40 : 0
+const keyboardBehaviorPlatformDependent =
+  Platform.OS === 'ios' ? 'position' : 'padding'
+
 const AppModal = ({ children, onClose }) => (
   <Modal
     animationType="fade"
@@ -20,7 +25,11 @@ const AppModal = ({ children, onClose }) => (
     transparent={true}
     visible={true}
   >
-    <KeyboardAvoidingView behavior={'padding'} style={styles.safeAreaView}>
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={keyboardVerticalOffsetPlatformDependent}
+      behavior={keyboardBehaviorPlatformDependent}
+      style={styles.safeAreaView}
+    >
       <TouchableOpacity onPress={onClose} style={styles.blackBackground} />
       <View style={styles.modalWindow}>
         <View style={styles.headerContainer}>
