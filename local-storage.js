@@ -59,12 +59,19 @@ export async function savePeriodPrediction(bool) {
   }
 }
 
-export const useCervixObservable = Observable()
-setObvWithInitValue('useCervix', useCervixObservable, 0)
+export const useCervixAsSecondarySymptomObservable = Observable()
+setObvWithInitValue(
+  'useCervixAsSecondarySymptom',
+  useCervixAsSecondarySymptomObservable,
+  0
+)
 
-export async function saveUseCervix(value) {
-  await AsyncStorage.setItem('useCervix', JSON.stringify(value))
-  useCervixObservable.set(value)
+export async function saveUseCervixAsSecondarySymptom(value) {
+  await AsyncStorage.setItem(
+    'useCervixAsSecondarySymptom',
+    JSON.stringify(value)
+  )
+  useCervixAsSecondarySymptomObservable.set(value)
 }
 
 export const hasEncryptionObservable = Observable()
@@ -105,6 +112,22 @@ export async function saveTemperatureTrackingCategory(bool) {
       tempReminderObservable.set(false)
     }
   }
+}
+
+export const mucusTrackingCategoryObservable = Observable()
+setObvWithInitValue('mucus', mucusTrackingCategoryObservable, true)
+
+export async function saveMucusTrackingCategory(bool) {
+  await AsyncStorage.setItem('mucus', JSON.stringify(bool))
+  mucusTrackingCategoryObservable.set(bool)
+}
+
+export const cervixTrackingCategoryObservable = Observable()
+setObvWithInitValue('cervix', cervixTrackingCategoryObservable, true)
+
+export async function saveCervixTrackingCategory(bool) {
+  await AsyncStorage.setItem('cervix', JSON.stringify(bool))
+  cervixTrackingCategoryObservable.set(bool)
 }
 
 export const sexTrackingCategoryObservable = Observable()
