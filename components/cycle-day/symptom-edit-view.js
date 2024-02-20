@@ -109,7 +109,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const noteText = symptom === 'note' ? data.value : data.note
   const inputProps = {
     multiline: true,
-    numberOfLines: 4,
+    numberOfLines: 3,
     scrollEnabled: true,
     style: styles.input,
     textAlignVertical: 'top',
@@ -176,10 +176,12 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             />
           </Segment>
         )}
+        {/* this code below applies to the note field in temperature and the note tracking category */}
         {shouldShow(symptomConfig.note) && (
           <Segment style={styles.segmentBorder}>
             <AppText>{symtomPage[symptom].note}</AppText>
             <AppTextInput
+              {...(symptom === 'temperature' ? { inputProps } : {})}
               multiline={true}
               onChangeText={onEditNote}
               placeholder={sharedLabels.enter}
