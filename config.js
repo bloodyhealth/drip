@@ -4,7 +4,7 @@ import { scale, verticalScale } from 'react-native-size-matters'
 export const SYMPTOMS = [
   'bleeding',
   'temperature',
-  'mucus',
+  'cervical mucus',
   'cervix',
   'sex',
   'desire',
