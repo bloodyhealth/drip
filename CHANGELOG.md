@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## v1.2403.xx Android & iOS
+## v1.2403.19 Android & iOS
 
 ### Changes
 
@@ -30,14 +30,13 @@ All notable changes to this project will be documented in this file.
 - Customization settings can turn on & off:
 
   - Tracking categories
-  - Fertility phases calculation
   - Period predictions
+  - Fertility phases calculation
 
 - Home displays text elements depending on customization settings
 - Chart displays tracking category elements depending on customization settings
-- CycleDay displays tracking category elements depending on customization settings
+- CycleDay displays tracking category elements and exclude switch depending on customization settings
 - Reminder can be disabled depending on customization settings
-- Adds menu item "Info" to Settings
 - Adds disabled and more styling to AppSwitch
 - Adds TrackingCategorySwitch
 - Adds disabled, more styling and alert to SelectTabGroup
