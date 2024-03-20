@@ -166,10 +166,7 @@ Upload a new version and submit it for review, before it can be published.
 
 ### drip website
 
-After a new version has been published on Google Play (or F-Droid) the apk version that is downloadable directly from the [drip website](https://dripapp.org) needs to get updated as well. Therefore you upload a signed apk to the [repository](https://gitlab.com/bloodyhealth/bloodyhealth.gitlab.io/) as [we did in this commit](https://gitlab.com/bloodyhealth/bloodyhealth.gitlab.io/-/commit/f8c0f90c1ae9f23bf8e1bc311790b85443149a4d),
-
-and adapt the name and link on /index.html [as we did in this commit](https://gitlab.com/bloodyhealth/bloodyhealth.gitlab.io/-/commit2f8850ff5fa78615a4f335b625ea4a67d4acf03a) and [this commit](https://gitlab.com/bloodyhealth/bloodyhealth.gitlab.io/-/commit/f3da9776b1943ffa32458e74ef86eeca98c1891c)
-Last time I checked it was [here](f3da9776b1943ffa32458e74ef86eeca98c1891c/index.html#L114).
+After a new version has been published on Google Play (or F-Droid) the apk version that is downloadable directly from the [drip website](https://dripapp.org) needs to get updated as well. Therefore you upload a signed apk to the [repository](https://gitlab.com/bloodyhealth/bloodyhealth.gitlab.io/) as [we did in this commit](https://gitlab.com/bloodyhealth/bloodyhealth.gitlab.io/-/commit/f8c0f90c1ae9f23bf8e1bc311790b85443149a4d), and adapt the name and link on /index.html [as we did in this commit](https://gitlab.com/bloodyhealth/bloodyhealth.gitlab.io/-/commit2f8850ff5fa78615a4f335b625ea4a67d4acf03a) and [this commit](https://gitlab.com/bloodyhealth/bloodyhealth.gitlab.io/-/commit/f3da9776b1943ffa32458e74ef86eeca98c1891c). Last time I checked it was [here](f3da9776b1943ffa32458e74ef86eeca98c1891c/index.html#L114).
 
 ## Communication
 
