@@ -15,17 +15,17 @@ _Note_: You need the release-key for Android to bundle a signed release that can
 
 ### Release steps
 
-1. [Version updating](#Version-updating)
-2. [Android builds](#Builds-in-Android)
-3. [iOS builds](#Builds-in-iOS)
-4. [User testing](#User-testing)
-5. [Changelog](#Changelog)
-6. [Release notes](#Release-notes)
-7. [Release tag](#Release-tag)
-8. [Phone screenshots](#Phone-screenshots)
-9. [Publishing](#Publishing)
-10. [Communication](#Communication)
-11. [Self care](#Self-care)
+1. [Version updating](#version-updating)
+2. [Android builds](#android-builds)
+3. [iOS builds](#ios-builds)
+4. [User testing](#user-testing)
+5. [Changelog](#changelog)
+6. [Release notes](#release-notes)
+7. [Release tag](#release-tag)
+8. [Phone screenshots](#phone-screenshots)
+9. [Publishing](#publishing)
+10. [Communication](#communication)
+11. [Self care](#self-care)
 
 ## Version updating
 
@@ -51,7 +51,7 @@ Update the version number for iOS in `ios/drip/Info.plist` under:
 <string>1.2403.19</string>
 ```
 
-### Builds in Android
+### Android builds
 
 APK versus AAB
 
@@ -101,7 +101,7 @@ yarn sign-android-aab-release
 
 _which is a shortcut for:_ `jarsigner -keystore ./android/app/drip-release-key.keystore ./android/app/build/outputs/bundle/release/app-release.aab drip-release-key`
 
-### Builds in iOS
+### iOS builds
 
 To build an .ipa archive file for an upload to the AppStore you need to go to xCode and select Build -> "Any iOS Device" and under "Product" -> "Archive".
 
