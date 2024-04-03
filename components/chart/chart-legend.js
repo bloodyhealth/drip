@@ -1,21 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, View } from 'react-native'
+import moment from 'moment'
 
 import AppText from '../common/app-text'
 
 import { Sizes, Typography } from '../../styles'
 import { CHART_YAXIS_WIDTH } from '../../config'
-import { shared as labels } from '../../i18n/en/labels'
 
-const ChartLegend = ({ height }) => {
+const ChartLegend = ({ height, currentDate }) => {
+  const displayedMonth = moment(currentDate).format('MMM')
+
   return (
     <View style={[styles.container, { height }]}>
       <View style={[styles.singleLabelContainer, { height: height / 2 }]}>
         <AppText style={styles.textBold}>#</AppText>
       </View>
       <View style={[styles.singleLabelContainer, { height: height / 2 }]}>
-        <AppText style={styles.text}>{labels.date}</AppText>
+        <AppText style={styles.text}>{displayedMonth}</AppText>
       </View>
     </View>
   )
@@ -23,6 +25,7 @@ const ChartLegend = ({ height }) => {
 
 ChartLegend.propTypes = {
   height: PropTypes.number.isRequired,
+  currentDate: PropTypes.string,
 }
 
 const styles = StyleSheet.create({

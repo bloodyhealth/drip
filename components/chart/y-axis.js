@@ -14,13 +14,14 @@ const YAxis = ({
   symptomsSectionHeight,
   shouldShowTemperatureColumn,
   xAxisHeight,
+  computedDate,
 }) => {
   const symptomIconHeight = symptomsSectionHeight / symptomsToDisplay.length
 
   return (
     <View>
       {shouldShowTemperatureColumn && <TickList height={height} />}
-      <ChartLegend height={xAxisHeight} />
+      <ChartLegend height={xAxisHeight} currentDate={computedDate} />
       <View style={[styles.yAxis, { height: symptomsSectionHeight }]}>
         {symptomsToDisplay.map((symptom) => (
           <SymptomIcon
@@ -40,6 +41,7 @@ YAxis.propTypes = {
   symptomsSectionHeight: PropTypes.number,
   shouldShowTemperatureColumn: PropTypes.bool,
   xAxisHeight: PropTypes.number.isRequired,
+  computedDate: PropTypes.string,
 }
 
 const styles = StyleSheet.create({

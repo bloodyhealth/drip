@@ -32,6 +32,7 @@ import {
   CHART_GRID_LINE_HORIZONTAL_WIDTH,
   CHART_SYMPTOM_HEIGHT_RATIO,
   CHART_XAXIS_HEIGHT_RATIO,
+  CHART_YAXIS_WIDTH,
   SYMPTOMS,
 } from '../../config'
 import { Spacing } from '../../styles'
@@ -97,8 +98,7 @@ const CycleChart = ({ navigate, setDate }) => {
   const shouldShowNoDataWarning =
     isTemperatureEnabled && chartSymptoms.indexOf('temperature') <= -1
 
-  const { width, height } = Dimensions.get('window')
-  const numberOfColumnsToRender = Math.round(width / CHART_COLUMN_WIDTH)
+  const { height } = Dimensions.get('window')
 
   const xAxisHeight = height * 0.7 * CHART_XAXIS_HEIGHT_RATIO
   const remainingHeight = height * 0.7 - xAxisHeight
@@ -116,6 +116,29 @@ const CycleChart = ({ navigate, setDate }) => {
     : symptomRowHeight + xAxisHeight
 
   const columns = makeColumnInfo()
+
+  // Monitor scrolling to show proper month abbreviation in symptom chart
+
+  const [currentScrollPosition, setCurrentScrollPosition] = useState(0)
+
+  const handleScroll = (event) => {
+    const currentPosition = event.nativeEvent.contentOffset.x
+    setCurrentScrollPosition(currentPosition)
+  }
+
+  const [numberOfColumnsToRender, setNumberOfColumnsToRender] = useState(0)
+  const onLayout = (event) => {
+    const { width } = event.nativeEvent.layout
+    setNumberOfColumnsToRender(
+      Math.round((width - CHART_YAXIS_WIDTH) / CHART_COLUMN_WIDTH)
+    )
+  }
+
+  const getcomputedDateInView = () => {
+    const columnIndex = Math.floor(currentScrollPosition / CHART_COLUMN_WIDTH)
+    // detect oldest visible day to render its month dynamically
+    return columns[columnIndex + numberOfColumnsToRender]
+  }
 
   const renderColumn = ({ item }) => {
     return (
@@ -144,7 +167,7 @@ const CycleChart = ({ navigate, setDate }) => {
       contentContainerStyle={styles.pageContainer}
       scrollViewStyle={styles.page}
     >
-      <View style={styles.chartContainer}>
+      <View style={styles.chartContainer} onLayout={onLayout}>
         {shouldShowHint && <Tutorial onClose={hideHint} />}
         {shouldShowNoDataWarning && <NoTemperature />}
         <View style={styles.chartArea}>
@@ -154,12 +177,15 @@ const CycleChart = ({ navigate, setDate }) => {
             symptomsSectionHeight={symptomRowHeight}
             shouldShowTemperatureColumn={shouldShowTemperatureColumn}
             xAxisHeight={xAxisHeight}
+            computedDate={getcomputedDateInView()}
           />
           <MainGrid
             data={columns}
             renderItem={renderColumn}
             initialNumToRender={numberOfColumnsToRender}
             contentContainerStyle={{ height: chartHeight }}
+            onScroll={handleScroll}
+            scrollEventThrottle={16} // Detects scroll events at roughly 60fps
           />
           {shouldShowTemperatureColumn && (
             <HorizontalGrid height={columnHeight} />
