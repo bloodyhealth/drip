@@ -14,6 +14,10 @@ import {
   determinePredictionText,
   formatWithOrdinalSuffix,
 } from './helpers/home'
+import {
+  fertilityTrackingObservable,
+  periodPredictionObservable,
+} from '../local-storage'
 
 import { Colors, Fonts, Sizes, Spacing } from '../styles'
 import { LocalDate } from '@js-joda/core'
@@ -27,11 +31,13 @@ const Home = ({ navigate, setDate }) => {
     navigate('CycleDay')
   }
 
+  const isFertilityTrackingEnabled = fertilityTrackingObservable.value
   const todayDateString = LocalDate.now().toString()
   const { getCycleDayNumber, getPredictedMenses } = cycleModule()
   const cycleDayNumber = getCycleDayNumber(todayDateString)
   const { status, phase, statusText } =
-    getFertilityStatusForDay(todayDateString)
+    isFertilityTrackingEnabled && getFertilityStatusForDay(todayDateString)
+  const isPeriodPredictionEnabled = periodPredictionObservable.value
   const prediction = determinePredictionText(getPredictedMenses(), t)
 
   const cycleDayText = cycleDayNumber
@@ -45,6 +51,7 @@ const Home = ({ navigate, setDate }) => {
     >
       <AppText style={styles.title}>{moment().format('MMM Do YYYY')}</AppText>
 
+      {/* display if at least 1 bleeding day has been entered */}
       {cycleDayNumber && (
         <View style={styles.line}>
           <AppText style={styles.whiteSubtitle}>{cycleDayText}</AppText>
@@ -53,7 +60,9 @@ const Home = ({ navigate, setDate }) => {
           </AppText>
         </View>
       )}
-      {phase && (
+
+      {/* display if fertility tracking enabled and if phase 1, 2 or 3 has been identified  */}
+      {isFertilityTrackingEnabled && phase && (
         <View style={styles.line}>
           <AppText style={styles.whiteSubtitle}>
             {formatWithOrdinalSuffix(phase)}
@@ -65,9 +74,14 @@ const Home = ({ navigate, setDate }) => {
           <Asterisk />
         </View>
       )}
-      <View style={styles.line}>
-        <AppText style={styles.turquoiseText}>{prediction}</AppText>
-      </View>
+
+      {isPeriodPredictionEnabled && (
+        <View style={styles.line}>
+          <AppText style={styles.turquoiseText}>{prediction}</AppText>
+        </View>
+      )}
+
+      {!isFertilityTrackingEnabled && <View style={styles.largePadding}></View>}
       <Button isCTA isSmall={false} onPress={navigateToCycleDayView}>
         {t('labels.home.addDataForToday')}
       </Button>
@@ -105,6 +119,9 @@ const styles = StyleSheet.create({
   whiteSubtitle: {
     color: 'white',
     fontSize: Sizes.subtitle,
+  },
+  largePadding: {
+    padding: Spacing.large,
   },
 })
 

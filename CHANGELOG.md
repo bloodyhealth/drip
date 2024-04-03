@@ -2,18 +2,173 @@
 
 All notable changes to this project will be documented in this file.
 
-## v1.2102.28
+## v1.2403.19 Android & iOS
 
 ### Changes
+
+- Disables temperature slider if temperature tracking off
+- Disables secondary symptom if fertility and or cervix/cervical mucus are off
+- Disables temperature reminder if temperature tracking off
+- Disabled period reminder if period predictions off
+- Return from sympto adapter if fertility off
+- Restructure settings menu
+- Unify wording to "sympto-thermal method"
+- Format decimal to x.0 instead of x.00 used for standard deviation and average cycle in stats
+- Use SelectTabGroup for secondary symptom customization
+
+- Android changes after updating React Native to 0.68.3
+- Update Android Gradle plugin from 7.0.3 to 7.0.4
+- Update NDK to "24.0.8215888" only for M1 users which added support for aarch64
+- Update metadata phone screenshots for Fdroid store listing
+- Updated dependencies:
+  - @react-native-community/datetimepicker from 6.3.1 to 7.2.0
+  - @react-native-async-storage/async-storage from ^1.17.9 to ^1.18.2
+  - metro-react-native-babel-preset from ^0.66.2 to ^0.67.0
+
+### Adds
+
+- Customization settings can turn on & off:
+
+  - Tracking categories
+  - Period predictions
+  - Fertility phases calculation
+
+- Home displays text elements depending on customization settings
+- Chart displays tracking category elements depending on customization settings
+- CycleDay displays tracking category elements and exclude switch depending on customization settings
+- Reminder can be disabled depending on customization settings
+- Adds disabled and more styling to AppSwitch
+- Adds TrackingCategorySwitch
+- Adds disabled, more styling and alert to SelectTabGroup
+- Adds more marginTop to License page
+- Adds info text to Password menu item in Settings
+
+## v1.2401.17 iOS
+
+### Changes
+
+- Updating React Native to 0.68.3
+- Minor changes in temperature chart
+
+### Adds
+
+- Temperature scale slider
+- out of range warning messages for temperature values
+
+### Fixed
+
+- Order of import buttons
+
+## v1.2312.11 iOS
+
+### Changes
+
+- Chart: Improved readability
+  - Finer temperature lines and dots
+  - Enlarge screen space for temperature chart
+  - A very light grey background color for weekend days on the whole chart screen
+- Homescreen: date displayed in new format
+- Minor changes in "about" section
+
+See more under v1.2311.14 Android
+
+### Adds
+
+- Stats: Show period details, including cycle start, cycle length and amount of days with bleeding
+- Stats: Explainer text for standard deviation
+- App asks for permissions for notifications right at the start, which allows you to set reminders (this is a new requirement for Android 13)
+
+## v1.2311.14 Android
+
+### Changes
+
+- Make the app compatible with Android 13
+  - Update Android's targetSdkVersion to 33
+  - Update buildToolsVersion to 33.0.2
+  - Update Android Gradle plugin to 7.0.3
+  - Update Gradle to 7.3.3
+  - Update kotlinVersion to 1.3.40
+- Chart: Improved readability
+  - Finer temperature lines and dots
+  - Enlarge screen space for temperature chart
+  - A very light grey background color for weekend days on the whole chart screen
+- Reminders:
+  - Use new fork of react-native-push-notification: <https://github.com/github:bl00dymarie/react-native-push-notification> without google services
+  - Adding channels after breaking changes in react-native-push-notification
+- Homescreen: date displayed in new format
+- Minor changes in "about" section
+- Updated dependencies:
+  - moment ^2.29.4,
+  - prop-types ^15.8.1,
+  - react v17.0.2,
+  - react-native v0.67.4,
+  - react-native-calendars ^1.1287.0,
+  - react-native-document-picker ^8.1.1,
+  - react-native-fs ^2.20.0,
+  - react-native-modal-datetime-picker v14.0.0,
+  - react-native-share ^7.9.0,
+  - react-native-vector-icons ^9.2.0,
+  - realm ^10.16.0,
+  - sympto v3.0.1
+
+### Adds
+
+- Stats: Show period details, including cycle start, cycle length and amount of days with bleeding
+- Stats: Explainer text for standard deviation
+- Settings: Privacy Policy
+- App asks for permissions for notifications right at the start, which allows you to set reminders (this is a new requirement for Android 13)
+- Buttons can now be displayed as row
+
+- Added dependencies:
+  - @js-joda/core ^5.3.0,
+  - @react-native-async-storage/async-storage ^1.17.9,
+  - @react-native-community/art ^1.2.0,
+  - @react-native-community/datetimepicker ^6.3.1,
+  - @react-native-community/push-notification-ios ^1.11.0,
+  - i18next ^22.0.2,
+  - react-i18next ^12.0.0,
+  - jshashes ^1.0.8,
+  - react-native-permissions ^3.10.0,
+  - react-native-push-notification: github:bl00dymarie/react-native-push-notification,
+  - react-native-simple-toast ^1.1.3,
+  - react-native-size-matters ^0.4.0,
+
+### Fixed
+
+- Password: Disable setting empty passwords
+- After updating the password the app will do a full restart
+- Chart: Grid for symptoms
+- Chart: Horizontal lines in temperature chart
+
+### Unreleased
+
+- Partially implemented translations with react-i18next
+
+## v1.2208.11 iOS
+
+### Adds
+
+- first iOS Release
+
+### Unreleased
+
+- Temperature scale slider
+- Warning message for out of scope temperature values
+
+## v1.2102.28 Android
+
+### Changes
+
 - Temperature range is now between 35 - 39°C and its default values are now set to 35.5 - 37.5°C
 
 ### Fixed
+
 - Blocks invalid input of temperature value
 - Error message for incorrect password on login screen
 - Phase text on home screen for last fertile day
 - Styling improvements
 
-## v1.2101.9
+## v1.2101.9 Android
 
 ### Adds
 
@@ -56,12 +211,12 @@ All notable changes to this project will be documented in this file.
 - Fixed react-native-vector-icon
 - Fixed AppLoadingView component centering
 
-## v0.2007-12.beta
+## v0.2007-12.beta Android
 
 ### Adds
 
 - Allows chart not to show temperature part, when temperature is not tracked and corresponding refactoring
-- Detox support for e2e testing and addition of the e2e tests 
+- Detox support for e2e testing and addition of the e2e tests
 - Introduces Redux global state (date and navigation are stored locally now)
 - Introduces clear.sh script to the project automising clearing project caches and packages reinstallation
 
@@ -80,7 +235,7 @@ All notable changes to this project will be documented in this file.
 
 - Fixed adding notes to the future dates
 - Fixed app exiting with error when hitting back button on device
-- Fixed Sex symptom showing on y axis of chart even though the contraception method was deleted 
+- Fixed Sex symptom showing on y axis of chart even though the contraception method was deleted
 - Fixed of the clear.sh file name in package.json
 - Fixed of navigation from chart to the cycle day overview
 - Bug fix for maximum value of mucus not showing on chart
@@ -91,7 +246,7 @@ All notable changes to this project will be documented in this file.
 
 - Updates of node.js to fix security issue
 
-## v0.2005.3-beta
+## v0.2005.3-beta Android
 
 - Adds arm64-v8a and x86_64 for supporting 64-bit architecture
 - Adds Mariya & Sofiya as contributors &lt;3
@@ -191,7 +346,7 @@ All notable changes to this project will be documented in this file.
 - Adds release wizard
 - Updates nodejs-mobile to fix security issue
 
-## v0.1905.29-beta
+## v0.1905.29-beta Android
 
 ### Changes
 
@@ -212,7 +367,7 @@ All notable changes to this project will be documented in this file.
 - Line width in chart
 - Prediction range in drop on homescreen
 
-## v0.1905.28-beta
+## v0.1905.28-beta Android
 
 - Displays all the text for Home Elements; Shortens margin btw Home Elements; Adds missing "visit" to text
 - Adds donation section to about
@@ -287,7 +442,7 @@ All notable changes to this project will be documented in this file.
 - Nicer formatting for past bleeding prediction
 - Fixed prediction range in drop on homescreen
 
-## v0.1905.10-beta
+## v0.1905.10-beta Android
 
 - Filter release commits from changelog
 - Adds update-changelog script
@@ -312,7 +467,7 @@ All notable changes to this project will be documented in this file.
 - Delete password button bug fix
 - temperature screen styling update
 
-## v0.0.3 - 2019-04-17
+## v0.0.3 - 2019-04-17 Android
 
 ### Changes
 
@@ -322,9 +477,9 @@ All notable changes to this project will be documented in this file.
 
 - Button functionality in settings for password
 
-## v0.0.2 - 2019-04-09
+## v0.0.2 - 2019-04-09 Android
 
-## Second updated beta release version
+## Second updated beta release version Android
 
 ### Changes
 
@@ -338,9 +493,9 @@ All notable changes to this project will be documented in this file.
 - Delete button for sex, pain and mood
 - Dates on chart
 
-## v0.0.1 - 2019-02-15
+## v0.0.1 - 2019-02-15 Android
 
-## First beta release version
+## First beta release version Android
 
 ### Added (list of core functionality)
 

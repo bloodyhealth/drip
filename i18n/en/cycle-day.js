@@ -47,8 +47,7 @@ export const cervix = {
     explainer: 'How high up in the vagina is the cervix?',
   },
   excludeExplainer:
-    "You can exclude these values if you don't want to use them for fertility detection.",
-  actionHint: 'Choose values for at least "Opening" and "Firmness" to save.',
+    "You can exclude this value if you don't want to use it for fertility detection.",
 }
 
 export const mucus = {
@@ -66,8 +65,7 @@ export const mucus = {
       'Looking at and touching your cervical mucus, which describes it best?',
   },
   excludeExplainer:
-    "You can exclude these values if you don't want to use them for fertility detection",
-  actionHint: 'Choose values for both "Feeling" and "Texture" to save.',
+    "You can exclude this value if you don't want to use it for fertility detection",
 }
 
 export const desire = {
@@ -131,13 +129,10 @@ export const mood = {
 }
 
 export const temperature = {
-  // disabled temporarily, TODO https://gitlab.com/bloodyhealth/drip/-/issues/545 */}
-  // outOfRangeWarning: 'This temperature value is out of the current range for the temperature chart. You can change the range in the settings.',
   outOfRangeWarning:
-    'This temperature value is too high or low to be shown on the temperature chart.',
+    'This temperature value is out of the current range for the temperature chart. You can change the range in the settings.',
   outOfAbsoluteRangeWarning:
     'This temperature value is too high or low to be shown on the temperature chart.',
-  saveAnyway: 'Save anyway',
   temperature: {
     header: 'Temperature',
     explainer:

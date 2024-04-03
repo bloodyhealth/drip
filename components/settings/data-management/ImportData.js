@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Alert } from 'react-native'
+import { Alert, Platform } from 'react-native'
 import DocumentPicker from 'react-native-document-picker'
 import rnfs from 'react-native-fs'
 import importCsv from '../../../lib/import-export/import-from-csv'
@@ -59,7 +59,8 @@ export default function ImportData({ resetIsDeletingData, setIsLoading }) {
 
   function openImportDialog() {
     resetIsDeletingData()
-    Alert.alert(t('dialog.title'), t('dialog.message'), [
+
+    let buttons = [
       {
         text: t('dialog.cancel'),
         style: 'cancel',
@@ -73,7 +74,13 @@ export default function ImportData({ resetIsDeletingData, setIsLoading }) {
         text: t('dialog.delete'),
         onPress: () => startImport(true),
       },
-    ])
+    ]
+
+    if (Platform.OS === 'android') {
+      buttons = [buttons[0], buttons[2], buttons[1]]
+    }
+
+    Alert.alert(t('dialog.title'), t('dialog.message'), buttons)
   }
 
   function showImportErrorAlert(message) {

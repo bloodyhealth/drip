@@ -44,12 +44,34 @@ export async function savePeriodReminder(reminder) {
   periodReminderObservable.set(reminder)
 }
 
-export const useCervixObservable = Observable()
-setObvWithInitValue('useCervix', useCervixObservable, false)
+export const periodPredictionObservable = Observable()
+setObvWithInitValue('periodPrediction', periodPredictionObservable, true)
 
-export async function saveUseCervix(bool) {
-  await AsyncStorage.setItem('useCervix', JSON.stringify(bool))
-  useCervixObservable.set(bool)
+export async function savePeriodPrediction(bool) {
+  await AsyncStorage.setItem('periodPrediction', JSON.stringify(bool))
+  periodPredictionObservable.set(bool)
+
+  if (!periodPredictionObservable.value) {
+    const result = await AsyncStorage.getItem('periodReminder')
+    if (JSON.parse(result).enabled) {
+      periodReminderObservable.set(false)
+    }
+  }
+}
+
+export const useCervixAsSecondarySymptomObservable = Observable()
+setObvWithInitValue(
+  'useCervixAsSecondarySymptom',
+  useCervixAsSecondarySymptomObservable,
+  0
+)
+
+export async function saveUseCervixAsSecondarySymptom(value) {
+  await AsyncStorage.setItem(
+    'useCervixAsSecondarySymptom',
+    JSON.stringify(value)
+  )
+  useCervixAsSecondarySymptomObservable.set(value)
 }
 
 export const hasEncryptionObservable = Observable()
@@ -75,6 +97,86 @@ export async function getChartFlag() {
 
 export async function setChartFlag() {
   await AsyncStorage.setItem('isFirstChartView', JSON.stringify(false))
+}
+
+export const temperatureTrackingCategoryObservable = Observable()
+setObvWithInitValue('temperature', temperatureTrackingCategoryObservable, true)
+
+export async function saveTemperatureTrackingCategory(bool) {
+  await AsyncStorage.setItem('temperature', JSON.stringify(bool))
+  temperatureTrackingCategoryObservable.set(bool)
+
+  if (!temperatureTrackingCategoryObservable.value) {
+    // if temperature tracking is turned off, the temperature reminder gets disabled
+    const tempReminderResult = await AsyncStorage.getItem('tempReminder')
+     if (tempReminderResult && JSON.parse(tempReminderResult).enabled) {
+      tempReminderObservable.set(false)
+    }
+  }
+}
+
+export const mucusTrackingCategoryObservable = Observable()
+setObvWithInitValue('mucus', mucusTrackingCategoryObservable, true)
+
+export async function saveMucusTrackingCategory(bool) {
+  await AsyncStorage.setItem('mucus', JSON.stringify(bool))
+  mucusTrackingCategoryObservable.set(bool)
+}
+
+export const cervixTrackingCategoryObservable = Observable()
+setObvWithInitValue('cervix', cervixTrackingCategoryObservable, true)
+
+export async function saveCervixTrackingCategory(bool) {
+  await AsyncStorage.setItem('cervix', JSON.stringify(bool))
+  cervixTrackingCategoryObservable.set(bool)
+}
+
+export const sexTrackingCategoryObservable = Observable()
+setObvWithInitValue('sex', sexTrackingCategoryObservable, true)
+
+export async function saveSexTrackingCategory(bool) {
+  await AsyncStorage.setItem('sex', JSON.stringify(bool))
+  sexTrackingCategoryObservable.set(bool)
+}
+
+export const desireTrackingCategoryObservable = Observable()
+setObvWithInitValue('desire', desireTrackingCategoryObservable, true)
+
+export async function saveDesireTrackingCategory(bool) {
+  await AsyncStorage.setItem('desire', JSON.stringify(bool))
+  desireTrackingCategoryObservable.set(bool)
+}
+
+export const painTrackingCategoryObservable = Observable()
+setObvWithInitValue('pain', painTrackingCategoryObservable, true)
+
+export async function savePainTrackingCategory(bool) {
+  await AsyncStorage.setItem('pain', JSON.stringify(bool))
+  painTrackingCategoryObservable.set(bool)
+}
+
+export const moodTrackingCategoryObservable = Observable()
+setObvWithInitValue('mood', moodTrackingCategoryObservable, true)
+
+export async function saveMoodTrackingCategory(bool) {
+  await AsyncStorage.setItem('mood', JSON.stringify(bool))
+  moodTrackingCategoryObservable.set(bool)
+}
+
+export const noteTrackingCategoryObservable = Observable()
+setObvWithInitValue('note', noteTrackingCategoryObservable, true)
+
+export async function saveNoteTrackingCategory(bool) {
+  await AsyncStorage.setItem('note', JSON.stringify(bool))
+  noteTrackingCategoryObservable.set(bool)
+}
+
+export const fertilityTrackingObservable = Observable()
+setObvWithInitValue('fertilityTracking', fertilityTrackingObservable, true)
+
+export async function saveFertilityTrackingEnabled(bool) {
+  await AsyncStorage.setItem('fertilityTracking', JSON.stringify(bool))
+  fertilityTrackingObservable.set(bool)
 }
 
 async function setObvWithInitValue(key, obv, defaultValue) {

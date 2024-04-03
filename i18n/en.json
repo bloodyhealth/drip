@@ -7,18 +7,16 @@
   "chart": {
     "tutorial": "You can swipe the chart to view more dates."
   },
-  "cycleDay": {
-    "symptomBox": {
-      "bleeding": "Bleeding",
-      "temperature": "Temperature",
-      "mucus": "Cervical Mucus",
-      "cervix": "Cervix",
-      "note": "Note",
-      "desire": "Desire",
-      "sex": "Sex",
-      "pain": "Pain",
-      "mood": "Mood"
-    }
+  "symptoms": {
+    "bleeding": "bleeding",
+    "temperature": "temperature",
+    "mucus": "cervical mucus",
+    "cervix": "cervix",
+    "note": "note",
+    "desire": "desire",
+    "sex": "sex",
+    "pain": "pain",
+    "mood": "mood"
   },
   "labels": {
     "bleedingPrediction": {
@@ -51,7 +49,7 @@
       },
       "philosophy": {
         "title": "Remember to think for yourself",
-        "text": "drip. makes period predictions for you and helps you apply NFP fertility awareness rules. But please remember that this app is made by humans, and humans make mistakes. Always think for yourself: \"Does this make sense?\" Remember, you don't need an app to understand your cycle! However, drip. wants to support you and make period tracking easier, more transparent and secure."
+        "text": "drip. makes period predictions for you and helps you apply the sympto-thermal method for fertility awareness. But please remember that this app is made by humans, and humans make mistakes. Always think for yourself: \"Does this make sense?\" Remember, you don't need an app to understand your cycle! However, drip. wants to support you and make period tracking easier, more transparent and secure."
       },
       "title": "About",
       "version": {
@@ -114,22 +112,29 @@
       "menuItem": {
         "dataManagement": {
           "name": "Data",
-          "text": "import, export or delete your data"
+          "text": "Import, export or delete your data"
         },
-        "nfpSettings": {
-          "name": "NFP settings",
-          "text": "define how you want to use NFP"
+        "customization": {
+          "name": "Customization",
+          "text": "Define how you want to use drip"
         },
         "password": {
           "name": "Password",
-          "text": ""
+          "text": "Set, edit or delete your password"
         },
         "reminders": {
           "name": "Reminders",
-          "text": "turn on/off reminders"
+          "text": "Turn on/off reminders"
+        },
+        "info": {
+          "name": "Info",
+          "text": "Learn more about how drip works"
         }
       },
       "title": "Settings"
+    },
+    "info": {
+      "title": "info"
     }
   },
   "stats": {
