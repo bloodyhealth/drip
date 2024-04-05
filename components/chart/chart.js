@@ -134,14 +134,16 @@ const CycleChart = ({ navigate, setDate }) => {
     )
   }
 
-  const getcomputedDateInView = () => {
-    const columnIndex = Math.floor(currentScrollPosition / CHART_COLUMN_WIDTH)
-    const leftIndex =
-      columnIndex + numberOfColumnsToRender >= columns.length
+  const getLeftmostComputedDateInView = () => {
+    const rightmostVisibleIndexInView = Math.floor(
+      currentScrollPosition / CHART_COLUMN_WIDTH
+    )
+    const leftmostVisibleIndexInView =
+      rightmostVisibleIndexInView + numberOfColumnsToRender >= columns.length
         ? 153
-        : columnIndex + numberOfColumnsToRender
-    // detect oldest visible day to render its month dynamically
-    return columns[leftIndex]
+        : rightmostVisibleIndexInView + numberOfColumnsToRender
+    // detect leftmost aka oldest visible day to render its month dynamically
+    return columns[leftmostVisibleIndexInView]
   }
 
   const renderColumn = ({ item }) => {
@@ -181,7 +183,7 @@ const CycleChart = ({ navigate, setDate }) => {
             symptomsSectionHeight={symptomRowHeight}
             shouldShowTemperatureColumn={shouldShowTemperatureColumn}
             xAxisHeight={xAxisHeight}
-            computedDate={getcomputedDateInView()}
+            computedDate={getLeftmostComputedDateInView()}
           />
           <MainGrid
             data={columns}
