@@ -140,7 +140,7 @@ const CycleChart = ({ navigate, setDate }) => {
     )
     const leftmostVisibleIndexInView =
       rightmostVisibleIndexInView + numberOfColumnsToRender >= columns.length
-        ? 153
+        ? columns.length - 1
         : rightmostVisibleIndexInView + numberOfColumnsToRender
     // detect leftmost aka oldest visible day to render its month dynamically
     return columns[leftmostVisibleIndexInView]
