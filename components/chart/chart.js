@@ -136,8 +136,12 @@ const CycleChart = ({ navigate, setDate }) => {
 
   const getcomputedDateInView = () => {
     const columnIndex = Math.floor(currentScrollPosition / CHART_COLUMN_WIDTH)
+    const leftIndex =
+      columnIndex + numberOfColumnsToRender >= columns.length
+        ? 153
+        : columnIndex + numberOfColumnsToRender
     // detect oldest visible day to render its month dynamically
-    return columns[columnIndex + numberOfColumnsToRender]
+    return columns[leftIndex]
   }
 
   const renderColumn = ({ item }) => {
