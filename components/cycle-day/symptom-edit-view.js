@@ -117,15 +117,23 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
     style: styles.input,
     textAlignVertical: 'top',
   }
-  const excludeToggle = shouldShow(symptomConfig.excludeText) && (
-    <Segment style={styles.segmentBorder}>
-      <AppSwitch
-        onToggle={onExcludeToggle}
-        text={symptomPage[symptom].excludeText}
-        value={data.exclude}
-      />
-    </Segment>
-  )
+
+  {
+    /* show exclude AppSwitch for bleeding, mucus, cervix, temperature */
+  }
+  {
+    /* but if fertility is off only for bleeding */
+  }
+  const excludeToggle = shouldShow(symptomConfig.excludeText) &&
+    (isBleeding || isFertilityTrackingEnabled) && (
+      <Segment style={styles.segmentBorder}>
+        <AppSwitch
+          onToggle={onExcludeToggle}
+          text={symptomPage[symptom].excludeText}
+          value={data.exclude}
+        />
+      </Segment>
+    )
 
   return (
     <AppModal onClose={onSave}>
@@ -189,18 +197,6 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
               </Segment>
             )
           })}
-        {/* show exclude AppSwitch for bleeding, mucus, cervix, temperature */}
-        {/* but if fertility is off only for bleeding */}
-        {shouldShow(symptomConfig.excludeText) &&
-          (symptom === 'bleeding' || isFertilityTrackingEnabled) && (
-            <Segment style={styles.segmentBorder}>
-              <AppSwitch
-                onToggle={onExcludeToggle}
-                text={symptomPage[symptom].excludeText}
-                value={data.exclude}
-              />
-            </Segment>
-          )}
 
         {!isBleeding && excludeToggle}
 
