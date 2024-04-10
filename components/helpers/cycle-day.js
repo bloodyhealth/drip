@@ -353,11 +353,11 @@ const label = {
     )
     let label = filledCategories
       .map((category) => {
-        return (
-          labels.mucus.subcategories[category] +
-          ': ' +
-          labels.mucus[category].categories[mucus[category]]
-        )
+        const mucusValueLabel =
+          labels.mucus[category].categories[mucus[category]] === 'nothing'
+            ? 'no'
+            : labels.mucus[category].categories[mucus[category]]
+        return mucusValueLabel + ' ' + labels.mucus.subcategories[category]
       })
       .join(', ')
 
