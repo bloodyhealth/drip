@@ -33,6 +33,10 @@ export const TEMP_MAX = 39
 export const TEMP_MIN = 35
 export const TEMP_SLIDER_STEP = 0.5
 
+export const ADVANCE_PERIOD_NOTICE_DAYS_MIN = 1
+export const ADVANCE_PERIOD_NOTICE_DAYS_MAX = 7
+export const ADVANCE_PERIOD_NOTICE_DAYS_INIT_VALUE = 3
+
 export const HIT_SLOP = {
   top: verticalScale(20),
   bottom: verticalScale(20),

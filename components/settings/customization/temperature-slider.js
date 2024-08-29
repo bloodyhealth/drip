@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 import PropTypes from 'prop-types'
 import Slider from '@ptomasroos/react-native-multi-slider'
 
@@ -7,9 +7,9 @@ import alertError from '../common/alert-error'
 import SliderLabel from './slider-label'
 
 import { scaleObservable, saveTempScale } from '../../../local-storage'
-import { Colors, Sizes } from '../../../styles'
 import labels from '../../../i18n/en/settings'
 import { TEMP_MIN, TEMP_MAX, TEMP_SLIDER_STEP } from '../../../config'
+import { styles } from './slider-styles'
 
 const TemperatureSlider = ({ disabled }) => {
   const savedValue = scaleObservable.value
@@ -40,7 +40,7 @@ const TemperatureSlider = ({ disabled }) => {
         customLabel={SliderLabel}
         enableLabel={true}
         markerStyle={styles.marker}
-        markerOffsetY={Sizes.tiny}
+        markerOffsetY={styles.markerOffsetY}
         max={TEMP_MAX}
         min={TEMP_MIN}
         onValuesChange={onTemperatureSliderChange}
@@ -61,34 +61,3 @@ export default TemperatureSlider
 TemperatureSlider.propTypes = {
   disabled: PropTypes.bool,
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    paddingTop: Sizes.base,
-  },
-  marker: {
-    backgroundColor: Colors.turquoiseDark,
-
-    borderRadius: 50,
-    elevation: 4,
-    height: Sizes.subtitle,
-    width: Sizes.subtitle,
-  },
-  slider: {
-    borderRadius: 25,
-    height: Sizes.small,
-  },
-  sliderAccentBackground: {
-    backgroundColor: Colors.turquoiseDark,
-  },
-  disabledSliderAccentBackground: {
-    backgroundColor: Colors.grey,
-  },
-  sliderBackground: {
-    backgroundColor: Colors.turquoise,
-  },
-  disabledSliderBackground: {
-    backgroundColor: Colors.greyLight,
-  },
-})
