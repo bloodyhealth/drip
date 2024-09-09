@@ -90,7 +90,7 @@ export function saveSymptom(symptom, date, val) {
   let cycleDay = getCycleDay(date)
   if (!cycleDay) cycleDay = createCycleDay(date)
   db.write(() => {
-    if (symptom === 'bleeding' && val != null && val.value != null) {
+    if (symptom === 'bleeding' && val && val.value != null) {
       const mensesDaysAfter = getMensesDaysRightAfter(cycleDay)
       maybeSetNewCycleStart({
         val,
