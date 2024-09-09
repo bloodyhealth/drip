@@ -343,7 +343,12 @@ const label = {
   bleeding: (bleeding) => {
     bleeding = mapRealmObjToJsObj(bleeding)
     const bleedingLabel = []
-    if (bleeding && Object.values({ ...bleeding }).some((val) => val)) {
+    if (
+      bleeding &&
+      Object.values({ ...bleeding }).some(
+        (val) => typeof val === 'number' || val == true
+      )
+    ) {
       Object.keys(bleeding).forEach((key) => {
         if (bleeding[key] != null && key === 'value') {
           bleedingLabel.push(
