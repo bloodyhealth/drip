@@ -18,6 +18,10 @@ const AboutSection = () => {
     <AppPage title={t('title')}>
       <Segment>
         <AppText>{t('intro.text')}</AppText>
+        <Button isCTA isSmall onPress={() => Linking.openURL(links.faq.url)}>
+          {t('intro.faq')}
+        </Button>
+        <AppText>{t('intro.contact')}</AppText>
         <ButtonRow>
           {[links.email, links.gitlab, links.website].map((link) => (
             <Button

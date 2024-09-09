@@ -39,4 +39,8 @@ export default {
     url: 'https://www.flaticon.com',
     text: 'Flaticon',
   },
+  faq: {
+    url: 'https://dripapp.org/faq',
+    text: 'FAQ',
+  },
 }
