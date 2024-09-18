@@ -41,6 +41,24 @@ Once you have nvm running you can install node 14:
 
     nvm install v14.19.3
 
+#### On Apple Silicon M1
+
+NodeJS 14 does not compile on the M1 architecture, so it has to be installed through Rosetta: https://devzilla.io/using-nodejs-14-with-mac-silicon-m1 . 
+To activate Rosetta and switch to intel emulation run: 
+
+    arch -x86_64 zsh
+
+Run 
+
+    arch 
+
+again to verify that it returns "i386".
+Now install node 14:
+
+    nvm install v14.19.3
+
+### 3. Yarn version
+
 use npm to install yarn:
 
     npm install --global yarn
@@ -126,6 +144,18 @@ iii. If you are building the app with XCode make sure you are running this as we
     yarn start
 
 ### Troubleshooting
+
+#### [MacOS M1] Flipper problems
+
+If a bug in the currently used Flipper version prevents building the project, comment out the respective line in the podfile, like so:
+
+    #use_flipper!()
+
+Run 
+
+    pod install 
+
+from the ios directory again to reload the dependencies.
 
 #### [MacOS] Java problems
 
