@@ -34,7 +34,7 @@ or clone it with HTTPS
 
     git clone https://gitlab.com/bloodyhealth/drip.git
 
-### 2. Node & yarn version
+### 2. Node version
 
 Make sure you are running Node 14 and classic yarn (v.1). It's easiest to switch Node versions using `nvm`, here's how to install NVM: https://github.com/nvm-sh/nvm#installing-and-updating. After installing nvm close the terminal and open it again to be able to use nvm.
 Once you have nvm running you can install node 14:
