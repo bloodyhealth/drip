@@ -262,7 +262,51 @@ export const symptomPage = {
 
 export const save = {
   bleeding: (data, date, shouldDeleteData) => {
-    saveBoxSymptom(data, date, shouldDeleteData, 'bleeding')
+    let {
+      exclude,
+      value,
+      pad,
+      tampon,
+      underwear,
+      cup,
+      softTampon,
+      disk,
+      none,
+      other,
+      note,
+    } = data
+    const isDataEntered = [
+      'value',
+      'pad',
+      'tampon',
+      'underwear',
+      'cup',
+      'softTampon',
+      'disk',
+      'none',
+      'other',
+      'note',
+    ].some((value) => typeof data[value] === 'number' || data[value] == true)
+    // covering the case when a bleeding value was entered, "excluded" and saved. But then the bleeding value was deleted again.
+    exclude = isNumber(value) ? exclude : false
+    const valuesToSave =
+      shouldDeleteData || !isDataEntered
+        ? null
+        : {
+            exclude,
+            value,
+            pad,
+            tampon,
+            underwear,
+            cup,
+            softTampon,
+            disk,
+            none,
+            other,
+            note,
+          }
+
+    saveSymptom('bleeding', date, valuesToSave)
   },
   cervix: (data, date, shouldDeleteData) => {
     const { opening, firmness, position, exclude } = data
