@@ -262,8 +262,7 @@ export const symptomPage = {
 
 export const save = {
   bleeding: (data, date, shouldDeleteData) => {
-    let {
-      exclude,
+    const {
       value,
       pad,
       tampon,
@@ -275,6 +274,7 @@ export const save = {
       other,
       note,
     } = data
+    let { exclude } = data
     const isDataEntered = [
       'value',
       'pad',
