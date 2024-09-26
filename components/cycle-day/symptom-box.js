@@ -23,20 +23,14 @@ const SymptomBox = ({
   const { t } = useTranslation(null, { keyPrefix: 'symptoms' })
   const isSymptomEdited = editedSymptom === symptom
   const isSymptomDisabled = isDateInFuture(date) && symptom !== 'note'
-  const isExcluded = symptomData !== null ? symptomData.exclude : false
 
   const iconColor = isSymptomDisabled ? Colors.greyLight : Colors.grey
   const iconName = `drip-icon-${symptom}`
   const symptomNameStyle = [
     styles.symptomName,
     isSymptomDisabled && styles.symptomNameDisabled,
-    isExcluded && styles.symptomNameExcluded,
   ]
-  const textStyle = [
-    styles.text,
-    isSymptomDisabled && styles.textDisabled,
-    isExcluded && styles.textExcluded,
-  ]
+  const textStyle = [styles.text, isSymptomDisabled && styles.textDisabled]
 
   return (
     <>
@@ -120,9 +114,6 @@ const styles = StyleSheet.create({
   },
   textDisabled: {
     color: Colors.greyLight,
-  },
-  textExcluded: {
-    color: Colors.grey,
   },
 })
 
