@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.2403.19 Android & iOS
+
+### Changes
+
+- Disables temperature slider if temperature tracking off
+- Disables secondary symptom if fertility and or cervix/cervical mucus are off
+- Disables temperature reminder if temperature tracking off
+- Disabled period reminder if period predictions off
+- Return from sympto adapter if fertility off
+- Restructure settings menu
+- Unify wording to "sympto-thermal method"
+- Format decimal to x.0 instead of x.00 used for standard deviation and average cycle in stats
+- Use SelectTabGroup for secondary symptom customization
+
+- Android changes after updating React Native to 0.68.3
+- Update Android Gradle plugin from 7.0.3 to 7.0.4
+- Update NDK to "24.0.8215888" only for M1 users which added support for aarch64
+- Update metadata phone screenshots for Fdroid store listing
+- Updated dependencies:
+  - @react-native-community/datetimepicker from 6.3.1 to 7.2.0
+  - @react-native-async-storage/async-storage from ^1.17.9 to ^1.18.2
+  - metro-react-native-babel-preset from ^0.66.2 to ^0.67.0
+
+### Adds
+
+- Customization settings can turn on & off:
+
+  - Tracking categories
+  - Period predictions
+  - Fertility phases calculation
+
+- Home displays text elements depending on customization settings
+- Chart displays tracking category elements depending on customization settings
+- CycleDay displays tracking category elements and exclude switch depending on customization settings
+- Reminder can be disabled depending on customization settings
+- Adds disabled and more styling to AppSwitch
+- Adds TrackingCategorySwitch
+- Adds disabled, more styling and alert to SelectTabGroup
+- Adds more marginTop to License page
+- Adds info text to Password menu item in Settings
+
 ## v1.2401.17 iOS
 
 ### Changes
