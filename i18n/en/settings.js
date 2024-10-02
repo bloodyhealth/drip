@@ -32,11 +32,10 @@ export default {
   },
   periodReminder: {
     title: 'Next period reminder',
-    reminderText: (days) => {
-      const dayCount = parseInt(days, 10)
-      const dayText = dayCount === 1 ? '1 day' : `${dayCount} days`
-      return `Get a notification ${dayText} before your next period is likely to start.`
-    },
+    reminderTextSingular:
+      'Get a notification 1 day before your next period is likely to start.',
+    reminderTextPlural: (days) =>
+      `Get a notification ${days} days before your next period is likely to start.`,
     notification: (advanceNoticeDays, daysToEndOfPrediction) =>
       `Your next period is likely to start in ${advanceNoticeDays} to ${daysToEndOfPrediction} days.`,
     alertNoPeriodReminder: {
