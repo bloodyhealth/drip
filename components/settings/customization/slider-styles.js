@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
   },
   marker: {
     backgroundColor: Colors.turquoiseDark,
-
     borderRadius: 50,
     elevation: 4,
     height: Sizes.subtitle,
