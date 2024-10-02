@@ -32,18 +32,23 @@ const PeriodReminder = () => {
     saveAdvanceNoticeDays(days)
   }
 
+  const reminderText =
+    advanceNoticeDays == 1
+      ? labels.periodReminder.reminderTextSingular
+      : labels.periodReminder.reminderTextPlural(advanceNoticeDays)
+
   return (
     <>
       <AppSwitch
         onToggle={periodReminderToggle}
-        text={labels.periodReminder.reminderText(advanceNoticeDays)}
+        text={reminderText}
         value={isPeriodReminderEnabled}
         disabled={isPeriodPredictionDisabled}
       />
       {isPeriodReminderEnabled && (
         <AdvanceNoticeDaysSlider
           disabled={isPeriodPredictionDisabled}
-          advanceNoticeDays={parseInt(advanceNoticeDays, 10)}
+          advanceNoticeDays={parseInt(advanceNoticeDays)}
           onAdvanceNoticeDaysChange={handleAdvanceNoticeDaysChange}
         />
       )}

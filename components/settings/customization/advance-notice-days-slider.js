@@ -2,8 +2,8 @@ import React from 'react'
 import { View } from 'react-native'
 import PropTypes from 'prop-types'
 import Slider from '@ptomasroos/react-native-multi-slider'
-import SliderLabel from './slider-label'
 
+import SliderLabel from './slider-label'
 import { styles } from './slider-styles'
 import {
   ADVANCE_PERIOD_NOTICE_DAYS_MIN,

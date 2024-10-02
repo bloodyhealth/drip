@@ -3,13 +3,12 @@ import { View } from 'react-native'
 import PropTypes from 'prop-types'
 import Slider from '@ptomasroos/react-native-multi-slider'
 
-import alertError from '../common/alert-error'
 import SliderLabel from './slider-label'
-
+import { styles } from './slider-styles'
+import alertError from '../common/alert-error'
 import { scaleObservable, saveTempScale } from '../../../local-storage'
 import labels from '../../../i18n/en/settings'
 import { TEMP_MIN, TEMP_MAX, TEMP_SLIDER_STEP } from '../../../config'
-import { styles } from './slider-styles'
 
 const TemperatureSlider = ({ disabled }) => {
   const savedValue = scaleObservable.value

@@ -65,7 +65,7 @@ export const advanceNoticeDaysObservable = Observable()
 setObvWithInitValue(
   'advanceNoticeDays',
   advanceNoticeDaysObservable,
-  parseInt(ADVANCE_PERIOD_NOTICE_DAYS_INIT_VALUE, 10)
+  parseInt(ADVANCE_PERIOD_NOTICE_DAYS_INIT_VALUE)
 )
 
 export async function saveAdvanceNoticeDays(days) {
