@@ -18,7 +18,7 @@ LoadingMoreView.propTypes = {
 
 const styles = StyleSheet.create({
   loadingContainer: {
-    height: '100%',
+    height: 80,
     backgroundColor: Colors.turquoiseLight,
     justifyContent: 'center',
   },
