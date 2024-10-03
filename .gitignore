@@ -30,7 +30,7 @@ ios/Index/DataStore
 build/
 .idea
 .gradle
-local.properties
+*.properties
 *.iml
 *.hprof
 
