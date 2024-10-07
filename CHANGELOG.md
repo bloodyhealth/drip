@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.2410.7 Android & iOS
+
+### Changes
+
+- Updated dependencies:
+  - react-native v0.68.5
+
+### Adds
+
+A button that links to our FAQ page on the drip website
+
 ## v1.2403.19 Android & iOS
 
 ### Changes
