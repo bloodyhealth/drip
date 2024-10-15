@@ -73,6 +73,9 @@ export function getTemperatureDaysSortedByDate() {
     .filtered('temperature != null')
     .sorted('date', true)
 }
+export function getPainDaysSortedByDate() {
+  return db.objects('CycleDay').filtered('pain != null').sorted('date', true)
+}
 
 export function getCycleDaysSortedByDate() {
   const cycleDays = db.objects('CycleDay').sorted('date', true)
