@@ -12,15 +12,23 @@ import { Spacing, Typography, Colors } from '../../styles'
 // const { t } = useTranslation(null, { keyPrefix: 'stats' })
 
 const SymptomOccurance = ({ onClose }) => {
-  const data = symOccModule().getCycleStartsOfLastYear()
-  if (!data || data.length === 0) return false
-  console.log('cycle starts:', data)
+  const cycleDays = symOccModule().getCycleStartsOfLastYear()
+  if (!cycleDays || cycleDays.length === 0) return false
+  console.log('cycle starts:', cycleDays)
+
+  const headacheDays = symOccModule().getPainDaysOfLastYear()
+  console.log('pain', headacheDays)
+
+  const cycleDaysOfPain = symOccModule().getCycleDayForPainDays(
+    cycleDays,
+    headacheDays
+  )
+  console.log('cycle days of pain', cycleDaysOfPain)
 
   return (
     <AppModal onClose={onClose}>
       <View>
         <FlatList
-          data={data}
           ListHeaderComponent={FlatListHeader}
           contentContainerStyle={styles.container}
         />
