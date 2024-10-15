@@ -8,6 +8,7 @@ import Button from '../common/button'
 import Footnote from '../common/Footnote'
 import StatsOverview from './StatsOverview'
 import PeriodDetailsModal from './PeriodDetailsModal'
+import SymptomOccurance from './SymptomOccurance'
 
 import cycleModule from '../../lib/cycle'
 import { getCycleLengthStats as getCycleInfo } from '../../lib/cycle-length'
@@ -19,6 +20,8 @@ const image = require('../../assets/cycle-icon.png')
 
 const Stats = () => {
   const [isStatsVisible, setIsStatsVisible] = useState(false)
+  const [isSymptomOccuranceVisible, setIsSymptomOccuranceVisible] =
+    useState(false)
 
   const { t } = useTranslation(null, { keyPrefix: 'stats' })
 
@@ -82,6 +85,14 @@ const Stats = () => {
             </Button>
             {isStatsVisible && (
               <PeriodDetailsModal onClose={() => setIsStatsVisible(false)} />
+            )}
+            <Button isCTA onPress={() => setIsSymptomOccuranceVisible(true)}>
+              {t('showSymptomOccurance')}
+            </Button>
+            {isSymptomOccuranceVisible && (
+              <SymptomOccurance
+                onClose={() => setIsSymptomOccuranceVisible(false)}
+              />
             )}
             <Footnote>{t('footnote')}</Footnote>
           </>
