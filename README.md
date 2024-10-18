@@ -131,15 +131,19 @@ Minimum system requirements to run iOS app are as follows:
 - MacOS 10.15.7 for Mac users
 - Xcode 13 (command line tools only might be enough)
 
-i. Install XCode dependencies by running the following command from the root project directory:
+i. Install yarn dependencies
+
+    yarn install ..
+
+ii. Install XCode dependencies by running the following command from the root project directory:
 
     cd ios && pod install && cd ..
 
-ii. To run app either open drip workspace ('drip.xcworkspace' file) with XCode and run "Build" or run the following command:
+iii. To run app either open drip workspace ('drip.xcworkspace' file) with XCode and run "Build" or run the following command:
 
     yarn ios
 
-iii. If you are building the app with XCode make sure you are running this as well:
+iiii. If you are building the app with XCode make sure you are running this as well:
 
     yarn start
 
