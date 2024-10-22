@@ -146,8 +146,8 @@ android {
         applicationId "com.drip"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 33
-        versionName "1.2403.19"
+        versionCode 38
+        versionName "1.2410.22"
         ndk {
             abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
