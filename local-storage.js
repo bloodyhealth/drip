@@ -2,6 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import Observable from 'obv'
 import { TEMP_SCALE_MIN, TEMP_SCALE_MAX, TEMP_SCALE_UNITS } from './config'
 
+import { ADVANCE_PERIOD_NOTICE_DAYS_INIT_VALUE } from './config'
+
 export const scaleObservable = Observable()
 setObvWithInitValue('tempScale', scaleObservable, {
   min: TEMP_SCALE_MIN,
@@ -59,6 +61,18 @@ export async function savePeriodPrediction(bool) {
   }
 }
 
+export const advanceNoticeDaysObservable = Observable()
+setObvWithInitValue(
+  'advanceNoticeDays',
+  advanceNoticeDaysObservable,
+  parseInt(ADVANCE_PERIOD_NOTICE_DAYS_INIT_VALUE, 10)
+)
+
+export async function saveAdvanceNoticeDays(days) {
+  await AsyncStorage.setItem('advanceNoticeDays', JSON.stringify(days))
+  advanceNoticeDaysObservable.set(days)
+}
+
 export const useCervixAsSecondarySymptomObservable = Observable()
 setObvWithInitValue(
   'useCervixAsSecondarySymptom',
@@ -109,7 +123,7 @@ export async function saveTemperatureTrackingCategory(bool) {
   if (!temperatureTrackingCategoryObservable.value) {
     // if temperature tracking is turned off, the temperature reminder gets disabled
     const tempReminderResult = await AsyncStorage.getItem('tempReminder')
-     if (tempReminderResult && JSON.parse(tempReminderResult).enabled) {
+    if (tempReminderResult && JSON.parse(tempReminderResult).enabled) {
       tempReminderObservable.set(false)
     }
   }
