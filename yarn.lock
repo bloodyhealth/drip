@@ -7573,10 +7573,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-sympto@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/sympto/-/sympto-3.0.1.tgz#14a089ee9114f5eb6611c0dd95a1cb6b86701d52"
-  integrity sha512-eskK/6ZUHyQtl/JPPb1ujYU8xCxek5vMFm6hr8kllu/GaYKi2W2wvFzLU2aQAo3RAyEqewhdXz1//DaK2TAneg==
+sympto@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/sympto/-/sympto-3.0.2.tgz#8510fe64b2177cd8f9ba3b3af1aaee772dca8a0b"
+  integrity sha512-0C1/aXZFXBhA6LHLch+7jhoO4WXchhOskmCMr83CzFMnQ1z3xaS86t7w7hpWha07tK97QpQPmRsr8g74lEb9jQ==
   dependencies:
     assert "^2.0.0"
     js-joda "^1.9.2"
