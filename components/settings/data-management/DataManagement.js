@@ -15,16 +15,18 @@ const DataManagement = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isDeletingData, setIsDeletingData] = useState(false)
 
+  const resetIsDeletingData = () => setIsDeletingData(false)
+
   if (isLoading) return <AppLoadingView />
 
   return (
     <AppPage>
       <ExportData
-        resetIsDeletingData={() => setIsDeletingData(false)}
+        resetIsDeletingData={resetIsDeletingData}
         setIsLoading={setIsLoading}
       />
       <ImportData
-        resetIsDeletingData={() => setIsDeletingData(false)}
+        resetIsDeletingData={resetIsDeletingData}
         setIsLoading={setIsLoading}
       />
       <Segment title={labels.deleteSegment.title} last>
