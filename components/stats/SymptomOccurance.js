@@ -1,7 +1,7 @@
 import React from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
-// import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import AppModal from '../common/app-modal'
 import AppText from '../common/app-text'
@@ -9,11 +9,9 @@ import AppText from '../common/app-text'
 import symOccModule from '../../lib/sympto-occurance'
 import { Spacing, Typography, Colors } from '../../styles'
 
-// const { t } = useTranslation(null, { keyPrefix: 'stats' })
-
 const SymptomOccurance = ({ onClose }) => {
   const cycleDays = symOccModule().getCycleStartsOfLastYear()
-  if (!cycleDays || cycleDays.length === 0) return false
+  if (!cycleDays || cycleDays.length === 0) return null
   console.log('cycle starts:', cycleDays)
 
   const headacheDays = symOccModule().getPainDaysOfLastYear()
@@ -41,15 +39,17 @@ SymptomOccurance.propTypes = {
   onClose: PropTypes.func,
 }
 
-const FlatListHeader = () => (
-  <View style={styles.row}>
-    <View style={styles.accentCell}>
-      <AppText style={styles.header}>
-        {'When did you experience headaches in the last year?'}
-      </AppText>
+const FlatListHeader = () => {
+  const { t } = useTranslation(null, { keyPrefix: 'stats.symptoOccuDetails' })
+
+  return (
+    <View style={styles.row}>
+      <View style={styles.accentCell}>
+        <AppText style={styles.header}>{t('title')}</AppText>
+      </View>
     </View>
-  </View>
-)
+  )
+}
 
 const styles = StyleSheet.create({
   divider: {
