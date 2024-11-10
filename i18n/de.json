@@ -22,7 +22,7 @@
   },
   "labels": {
     "bleedingPrediction": {
-      "noPrediction": "Sobald du 3 Menstruationszyklen aufgezeichnet hast wird drip. Vorhersagen für die nächsten erstellen."
+      "noPrediction": "Sobald du 3 Menstruationszyklen aufgezeichnet hast, wird drip. Vorhersagen für die nächsten erstellen."
     },
     "home": {
       "cycleDay": " Tag deines Zyklus",
@@ -38,7 +38,7 @@
     "about": {
       "credits": {
         "title": "Danksagungen",
-        "text": "Wir lieben das Team von drip. Danke und eine Menge <3 an alle unsere Beitragenden. Danke an Paula Härtel für die Symbole zur Symptomerfassung. Alle anderen Symbole sind von:",
+        "text": "Wir lieben das Team von drip.. Danke und eine Menge <3 an alle unsere Beitragenden. Danke an Paula Härtel für die Symbole zur Symptomerfassung. Alle anderen Symbole sind von:",
         "madeBy": "Erstellt von:"
       },
       "donate": {
@@ -47,11 +47,13 @@
         "text": "Die drips entwickeln diese App auf freiwilliger Basis. Wir sind dankbar für jede Art von Unterstützung. Es können Beiträge zum Quellcode, Feedback, Verbesserungs- oder Feature-Vorschläge, Tests oder Spenden sein. Das hilft und motiviert uns bei der Instandhaltung der App sowie der Entwicklung neuer Funktionen. Vielen Dank für deine Unterstützung!"
       },
       "intro": {
-        "text": "Deine Daten werden lokal auf deinem Gerät gespeichert und nicht auf einenm Server. Das bedeutet, dass deine Daten von niemand anderem gelesen werden können, solange sie keinen Zugriff zu deinem Gerät haben. Wir wollen sicherstellen, dass du die Kontrolle über deine eigenen Daten behältst. Solltest du planen das Gerät zu wechseln oder es zurückzusetzen, denke bitte daran davor deine Daten zu exportieren. Du kannst die App dann später erneut installieren und die Daten importieren.\n\nFalls irgendwelche technischen Probleme auftreten, zögere bitte nicht uns per E-Mail zu kontaktieren. Du kannst ansonsten auch selbst auf Gitlab zum Quellcode beitragen oder unsere Webseite besuchen."
+        "text": "Deine Daten werden lokal auf deinem Gerät gespeichert und nicht auf einenm Server. Das bedeutet, dass deine Daten von niemand anderem gelesen werden können, solange sie keinen Zugriff zu deinem Gerät haben. Wir wollen sicherstellen, dass du die Kontrolle über deine eigenen Daten behältst. Solltest du planen das Gerät zu wechseln oder es zurückzusetzen, denke bitte daran davor deine Daten zu exportieren. Du kannst die App dann später erneut installieren und die Daten importieren.\n\nFalls irgendwelche technischen Probleme auftreten, zögere bitte nicht uns per E-Mail zu kontaktieren. Du kannst ansonsten auch selbst auf Gitlab zum Quellcode beitragen oder unsere Webseite besuchen.",
+        "faq": "FAQ",
+        "contact": "\nFalls dein Anliegen noch nicht auf der Liste steht, kannst du uns gern per Mail kontaktieren. Du kannst auch direkt zum Code auf Gitlab beitragen und unsere Website besuchen."
       },
       "philosophy": {
-        "title": "Remember to think for yourself",
-        "text": "drip. makes period predictions for you and helps you apply NFP fertility awareness rules. But please remember that this app is made by humans, and humans make mistakes. Always think for yourself: \"Does this make sense?\" Remember, you don't need an app to understand your cycle! However, drip. wants to support you and make period tracking easier, more transparent and secure."
+        "title": "Mach dir deine eigenen Gedanken",
+        "text": "drip. macht Periodenvorhersagen für dich und hilft dir, die symptothermale Methode zur Fruchtbarkeitsbestimmung anzuwenden. Aber denke bitte daran, dass diese App von Menschen gemacht wird, und Menschen machen Fehler. Mach dir immer selbst Gedanken: \"Ergibt das Sinn?\" Denn: Du brauchst keine App, um deinen Zyklus zu verstehen! Aber drip. kann dich unterstützen und die Beobachtung deiner Periode einfacher, transparenter und sicherer machen."
       },
       "title": "About",
       "version": {
@@ -63,13 +65,13 @@
       "text": "Copyright (C) {{currentYear}} Heart of Code e.V.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details:"
     },
     "menuMain": {
-      "about": "About",
-      "license": "License",
-      "settings": "Settings",
-      "privacyPolicy": "Privacy Policy"
+      "about": "Über drip.",
+      "license": "Lizenz",
+      "settings": "Einstellungen",
+      "privacyPolicy": "Datenschutz"
     },
     "privacyPolicy": {
-      "title": "Privacy Policy",
+      "title": "Datenschutz",
       "intro": {
         "title": "Introduction",
         "text": "This Privacy Policy sets out how the app drip. uses and protects your personal data that you generate and store within the app."
@@ -90,13 +92,13 @@
     "settings": {
       "data": {
         "import": {
-          "button": "Import data",
+          "button": "Importiere Daten",
           "dialog": {
-            "cancel": "Cancel",
-            "delete": "Import and delete existing",
-            "message": "There are two options for the import:\n\n1. Keep existing cycle days and replace only the ones in the import file.\n\n2. Delete all existing cycle days and import cycle days from file",
-            "replace": "Import and replace",
-            "title": "Keep existing data?"
+            "cancel": "Abbrechen",
+            "delete": "Importiere und lösche existierende Daten",
+            "message": "Es gibt 2 Möglichkeiten beim Importieren:\n\n1. Vorhandene Tage beibehalten und nur die in der importierten Datei enthaltenen Tage ersetzen.\n\n2. Alle vorhandenen Zyklustage löschen und Zyklustage aus der Datei importieren",
+            "replace": "Importiere und ersetze",
+            "title": "Behalte vorhandene Daten?"
           },
           "error": {
             "couldNotOpenFile": "Could not open file",
@@ -116,20 +118,27 @@
           "name": "Data",
           "text": "import, export or delete your data"
         },
-        "nfpSettings": {
-          "name": "NFP settings",
-          "text": "define how you want to use NFP"
+        "customization": {
+          "name": "Customization",
+          "text": "Define how you want to use NFP"
         },
         "password": {
           "name": "Password",
-          "text": ""
+          "text": "Set, edit or delete your password"
         },
         "reminders": {
           "name": "Reminders",
           "text": "turn on/off reminders"
+        },
+        "info": {
+          "name": "Info",
+          "text": "Learn more about how drip works"
         }
       },
-      "title": "Settings"
+      "title": "Einstellungen"
+    },
+    "info": {
+      "title": "Info"
     }
   },
   "stats": {

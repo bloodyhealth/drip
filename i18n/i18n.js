@@ -3,9 +3,11 @@ import { initReactI18next } from 'react-i18next'
 
 // translation files
 import en from './en.json'
+import de from './de.json'
 
 const resources = {
   en: { translation: en },
+  de: { translation: de },
 }
 
 i18n
