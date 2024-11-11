@@ -38,6 +38,7 @@ const DataManagement = () => {
         openPasswordConfirmation={openPasswordConfirmation}
         closePasswordConfirmation={closePasswordConfirmation}
         isPasswordConfirmationOpen={isPasswordConfirmationOpen}
+        setIsLoading={setIsLoading}
       />
     </AppPage>
   )

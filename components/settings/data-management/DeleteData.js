@@ -22,6 +22,7 @@ const DeleteData = ({
   closePasswordConfirmation,
   openPasswordConfirmation,
   isPasswordConfirmationOpen,
+  setIsLoading,
 }) => {
   const { t } = useTranslation(null, {
     keyPrefix: 'hamburgerMenu.settings.data.delete',
@@ -60,6 +61,7 @@ const DeleteData = ({
   }
 
   const deleteAppData = async () => {
+    setIsLoading(true)
     try {
       if (!isDbEmpty()) {
         clearDb()
@@ -70,6 +72,7 @@ const DeleteData = ({
       alertError(t('error.delete'))
     } finally {
       closePasswordConfirmation()
+      setIsLoading(false)
     }
   }
 
@@ -94,6 +97,7 @@ DeleteData.propTypes = {
   isPasswordConfirmationOpen: PropTypes.bool.isRequired,
   openPasswordConfirmation: PropTypes.func.isRequired,
   closePasswordConfirmation: PropTypes.func.isRequired,
+  setIsLoading: PropTypes.func.isRequired,
 }
 
 export default DeleteData
