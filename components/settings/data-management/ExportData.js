@@ -20,30 +20,28 @@ export default function ExportData({ setIsLoading, resetIsDeletingData }) {
   async function startExport() {
     resetIsDeletingData()
     setIsLoading(true)
-    await exportData()
+    exportData()
     setIsLoading(false)
   }
 
-  async function getData() {
+  function loadDataFromDb() {
     const cycleDaysByDate = mapRealmObjToJsObj(getCycleDaysSortedByDate())
+    const hasNoData = cycleDaysByDate.length === 0
+    if (hasNoData) {
+      throw new Error(t('error.data'))
+    }
+    return cycleDaysByDate
+  }
 
+  function convertDataToCsv(cycleDaysByDate) {
     try {
-      return cycleDaysByDate.length
-        ? getDataAsCsvDataUri(cycleDaysByDate)
-        : null
+      return getDataAsCsvDataUri(cycleDaysByDate)
     } catch (err) {
-      alertError(t('error.convert'))
-      return null
+      throw new Error(t('error.convert'))
     }
   }
 
-  async function exportData() {
-    const data = await getData()
-    if (!data) {
-      alertError(t('error.data'))
-      return
-    }
-
+  async function shareData(data) {
     try {
       const path = `${RNFS.DocumentDirectoryPath}/${EXPORT_FILE_NAME}`
       await RNFS.writeFile(path, data)
@@ -57,7 +55,17 @@ export default function ExportData({ setIsLoading, resetIsDeletingData }) {
         failOnCancel: false,
       })
     } catch (err) {
-      return alertError(t('error.share'))
+      throw new Error(t('error.share'))
+    }
+  }
+
+  async function exportData() {
+    try {
+      const data = loadDataFromDb()
+      const csvData = convertDataToCsv(data)
+      await shareData(csvData)
+    } catch (error) {
+      alertError(error.message)
     }
   }
 
