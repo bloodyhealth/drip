@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 
@@ -10,6 +10,7 @@ import symOccModule from '../../lib/sympto-occurance'
 import { Spacing, Typography, Colors } from '../../styles'
 
 const SymptomOccurance = ({ onClose }) => {
+  const { t } = useTranslation(null, { keyPrefix: 'stats.symptoOccuDetails' })
   const cycleDays = symOccModule().getCycleStartsOfLastYear()
   if (!cycleDays || cycleDays.length === 0) return null
   console.log('cycle starts:', cycleDays)
@@ -21,15 +22,15 @@ const SymptomOccurance = ({ onClose }) => {
     cycleDays,
     headacheDays
   )
-  console.log('cycle days of pain', cycleDaysOfPain)
 
   return (
     <AppModal onClose={onClose}>
-      <View>
-        <FlatList
-          ListHeaderComponent={FlatListHeader}
-          contentContainerStyle={styles.container}
-        />
+      <View style={styles.container}>
+        <View style={styles.accentCell}>
+          <AppText style={styles.header}>{t('title')}</AppText>
+        </View>
+        <AppText>{'On the following cycle days:'}</AppText>
+        <AppText>{cycleDaysOfPain}</AppText>
       </View>
     </AppModal>
   )
@@ -37,18 +38,6 @@ const SymptomOccurance = ({ onClose }) => {
 
 SymptomOccurance.propTypes = {
   onClose: PropTypes.func,
-}
-
-const FlatListHeader = () => {
-  const { t } = useTranslation(null, { keyPrefix: 'stats.symptoOccuDetails' })
-
-  return (
-    <View style={styles.row}>
-      <View style={styles.accentCell}>
-        <AppText style={styles.header}>{t('title')}</AppText>
-      </View>
-    </View>
-  )
 }
 
 const styles = StyleSheet.create({
