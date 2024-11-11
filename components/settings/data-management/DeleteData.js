@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import RNFS from 'react-native-fs'
 import { Alert } from 'react-native'
 import PropTypes from 'prop-types'
@@ -18,22 +18,19 @@ import { useTranslation } from 'react-i18next'
 
 const exportedFilePath = `${RNFS.DocumentDirectoryPath}/${EXPORT_FILE_NAME}`
 
-const DeleteData = ({ onStartDeletion, isDeletingData }) => {
+const DeleteData = ({
+  closePasswordConfirmation,
+  openPasswordConfirmation,
+  isPasswordConfirmationOpen,
+}) => {
   const { t } = useTranslation(null, {
     keyPrefix: 'hamburgerMenu.settings.data.delete',
   })
 
   const isPasswordSet = hasEncryptionObservable.value
-  const [isPasswordConfirmationOpen, setIsPasswordConfirmationOpen] =
-    useState(false)
-
-  const closePasswordConfirmation = () => {
-    setIsPasswordConfirmationOpen(false)
-  }
 
   const onAlertConfirmation = () => {
-    onStartDeletion()
-    isPasswordSet ? setIsPasswordConfirmationOpen(true) : deleteAppData()
+    isPasswordSet ? openPasswordConfirmation() : deleteAppData()
   }
 
   const alertBeforeDeletion = async () => {
@@ -71,32 +68,32 @@ const DeleteData = ({ onStartDeletion, isDeletingData }) => {
       showToast(t('success.message'))
     } catch (err) {
       alertError(t('error.delete'))
+    } finally {
+      closePasswordConfirmation()
     }
-    closePasswordConfirmation()
-  }
-
-  if (isPasswordConfirmationOpen && isDeletingData) {
-    return (
-      <ConfirmWithPassword
-        onSuccess={deleteAppData}
-        onCancel={closePasswordConfirmation}
-      />
-    )
   }
 
   return (
     <Segment title={t('title')} last>
       <AppText>{t('subTitle')}</AppText>
-      <Button isCTA onPress={alertBeforeDeletion}>
-        {t('title')}
-      </Button>
+      {isPasswordConfirmationOpen ? (
+        <ConfirmWithPassword
+          onSuccess={deleteAppData}
+          onCancel={closePasswordConfirmation}
+        />
+      ) : (
+        <Button isCTA onPress={alertBeforeDeletion}>
+          {t('title')}
+        </Button>
+      )}
     </Segment>
   )
 }
 
 DeleteData.propTypes = {
-  isDeletingData: PropTypes.bool,
-  onStartDeletion: PropTypes.func.isRequired,
+  isPasswordConfirmationOpen: PropTypes.bool.isRequired,
+  openPasswordConfirmation: PropTypes.func.isRequired,
+  closePasswordConfirmation: PropTypes.func.isRequired,
 }
 
 export default DeleteData

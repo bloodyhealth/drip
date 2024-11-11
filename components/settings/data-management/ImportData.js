@@ -10,7 +10,10 @@ import AppText from '../../common/app-text'
 import Button from '../../common/button'
 import { useTranslation } from 'react-i18next'
 
-export default function ImportData({ resetIsDeletingData, setIsLoading }) {
+export default function ImportData({
+  closePasswordConfirmation,
+  setIsLoading,
+}) {
   const { t } = useTranslation(null, {
     keyPrefix: 'hamburgerMenu.settings.data.import',
   })
@@ -58,7 +61,7 @@ export default function ImportData({ resetIsDeletingData, setIsLoading }) {
   }
 
   function openImportDialog() {
-    resetIsDeletingData()
+    closePasswordConfirmation()
 
     let buttons = [
       {
@@ -99,6 +102,6 @@ export default function ImportData({ resetIsDeletingData, setIsLoading }) {
 }
 
 ImportData.propTypes = {
-  resetIsDeletingData: PropTypes.func.isRequired,
+  closePasswordConfirmation: PropTypes.func.isRequired,
   setIsLoading: PropTypes.func.isRequired,
 }

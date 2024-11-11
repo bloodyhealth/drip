@@ -12,13 +12,16 @@ import Button from '../../common/button'
 import Segment from '../../common/segment'
 import Share from 'react-native-share'
 
-export default function ExportData({ setIsLoading, resetIsDeletingData }) {
+export default function ExportData({
+  setIsLoading,
+  closePasswordConfirmation,
+}) {
   const { t } = useTranslation(null, {
     keyPrefix: 'hamburgerMenu.settings.data.export',
   })
 
   async function startExport() {
-    resetIsDeletingData()
+    closePasswordConfirmation()
     setIsLoading(true)
     exportData()
     setIsLoading(false)
@@ -80,6 +83,6 @@ export default function ExportData({ setIsLoading, resetIsDeletingData }) {
 }
 
 ExportData.propTypes = {
-  resetIsDeletingData: PropTypes.func.isRequired,
+  closePasswordConfirmation: PropTypes.func.isRequired,
   setIsLoading: PropTypes.func.isRequired,
 }

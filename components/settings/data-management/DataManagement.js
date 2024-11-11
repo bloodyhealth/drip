@@ -8,25 +8,36 @@ import ExportData from './ExportData'
 
 const DataManagement = () => {
   const [isLoading, setIsLoading] = useState(false)
-  const [isDeletingData, setIsDeletingData] = useState(false)
 
-  const resetIsDeletingData = () => setIsDeletingData(false)
+  const [isPasswordConfirmationOpen, setIsPasswordConfirmationOpen] =
+    useState(false)
+
+  const openPasswordConfirmation = () => {
+    setIsPasswordConfirmationOpen(true)
+  }
+
+  const closePasswordConfirmation = () => {
+    if (isPasswordConfirmationOpen) {
+      setIsPasswordConfirmationOpen(false)
+    }
+  }
 
   if (isLoading) return <AppLoadingView />
 
   return (
     <AppPage>
       <ExportData
-        resetIsDeletingData={resetIsDeletingData}
+        closePasswordConfirmation={closePasswordConfirmation}
         setIsLoading={setIsLoading}
       />
       <ImportData
-        resetIsDeletingData={resetIsDeletingData}
+        closePasswordConfirmation={closePasswordConfirmation}
         setIsLoading={setIsLoading}
       />
       <DeleteData
-        isDeletingData={isDeletingData}
-        onStartDeletion={() => setIsDeletingData(true)}
+        openPasswordConfirmation={openPasswordConfirmation}
+        closePasswordConfirmation={closePasswordConfirmation}
+        isPasswordConfirmationOpen={isPasswordConfirmationOpen}
       />
     </AppPage>
   )
