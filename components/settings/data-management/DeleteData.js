@@ -19,43 +19,45 @@ import { useTranslation } from 'react-i18next'
 const exportedFilePath = `${RNFS.DocumentDirectoryPath}/${EXPORT_FILE_NAME}`
 
 const DeleteData = ({ onStartDeletion, isDeletingData }) => {
-  const isPasswordSet = hasEncryptionObservable.value
-  const [isConfirmingWithPassword, setIsConfirmingWithPassword] =
-    useState(false)
-
   const { t } = useTranslation(null, {
     keyPrefix: 'hamburgerMenu.settings.data.delete',
   })
 
+  const isPasswordSet = hasEncryptionObservable.value
+  const [isPasswordConfirmationOpen, setIsPasswordConfirmationOpen] =
+    useState(false)
+
+  const closePasswordConfirmation = () => {
+    setIsPasswordConfirmationOpen(false)
+  }
+
   const onAlertConfirmation = () => {
     onStartDeletion()
-    if (isPasswordSet) {
-      setIsConfirmingWithPassword(true)
-    } else {
-      deleteAppData()
-    }
+    isPasswordSet ? setIsPasswordConfirmationOpen(true) : deleteAppData()
   }
 
   const alertBeforeDeletion = async () => {
-    if (isDbEmpty() && !(await RNFS.exists(exportedFilePath))) {
-      alertError(t('error.noData'))
-    } else {
-      Alert.alert(t('dialog.title'), t('dialog.message'), [
-        {
-          text: t('dialog.delete'),
-          onPress: onAlertConfirmation,
-        },
-        {
-          text: t('dialog.cancel'),
-          style: 'cancel',
-          onPress: cancelConfirmationWithPassword,
-        },
-      ])
+    const hasNoData = isDbEmpty() && !(await RNFS.exists(exportedFilePath))
+    if (hasNoData) {
+      return alertError(t('error.noData'))
     }
+
+    Alert.alert(t('dialog.title'), t('dialog.message'), [
+      {
+        text: t('dialog.delete'),
+        onPress: onAlertConfirmation,
+      },
+      {
+        text: t('dialog.cancel'),
+        style: 'cancel',
+        onPress: closePasswordConfirmation,
+      },
+    ])
   }
 
   const deleteExportedFile = async () => {
-    if (await RNFS.exists(exportedFilePath)) {
+    const doesFileExist = await RNFS.exists(exportedFilePath)
+    if (doesFileExist) {
       await RNFS.unlink(exportedFilePath)
     }
   }
@@ -70,18 +72,14 @@ const DeleteData = ({ onStartDeletion, isDeletingData }) => {
     } catch (err) {
       alertError(t('error.delete'))
     }
-    cancelConfirmationWithPassword()
+    closePasswordConfirmation()
   }
 
-  const cancelConfirmationWithPassword = () => {
-    setIsConfirmingWithPassword(false)
-  }
-
-  if (isConfirmingWithPassword && isDeletingData) {
+  if (isPasswordConfirmationOpen && isDeletingData) {
     return (
       <ConfirmWithPassword
         onSuccess={deleteAppData}
-        onCancel={cancelConfirmationWithPassword}
+        onCancel={closePasswordConfirmation}
       />
     )
   }
