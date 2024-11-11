@@ -13,15 +13,18 @@ const SymptomOccurance = ({ onClose }) => {
   const { t } = useTranslation(null, { keyPrefix: 'stats.symptoOccuDetails' })
   const cycleDays = symOccModule().getCycleStartsOfLastYear()
   if (!cycleDays || cycleDays.length === 0) return null
-  console.log('cycle starts:', cycleDays)
 
   const headacheDays = symOccModule().getPainDaysOfLastYear()
-  console.log('pain', headacheDays)
 
   const cycleDaysOfPain = symOccModule().getCycleDayForPainDays(
     cycleDays,
     headacheDays
   )
+
+  const histData = symOccModule().buildHistogram(cycleDaysOfPain)
+  const histDataFormatted = Object.entries(histData)
+    .map(([, count]) => `${count[0]}: ${count[1]}`)
+    .join(',\n')
 
   return (
     <AppModal onClose={onClose}>
@@ -30,7 +33,7 @@ const SymptomOccurance = ({ onClose }) => {
           <AppText style={styles.header}>{t('title')}</AppText>
         </View>
         <AppText>{'On the following cycle days:'}</AppText>
-        <AppText>{cycleDaysOfPain}</AppText>
+        <AppText>{histDataFormatted}</AppText>
       </View>
     </AppModal>
   )
