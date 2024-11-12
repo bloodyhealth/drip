@@ -156,7 +156,7 @@
       "cycleLength": "Cycle length",
       "bleedingDays": "Bleeding"
     },
-    "footnote": "Based on the standard deviation of all your tracked periods drip. calculates a range for the starting day of the upcoming 3 periods. The range will be 3 days if your standard deviation is smaller than 1.5 and 5 days if the value is bigger.\n\nThe standard deviation tells you how much the length of your periods vary, 0 means all your periods are exactly the same length and the bigger the value the more the period length varies."
+    "footnote": "Based on the standard deviation of the length of all your tracked cycles, drip. calculates a range for the start day of the next 3 cycles.  The range is 3 days if your standard deviation is less than 1.5 and 5 days if the value is greater than 1.5.\n\nThe standard deviation tells you how much the length of your cycles varies. 0 means that all your cycles are exactly the same length and the higher the value, the more the cycle length varies."
   },
   "plurals": {
     "day": "{{count}} day",
