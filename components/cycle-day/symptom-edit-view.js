@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import {
+  Dimensions,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native'
 
 import AppModal from '../common/app-modal'
 import AppSwitch from '../common/app-switch'
@@ -111,9 +117,12 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const noteText = symptom === 'note' ? data.value : data.note
   const inputProps = {
     multiline: true,
-    numberOfLines: 3,
-    scrollEnabled: false,
-    style: styles.input,
+    numberOfLines: Platform.OS === 'ios' ? null : 4, // only Android
+    minHeight: Platform.OS === 'ios' ? styles.input.height : null,
+    maxHeight:
+      Platform.OS === 'ios' ? Dimensions.get('window').height * 0.4 : null,
+    style: symptom === 'note' ? null : styles.input, // overwrites previous 2 lines to fix note space in symptoms
+    scrollEnabled: true,
     textAlignVertical: 'top',
   }
 

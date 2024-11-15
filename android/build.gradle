@@ -49,10 +49,11 @@ allprojects {
 }
 
 ext {
-    buildToolsVersion = "33.0.2"
     minSdkVersion = 21
-    compileSdkVersion = 33
-    targetSdkVersion = 33
+    compileSdkVersion = 34
+    targetSdkVersion = 34
+    buildToolsVersion = "34.0.0"
+    soLoaderVersion = "0.10.4+"
 
     if (System.properties['os.arch'] == "aarch64") {
         // For M1 Users we need to use the NDK 24 which added support for aarch64

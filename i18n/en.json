@@ -45,7 +45,9 @@
         "text": "The drips are developing this app on a volunteer basis. We are always grateful for support. This could mean condriputing to the code, giving feedback, suggesting improvements or features, testing or donating. It helps and motivates us maintaining this app and developing new features. Thank you for your support!"
       },
       "intro": {
-        "text": "Please note that your data is stored locally on your phone and not on a server. This means your data cannot be read by anyone else unless they have access to your phone. We want to ensure that you stay in control of your own data. If you are planning to switch or reset your phone, please remember to export your data before doing so. You can reinstall the app afterwards and import your data.\n\nIf you encounter any technical issues, don't hesitate to contact us via email. You can also contribute to the code base on Gitlab and visit our website."
+        "text": "Please note that your data is stored locally on your phone and not on a server. This means your data cannot be read by anyone else unless they have access to your phone. We want to ensure that you stay in control of your own data. If you are planning to switch or reset your phone, please remember to export your data before doing so. You can reinstall the app afterwards and import your data.\n\nIf you encounter any issues, please take a look at our Frequently Asked Questions page.",
+        "faq": "FAQ",
+        "contact": "\nIf your issue is not listed, don't hesitate to contact us via email. You can also contribute to the code base on Gitlab and visit our website."
       },
       "philosophy": {
         "title": "Remember to think for yourself",
@@ -154,7 +156,7 @@
       "cycleLength": "Cycle length",
       "bleedingDays": "Bleeding"
     },
-    "footnote": "Based on the standard deviation of all your tracked periods drip. calculates a range for the starting day of the upcoming 3 periods. The range will be 3 days if your standard deviation is smaller than 1.5 and 5 days if the value is bigger.\n\nThe standard deviation tells you how much the length of your periods vary, 0 means all your periods are exactly the same length and the bigger the value the more the period length varies."
+    "footnote": "Based on the standard deviation of the length of all your tracked cycles, drip. calculates a range for the start day of the next 3 cycles.  The range is 3 days if your standard deviation is less than 1.5 and 5 days if the value is greater than 1.5.\n\nThe standard deviation tells you how much the length of your cycles varies. 0 means that all your cycles are exactly the same length and the higher the value, the more the cycle length varies."
   },
   "plurals": {
     "day": "{{count}} day",

@@ -34,12 +34,30 @@ or clone it with HTTPS
 
     git clone https://gitlab.com/bloodyhealth/drip.git
 
-### 2. Node & yarn version
+### 2. Node version
 
 Make sure you are running Node 14 and classic yarn (v.1). It's easiest to switch Node versions using `nvm`, here's how to install NVM: https://github.com/nvm-sh/nvm#installing-and-updating. After installing nvm close the terminal and open it again to be able to use nvm.
 Once you have nvm running you can install node 14:
 
     nvm install v14.19.3
+
+#### On Apple Silicon M1
+
+NodeJS 14 does not compile on the M1 architecture, so it has to be installed through Rosetta: https://devzilla.io/using-nodejs-14-with-mac-silicon-m1 . 
+To activate Rosetta and switch to intel emulation run: 
+
+    arch -x86_64 zsh
+
+Run 
+
+    arch 
+
+again to verify that it returns "i386".
+Now install node 14:
+
+    nvm install v14.19.3
+
+### 3. Yarn version
 
 use npm to install yarn:
 
@@ -113,19 +131,35 @@ Minimum system requirements to run iOS app are as follows:
 - MacOS 10.15.7 for Mac users
 - Xcode 13 (command line tools only might be enough)
 
-i. Install XCode dependencies by running the following command from the root project directory:
+i. Install yarn dependencies
+
+    yarn install ..
+
+ii. Install XCode dependencies by running the following command from the root project directory:
 
     cd ios && pod install && cd ..
 
-ii. To run app either open drip workspace ('drip.xcworkspace' file) with XCode and run "Build" or run the following command:
+iii. To run app either open drip workspace ('drip.xcworkspace' file) with XCode and run "Build" or run the following command:
 
     yarn ios
 
-iii. If you are building the app with XCode make sure you are running this as well:
+iiii. If you are building the app with XCode make sure you are running this as well:
 
     yarn start
 
 ### Troubleshooting
+
+#### [MacOS M1] Flipper problems
+
+If a bug in the currently used Flipper version prevents building the project, comment out the respective line in the podfile, like so:
+
+    #use_flipper!()
+
+Run 
+
+    pod install 
+
+from the ios directory again to reload the dependencies.
 
 #### [MacOS] Java problems
 

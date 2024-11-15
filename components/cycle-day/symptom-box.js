@@ -64,7 +64,7 @@ const SymptomBox = ({
         <View style={styles.textContainer}>
           <AppText style={symptomNameStyle}>{t(symptom)}</AppText>
           {symptomDataToDisplay && (
-            <AppText style={textStyle} numberOfLines={4}>
+            <AppText style={textStyle} numberOfLines={3}>
               {symptomDataToDisplay}
             </AppText>
           )}
