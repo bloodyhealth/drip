@@ -1,13 +1,14 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { Dimensions, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
+import { Surface, Shape } from '@react-native-community/art'
 
 import AppModal from '../common/app-modal'
 import AppText from '../common/app-text'
 
 import symOccModule from '../../lib/sympto-occurance'
-import { Spacing, Typography, Colors } from '../../styles'
+import { Spacing, Typography, Colors, Sizes } from '../../styles'
 
 const SymptomOccurance = ({ onClose }) => {
   const { t } = useTranslation(null, { keyPrefix: 'stats.symptoOccuDetails' })
@@ -22,9 +23,15 @@ const SymptomOccurance = ({ onClose }) => {
   )
 
   const histData = symOccModule().buildHistogram(cycleDaysOfPain)
-  const histDataFormatted = Object.entries(histData)
-    .map(([, count]) => `${count[0]}: ${count[1]}`)
+  const histDataFormatted = histData
+    .map(([value, count]) => `${value}: ${count}`)
     .join(',\n')
+  const histPath = symOccModule().histogramPath(histData, 260, 200)
+  const labelPositions = Array.from(
+    // first day each week
+    { length: Math.ceil((histData.length - 1) / 7) },
+    (_, index) => 1 + index * 7
+  )
 
   return (
     <AppModal onClose={onClose}>
@@ -33,7 +40,27 @@ const SymptomOccurance = ({ onClose }) => {
           <AppText style={styles.header}>{t('title')}</AppText>
         </View>
         <AppText>{'On the following cycle days:'}</AppText>
-        <AppText>{histDataFormatted}</AppText>
+        <View>
+          <Surface width={300} height={200}>
+            <Shape d={histPath} fill="#3498db" />
+          </Surface>
+          <View>
+            {labelPositions.map((position) => (
+              <AppText
+                key={position}
+                style={{
+                  position: 'absolute',
+                  left: (position / histData.length) * 300 - 10,
+                }}
+              >
+                {position}
+              </AppText>
+            ))}
+          </View>
+        </View>
+        <View>
+          <AppText style={styles.histData}>{histDataFormatted}</AppText>
+        </View>
       </View>
     </AppModal>
   )
@@ -75,6 +102,10 @@ const styles = StyleSheet.create({
     minHeight: '40%',
     minWidth: '95%',
     paddingHorizontal: Spacing.base,
+  },
+  histData: {
+    // TODO clean up when no longer needed
+    fontSize: Sizes.footnote,
   },
 })
 
