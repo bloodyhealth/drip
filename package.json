@@ -1,13 +1,14 @@
 {
   "name": "drip.",
-  "version": "1.2403.19",
+  "version": "1.2410.29",
   "contributors": [
     "Julia Friesel <julia.friesel@gmail.com>",
     "Marie Kochsiek",
     "Tina Baumann",
     "Sofiya Tepikin",
     "Mariya Zadnepryanets",
-    "Lisa Hillebrand"
+    "Lisa Hillebrand",
+    "Martha Dörfler"
   ],
   "scripts": {
     "start": "react-native start",
@@ -47,7 +48,7 @@
     "prop-types": "^15.8.1",
     "react": "17.0.2",
     "react-i18next": "^12.0.0",
-    "react-native": "0.68.3",
+    "react-native": "0.68.5",
     "react-native-calendars": "^1.1287.0",
     "react-native-document-picker": "^8.1.1",
     "react-native-fs": "^2.20.0",
@@ -59,7 +60,7 @@
     "react-native-size-matters": "^0.4.0",
     "react-native-vector-icons": "^9.2.0",
     "realm": "^10.16.0",
-    "sympto": "3.0.1"
+    "sympto": "3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
