@@ -41,3 +41,5 @@ export const HIT_SLOP = {
 }
 
 export const STATUSBAR_HEIGHT = StatusBar.currentHeight
+
+export const BATCH_SIZE = 10
