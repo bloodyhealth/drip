@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
@@ -7,9 +7,10 @@ import AppModal from '../common/app-modal'
 import AppText from '../common/app-text'
 
 import cycleModule from '../../lib/cycle'
-import { Spacing, Typography, Colors } from '../../styles'
+import { Colors, Spacing, Typography } from '../../styles'
 import { humanizeDate } from '../helpers/format-date'
 import LoadingMoreView from '../chart/loading-more'
+import { BATCH_SIZE } from '../../config'
 
 const Item = ({ data }) => {
   const { t } = useTranslation(null, { keyPrefix: 'plurals' })
@@ -38,27 +39,36 @@ Item.propTypes = {
 }
 
 const PeriodDetailsModal = ({ onClose }) => {
+  const start = useRef(0)
+  const end = useRef(BATCH_SIZE)
   const renderItem = ({ item }) => <Item data={item} />
-  const data = cycleModule().getStats()
   const [endReached, setEndReached] = useState(false)
 
-  if (!data || data.length === 0) return false
+  const firstBatch = cycleModule().computeNextStatsBatch(
+    start.current,
+    end.current
+  )
+  const [stats, setStats] = useState(firstBatch)
 
-  // const ITEM_HEIGHT = 50;
-  
-  // const getItemLayout = (data, index) => ({
-  //   length: ITEM_HEIGHT,
-  //   offset: ITEM_HEIGHT * index,
-  //   index
-  // });
+  if (!stats || stats.length === 0) return false
+
+  const loadMoreStats = () => {
+    start.current += BATCH_SIZE
+    end.current += BATCH_SIZE
+    const nextBatch = cycleModule().computeNextStatsBatch(
+      start.current,
+      end.current
+    )
+    setStats((prev) => [...prev, ...nextBatch])
+  }
 
   return (
     <AppModal onClose={onClose}>
       <View>
         <FlatList
-          data={data}
+          data={stats}
           renderItem={renderItem}
-          // getItemLayout={getItemLayout} 
+          // getItemLayout={getItemLayout}
           keyExtractor={(item) => item.date}
           ItemSeparatorComponent={ItemDivider}
           ListHeaderComponent={FlatListHeader}
@@ -66,8 +76,11 @@ const PeriodDetailsModal = ({ onClose }) => {
           stickyHeaderIndices={[0]}
           windowSize={4}
           contentContainerStyle={styles.container}
-          onEndReached={() => setEndReached(true)}
-          onEndReachedThreshold={0.1}
+          onEndReached={() => {
+            setEndReached(true)
+            loadMoreStats()
+          }}
+          onEndReachedThreshold={0.5}
           ListFooterComponent={<LoadingMoreView end={endReached} />}
           updateCellsBatchingPeriod={100}
         />
