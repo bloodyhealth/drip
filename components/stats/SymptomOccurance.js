@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { Surface, Shape } from '@react-native-community/art'
