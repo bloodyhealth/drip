@@ -6,8 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changes
 
-- Updated dependencies:
-  - react-native v0.68.5
+- Update of React Native to v0.68.5
 
 ### Adds
 
