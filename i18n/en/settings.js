@@ -82,10 +82,8 @@ export default {
   },
   secondarySymptom: {
     title: 'Secondary symptom',
-    cervixModeOn:
-      'Cervix values are being used for fertility detection according to the sympto-thermal method.',
-    cervixModeOff:
-      'Cervical mucus values are being used for fertility detection according to the sympto-thermal method.',
+    switch:
+      'Please choose your preferred secondary symptom for fertility detection according to the sympto-thermal method:',
     disabled: {
       title: 'Disabled',
       message:
