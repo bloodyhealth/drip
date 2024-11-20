@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.2411.20 Android & iOS
+
+### Changes
+
+- Limit lines to 3 for cycle day symptom tiles and some minor style improvements
+- Improve calculation of cycle length for each cycle
+- Updated dependencies:
+  - sympto from 3.0.1 to 3.0.2
+
+### Fixed
+
+- Export error for Android 14+
+- Scrolling in note field for iOS
+- Handle 99 days cycle for period details in stats
+
 ## v1.2410.29 Android & iOS
 
 ### Changes
