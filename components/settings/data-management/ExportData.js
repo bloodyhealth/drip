@@ -24,6 +24,16 @@ export default function ExportData({ setIsLoading, resetIsDeletingData }) {
     setIsLoading(false)
   }
 
+  async function exportData() {
+    try {
+      const data = loadDataFromDb()
+      const csvData = convertDataToCsv(data)
+      await shareData(csvData)
+    } catch (error) {
+      alertError(error.message)
+    }
+  }
+
   function loadDataFromDb() {
     const cycleDaysByDate = mapRealmObjToJsObj(getCycleDaysSortedByDate())
     const hasNoData = cycleDaysByDate.length === 0
@@ -56,16 +66,6 @@ export default function ExportData({ setIsLoading, resetIsDeletingData }) {
       })
     } catch (err) {
       throw new Error(t('error.share'))
-    }
-  }
-
-  async function exportData() {
-    try {
-      const data = loadDataFromDb()
-      const csvData = convertDataToCsv(data)
-      await shareData(csvData)
-    } catch (error) {
-      alertError(error.message)
     }
   }
 
