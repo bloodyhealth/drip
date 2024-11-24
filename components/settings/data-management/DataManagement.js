@@ -17,9 +17,7 @@ const DataManagement = () => {
   }
 
   const closePasswordConfirmation = () => {
-    if (isPasswordConfirmationOpen) {
-      setIsPasswordConfirmationOpen(false)
-    }
+    setIsPasswordConfirmationOpen(false)
   }
 
   if (isLoading) return <AppLoadingView />
