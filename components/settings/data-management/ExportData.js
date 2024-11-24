@@ -38,7 +38,7 @@ export default function ExportData({ setIsLoading, resetIsDeletingData }) {
     const cycleDaysByDate = mapRealmObjToJsObj(getCycleDaysSortedByDate())
     const hasNoData = cycleDaysByDate.length === 0
     if (hasNoData) {
-      throw new Error(t('error.data'))
+      throw new Error(t('error.noData'))
     }
     return cycleDaysByDate
   }
@@ -47,7 +47,7 @@ export default function ExportData({ setIsLoading, resetIsDeletingData }) {
     try {
       return getDataAsCsvDataUri(cycleDaysByDate)
     } catch (err) {
-      throw new Error(t('error.convert'))
+      throw new Error(t('error.conversionFailed'))
     }
   }
 
@@ -65,7 +65,7 @@ export default function ExportData({ setIsLoading, resetIsDeletingData }) {
         failOnCancel: false,
       })
     } catch (err) {
-      throw new Error(t('error.share'))
+      throw new Error(t('error.sharingFailed'))
     }
   }
 
