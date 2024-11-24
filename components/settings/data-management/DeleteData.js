@@ -42,7 +42,7 @@ const DeleteData = ({
 
     Alert.alert(t('dialog.title'), t('dialog.message'), [
       {
-        text: t('dialog.delete'),
+        text: t('dialog.confirm'),
         onPress: onAlertConfirmation,
       },
       {
