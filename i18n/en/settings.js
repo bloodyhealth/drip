@@ -6,22 +6,6 @@ export default {
     trackingCategories: 'Tracking categories',
     subheaderSymptoThermalMethod: 'Sympto-thermal method settings',
   },
-  deleteSegment: {
-    title: 'Delete app data',
-    explainer: 'Delete app data from this phone',
-    question: 'Do you want to delete app data from this phone?',
-    message:
-      'Please note that deletion of the app data is permanent and irreversible. We recommend exporting existing data before deletion.',
-    confirmation: 'Delete app data permanently',
-    errors: {
-      couldNotDeleteFile: 'Could not delete data',
-      postFix: 'No data was deleted or changed',
-      noData: 'There is no data to delete',
-    },
-    success: {
-      message: 'App data successfully deleted',
-    },
-  },
   tempScale: {
     segmentTitle: 'Temperature scale',
     segmentExplainer:
