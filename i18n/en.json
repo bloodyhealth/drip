@@ -89,6 +89,23 @@
     },
     "settings": {
       "data": {
+        "delete": {
+          "dialog": {
+            "cancel": "Cancel",
+            "confirm": "Delete app data permanently",
+            "message": "Please note that deletion of the app data is permanent and irreversible. We recommend exporting existing data before deletion.",
+            "title": "Do you want to delete app data from this phone?"
+          },
+          "error": {
+            "delete": "Could not delete data",
+            "noData": "There is no data to delete"
+          },
+          "subTitle": "Delete app data from this phone",
+          "success": {
+            "message": "App data successfully deleted"
+          },
+          "title": "Delete app data"
+        },
         "export": {
           "button": "Export data",
           "error": {
