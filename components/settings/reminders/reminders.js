@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import AppPage from '../../common/app-page'
-import AppSwitch from '../../common/app-switch'
 import Segment from '../../common/segment'
 import TemperatureReminder from './temperature-reminder'
+import PeriodReminder from './period-reminder'
 
 import {
-  periodReminderObservable,
-  savePeriodReminder,
   periodPredictionObservable,
   temperatureTrackingCategoryObservable,
 } from '../../../local-storage'
@@ -16,21 +15,15 @@ import labels from '../../../i18n/en/settings'
 import { Alert, Pressable } from 'react-native'
 
 const Reminders = () => {
-  const isPeriodPredictionDisabled = !periodPredictionObservable.value
+  const { t } = useTranslation(null, {
+    keyPrefix: 'hamburgerMenu.settings.reminders.periodReminder',
+  })
 
-  const [isPeriodReminderEnabled, setIsPeriodReminderEnabled] = useState(
-    periodReminderObservable.value.enabled
-  )
-  const periodReminderToggle = (isEnabled) => {
-    setIsPeriodReminderEnabled(isEnabled)
-    savePeriodReminder({ enabled: isEnabled })
-  }
-
-  const reminderDisabledPrompt = () => {
+  const periodReminderDisabledPrompt = () => {
     if (!periodPredictionObservable.value) {
       Alert.alert(
-        labels.periodReminder.alertNoPeriodReminder.title,
-        labels.periodReminder.alertNoPeriodReminder.message
+        t('alertNoPeriodReminder.title'),
+        t('alertNoPeriodReminder.message')
       )
     }
   }
@@ -43,16 +36,12 @@ const Reminders = () => {
       )
     }
   }
+
   return (
     <AppPage>
-      <Pressable onPress={reminderDisabledPrompt}>
-        <Segment title={labels.periodReminder.title}>
-          <AppSwitch
-            onToggle={periodReminderToggle}
-            text={labels.periodReminder.reminderText}
-            value={isPeriodReminderEnabled}
-            disabled={isPeriodPredictionDisabled}
-          />
+      <Pressable onPress={periodReminderDisabledPrompt}>
+        <Segment title={t('title')}>
+          <PeriodReminder />
         </Segment>
       </Pressable>
       <Pressable onPress={tempReminderDisabledPrompt}>

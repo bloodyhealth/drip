@@ -138,6 +138,18 @@
           }
         }
       },
+      "reminders": {
+        "periodReminder": {
+          "title": "Next period reminder",
+          "reminderTextSingular": "Get a notification 1 day before your next period is likely to start.",
+          "reminderTextPlural": "Get a notification {{days}} days before your next period is likely to start.",
+          "notification": "Your next period is likely to start in {{advanceNoticeDays}} to {{daysToEndOfPrediction}} days.",
+          "alertNoPeriodReminder": {
+            "title": "Period predictions turned off",
+            "message": "To use the period reminder please first enable period predictions in the customization settings."
+          }
+        }
+      },
       "menuItem": {
         "dataManagement": {
           "name": "Data",
