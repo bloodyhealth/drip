@@ -1,43 +1,41 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, Pressable, StyleSheet, View } from 'react-native'
+import { Alert, Pressable } from 'react-native'
 import { useTranslation } from 'react-i18next'
-
-import AppIcon from '../../common/app-icon'
 import AppPage from '../../common/app-page'
 import AppSwitch from '../../common/app-switch'
 import AppText from '../../common/app-text'
-import { Colors, Spacing, Typography } from '../../../styles'
 import TemperatureSlider from './temperature-slider'
 import Segment from '../../common/segment'
 import TrackingCategorySwitch from '../../common/tracking-category-switch'
 import SelectTabGroup from '../../cycle-day/select-tab-group'
 
 import {
+  cervixTrackingCategoryObservable,
   desireTrackingCategoryObservable,
   fertilityTrackingObservable,
   moodTrackingCategoryObservable,
+  mucusTrackingCategoryObservable,
   noteTrackingCategoryObservable,
   painTrackingCategoryObservable,
-  sexTrackingCategoryObservable,
-  temperatureTrackingCategoryObservable,
-  mucusTrackingCategoryObservable,
-  cervixTrackingCategoryObservable,
   periodPredictionObservable,
-  useCervixAsSecondarySymptomObservable,
+  saveCervixTrackingCategory,
   saveDesireTrackingCategory,
   saveFertilityTrackingEnabled,
   saveMoodTrackingCategory,
+  saveMucusTrackingCategory,
   saveNoteTrackingCategory,
   savePainTrackingCategory,
-  saveMucusTrackingCategory,
-  saveCervixTrackingCategory,
   savePeriodPrediction,
   saveSexTrackingCategory,
   saveTemperatureTrackingCategory,
   saveUseCervixAsSecondarySymptom,
+  sexTrackingCategoryObservable,
+  temperatureTrackingCategoryObservable,
+  useCervixAsSecondarySymptomObservable,
 } from '../../../local-storage'
 import labels from '../../../i18n/en/settings'
 import { SYMPTOMS } from '../../../config'
+import { InfertileDaysInfo } from './sections/infertile-days-info'
 
 const Settings = () => {
   const { t } = useTranslation(null, { keyPrefix: 'symptoms' })
@@ -316,32 +314,9 @@ const Settings = () => {
           />
         </Segment>
       </Pressable>
-      <Segment last>
-        <View style={styles.line}>
-          <AppIcon
-            color={Colors.purple}
-            name="info-with-circle"
-            style={styles.icon}
-          />
-          <AppText style={styles.title}>{labels.preOvu.title}</AppText>
-        </View>
-        <AppText>{labels.preOvu.note}</AppText>
-      </Segment>
+      <InfertileDaysInfo />
     </AppPage>
   )
 }
 
 export default Settings
-
-const styles = StyleSheet.create({
-  icon: {
-    marginRight: Spacing.base,
-  },
-  line: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  title: {
-    ...Typography.subtitle,
-  },
-})
