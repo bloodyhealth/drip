@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+
 import AppSwitch from '../../common/app-switch'
 import AdvanceNoticeDaysSlider from '../customization/advance-notice-days-slider'
 
@@ -9,7 +11,6 @@ import {
   saveAdvanceNoticeDays,
   advanceNoticeDaysObservable,
 } from '../../../local-storage'
-import labels from '../../../i18n/en/settings'
 
 const PeriodReminder = () => {
   const isPeriodPredictionDisabled = !periodPredictionObservable.value
@@ -32,10 +33,14 @@ const PeriodReminder = () => {
     saveAdvanceNoticeDays(days)
   }
 
+  const { t } = useTranslation(null, {
+    keyPrefix: 'hamburgerMenu.settings.reminders.periodReminder',
+  })
+
   const reminderText =
     advanceNoticeDays == 1
-      ? labels.periodReminder.reminderTextSingular
-      : labels.periodReminder.reminderTextPlural(advanceNoticeDays)
+      ? t('reminderTextSingular')
+      : t('reminderTextPlural', { days: advanceNoticeDays })
 
   return (
     <>
