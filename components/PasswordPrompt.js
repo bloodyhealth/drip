@@ -81,7 +81,11 @@ const PasswordPrompt = ({ enableShowApp }) => {
           />
           <View style={styles.containerButtons}>
             <Button onPress={onConfirmDeletion}>{t('forgotPassword')}</Button>
-            <Button disabled={!password} isCTA={!!password} onPress={unlockApp}>
+            <Button
+              disabled={!password}
+              isCTA={Boolean(password)}
+              onPress={unlockApp}
+            >
               {t('unlockApp')}
             </Button>
           </View>
