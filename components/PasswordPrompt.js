@@ -18,6 +18,8 @@ const PasswordPrompt = ({ enableShowApp }) => {
 
   const { t } = useTranslation(null, { keyPrefix: 'password' })
 
+  const isPasswordEntered = Boolean(password)
+
   const cancelButton = {
     text: t('forgotPasswordDialog.cancel'),
     style: 'cancel',
@@ -81,7 +83,11 @@ const PasswordPrompt = ({ enableShowApp }) => {
           />
           <View style={styles.containerButtons}>
             <Button onPress={onConfirmDeletion}>{t('forgotPassword')}</Button>
-            <Button disabled={!password} isCTA={!!password} onPress={unlockApp}>
+            <Button
+              disabled={!isPasswordEntered}
+              isCTA={isPasswordEntered}
+              onPress={unlockApp}
+            >
               {t('unlockApp')}
             </Button>
           </View>
