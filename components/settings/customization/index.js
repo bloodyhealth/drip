@@ -201,10 +201,6 @@ const Settings = () => {
     isTemperatureTrackingCategoryEnabled &&
     (isMucusTrackingCategoryEnabled || isCervixTrackingCategoryEnabled)
 
-  const cervixText = useCervixAsSecondarySymptom
-    ? labels.secondarySymptom.cervixModeOn
-    : labels.secondarySymptom.cervixModeOff
-
   const sliderDisabledPrompt = () => {
     if (!isTemperatureTrackingCategoryEnabled) {
       Alert.alert(labels.tempScale.disabled, labels.tempScale.disabledMessage)
@@ -311,7 +307,7 @@ const Settings = () => {
 
       <Pressable onPress={secondarySymptomDisabledPrompt}>
         <Segment title={labels.secondarySymptom.title}>
-          <AppText>{cervixText}</AppText>
+          <AppText>{labels.secondarySymptom.switch}</AppText>
           <SelectTabGroup
             activeButton={useCervixAsSecondarySymptom}
             buttons={secondarySymptomButtons}
