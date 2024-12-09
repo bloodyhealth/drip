@@ -38,6 +38,7 @@ import {
 } from '../../../local-storage'
 import labels from '../../../i18n/en/settings'
 import { SYMPTOMS } from '../../../config'
+import { InfertileDaysInfo } from './sections/infertile-days-info'
 
 const Settings = () => {
   const { t } = useTranslation(null, { keyPrefix: 'symptoms' })
@@ -316,32 +317,9 @@ const Settings = () => {
           />
         </Segment>
       </Pressable>
-      <Segment last>
-        <View style={styles.line}>
-          <AppIcon
-            color={Colors.purple}
-            name="info-with-circle"
-            style={styles.icon}
-          />
-          <AppText style={styles.title}>{labels.preOvu.title}</AppText>
-        </View>
-        <AppText>{labels.preOvu.note}</AppText>
-      </Segment>
+      <InfertileDaysInfo />
     </AppPage>
   )
 }
 
 export default Settings
-
-const styles = StyleSheet.create({
-  icon: {
-    marginRight: Spacing.base,
-  },
-  line: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  title: {
-    ...Typography.subtitle,
-  },
-})
