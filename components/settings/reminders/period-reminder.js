@@ -37,10 +37,11 @@ const PeriodReminder = () => {
     keyPrefix: 'hamburgerMenu.settings.reminders.periodReminder',
   })
 
-  const reminderText =
-    advanceNoticeDays == 1
-      ? t('reminderTextSingular')
-      : t('reminderTextPlural', { days: advanceNoticeDays })
+  const reminderText = !isPeriodReminderEnabled
+    ? t('noReminderSet')
+    : advanceNoticeDays == 1
+    ? t('reminderTextSingular')
+    : t('reminderTextPlural', { days: advanceNoticeDays })
 
   return (
     <>
