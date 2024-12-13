@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Platform } from 'react-native'
+import { useTranslation } from 'react-i18next'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 
 import AppSwitch from '../../common/app-switch'
@@ -10,8 +11,6 @@ import {
   temperatureTrackingCategoryObservable,
 } from '../../../local-storage'
 import padWithZeros from '../../helpers/pad-time-with-zeros'
-
-import labels from '../../../i18n/en/settings'
 
 const TemperatureReminder = () => {
   const [isEnabled, setIsEnabled] = useState(
@@ -41,10 +40,12 @@ const TemperatureReminder = () => {
     setIsTimePickerVisible(false)
   }
 
+  const { t } = useTranslation(null, {
+    keyPrefix: 'hamburgerMenu.settings.reminders.tempReminder',
+  })
+
   const tempReminderText =
-    time && isEnabled
-      ? labels.tempReminder.timeSet(time)
-      : labels.tempReminder.noTimeSet
+    time && isEnabled ? t('timeSet', { time: time }) : t('noTimeSet')
 
   return (
     <>

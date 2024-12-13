@@ -18,18 +18,6 @@ export default {
     disabledMessage:
       'To use the temperature scale please first enable temperature tracking above.',
   },
-
-  tempReminder: {
-    title: 'Temperature reminder',
-    noTimeSet: 'Set a time for a daily reminder to take your temperature',
-    timeSet: (time) => `Daily reminder set for ${time}`,
-    notification: 'Record your morning temperature',
-    alertNoTempReminder: {
-      title: 'Temperature turned off',
-      message:
-        'To use the temperature reminder please first enable the temperature tracking category in the customization settings.',
-    },
-  },
   fertilityTracking: {
     title: 'Fertility phases calculation',
     disabledTitle: 'Disabled',
