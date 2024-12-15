@@ -54,11 +54,6 @@ export default {
     mucus: 'cervical mucus',
     cervix: 'cervix',
   },
-  periodPrediction: {
-    title: 'Period predictions',
-    on: 'drip predicts your 3 next menstrual bleedings based on statistics if you previously tracked at least 3 complete cycles.',
-    off: 'There are no predictions for menstrual cycles displayed. If turned on, the calendar and the home screen will display period predictions.',
-  },
   passwordSettings: {
     title: 'App password',
     explainerDisabled:

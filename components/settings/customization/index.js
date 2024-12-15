@@ -17,7 +17,6 @@ import {
   mucusTrackingCategoryObservable,
   noteTrackingCategoryObservable,
   painTrackingCategoryObservable,
-  periodPredictionObservable,
   saveCervixTrackingCategory,
   saveDesireTrackingCategory,
   saveFertilityTrackingEnabled,
@@ -25,7 +24,6 @@ import {
   saveMucusTrackingCategory,
   saveNoteTrackingCategory,
   savePainTrackingCategory,
-  savePeriodPrediction,
   saveSexTrackingCategory,
   saveTemperatureTrackingCategory,
   saveUseCervixAsSecondarySymptom,
@@ -36,16 +34,13 @@ import {
 import labels from '../../../i18n/en/settings'
 import { SYMPTOMS } from '../../../config'
 import { InfertileDaysInfo } from './sections/InfertileDaysInfo'
+import { PeriodPrediction } from './sections/period-prediction'
 
 const Settings = () => {
   const { t } = useTranslation(null, { keyPrefix: 'symptoms' })
 
   const [useCervixAsSecondarySymptom, setUseCervixAsSecondarySymptom] =
     useState(useCervixAsSecondarySymptomObservable.value)
-
-  const [isPeriodPredictionEnabled, setPeriodPrediction] = useState(
-    periodPredictionObservable.value
-  )
 
   const [isTemperatureTrackingCategoryEnabled, setTemperatureTrackingCategory] =
     useState(temperatureTrackingCategoryObservable.value)
@@ -121,18 +116,10 @@ const Settings = () => {
     setNoteTrackingCategory(value)
     saveNoteTrackingCategory(value)
   }
-  const onPeriodPredictionToggle = (value) => {
-    setPeriodPrediction(value)
-    savePeriodPrediction(value)
-  }
 
   const fertilityTrackingText = isFertilityTrackingEnabled
     ? labels.fertilityTracking.on
     : labels.fertilityTracking.off
-
-  const periodPredictionText = isPeriodPredictionEnabled
-    ? labels.periodPrediction.on
-    : labels.periodPrediction.off
 
   const secondarySymptomButtons = [
     {
@@ -283,13 +270,7 @@ const Settings = () => {
         </Segment>
       </Pressable>
 
-      <Segment title={labels.periodPrediction.title}>
-        <AppSwitch
-          onToggle={onPeriodPredictionToggle}
-          text={periodPredictionText}
-          value={isPeriodPredictionEnabled}
-        />
-      </Segment>
+      <PeriodPrediction />
 
       <Segment
         subheader={labels.customization.subheaderSymptoThermalMethod}
