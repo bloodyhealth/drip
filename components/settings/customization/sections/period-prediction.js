@@ -11,23 +11,21 @@ export const PeriodPrediction = () => {
   const { t } = useTranslation(null, {
     keyPrefix: 'hamburgerMenu.settings.customization.periodPrediction',
   })
-  const [isPeriodPredictionEnabled, setPeriodPrediction] = useState(
-    periodPredictionObservable.value
-  )
+  const [isEnabled, setIsEnabled] = useState(periodPredictionObservable.value)
 
-  const periodPredictionText = t(isPeriodPredictionEnabled ? 'on' : 'off')
+  const periodPredictionText = t(isEnabled ? 'on' : 'off')
 
-  const onPeriodPredictionToggle = (value) => {
-    setPeriodPrediction(value)
+  const onToggle = (value) => {
+    setIsEnabled(value)
     savePeriodPrediction(value)
   }
 
   return (
     <Segment title={t('title')}>
       <AppSwitch
-        onToggle={onPeriodPredictionToggle}
+        onToggle={onToggle}
         text={periodPredictionText}
-        value={isPeriodPredictionEnabled}
+        value={isEnabled}
       />
     </Segment>
   )
