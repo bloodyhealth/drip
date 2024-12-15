@@ -195,11 +195,6 @@ export async function saveFertilityTrackingEnabled(bool) {
 
 async function setObvWithInitValue(key, obv, defaultValue) {
   const result = await AsyncStorage.getItem(key)
-  let value
-  if (result) {
-    value = JSON.parse(result)
-  } else {
-    value = defaultValue
-  }
+  const value = result ? JSON.parse(result) : defaultValue
   obv.set(value)
 }
