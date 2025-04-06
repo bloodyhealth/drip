@@ -95,7 +95,7 @@
         },
         "periodPrediction": {
           "off": "There are no predictions for menstrual cycles displayed. If turned on, the calendar and the home screen will display period predictions.",
-          "on": "drip predicts your 3 next menstrual bleedings based on statistics if you previously tracked at least 3 complete cycles.",
+          "on": "drip predicts the starting days of the next 3 menstrual bleedings based on statistics if you previously tracked at least 3 complete cycles.",
           "title": "Period predictions"
         }
       },
