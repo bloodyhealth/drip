@@ -10,26 +10,36 @@ import Header from './header'
 
 import { saveEncryptionFlag } from '../local-storage'
 import { deleteDbAndOpenNew, openDb } from '../db'
-import { passwordPrompt as labels, shared } from '../i18n/en/labels'
 import { Containers, Spacing } from '../styles'
-
-const cancelButton = { text: shared.cancel, style: 'cancel' }
+import { useTranslation } from 'react-i18next'
 
 const PasswordPrompt = ({ enableShowApp }) => {
   const [password, setPassword] = useState(null)
+
+  const { t } = useTranslation(null, { keyPrefix: 'password' })
+
   const isPasswordEntered = Boolean(password)
+
+  const cancelButton = {
+    text: t('forgotPasswordDialog.cancel'),
+    style: 'cancel',
+  }
 
   const unlockApp = async () => {
     const hash = new SHA512().hex(password)
     const connected = await openDb(hash)
 
     if (!connected) {
-      Alert.alert(shared.incorrectPassword, shared.incorrectPasswordMessage, [
-        {
-          text: shared.tryAgain,
-          onPress: () => setPassword(null),
-        },
-      ])
+      Alert.alert(
+        t('incorrectPasswordDialog.incorrectPassword'),
+        t('incorrectPasswordDialog.incorrectPasswordMessage'),
+        [
+          {
+            text: t('incorrectPasswordDialog.tryAgain'),
+            onPress: () => setPassword(null),
+          },
+        ]
+      )
       return
     }
     enableShowApp()
@@ -42,19 +52,22 @@ const PasswordPrompt = ({ enableShowApp }) => {
   }
 
   const onDeleteData = () => {
-    Alert.alert(labels.areYouSureTitle, labels.areYouSure, [
+    Alert.alert(t('confirmationDialog.title'), t('confirmationDialog.text'), [
       cancelButton,
       {
-        text: labels.reallyDeleteData,
+        text: t('confirmationDialog.confirm'),
         onPress: onDeleteDataConfirmation,
       },
     ])
   }
 
   const onConfirmDeletion = async () => {
-    Alert.alert(labels.deleteDatabaseTitle, labels.deleteDatabaseExplainer, [
+    Alert.alert(t('forgotPassword'), t('forgotPasswordDialog.text'), [
       cancelButton,
-      { text: labels.deleteData, onPress: onDeleteData },
+      {
+        text: t('forgotPasswordDialog.confirm'),
+        onPress: onDeleteData,
+      },
     ])
   }
 
@@ -65,17 +78,17 @@ const PasswordPrompt = ({ enableShowApp }) => {
         <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={150}>
           <AppTextInput
             onChangeText={setPassword}
-            secureTextEntry={true}
-            placeholder={labels.enterPassword}
+            secureTextEntry
+            placeholder={t('enterPassword')}
           />
           <View style={styles.containerButtons}>
-            <Button onPress={onConfirmDeletion}>{labels.forgotPassword}</Button>
+            <Button onPress={onConfirmDeletion}>{t('forgotPassword')}</Button>
             <Button
               disabled={!isPasswordEntered}
               isCTA={isPasswordEntered}
               onPress={unlockApp}
             >
-              {labels.title}
+              {t('unlockApp')}
             </Button>
           </View>
         </KeyboardAvoidingView>
