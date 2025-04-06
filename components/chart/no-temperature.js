@@ -2,12 +2,14 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import AppText from '../common/app-text'
 
-import { shared } from '../../i18n/en/labels'
-
 import { Spacing } from '../../styles'
+import { useTranslation } from 'react-i18next'
 
 function NoTemperature() {
-  return <AppText style={styles.warning}>{shared.noTemperatureWarning}</AppText>
+  const { t } = useTranslation()
+  return (
+    <AppText style={styles.warning}>{t('chart.noTemperatureWarning')}</AppText>
+  )
 }
 
 const styles = StyleSheet.create({

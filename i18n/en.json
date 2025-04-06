@@ -5,7 +5,8 @@
     "stats": "Stats"
   },
   "chart": {
-    "tutorial": "You can swipe the chart to view more dates."
+    "tutorial": "You can swipe the chart to view more dates.",
+    "noTemperatureWarning": "You haven't entered any temperature data yet."
   },
   "symptoms": {
     "bleeding": "bleeding",
