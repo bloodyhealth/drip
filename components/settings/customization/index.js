@@ -35,7 +35,7 @@ import {
 } from '../../../local-storage'
 import labels from '../../../i18n/en/settings'
 import { SYMPTOMS } from '../../../config'
-import { InfertileDaysInfo } from './sections/infertile-days-info'
+import { InfertileDaysInfo } from './sections/InfertileDaysInfo'
 
 const Settings = () => {
   const { t } = useTranslation(null, { keyPrefix: 'symptoms' })
