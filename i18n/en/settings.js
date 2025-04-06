@@ -30,18 +30,6 @@ export default {
         'To use the temperature reminder please first enable the temperature tracking category in the customization settings.',
     },
   },
-  periodReminder: {
-    title: 'Next period reminder',
-    reminderText:
-      'Get a notification 3 days before your next period is likely to start.',
-    notification: (daysToEndOfPrediction) =>
-      `Your next period is likely to start in 3 to ${daysToEndOfPrediction} days.`,
-    alertNoPeriodReminder: {
-      title: 'Period predictions turned off',
-      message:
-        'To use the period reminder please first enable period predictions in the customization settings.',
-    },
-  },
   fertilityTracking: {
     title: 'Fertility phases calculation',
     disabledTitle: 'Disabled',

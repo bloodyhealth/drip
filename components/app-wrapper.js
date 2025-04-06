@@ -7,7 +7,7 @@ import App from './app'
 import AppLoadingView from './common/app-loading'
 import AppStatusBar from './common/app-status-bar'
 import AcceptLicense from './AcceptLicense'
-import PasswordPrompt from './password-prompt'
+import PasswordPrompt from './PasswordPrompt'
 
 export default function AppWrapper() {
   const [isLoading, setIsLoading] = useState(true)
