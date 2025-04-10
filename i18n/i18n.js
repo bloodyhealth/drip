@@ -3,9 +3,11 @@ import { initReactI18next } from 'react-i18next'
 
 // translation files
 import en from './en.json'
+import de from './de.json'
 
 const resources = {
-  en_US: { translation: en },
+  'en-US': { translation: en },
+  'de-DE': { translation: de },
 }
 
 i18n
@@ -14,7 +16,8 @@ i18n
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     resources,
-    fallbackLng: 'en_US',
+    fallbackLng: 'en-US',
+
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },

@@ -1,0 +1,75 @@
+{
+  "bottomMenu": {
+    "calendar": "Kalender",
+    "chart": "Chart",
+    "stats": "Statistik"
+  },
+
+  "hamburgerMenu": {
+    "about": {
+      "credits": {
+        "title": "X",
+        "text": "X",
+        "madeBy": "X"
+      },
+      "donate": {
+        "button": "X",
+        "title": "X",
+        "text": "X"
+      },
+      "intro": {
+        "text": "X",
+        "faq": "X",
+        "contact": "X"
+      },
+      "philosophy": {
+        "title": "X",
+        "text": "X"
+      },
+      "title": "X",
+      "version": {
+        "title": "X"
+      }
+    },
+    "menuMain": {
+      "about": "Über",
+      "license": "Lizenz",
+      "settings": "Einstellungen",
+      "privacyPolicy": "Privatsphäre"
+    },
+
+    "settings": {
+      "language": {
+        "languages": {
+          "en-US": "Englisch",
+          "de-DE": "Deutsch"
+        },
+        "title": "Sprache"
+      },
+
+      "menuItem": {
+        "dataManagement": {
+          "name": "Daten",
+          "text": "Importiere, exportiere oder lösche deine Daten"
+        },
+        "customization": {
+          "name": "Customization",
+          "text": "Bestimme, wie du drip nutzen möchtest"
+        },
+        "language": {
+          "name": "Sprache",
+          "text": "Ändere die App-Sprache"
+        },
+        "password": {
+          "name": "Passwort",
+          "text": "Speichere, ändere oder lösche dein Passwort"
+        },
+        "reminders": {
+          "name": "Erinnerungen",
+          "text": "Aktiviere/deaktiviere Erinnerungen"
+        }
+      },
+      "title": "Einstellungen"
+    }
+  }
+}
