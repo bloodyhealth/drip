@@ -3,6 +3,7 @@ import Observable from 'obv'
 import { TEMP_SCALE_MIN, TEMP_SCALE_MAX, TEMP_SCALE_UNITS } from './config'
 
 import { ADVANCE_PERIOD_NOTICE_DAYS_INIT_VALUE } from './config'
+import { LANGUAGES } from './i18n/constants'
 
 export const scaleObservable = Observable()
 setObvWithInitValue('tempScale', scaleObservable, {
@@ -194,4 +195,21 @@ async function setObvWithInitValue(key, obv, defaultValue) {
   const result = await AsyncStorage.getItem(key)
   const value = result ? JSON.parse(result) : defaultValue
   obv.set(value)
+}
+
+export async function getLanguage() {
+  try {
+    const storedLanguage = await AsyncStorage.getItem('language')
+    return storedLanguage
+  } catch (e) {
+    return LANGUAGES['en-US']
+  }
+}
+
+export async function saveLanguage(selectedLanguage) {
+  try {
+    await AsyncStorage.setItem('language', selectedLanguage)
+  } catch {
+    console.error('Error when storing language in local storage')
+  }
 }
