@@ -3,9 +3,11 @@ import { initReactI18next } from 'react-i18next'
 
 // translation files
 import en from './en.json'
+import de from './de.json'
 
 const resources = {
-  en: { translation: en },
+  en_US: { translation: en },
+  de_DE: { translation: de },
 }
 
 i18n
@@ -16,7 +18,7 @@ i18n
   .init({
     compatibilityJSON: 'v3', // TODO: migrate json to v4 and afterwards remove it
     resources,
-    fallbackLng: 'en',
+    fallbackLng: 'en_US',
 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

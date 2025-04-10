@@ -138,6 +138,13 @@
           }
         }
       },
+      "language": {
+        "languages": {
+          "en_US": "English",
+          "de_DE": "German"
+        },
+        "title": "Language"
+      },
       "reminders": {
         "periodReminder": {
           "title": "Next period reminder",
@@ -158,6 +165,10 @@
         "customization": {
           "name": "Customization",
           "text": "Define how you want to use drip"
+        },
+        "language": {
+          "name": "Language",
+          "text": "Switch app language"
         },
         "password": {
           "name": "Password",

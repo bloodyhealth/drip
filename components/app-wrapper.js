@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { I18nextProvider } from 'react-i18next'
+import i18n from '../i18n/i18n'
 
 import { getLicenseFlag, saveEncryptionFlag } from '../local-storage'
 import { openDb } from '../db'
@@ -40,13 +42,13 @@ export default function AppWrapper() {
   }
 
   return (
-    <>
+    <I18nextProvider i18n={i18n}>
       <AppStatusBar />
       {isDbEncrypted ? (
         <PasswordPrompt enableShowApp={() => setIsDbEncrypted(false)} />
       ) : (
         <App restartApp={() => checkIsDbEncrypted()} />
       )}
-    </>
+    </I18nextProvider>
   )
 }
