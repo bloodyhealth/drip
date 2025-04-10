@@ -4,6 +4,7 @@ import AppPage from '../../common/app-page'
 import { useTranslation } from 'react-i18next'
 import { LANGUAGES } from './constants'
 import AppText from '../../common/app-text'
+import { Colors, Containers, Spacing } from '../../../styles'
 
 const Language = () => {
   const { t, i18n } = useTranslation(null, {
@@ -13,24 +14,40 @@ const Language = () => {
   const onPress = (lang) => {
     i18n.changeLanguage(lang)
   }
+
   return (
     <AppPage title={t('title')}>
-      {LANGUAGES.map((lang) => (
-        <TouchableOpacity key={lang} onPress={() => onPress(lang)}>
-          <AppText
-            style={i18n.language === lang ? styles.languageSelected : {}}
+      {LANGUAGES.map((lang) => {
+        const isActive = lang === i18n.language
+        const boxStyle = [styles.box, isActive && styles.boxActive]
+        const textStyle = [styles.text, isActive && styles.textActive]
+        return (
+          <TouchableOpacity
+            key={lang}
+            onPress={() => onPress(lang)}
+            style={boxStyle}
           >
-            {t(`languages.${lang}`)}
-          </AppText>
-        </TouchableOpacity>
-      ))}
+            <AppText style={textStyle}>{t(`languages.${lang}`)}</AppText>
+          </TouchableOpacity>
+        )
+      })}
     </AppPage>
   )
 }
 
 const styles = StyleSheet.create({
-  languageSelected: {
-    color: 'red',
+  box: {
+    ...Containers.box,
+    marginLeft: Spacing.small,
+  },
+  boxActive: {
+    ...Containers.boxActive,
+  },
+  text: {
+    color: Colors.orange,
+  },
+  textActive: {
+    color: 'white',
   },
 })
 
