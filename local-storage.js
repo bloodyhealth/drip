@@ -203,3 +203,20 @@ async function setObvWithInitValue(key, obv, defaultValue) {
   }
   obv.set(value)
 }
+
+export async function getLanguage() {
+  try {
+    const storedLanguage = await AsyncStorage.getItem('language')
+    return storedLanguage
+  } catch (e) {
+    return null
+  }
+}
+
+export async function saveLanguage(selectedLanguage) {
+  try {
+    await AsyncStorage.setItem('language', selectedLanguage)
+  } catch {
+    console.error('Error when storing language in local storage')
+  }
+}

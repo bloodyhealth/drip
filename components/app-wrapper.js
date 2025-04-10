@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import i18n from '../i18n/i18n'
 
-import { getLicenseFlag, saveEncryptionFlag } from '../local-storage'
+import {
+  getLicenseFlag,
+  saveEncryptionFlag,
+  getLanguage,
+} from '../local-storage'
 import { openDb } from '../db'
 
 import App from './app'
@@ -19,7 +23,13 @@ export default function AppWrapper() {
   const checkIsLicenseAccepted = async () => {
     const isLicenseFlagSet = await getLicenseFlag()
     setIsLicenseAccepted(isLicenseFlagSet)
-    setIsLoading(false)
+  }
+
+  const loadLanguage = async () => {
+    const storedLanguage = await getLanguage()
+    if (storedLanguage) {
+      i18n.changeLanguage(storedLanguage)
+    }
   }
 
   const checkIsDbEncrypted = async () => {
@@ -28,9 +38,17 @@ export default function AppWrapper() {
     await saveEncryptionFlag(isEncrypted)
   }
 
+  const prepareApp = async () => {
+    await Promise.all([
+      checkIsLicenseAccepted(),
+      loadLanguage(),
+      checkIsDbEncrypted(),
+    ])
+    setIsLoading(false)
+  }
+
   useEffect(() => {
-    checkIsLicenseAccepted()
-    checkIsDbEncrypted()
+    prepareApp()
   }, [])
 
   if (isLoading) {

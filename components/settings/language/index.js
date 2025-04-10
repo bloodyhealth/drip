@@ -5,14 +5,15 @@ import { useTranslation } from 'react-i18next'
 import { LANGUAGES } from './constants'
 import AppText from '../../common/app-text'
 import { Colors, Containers, Spacing } from '../../../styles'
+import { saveLanguage } from '../../../local-storage'
 
 const Language = () => {
   const { t, i18n } = useTranslation(null, {
     keyPrefix: 'hamburgerMenu.settings.language',
   })
-
   const onPress = (lang) => {
     i18n.changeLanguage(lang)
+    saveLanguage(lang)
   }
 
   return (
