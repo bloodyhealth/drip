@@ -31,8 +31,8 @@ const PasswordPrompt = ({ enableShowApp }) => {
 
     if (!connected) {
       Alert.alert(
-        t('incorrectPasswordDialog.incorrectPassword'),
-        t('incorrectPasswordDialog.incorrectPasswordMessage'),
+        t('incorrectPasswordDialog.title'),
+        t('incorrectPasswordDialog.text'),
         [
           {
             text: t('incorrectPasswordDialog.tryAgain'),
