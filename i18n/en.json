@@ -26,10 +26,6 @@
       "cycleDay": " day of your cycle",
       "cyclePhase": " cycle phase - ",
       "addDataForToday": "add data for today"
-    },
-    "shared": {
-      "cancel": "Cancel",
-      "ok": "OK"
     }
   },
   "hamburgerMenu": {
@@ -208,6 +204,10 @@
       "tryAgain": "Try again"
     },
     "unlockApp": "Unlock app"
+  },
+  "shared": {
+    "cancel": "Cancel",
+    "ok": "OK"
   },
   "stats": {
     "noData": "At least one completed cycle is needed to display stats.",

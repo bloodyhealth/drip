@@ -22,10 +22,10 @@ export default function AcceptLicense({ setLicense }) {
     <License>
       <View style={styles.container}>
         <Button onPress={BackHandler.exitApp} testID="licenseCancelButton">
-          {t('labels.shared.cancel')}
+          {t('shared.cancel')}
         </Button>
         <Button isCTA onPress={onAcceptLicense} testID="licenseOkButton">
-          {t('labels.shared.ok')}
+          {t('shared.ok')}
         </Button>
       </View>
     </License>
