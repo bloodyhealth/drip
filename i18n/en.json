@@ -191,7 +191,7 @@
       "text": "Are you absolutely sure you want to permanently delete all your data?",
       "title": "Are you sure?"
     },
-    "enterPassword": "Enter password here",
+
     "forgotPassword": "Forgot your password?",
     "forgotPasswordDialog": {
       "cancel": "Cancel",
@@ -203,7 +203,10 @@
       "incorrectPasswordMessage": "That password is incorrect.",
       "tryAgain": "Try again"
     },
-    "unlockApp": "Unlock app"
+    "unlockApp": {
+      "placeholder": "Enter password here",
+      "title": "Unlock app"
+    }
   },
   "shared": {
     "cancel": "Cancel",
