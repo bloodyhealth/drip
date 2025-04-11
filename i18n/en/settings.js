@@ -55,7 +55,6 @@ export default {
     cervix: 'cervix',
   },
   passwordSettings: {
-    setPassword: 'Set password',
     changePassword: 'Change password',
     deletePassword: 'Delete password',
     backupReminder: {

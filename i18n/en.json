@@ -187,6 +187,7 @@
   },
   "password": {
     "createPassword": {
+      "button": "Set password",
       "textPasswordNotSet": "Encrypt the app's database with a password. You need to enter the password every time the app is started.",
       "textPasswordSet": "Password protection and database encryption is currently enabled",
       "title": "App password"
