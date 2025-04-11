@@ -52,10 +52,10 @@ const PasswordPrompt = ({ enableShowApp }) => {
   }
 
   const onDeleteData = () => {
-    Alert.alert(t('confirmationDialog.title'), t('confirmationDialog.text'), [
+    Alert.alert(t('deleteDataDialog.title'), t('deleteDataDialog.text'), [
       cancelButton,
       {
-        text: t('confirmationDialog.confirm'),
+        text: t('deleteDataDialog.confirm'),
         onPress: onDeleteDataConfirmation,
       },
     ])

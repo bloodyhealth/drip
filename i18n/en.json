@@ -186,7 +186,7 @@
     }
   },
   "password": {
-    "confirmationDialog": {
+    "deleteDataDialog": {
       "confirm": "Yes, I am sure",
       "text": "Are you absolutely sure you want to permanently delete all your data?",
       "title": "Are you sure?"
