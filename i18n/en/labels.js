@@ -17,7 +17,6 @@ export const shared = {
   ok: 'OK',
   confirmToProceed: 'Confirm to proceed',
   date: 'Date',
-  loading: 'Loading ...',
   noDataWarning: "You haven't entered any data yet.",
   noTemperatureWarning: "You haven't entered any temperature data yet.",
   noDataButtonText: 'Start entering data now',

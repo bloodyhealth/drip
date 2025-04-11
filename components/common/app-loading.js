@@ -1,16 +1,12 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, ActivityIndicator } from 'react-native'
 
-import AppText from './app-text'
-
-import { Containers } from '../../styles'
-
-import { shared } from '../../i18n/en/labels'
+import { Containers, Colors } from '../../styles'
 
 const AppLoadingView = () => {
   return (
     <View style={styles.container}>
-      <AppText>{shared.loading}</AppText>
+      <ActivityIndicator size="large" color={Colors.orange} />
     </View>
   )
 }
