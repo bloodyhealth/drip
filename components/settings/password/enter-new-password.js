@@ -54,7 +54,7 @@ const EnterNewPassword = ({ changeEncryptionAndRestart }) => {
         disabled={!isButtonActive}
         onPress={savePassword}
       >
-        {t('password.changePassword.savePassword')}
+        {t('password.buttons.save')}
       </Button>
     </KeyboardAvoidingView>
   )

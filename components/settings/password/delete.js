@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 
 import Button from '../../common/button'
 import ConfirmWithPassword from '../common/confirm-with-password'
-
-import labels from '../../../i18n/en/settings'
+import { useTranslation } from 'react-i18next'
 
 const DeletePassword = ({
   onStartDelete,
   onCancelDelete,
   changeEncryptionAndRestart,
 }) => {
+  const { t } = useTranslation()
   const [enteringCurrentPassword, setEnteringCurrentPassword] = useState(false)
 
   const startConfirmWithPassword = () => {
@@ -34,7 +34,7 @@ const DeletePassword = ({
 
   return (
     <Button isCTA onPress={startConfirmWithPassword}>
-      {labels.passwordSettings.deletePassword}
+      {t('password.buttons.delete')}
     </Button>
   )
 }

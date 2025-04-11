@@ -7,13 +7,14 @@ import EnterNewPassword from './enter-new-password'
 import showBackUpReminder from './show-backup-reminder'
 import ConfirmWithPassword from '../common/confirm-with-password'
 
-import settings from '../../../i18n/en/settings'
+import { useTranslation } from 'react-i18next'
 
 const ChangePassword = ({
   changeEncryptionAndRestart,
   onStartChange,
   onCancelChange,
 }) => {
+  const { t } = useTranslation()
   const [currentPassword, setCurrentPassword] = useState(null)
   const [enteringCurrentPassword, setEnteringCurrentPassword] = useState(false)
   const [enteringNewPassword, setEnteringNewPassword] = useState(false)
@@ -43,7 +44,6 @@ const ChangePassword = ({
     onCancelChange()
   }
 
-  const labels = settings.passwordSettings
   const isPasswordSet = currentPassword !== null
 
   if (enteringCurrentPassword) {
@@ -65,7 +65,7 @@ const ChangePassword = ({
 
   return (
     <Button disabled={isPasswordSet} isCTA onPress={startChangingPassword}>
-      {labels.changePassword}
+      {t('password.buttons.update')}
     </Button>
   )
 }

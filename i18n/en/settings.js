@@ -54,32 +54,6 @@ export default {
     mucus: 'cervical mucus',
     cervix: 'cervix',
   },
-  passwordSettings: {
-    setPassword: 'Set password',
-    changePassword: 'Change password',
-    deletePassword: 'Delete password',
-    backupReminder: {
-      title: 'Read this before making changes to your password',
-      message: `
-Just to be safe, please backup your data using the export function before making any changes to your password.\n
-Longer passwords are better! Consider using a passphrase.\n
-Please also make sure you do not lose your password. There is no way to recover your data if you do.\n
-Making any changes to your password setting will keep your data as it was before.\n`,
-    },
-    deleteBackupReminder: {
-      title: 'Read this before deleting your password',
-      message: `
-Deleting your password means your data will no longer be encrypted.\n
-Just to be safe, please backup your data using the export function before deleting your password.\n
-Making any changes to your password setting will keep your data as it was before and restart the app.\n    
-    `,
-    },
-    backupReminderAppendix: {
-      android:
-        'After the password is updated the app will automatically restart.',
-      ios: 'After the password is updated the app will automatically close. Please reopen it manually.',
-    },
-  },
   website: {
     title: 'Website',
   },

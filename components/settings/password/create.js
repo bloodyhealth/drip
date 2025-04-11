@@ -6,9 +6,10 @@ import Button from '../../common/button'
 import EnterNewPassword from './enter-new-password'
 import showBackUpReminder from './show-backup-reminder'
 
-import settings from '../../../i18n/en/settings'
+import { useTranslation } from 'react-i18next'
 
 const CreatePassword = ({ changeEncryptionAndRestart }) => {
+  const { t } = useTranslation()
   const [isSettingPassword, setIsSettingPassword] = useState(false)
 
   const startSettingPassword = () => {
@@ -20,12 +21,10 @@ const CreatePassword = ({ changeEncryptionAndRestart }) => {
     )
   }
 
-  const labels = settings.passwordSettings
-
   if (!isSettingPassword) {
     return (
       <Button isCTA onPress={startSettingPassword}>
-        {labels.setPassword}
+        {t('password.buttons.create')}
       </Button>
     )
   }
