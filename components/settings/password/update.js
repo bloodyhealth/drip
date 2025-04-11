@@ -65,7 +65,7 @@ const ChangePassword = ({
 
   return (
     <Button disabled={isPasswordSet} isCTA onPress={startChangingPassword}>
-      {t('password.changePassword.buttons.update')}
+      {t('password.buttons.update')}
     </Button>
   )
 }

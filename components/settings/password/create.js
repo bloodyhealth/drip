@@ -24,7 +24,7 @@ const CreatePassword = ({ changeEncryptionAndRestart }) => {
   if (!isSettingPassword) {
     return (
       <Button isCTA onPress={startSettingPassword}>
-        {t('password.createPassword.button')}
+        {t('password.buttons.create')}
       </Button>
     )
   }

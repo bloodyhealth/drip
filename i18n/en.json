@@ -198,18 +198,18 @@
       "title": "Read this before deleting your password",
       "text": "Deleting your password means your data will no longer be encrypted.\nJust to be safe, please backup your data using the export function before deleting your password.\nMaking any changes to your password setting will keep your data as it was before and restart the app.\n"
     },
+    "buttons": {
+      "create": "Set password",
+      "delete": "Delete password",
+      "save": "Save password",
+      "update": "Change password"
+    },
     "createPassword": {
-      "button": "Set password",
       "textPasswordNotSet": "Encrypt the app's database with a password. You need to enter the password every time the app is started.",
       "textPasswordSet": "Password protection and database encryption is currently enabled",
       "title": "App password"
     },
     "changePassword": {
-      "buttons": {
-        "delete": "Delete password",
-        "save": "Save password",
-        "update": "Change password"
-      },
       "placeholder": "Please enter a new password",
       "placeholderConfirmation": "Please confirm your password",
       "passwordsDontMatch": "Password and confirmation don't match"
