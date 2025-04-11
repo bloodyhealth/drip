@@ -64,7 +64,6 @@ export default {
     savePassword: 'Save password',
     changePassword: 'Change password',
     deletePassword: 'Delete password',
-    enterCurrent: 'Please enter your current password',
     enterNew: 'Please enter a new password',
     confirmPassword: 'Please confirm your password',
     passwordsDontMatch: "Password and confirmation don't match",

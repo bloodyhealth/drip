@@ -8,7 +8,6 @@ import Button from '../../common/button'
 
 import { openDb } from '../../../db'
 import { Containers } from '../../../styles'
-import settings from '../../../i18n/en/settings'
 import { useTranslation } from 'react-i18next'
 
 const ConfirmWithPassword = ({ onSuccess, onCancel }) => {
@@ -42,14 +41,13 @@ const ConfirmWithPassword = ({ onSuccess, onCancel }) => {
     )
   }
 
-  const labels = settings.passwordSettings
   const isPassword = password !== null
 
   return (
     <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={150}>
       <AppTextInput
         onChangeText={setPassword}
-        placeholder={labels.enterCurrent}
+        placeholder={t('password.unlockApp.placeholder')}
         value={password}
         secureTextEntry
       />
