@@ -31,8 +31,8 @@ const PasswordPrompt = ({ enableShowApp }) => {
 
     if (!connected) {
       Alert.alert(
-        t('incorrectPasswordDialog.incorrectPassword'),
-        t('incorrectPasswordDialog.incorrectPasswordMessage'),
+        t('incorrectPasswordDialog.title'),
+        t('incorrectPasswordDialog.text'),
         [
           {
             text: t('incorrectPasswordDialog.tryAgain'),
@@ -52,23 +52,27 @@ const PasswordPrompt = ({ enableShowApp }) => {
   }
 
   const onDeleteData = () => {
-    Alert.alert(t('confirmationDialog.title'), t('confirmationDialog.text'), [
+    Alert.alert(t('deleteDataDialog.title'), t('deleteDataDialog.text'), [
       cancelButton,
       {
-        text: t('confirmationDialog.confirm'),
+        text: t('deleteDataDialog.confirm'),
         onPress: onDeleteDataConfirmation,
       },
     ])
   }
 
   const onConfirmDeletion = async () => {
-    Alert.alert(t('forgotPassword'), t('forgotPasswordDialog.text'), [
-      cancelButton,
-      {
-        text: t('forgotPasswordDialog.confirm'),
-        onPress: onDeleteData,
-      },
-    ])
+    Alert.alert(
+      t('forgotPasswordDialog.title'),
+      t('forgotPasswordDialog.text'),
+      [
+        cancelButton,
+        {
+          text: t('forgotPasswordDialog.confirm'),
+          onPress: onDeleteData,
+        },
+      ]
+    )
   }
 
   return (
@@ -79,16 +83,18 @@ const PasswordPrompt = ({ enableShowApp }) => {
           <AppTextInput
             onChangeText={setPassword}
             secureTextEntry
-            placeholder={t('enterPassword')}
+            placeholder={t('unlockApp.placeholder')}
           />
           <View style={styles.containerButtons}>
-            <Button onPress={onConfirmDeletion}>{t('forgotPassword')}</Button>
+            <Button onPress={onConfirmDeletion}>
+              {t('unlockApp.forgotPassword')}
+            </Button>
             <Button
               disabled={!isPasswordEntered}
               isCTA={isPasswordEntered}
               onPress={unlockApp}
             >
-              {t('unlockApp')}
+              {t('unlockApp.title')}
             </Button>
           </View>
         </KeyboardAvoidingView>
