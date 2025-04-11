@@ -151,10 +151,19 @@
           "reminderTextSingular": "Get a notification 1 day before your next period is likely to start.",
           "reminderTextPlural": "Get a notification {{days}} days before your next period is likely to start.",
           "notification": "Your next period is likely to start in {{advanceNoticeDays}} to {{daysToEndOfPrediction}} days.",
-          "alertNoPeriodReminder": {
+          "alert": {
             "title": "Period predictions turned off",
-            "message": "To use the period reminder please first enable period predictions in the customization settings."
+            "text": "To use the period reminder please first enable period predictions in the customization settings."
           }
+        },
+        "temperatureReminder": {
+          "alert": {
+            "title": "Temperature turned off",
+            "text": "To use the temperature reminder please first enable the temperature tracking category in the customization settings."
+          },
+          "noTimeSet": "Set a time for a daily reminder to take your temperature",
+          "timeSet": "Daily reminder set for {{time}}",
+          "title": "Temperature reminder"
         }
       },
       "menuItem": {

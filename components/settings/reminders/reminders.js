@@ -11,19 +11,18 @@ import {
   temperatureTrackingCategoryObservable,
 } from '../../../local-storage'
 
-import labels from '../../../i18n/en/settings'
 import { Alert, Pressable } from 'react-native'
 
 const Reminders = () => {
   const { t } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.settings.reminders.periodReminder',
+    keyPrefix: 'hamburgerMenu.settings.reminders',
   })
 
   const periodReminderDisabledPrompt = () => {
     if (!periodPredictionObservable.value) {
       Alert.alert(
-        t('alertNoPeriodReminder.title'),
-        t('alertNoPeriodReminder.message')
+        t('periodReminder.alert.title'),
+        t('periodReminder.alert.text')
       )
     }
   }
@@ -31,8 +30,8 @@ const Reminders = () => {
   const tempReminderDisabledPrompt = () => {
     if (!temperatureTrackingCategoryObservable.value) {
       Alert.alert(
-        labels.tempReminder.alertNoTempReminder.title,
-        labels.tempReminder.alertNoTempReminder.message
+        t('temperatureReminder.alert.title'),
+        t('temperatureReminder.alert.text')
       )
     }
   }
@@ -40,12 +39,12 @@ const Reminders = () => {
   return (
     <AppPage>
       <Pressable onPress={periodReminderDisabledPrompt}>
-        <Segment title={t('title')}>
+        <Segment title={t('periodReminder.title')}>
           <PeriodReminder />
         </Segment>
       </Pressable>
       <Pressable onPress={tempReminderDisabledPrompt}>
-        <Segment title={labels.tempReminder.title} last>
+        <Segment title={t('temperatureReminder.title')} last>
           <TemperatureReminder />
         </Segment>
       </Pressable>
