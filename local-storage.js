@@ -54,10 +54,7 @@ export async function savePeriodPrediction(bool) {
   periodPredictionObservable.set(bool)
 
   if (!periodPredictionObservable.value) {
-    const result = await AsyncStorage.getItem('periodReminder')
-    if (JSON.parse(result).enabled) {
-      periodReminderObservable.set(false)
-    }
+    periodReminderObservable.set(false)
   }
 }
 
@@ -195,11 +192,6 @@ export async function saveFertilityTrackingEnabled(bool) {
 
 async function setObvWithInitValue(key, obv, defaultValue) {
   const result = await AsyncStorage.getItem(key)
-  let value
-  if (result) {
-    value = JSON.parse(result)
-  } else {
-    value = defaultValue
-  }
+  const value = result ? JSON.parse(result) : defaultValue
   obv.set(value)
 }
