@@ -62,7 +62,7 @@
       "title": "drip. an open-source cycle tracking app",
       "text": "Copyright (C) {{currentYear}} Heart of Code e.V.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details:"
     },
-    "menuMain": {
+    "menuItems": {
       "about": "About",
       "license": "License",
       "settings": "Settings",
