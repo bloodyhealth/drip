@@ -62,13 +62,17 @@ const PasswordPrompt = ({ enableShowApp }) => {
   }
 
   const onConfirmDeletion = async () => {
-    Alert.alert(t('forgotPassword'), t('forgotPasswordDialog.text'), [
-      cancelButton,
-      {
-        text: t('forgotPasswordDialog.confirm'),
-        onPress: onDeleteData,
-      },
-    ])
+    Alert.alert(
+      t('forgotPasswordDialog.title'),
+      t('forgotPasswordDialog.text'),
+      [
+        cancelButton,
+        {
+          text: t('forgotPasswordDialog.confirm'),
+          onPress: onDeleteData,
+        },
+      ]
+    )
   }
 
   return (
@@ -82,7 +86,9 @@ const PasswordPrompt = ({ enableShowApp }) => {
             placeholder={t('unlockApp.placeholder')}
           />
           <View style={styles.containerButtons}>
-            <Button onPress={onConfirmDeletion}>{t('forgotPassword')}</Button>
+            <Button onPress={onConfirmDeletion}>
+              {t('unlockApp.forgotPassword')}
+            </Button>
             <Button
               disabled={!isPasswordEntered}
               isCTA={isPasswordEntered}
