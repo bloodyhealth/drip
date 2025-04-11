@@ -12,9 +12,11 @@ import ChangePassword from './update'
 import DeletePassword from './delete'
 
 import { hasEncryptionObservable } from '../../../local-storage'
-import labels from '../../../i18n/en/settings'
+import { useTranslation } from 'react-i18next'
 
 const PasswordSetting = ({ restartApp, navigate }) => {
+  const { t } = useTranslation(null, { keyPrefix: 'password.createPassword' })
+
   const isPasswordSet = hasEncryptionObservable.value
   const [isChangingPassword, setIsChangingPassword] = useState(false)
   const [isDeletingPassword, setIsDeletingPassword] = useState(false)
@@ -25,13 +27,11 @@ const PasswordSetting = ({ restartApp, navigate }) => {
     navigate('Home')
   }
 
-  const { title, explainerEnabled, explainerDisabled } = labels.passwordSettings
-
   return (
     <AppPage>
-      <Segment title={title} last>
+      <Segment title={t('title')} last>
         <AppText>
-          {isPasswordSet ? explainerEnabled : explainerDisabled}
+          {t(isPasswordSet ? 'textPasswordSet' : 'textPasswordNotSet')}
         </AppText>
 
         {!isPasswordSet && (

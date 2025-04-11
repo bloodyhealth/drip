@@ -186,6 +186,11 @@
     }
   },
   "password": {
+    "createPassword": {
+      "textPasswordNotSet": "Encrypt the app's database with a password. You need to enter the password every time the app is started.",
+      "textPasswordSet": "Password protection and database encryption is currently enabled",
+      "title": "App password"
+    },
     "changePassword": {
       "placeholder": "Please enter a new password",
       "placeholderConfirmation": "Please confirm your password",

@@ -55,11 +55,6 @@ export default {
     cervix: 'cervix',
   },
   passwordSettings: {
-    title: 'App password',
-    explainerDisabled:
-      "Encrypt the app's database with a password. You need to enter the password every time the app is started.",
-    explainerEnabled:
-      'Password protection and database encryption is currently enabled',
     setPassword: 'Set password',
     changePassword: 'Change password',
     deletePassword: 'Delete password',
