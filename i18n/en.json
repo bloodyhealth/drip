@@ -186,6 +186,12 @@
     }
   },
   "password": {
+    "changePassword": {
+      "placeholder": "Please enter a new password",
+      "placeholderConfirmation": "Please confirm your password",
+      "passwordsDontMatch": "Password and confirmation don't match",
+      "savePassword": "Save password"
+    },
     "deleteDataDialog": {
       "confirm": "Yes, I am sure",
       "text": "Are you absolutely sure you want to permanently delete all your data?",

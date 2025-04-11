@@ -8,52 +8,53 @@ import AppTextInput from '../../common/app-text-input'
 import Button from '../../common/button'
 
 import { Colors, Spacing } from '../../../styles'
-import settings from '../../../i18n/en/settings'
+import { useTranslation } from 'react-i18next'
 
 const EnterNewPassword = ({ changeEncryptionAndRestart }) => {
+  const { t } = useTranslation()
+
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  const [shouldShowErrorMessage, setShouldShowErrorMessage] = useState(false)
+  const [hasError, setHasError] = useState(false)
 
   const savePassword = () => {
-    if (comparePasswords()) {
-      const hash = new SHA512().hex(password)
-      changeEncryptionAndRestart(hash)
-    } else {
-      setShouldShowErrorMessage(true)
+    if (password !== passwordConfirmation) {
+      setHasError(true)
+      return
     }
+    const hash = new SHA512().hex(password)
+    changeEncryptionAndRestart(hash)
   }
 
-  const comparePasswords = () => password === passwordConfirmation
-
-  const labels = settings.passwordSettings
   const isButtonActive = password.length > 0 && passwordConfirmation.length > 0
 
   return (
     <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={150}>
       <AppTextInput
         onChangeText={setPassword}
-        placeholder={labels.enterNew}
+        placeholder={t('password.changePassword.placeholder')}
         textContentType="password"
         value={password}
         secureTextEntry={true}
       />
       <AppTextInput
         onChangeText={setPasswordConfirmation}
-        placeholder={labels.confirmPassword}
+        placeholder={t('password.changePassword.placeholderConfirmation')}
         textContentType="password"
         value={passwordConfirmation}
         secureTextEntry={true}
       />
-      {shouldShowErrorMessage && (
-        <AppText style={styles.error}>{labels.passwordsDontMatch}</AppText>
+      {hasError && (
+        <AppText style={styles.error}>
+          {t('password.changePassword.passwordsDontMatch')}
+        </AppText>
       )}
       <Button
         isCTA={isButtonActive}
         disabled={!isButtonActive}
         onPress={savePassword}
       >
-        {labels.savePassword}
+        {t('password.changePassword.savePassword')}
       </Button>
     </KeyboardAvoidingView>
   )

@@ -61,12 +61,8 @@ export default {
     explainerEnabled:
       'Password protection and database encryption is currently enabled',
     setPassword: 'Set password',
-    savePassword: 'Save password',
     changePassword: 'Change password',
     deletePassword: 'Delete password',
-    enterNew: 'Please enter a new password',
-    confirmPassword: 'Please confirm your password',
-    passwordsDontMatch: "Password and confirmation don't match",
     backupReminder: {
       title: 'Read this before making changes to your password',
       message: `
