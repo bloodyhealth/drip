@@ -54,10 +54,6 @@ export default {
     mucus: 'cervical mucus',
     cervix: 'cervix',
   },
-  passwordSettings: {
-    changePassword: 'Change password',
-    deletePassword: 'Delete password',
-  },
   website: {
     title: 'Website',
   },

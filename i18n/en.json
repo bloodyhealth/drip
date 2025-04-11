@@ -205,10 +205,14 @@
       "title": "App password"
     },
     "changePassword": {
+      "buttons": {
+        "delete": "Delete password",
+        "save": "Save password",
+        "update": "Change password"
+      },
       "placeholder": "Please enter a new password",
       "placeholderConfirmation": "Please confirm your password",
-      "passwordsDontMatch": "Password and confirmation don't match",
-      "savePassword": "Save password"
+      "passwordsDontMatch": "Password and confirmation don't match"
     },
     "deleteDataDialog": {
       "confirm": "Yes, I am sure",
