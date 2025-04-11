@@ -11,9 +11,12 @@ import {
 } from '../../../local-storage'
 import padWithZeros from '../../helpers/pad-time-with-zeros'
 
-import labels from '../../../i18n/en/settings'
+import { useTranslation } from 'react-i18next'
 
 const TemperatureReminder = () => {
+  const { t } = useTranslation(null, {
+    keyPrefix: 'hamburgerMenu.settings.reminders.temperatureReminder',
+  })
   const [isEnabled, setIsEnabled] = useState(
     tempReminderObservable.value.enabled
   )
@@ -42,9 +45,7 @@ const TemperatureReminder = () => {
   }
 
   const tempReminderText =
-    time && isEnabled
-      ? labels.tempReminder.timeSet(time)
-      : labels.tempReminder.noTimeSet
+    time && isEnabled ? t('timeSet', { time }) : t('noTimeSet')
 
   return (
     <>

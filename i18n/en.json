@@ -155,6 +155,10 @@
             "title": "Period predictions turned off",
             "message": "To use the period reminder please first enable period predictions in the customization settings."
           }
+        },
+        "temperatureReminder": {
+          "noTimeSet": "Set a time for a daily reminder to take your temperature",
+          "timeSet": "Daily reminder set for {{time}}"
         }
       },
       "menuItem": {
