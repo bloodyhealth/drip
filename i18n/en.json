@@ -92,6 +92,11 @@
         "infertileDaysInfo": {
           "note": "drip. applies the sympto-thermal method for calculating infertile days at the start of the cycle (see <0>{{urlText}}</0> for more info). However, drip. does not currently apply the so called 20-day-rule, which determines infertile days at the cycle start from past cycle lengths in case no past sympto-thermal info is available.",
           "title": "Infertile days at cycle start"
+        },
+        "periodPrediction": {
+          "off": "There are no predictions for menstrual cycles displayed. If turned on, the calendar and the home screen will display period predictions.",
+          "on": "drip predicts the starting days of the next 3 menstrual bleedings based on statistics if you previously tracked at least 3 complete cycles.",
+          "title": "Period predictions"
         }
       },
       "data": {
