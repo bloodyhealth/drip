@@ -9,9 +9,10 @@ import Button from '../../common/button'
 import { openDb } from '../../../db'
 import { Containers } from '../../../styles'
 import settings from '../../../i18n/en/settings'
-import { shared } from '../../../i18n/en/labels'
+import { useTranslation } from 'react-i18next'
 
 const ConfirmWithPassword = ({ onSuccess, onCancel }) => {
+  const { t } = useTranslation()
   const [password, setPassword] = useState(null)
 
   const checkPassword = async () => {
@@ -25,16 +26,20 @@ const ConfirmWithPassword = ({ onSuccess, onCancel }) => {
   }
 
   const onIncorrectPassword = () => {
-    Alert.alert(shared.incorrectPassword, shared.incorrectPasswordMessage, [
-      {
-        text: shared.cancel,
-        onPress: onCancel,
-      },
-      {
-        text: shared.tryAgain,
-        onPress: () => setPassword(null),
-      },
-    ])
+    Alert.alert(
+      t('password.incorrectPasswordDialog.title'),
+      t('password.incorrectPasswordDialog.text'),
+      [
+        {
+          text: t('shared.cancel'),
+          onPress: onCancel,
+        },
+        {
+          text: t('shared.tryAgain'),
+          onPress: () => setPassword(null),
+        },
+      ]
+    )
   }
 
   const labels = settings.passwordSettings
@@ -49,13 +54,13 @@ const ConfirmWithPassword = ({ onSuccess, onCancel }) => {
         secureTextEntry
       />
       <View style={styles.container}>
-        <Button onPress={onCancel}>{shared.cancel}</Button>
+        <Button onPress={onCancel}>{t('shared.cancel')}</Button>
         <Button
           disabled={!isPassword}
           isCTA={isPassword}
           onPress={checkPassword}
         >
-          {shared.confirmToProceed}
+          {t('shared.confirmToProceed')}
         </Button>
       </View>
     </KeyboardAvoidingView>

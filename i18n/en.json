@@ -210,7 +210,9 @@
   },
   "shared": {
     "cancel": "Cancel",
-    "ok": "OK"
+    "confirmToProceed": "Confirm to proceed",
+    "ok": "OK",
+    "tryAgain": "Try again"
   },
   "stats": {
     "noData": "At least one completed cycle is needed to display stats.",
