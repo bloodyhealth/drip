@@ -30,20 +30,6 @@ export default {
     on: 'If you switch this off, drip will not show fertility related information.',
     off: 'If you switch this on, drip will show fertility related information.',
   },
-  secondarySymptom: {
-    title: 'Secondary symptom',
-    switch:
-      'Please choose your preferred secondary symptom for fertility detection according to the sympto-thermal method:',
-    disabled: {
-      title: 'Disabled',
-      message:
-        'To set a secondary symptom please first enable the cervical mucus or cervix tracking category as well as temperature and fertility phases calculation above.',
-      noSecondaryEnabled:
-        'To switch the secondary symptom both cervical mucus and cervix need to be enabled above.',
-    },
-    mucus: 'cervical mucus',
-    cervix: 'cervix',
-  },
   website: {
     title: 'Website',
   },

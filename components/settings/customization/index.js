@@ -37,7 +37,7 @@ import { InfertileDaysInfo } from './sections/InfertileDaysInfo'
 import { PeriodPrediction } from './sections/period-prediction'
 
 const Settings = () => {
-  const { t } = useTranslation(null, { keyPrefix: 'symptoms' })
+  const { t } = useTranslation()
 
   const [useCervixAsSecondarySymptom, setUseCervixAsSecondarySymptom] =
     useState(useCervixAsSecondarySymptomObservable.value)
@@ -123,11 +123,11 @@ const Settings = () => {
 
   const secondarySymptomButtons = [
     {
-      label: labels.secondarySymptom.mucus,
+      label: t('symptoms.mucus'),
       value: 0,
     },
     {
-      label: labels.secondarySymptom.cervix,
+      label: t('symptoms.cervix'),
       value: 1,
     },
   ]
@@ -169,15 +169,19 @@ const Settings = () => {
   const secondarySymptomDisabledPrompt = () => {
     if (!isFertilityTrackingEnabled) {
       Alert.alert(
-        labels.secondarySymptom.disabled.title,
-        labels.secondarySymptom.disabled.message
+        t('hamburgerMenu.settings.customization.secondarySymptom.alert.title'),
+        t(
+          'hamburgerMenu.settings.customization.secondarySymptom.alert.textFertilityTrackingDisabled'
+        )
       )
     } else if (
       !isMucusTrackingCategoryEnabled == isCervixTrackingCategoryEnabled
     ) {
       Alert.alert(
-        labels.secondarySymptom.disabled.title,
-        labels.secondarySymptom.disabled.noSecondaryEnabled
+        t('hamburgerMenu.settings.customization.secondarySymptom.alert.title'),
+        t(
+          'hamburgerMenu.settings.customization.secondarySymptom.alert.textMissingSecondarySymptoms'
+        )
       )
     }
   }
@@ -206,7 +210,7 @@ const Settings = () => {
       <Segment title={labels.customization.trackingCategories}>
         <TrackingCategorySwitch
           onToggle={temperatureTrackingCategoryToggle}
-          text={t(SYMPTOMS[1])}
+          text={t(`symptoms.${SYMPTOMS[1]}`)}
           value={isTemperatureTrackingCategoryEnabled}
           symptom={SYMPTOMS[1]}
         />
@@ -214,7 +218,7 @@ const Settings = () => {
           onToggle={(enabled) => {
             mucusTrackingCategoryToggle(enabled)
           }}
-          text={t(SYMPTOMS[2])}
+          text={t(`symptoms.${SYMPTOMS[2]}`)}
           value={isMucusTrackingCategoryEnabled}
           symptom={SYMPTOMS[2]}
         />
@@ -222,37 +226,37 @@ const Settings = () => {
           onToggle={(enabled) => {
             cervixTrackingCategoryToggle(enabled)
           }}
-          text={t(SYMPTOMS[3])}
+          text={t(`symptoms.${SYMPTOMS[3]}`)}
           value={isCervixTrackingCategoryEnabled}
           symptom={SYMPTOMS[3]}
         />
         <TrackingCategorySwitch
           onToggle={sexTrackingCategoryToggle}
-          text={t(SYMPTOMS[4])}
+          text={t(`symptoms.${SYMPTOMS[4]}`)}
           value={isSexTrackingCategoryEnabled}
           symptom={SYMPTOMS[4]}
         />
         <TrackingCategorySwitch
           onToggle={desireTrackingCategoryToggle}
-          text={t(SYMPTOMS[5])}
+          text={t(`symptoms.${SYMPTOMS[5]}`)}
           value={isDesireTrackingCategoryEnabled}
           symptom={SYMPTOMS[5]}
         />
         <TrackingCategorySwitch
           onToggle={painTrackingCategoryToggle}
-          text={t(SYMPTOMS[6])}
+          text={t(`symptoms.${SYMPTOMS[6]}`)}
           value={isPainTrackingCategoryEnabled}
           symptom={SYMPTOMS[6]}
         />
         <TrackingCategorySwitch
           onToggle={moodTrackingCategoryToggle}
-          text={t(SYMPTOMS[7])}
+          text={t(`symptoms.${SYMPTOMS[7]}`)}
           value={isMoodTrackingCategoryEnabled}
           symptom={SYMPTOMS[7]}
         />
         <TrackingCategorySwitch
           onToggle={noteTrackingCategoryToggle}
-          text={t(SYMPTOMS[8])}
+          text={t(`symptoms.${SYMPTOMS[8]}`)}
           value={isNoteTrackingCategoryEnabled}
           symptom={SYMPTOMS[8]}
         />
@@ -285,8 +289,14 @@ const Settings = () => {
       </Pressable>
 
       <Pressable onPress={secondarySymptomDisabledPrompt}>
-        <Segment title={labels.secondarySymptom.title}>
-          <AppText>{labels.secondarySymptom.switch}</AppText>
+        <Segment
+          title={t(
+            'hamburgerMenu.settings.customization.secondarySymptom.title'
+          )}
+        >
+          <AppText>
+            {t('hamburgerMenu.settings.customization.secondarySymptom.text')}
+          </AppText>
           <SelectTabGroup
             activeButton={useCervixAsSecondarySymptom}
             buttons={secondarySymptomButtons}

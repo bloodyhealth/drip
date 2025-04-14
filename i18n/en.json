@@ -93,6 +93,15 @@
           "off": "There are no predictions for menstrual cycles displayed. If turned on, the calendar and the home screen will display period predictions.",
           "on": "drip predicts the starting days of the next 3 menstrual bleedings based on statistics if you previously tracked at least 3 complete cycles.",
           "title": "Period predictions"
+        },
+        "secondarySymptom": {
+          "alert": {
+            "textMissingSecondarySymptoms": "To switch the secondary symptom both cervical mucus and cervix need to be enabled above.",
+            "textFertilityTrackingDisabled": "To set a secondary symptom please first enable the cervical mucus or cervix tracking category as well as temperature and fertility phases calculation above.",
+            "title": "Disabled"
+          },
+          "title": "Secondary symptom",
+          "text": "Please choose your preferred secondary symptom for fertility detection according to the sympto-thermal method:"
         }
       },
       "data": {

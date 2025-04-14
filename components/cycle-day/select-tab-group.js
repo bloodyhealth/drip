@@ -5,7 +5,7 @@ import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native'
 import AppText from '../common/app-text'
 
 import { Colors, Containers } from '../../styles'
-import labels from '../../i18n/en/settings'
+import { useTranslation } from 'react-i18next'
 
 export default function SelectTabGroup({
   activeButton,
@@ -13,21 +13,20 @@ export default function SelectTabGroup({
   onSelect,
   disabled,
 }) {
+  const { t } = useTranslation()
   // TODO https://gitlab.com/bloodyhealth/drip/-/issues/707
   const oneTimeTransformIntoNumber =
     typeof activeButton === 'boolean' && Number(activeButton)
-  const isSecondarySymptomSwitch =
-    buttons[0]['label'] === labels.secondarySymptom.mucus
+  const isSecondarySymptomSwitch = buttons[0]['label'] === t('symptoms.mucus')
 
   // Disable is only used for secondarySymptom in customization, if more come up maybe consider more tidy solution
   const showDisabledAlert = (label) => {
-    if (
-      label === labels.secondarySymptom.cervix ||
-      label === labels.secondarySymptom.mucus
-    ) {
+    if (label === t('symptoms.cervix') || label === t('symptoms.mucus')) {
       Alert.alert(
-        labels.secondarySymptom.disabled.title,
-        labels.secondarySymptom.disabled.message
+        t('hamburgerMenu.settings.customization.secondarySymptom.alert.title'),
+        t(
+          'hamburgerMenu.settings.customization.secondarySymptom.alert.textFertilityTrackingDisabled'
+        )
       )
     }
   }
