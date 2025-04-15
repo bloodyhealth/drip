@@ -13,11 +13,12 @@ import {
 } from '../../../local-storage'
 
 const PeriodReminder = () => {
-  const isPeriodPredictionDisabled = !periodPredictionObservable.value
+  const isPeriodPredictionEnabled = periodPredictionObservable.value
 
   const [isPeriodReminderEnabled, setIsPeriodReminderEnabled] = useState(
     periodReminderObservable.value.enabled
   )
+  const appSwitchValue = isPeriodPredictionEnabled && isPeriodReminderEnabled
 
   const [advanceNoticeDays, setAdvanceNoticeDays] = useState(
     advanceNoticeDaysObservable.value
@@ -47,12 +48,12 @@ const PeriodReminder = () => {
       <AppSwitch
         onToggle={periodReminderToggle}
         text={reminderText}
-        value={isPeriodReminderEnabled && !isPeriodPredictionDisabled}
-        disabled={isPeriodPredictionDisabled}
+        value={appSwitchValue}
+        disabled={!isPeriodPredictionEnabled}
       />
-      {isPeriodReminderEnabled && !isPeriodPredictionDisabled && (
+      {appSwitchValue && (
         <AdvanceNoticeDaysSlider
-          disabled={isPeriodPredictionDisabled}
+          // disabled={isPeriodPredictionDisabled}
           advanceNoticeDays={parseInt(advanceNoticeDays)}
           onAdvanceNoticeDaysChange={handleAdvanceNoticeDaysChange}
         />
