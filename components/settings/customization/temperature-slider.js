@@ -7,10 +7,13 @@ import SliderLabel from './slider-label'
 import { styles } from './slider-styles'
 import alertError from '../common/alert-error'
 import { scaleObservable, saveTempScale } from '../../../local-storage'
-import labels from '../../../i18n/en/settings'
 import { TEMP_MIN, TEMP_MAX, TEMP_SLIDER_STEP } from '../../../config'
+import { useTranslation } from 'react-i18next'
 
 const TemperatureSlider = ({ disabled }) => {
+  const { t } = useTranslation(null, {
+    keyPrefix: 'hamburgerMenu.settings.customization.temperatureScale',
+  })
   const savedValue = scaleObservable.value
   const [minTemperature, setMinTemperature] = useState(savedValue.min)
   const [maxTemperature, setMaxTemperature] = useState(savedValue.max)
@@ -21,7 +24,7 @@ const TemperatureSlider = ({ disabled }) => {
     try {
       saveTempScale({ min, max })
     } catch (err) {
-      alertError(labels.tempScale.saveError)
+      alertError(t('saveError'))
     }
   }
 

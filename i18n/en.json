@@ -102,6 +102,15 @@
           },
           "title": "Secondary symptom",
           "text": "Please choose your preferred secondary symptom for fertility detection according to the sympto-thermal method:"
+        },
+        "temperatureScale": {
+          "description": "Change the minimum and maximum value for the temperature chart.",
+          "disabled": {
+            "title": "Disabled",
+            "description": "To use the temperature scale please first enable temperature tracking above."
+          },
+          "saveError": "Could not save temperature scale settings",
+          "title": "Temperature scale"
         }
       },
       "data": {

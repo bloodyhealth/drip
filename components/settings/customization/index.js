@@ -192,7 +192,14 @@ const Settings = () => {
 
   const sliderDisabledPrompt = () => {
     if (!isTemperatureTrackingCategoryEnabled) {
-      Alert.alert(labels.tempScale.disabled, labels.tempScale.disabledMessage)
+      Alert.alert(
+        t(
+          'hamburgerMenu.settings.customization.temperatureScale.disabled.title'
+        ),
+        t(
+          'hamburgerMenu.settings.customization.temperatureScale.disabled.description'
+        )
+      )
     }
   }
 
@@ -282,8 +289,16 @@ const Settings = () => {
       ></Segment>
 
       <Pressable onPress={sliderDisabledPrompt}>
-        <Segment title={labels.tempScale.segmentTitle}>
-          <AppText>{labels.tempScale.segmentExplainer}</AppText>
+        <Segment
+          title={t(
+            'hamburgerMenu.settings.customization.temperatureScale.title'
+          )}
+        >
+          <AppText>
+            {t(
+              'hamburgerMenu.settings.customization.temperatureScale.description'
+            )}
+          </AppText>
           <TemperatureSlider disabled={!isTemperatureTrackingCategoryEnabled} />
         </Segment>
       </Pressable>

@@ -4,19 +4,6 @@ export default {
     trackingCategories: 'Tracking categories',
     subheaderSymptoThermalMethod: 'Sympto-thermal method settings',
   },
-  tempScale: {
-    segmentTitle: 'Temperature scale',
-    segmentExplainer:
-      'Change the minimum and maximum value for the temperature chart.',
-    min: 'Min',
-    max: 'Max',
-    loadError: 'Could not load saved temperature scale settings',
-    saveError: 'Could not save temperature scale settings',
-    disabled: 'Disabled',
-    disabledMessage:
-      'To use the temperature scale please first enable temperature tracking above.',
-  },
-
   tempReminder: {
     notification: 'Record your morning temperature',
   },
