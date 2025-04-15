@@ -7,6 +7,9 @@
   "chart": {
     "tutorial": "You can swipe the chart to view more dates."
   },
+  "cycleDay": {
+    "today": "Today"
+  },
   "symptoms": {
     "bleeding": "bleeding",
     "temperature": "temperature",
