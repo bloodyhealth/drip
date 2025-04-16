@@ -269,6 +269,8 @@
   "shared": {
     "cancel": "Cancel",
     "confirmToProceed": "Confirm to proceed",
+    "day_one": "{{count}} day",
+    "day_other": "{{count}} days",
     "ok": "OK",
     "tryAgain": "Try again"
   },
@@ -290,9 +292,5 @@
       "bleedingDays": "Bleeding"
     },
     "footnote": "Based on the standard deviation of the length of all your tracked cycles, drip. calculates a range for the start day of the next 3 cycles.  The range is 3 days if your standard deviation is less than 1.5 and 5 days if the value is greater than 1.5.\n\nThe standard deviation tells you how much the length of your cycles varies. 0 means that all your cycles are exactly the same length and the higher the value, the more the cycle length varies."
-  },
-  "plurals": {
-    "day": "{{count}} day",
-    "day_plural": "{{count}} days"
   }
 }
