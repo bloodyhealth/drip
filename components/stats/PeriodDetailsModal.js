@@ -11,7 +11,7 @@ import { Spacing, Typography, Colors } from '../../styles'
 import { humanizeDate } from '../helpers/format-date'
 
 const Item = ({ data }) => {
-  const { t } = useTranslation(null, { keyPrefix: 'plurals' })
+  const { t } = useTranslation()
 
   if (!data) return false
 
@@ -23,10 +23,10 @@ const Item = ({ data }) => {
         <AppText>{humanizeDate(date)}</AppText>
       </View>
       <View style={styles.cell}>
-        <AppText>{t('day', { count: cycleLength })}</AppText>
+        <AppText>{t('shared.day', { count: cycleLength })}</AppText>
       </View>
       <View style={styles.cell}>
-        <AppText>{t('day', { count: bleedingLength })}</AppText>
+        <AppText>{t('shared.day', { count: bleedingLength })}</AppText>
       </View>
     </View>
   )
