@@ -11,16 +11,17 @@ export const LearnMore = ({ symptom }) => {
     symptom
   )
     ? 'nfpTfyReminder'
-    : 'nfpCurious'
+    : 'noNfpSymptom'
   return (
     <AppText>
       {t(`cycleDay.symptomEditModal.learnMore.symptoms.${symptom}.description`)}
+      {'\n\n'}
       <Trans
         t={t}
         i18nKey={`cycleDay.symptomEditModal.learnMore.generalInfo.${nfpKey}`}
         components={[<AppLink key={links.wiki.url} url={links.wiki.url} />]}
         values={{ urlText: links.wiki.text }}
-      ></Trans>
+      />
     </AppText>
   )
 }
