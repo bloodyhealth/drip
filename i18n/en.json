@@ -44,6 +44,9 @@
           },
           "pain": {
             "description": "The app allows you to keep track of different kinds of pain you experience.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.noNfpSymptom)"
+          },
+          "sex": {
+            "description": "The app allows you to track sex independently from sexual desire. You can differentiate between masturbation and sex with a partner/partners. Here you can also track your contraceptive method(s). Only sexual activity will be shown in the \"chart\" section, lighter purple indicating solo sex and darker purple partner sex. Did you know that having an orgasm can help release cramps?\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.noNfpSymptom)"
           }
         }
       },
