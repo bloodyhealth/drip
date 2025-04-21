@@ -19,7 +19,7 @@
           "excludeExplainer": "You can exclude these values, so they won't be taken into account for any fertility calculation.",
           "cycleRelation": "It may be influenced by or have an impact on your menstrual cycles and its hormonal changes.",
           "chartNfp": "On the chart, you can track fertility signs. When both a valid temperature shift and a cervical mucus or cervix shift have been detected, an orange line will be displayed on the chart. This indicates the end of the peri-ovulatory and the beginning of the post-ovulatory phase.",
-          "nfpCurious": ",If you are curious to learn more about the sympto-thermal method that is used for fertility tracking within the app, you can visit <0>{{urlText}}</0>.",
+          "nfpCurious": "If you are curious to learn more about the sympto-thermal method that is used for fertility tracking within the app, you can visit <0>{{urlText}}</0>.",
           "nfpTfyReminder": "When - on a daily/regular basis - you track:\n1. your basal body temperature,\n2. your cervical mucus OR your cervix,\n3. and menstrual bleeding,\nthe app helps you identify in which phase of the menstrual cycle you are.\n\ndrip. makes period predictions for you and helps you apply the sympto-thermal method for fertility awareness. But please remember that this app is made by humans, and humans make mistakes. Always think for yourself: \"Does this make sense?\" Remember, you don't need an app to understand your cycle! However, drip. wants to support you and make period tracking easier, more transparent and secure.\n\nPlease find more info on the sympto-thermal method in <0>{{urlText}}</0>.",
           "noNfpSymptom": "The app allows you to track this symptom for your information, it is not taken into account for any calculation. On the chart you can check how often you track this symptom."
         },
@@ -29,6 +29,9 @@
           },
           "cervix": {
             "description": "The cervix is located inside of the body at the end of the vaginal canal, between the vagina and the uterus.\n\nTracking how open or closed and how firm or soft the cervix feels can help determine in which phase of the menstrual cycle you are.\n\nBy default, the secondary symptom the app uses for the sympto-thermal method is cervical mucus, but you can change it to cervix in \"Settings\" -> \"Customization\".\n\n· How to identify a fertile cervix?\n\nA fertile cervix is open and feels soft like your earlobes. In contrast, an infertile cervix feels closed and hard, like the tip of your nose. If the cervix feels anything other than closed and hard, drip. takes it as a sign of fertility. On the chart, a fertile cervix is colored in dark yellow, and infertile cervix is colored in light yellow.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp)\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)"
+          },
+          "desire": {
+            "description": "The app allows you to track sexual desire independently from sexual activity.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.cycleRelation)\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.noNfpSymptom)\n\n"
           }
         }
       },
