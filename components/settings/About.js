@@ -8,7 +8,7 @@ import Segment from '../common/segment'
 import Button from '../common/button'
 import ButtonRow from '../common/button-row'
 
-import links from '../../i18n/en/links'
+import links from '../../common/links'
 import { useTranslation } from 'react-i18next'
 
 const AboutSection = () => {

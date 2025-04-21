@@ -81,6 +81,12 @@
       "addDataForToday": "add data for today"
     }
   },
+  "links": {
+    "donate": "Donate here",
+    "email": "email",
+    "website": "Website",
+    "wiki": "our wiki"
+  },
   "hamburgerMenu": {
     "about": {
       "credits": {

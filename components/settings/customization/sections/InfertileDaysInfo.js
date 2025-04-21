@@ -5,7 +5,7 @@ import { Colors, Spacing, Typography } from '../../../../styles'
 import AppText from '../../../common/app-text'
 import Segment from '../../../common/segment'
 import { Trans, useTranslation } from 'react-i18next'
-import links from '../../../../i18n/en/links'
+import links from '../../../../common/links'
 import AppLink from '../../../common/AppLink'
 
 export const InfertileDaysInfo = () => {

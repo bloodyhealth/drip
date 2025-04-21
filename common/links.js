@@ -1,3 +1,5 @@
+import i18n from '../i18n/i18n'
+
 export default {
   gitlab: {
     url: 'https://gitlab.com/bloodyhealth/drip',
@@ -5,19 +7,19 @@ export default {
   },
   email: {
     url: 'mailto:drip@mailbox.org',
-    text: 'email',
+    text: i18n.t('links.email'),
   },
   wiki: {
     url: 'https://gitlab.com/bloodyhealth/drip/wikis/home',
-    text: 'our wiki',
+    text: i18n.t('links.wiki'),
   },
   website: {
     url: 'https://dripapp.org/',
-    text: 'Website',
+    text: i18n.t('links.website'),
   },
   donate: {
     url: 'https://ko-fi.com/dripapp',
-    text: 'Donate here',
+    text: i18n.t('links.donate'),
   },
   smashicons: {
     url: 'https://smashicons.com/',

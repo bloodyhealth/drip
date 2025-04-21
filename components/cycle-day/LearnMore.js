@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import links from '../../i18n/en/links'
+import links from '../../common/links'
 import { Trans, useTranslation } from 'react-i18next'
 import AppText from '../common/app-text'
 import AppLink from '../common/AppLink'
