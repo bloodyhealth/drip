@@ -8,18 +8,33 @@
     "tutorial": "You can swipe the chart to view more dates."
   },
   "cycleDay": {
-    "today": "Today"
-  },
-  "symptoms": {
-    "bleeding": "bleeding",
-    "temperature": "temperature",
-    "mucus": "cervical mucus",
-    "cervix": "cervix",
-    "note": "note",
-    "desire": "desire",
-    "sex": "sex",
-    "pain": "pain",
-    "mood": "mood"
+    "today": "Today",
+    "symptomEditModal": {
+      "dataDeleted": "Symptom data was deleted",
+      "dataSaved": "Symptom data was saved",
+      "enter": "Enter",
+      "learnMore": {
+        "title": "Learn more",
+        "generalInfo": {
+          "excludeExplainer": "You can exclude these values, so they won't be taken into account for any fertility calculation.",
+          "cycleRelation": "It may be influenced by or have an impact on your menstrual cycles and its hormonal changes.",
+          "chartNfp": "On the chart, you can track fertility signs. When both a valid temperature shift and a cervical mucus or cervix shift have been detected, an orange line will be displayed on the chart. This indicates the end of the peri-ovulatory and the beginning of the post-ovulatory phase.",
+          "nfpCurious": ",If you are curious to learn more about the sympto-thermal method that is used for fertility tracking within the app, you can visit <0>{{urlText}}</0>.",
+          "nfpTfyReminder": "When - on a daily/regular basis - you track:\n1. your basal body temperature,\n2. your cervical mucus OR your cervix,\n3. and menstrual bleeding,\nthe app helps you identify in which phase of the menstrual cycle you are.\n\ndrip. makes period predictions for you and helps you apply the sympto-thermal method for fertility awareness. But please remember that this app is made by humans, and humans make mistakes. Always think for yourself: \"Does this make sense?\" Remember, you don't need an app to understand your cycle! However, drip. wants to support you and make period tracking easier, more transparent and secure.\n\nPlease find more info on the sympto-thermal method in <0>{{urlText}}</0>.",
+          "noNfpSymptom": "The app allows you to track this symptom for your information, it is not taken into account for any calculation. On the chart you can check how often you track this symptom."
+        },
+        "symptoms": {
+          "bleeding": {
+            "description": "Tracking menstrual bleeding allows you to know the beginning and the end of a menstrual cycle.\nAfter tracking at least 3 menstrual cycles, drip. will give you an overview of\n · how long your cycles last on average (in \"fold\")\n· whether the length of your cycles varied significantly (in \"stats\" and in bleeding predictions)\n· predict your next 3 cycles with a range of 3 or 5 days (on home screen and \"calendar\") if this functionality is enabled in the customization settings.\n\nThe app allows you to track different intensities of bleeding. On the chart and on the calendar, bleeding values are colored in different shades of red. The darker, the more intense your bleeding. Every bleeding value that is not excluded is taken into account for fertility calculation and period predictions.\n\nExcluding bleeding values is for tracking bleeding when it's not marking the start of a new cycle or the continuation of menstrual bleeding the day(s) before, e.g. bleeding caused by ovulation or a miscarriage.\n\n"
+          },
+          "cervix": {
+            "description": "The cervix is located inside of the body at the end of the vaginal canal, between the vagina and the uterus.\n\nTracking how open or closed and how firm or soft the cervix feels can help determine in which phase of the menstrual cycle you are.\n\nBy default, the secondary symptom the app uses for the sympto-thermal method is cervical mucus, but you can change it to cervix in \"Settings\" -> \"Customization\".\n\n· How to identify a fertile cervix?\n\nA fertile cervix is open and feels soft like your earlobes. In contrast, an infertile cervix feels closed and hard, like the tip of your nose. If the cervix feels anything other than closed and hard, drip. takes it as a sign of fertility. On the chart, a fertile cervix is colored in dark yellow, and infertile cervix is colored in light yellow.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp)\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)"
+          }
+        }
+      },
+      "remove": "Remove",
+      "save": "Save"
+    }
   },
   "labels": {
     "bleedingPrediction": {
@@ -292,5 +307,16 @@
       "bleedingDays": "Bleeding"
     },
     "footnote": "Based on the standard deviation of the length of all your tracked cycles, drip. calculates a range for the start day of the next 3 cycles.  The range is 3 days if your standard deviation is less than 1.5 and 5 days if the value is greater than 1.5.\n\nThe standard deviation tells you how much the length of your cycles varies. 0 means that all your cycles are exactly the same length and the higher the value, the more the cycle length varies."
+  },
+  "symptoms": {
+    "bleeding": "bleeding",
+    "temperature": "temperature",
+    "mucus": "cervical mucus",
+    "cervix": "cervix",
+    "note": "note",
+    "desire": "desire",
+    "sex": "sex",
+    "pain": "pain",
+    "mood": "mood"
   }
 }
