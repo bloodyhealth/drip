@@ -57,7 +57,11 @@
     },
     "temperature": {
       "description": "Take your temperature right after waking up, before getting out of bed",
-      "time": "Time"
+      "time": "Time",
+      "warning": {
+        "outOfChartRange": "This temperature value is too high or low to be shown on the temperature chart.",
+        "outOfUserDefinedRange": "This temperature value is out of the current range for the temperature chart. You can change the range in the settings."
+      }
     }
   },
   "labels": {

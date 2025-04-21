@@ -10,6 +10,7 @@ import { scaleObservable } from '../../local-storage'
 import * as labels from '../../i18n/en/cycle-day'
 import { getLabelsList } from './labels'
 import { TEMP_MAX, TEMP_MIN } from '../../config'
+import i18n from '../../i18n/i18n'
 
 import computeNfpValue from '../../lib/nfp-mucus'
 
@@ -50,9 +51,9 @@ export const getTemperatureOutOfRangeMessage = (temperature) => {
   const scale = scaleObservable.value
 
   return value < TEMP_MIN || value > TEMP_MAX
-    ? labels.temperature.outOfAbsoluteRangeWarning
+    ? i18n.t('cycleDay.temperature.warning.outOfChartRange')
     : value < scale.min || value > scale.max
-    ? labels.temperature.outOfRangeWarning
+    ? i18n.t('cycleDay.temperature.warning.outOfUserDefinedRange')
     : ''
 }
 
