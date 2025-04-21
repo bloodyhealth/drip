@@ -15,11 +15,11 @@ import {
   formatTemperature,
 } from '../helpers/cycle-day'
 
-import { temperature as labels } from '../../i18n/en/cycle-day'
-
 import { Colors, Containers, Sizes, Spacing } from '../../styles'
+import { useTranslation } from 'react-i18next'
 
 const Temperature = ({ data, date, save }) => {
+  const { t } = useTranslation()
   const [isTimePickerVisible, setIsTimePickerVisible] = useState(false)
   const [temperature, setTemperature] = useState(
     formatTemperature(data.value) || getPreviousTemperature(date)
@@ -59,7 +59,9 @@ const Temperature = ({ data, date, save }) => {
   return (
     <React.Fragment>
       <Segment>
-        <AppText style={styles.title}>{labels.temperature.explainer}</AppText>
+        <AppText style={styles.title}>
+          {t('cycleDay.temperature.description')}
+        </AppText>
         <View style={styles.container}>
           <AppTextInput
             value={temperature}
@@ -80,7 +82,7 @@ const Temperature = ({ data, date, save }) => {
         )}
       </Segment>
       <Segment>
-        <AppText style={styles.title}>{labels.time}</AppText>
+        <AppText style={styles.title}>{t('cycleDay.temperature.time')}</AppText>
         <AppTextInput
           onFocus={onShowTimePicker}
           testID="timeInput"
