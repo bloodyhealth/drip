@@ -41,6 +41,9 @@
           },
           "note": {
             "description": "Note allows you to track any extra information you want to save. It is the only category that can store information for a date in the future. This can be helpful for reminding you of an appointment.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.noNfpSymptom)"
+          },
+          "pain": {
+            "description": "The app allows you to keep track of different kinds of pain you experience.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.noNfpSymptom)"
           }
         }
       },
