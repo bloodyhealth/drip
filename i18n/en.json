@@ -54,6 +54,10 @@
       },
       "remove": "Remove",
       "save": "Save"
+    },
+    "temperature": {
+      "description": "Take your temperature right after waking up, before getting out of bed",
+      "time": "Time"
     }
   },
   "labels": {
