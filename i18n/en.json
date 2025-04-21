@@ -35,6 +35,9 @@
           },
           "mood": {
             "description": "The app allows you to track your mood.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.cycleRelation)\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.noNfpSymptom)"
+          },
+          "mucus": {
+            "description": "Cervical mucus can help determine in which phase of the menstrual cycle you are.\n\nBy default the secondary symptom the app uses for the sympto-thermal method is cervical mucus. You can change this in the customization settings.\n\n· How to identify fertile cervical mucus?\n\nTracking the feeling and the texture of your cervical mucus on a daily basis helps you identify changes of the quality of the cervical mucus. The values you enter for both feeling and texture of your cervical mucus are combined by drip. into one of five values following the sympto-thermal method.\n\nFrom lowest to best quality:\n· t = (dry feeling + no texture),\n· ∅ = (no feeling + no texture),\n· f = (wet feeling + no texture),\n· S = (no OR wet feeling + creamy texture),\n· S+ = (any feeling + egg white texture) OR (slippery feeling + any texture).\n\nOn the chart, cervical mucus is colored in blue: the darker the shade of blue the better the quality of your cervical mucus.\n\nPlease note that drip. does not yet support \"parenthesis values\": According to the sympto-thermal method, you can qualify a cervical mucus value by putting parentheses around it, to indicate that it doesn't fully meet the descriptors of one of the five categories, and instead is in between. This functionality will be supported in the future.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp)\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)\n\n"
           }
         }
       },
