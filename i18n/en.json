@@ -15,6 +15,13 @@
     "tutorial": "You can swipe the chart to view more dates."
   },
   "cycleDay": {
+    "bleedingPrediction": {
+      "day_one": "Your period is likely to start today or tomorrow.",
+      "day_other": "Your period is likely to start today or within the next {{count}} days.",
+      "day_zero": "Your period is likely to start today.",
+      "future": "Your next period is likely to start in {{start}} to {{end}} days.",
+      "past": "Based on your documented data, your period was likely to start between {{start}} and {{end}}."
+    },
     "subTitle": "Cycle day {{cycleDay}}",
     "today": "Today",
     "symptomEditModal": {

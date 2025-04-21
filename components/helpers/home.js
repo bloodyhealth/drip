@@ -2,11 +2,6 @@ import { ChronoUnit, LocalDate } from '@js-joda/core'
 
 import { formatDateForShortText } from './format-date'
 
-import {
-  home as labels,
-  bleedingPrediction as predictLabels,
-} from '../../i18n/en/labels'
-
 function getTimes(prediction) {
   const todayDate = LocalDate.now()
   const predictedBleedingStart = LocalDate.parse(prediction[0][0])
@@ -24,40 +19,18 @@ export function determinePredictionText(bleedingPrediction, t) {
   const { todayDate, predictedBleedingStart, predictedBleedingEnd, daysToEnd } =
     getTimes(bleedingPrediction)
   if (todayDate.isBefore(predictedBleedingStart)) {
-    return predictLabels.predictionInFuture(
-      todayDate.until(predictedBleedingStart, ChronoUnit.DAYS),
-      todayDate.until(predictedBleedingEnd, ChronoUnit.DAYS)
-    )
+    return t('cycleDay.bleedingPrediction.future', {
+      start: todayDate.until(predictedBleedingStart, ChronoUnit.DAYS),
+      end: todayDate.until(predictedBleedingEnd, ChronoUnit.DAYS),
+    })
   }
   if (todayDate.isAfter(predictedBleedingEnd)) {
-    return predictLabels.predictionInPast(
-      formatDateForShortText(predictedBleedingStart),
-      formatDateForShortText(predictedBleedingEnd)
-    )
+    return t('cycleDay.bleedingPrediction.past', {
+      start: formatDateForShortText(predictedBleedingStart),
+      end: formatDateForShortText(predictedBleedingEnd),
+    })
   }
-  if (daysToEnd === 0) {
-    return predictLabels.predictionStartedNoDaysLeft
-  } else if (daysToEnd === 1) {
-    return predictLabels.predictionStarted1DayLeft
-  } else {
-    return predictLabels.predictionStartedXDaysLeft(daysToEnd)
-  }
-}
-
-export function getBleedingPredictionRange(prediction) {
-  if (!prediction.length) return labels.unknown
-  const { todayDate, predictedBleedingStart, predictedBleedingEnd, daysToEnd } =
-    getTimes(prediction)
-  if (todayDate.isBefore(predictedBleedingStart)) {
-    return `${todayDate.until(
-      predictedBleedingStart,
-      ChronoUnit.DAYS
-    )}-${todayDate.until(predictedBleedingEnd, ChronoUnit.DAYS)}`
-  }
-  if (todayDate.isAfter(predictedBleedingEnd)) {
-    return labels.unknown
-  }
-  return daysToEnd === 0 ? '0' : `0 - ${daysToEnd}`
+  return t('cycleDay.bleedingPrediction.day', { count: daysToEnd })
 }
 
 export function getOrdinalSuffix(num) {
