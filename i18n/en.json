@@ -32,6 +32,9 @@
           },
           "desire": {
             "description": "The app allows you to track sexual desire independently from sexual activity.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.cycleRelation)\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.noNfpSymptom)\n\n"
+          },
+          "mood": {
+            "description": "The app allows you to track your mood.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.cycleRelation)\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.noNfpSymptom)"
           }
         }
       },
