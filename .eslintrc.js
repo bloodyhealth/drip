@@ -29,5 +29,6 @@ module.exports = {
     'no-var': 'error',
     'prefer-const': 'error',
     'react/prop-types': 2,
+    'no-extra-semi': 'off',
   },
 }
