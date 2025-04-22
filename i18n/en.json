@@ -5,6 +5,13 @@
     "stats": "Stats"
   },
   "chart": {
+    "noData": {
+      "buttonText": "Start entering data now",
+      "description": "You haven't entered any data yet."
+    },
+    "noTemperature": {
+      "description": "You haven't entered any temperature data yet."
+    },
     "tutorial": "You can swipe the chart to view more dates."
   },
   "cycleDay": {
