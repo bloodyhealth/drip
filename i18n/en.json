@@ -15,6 +15,7 @@
     "tutorial": "You can swipe the chart to view more dates."
   },
   "cycleDay": {
+    "subTitle": "Cycle day {{cycleDay}}",
     "today": "Today"
   },
   "symptoms": {

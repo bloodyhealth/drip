@@ -8,16 +8,18 @@ import AppText from '../common/app-text'
 import cycleModule from '../../lib/cycle'
 import { dateToTitle } from '../helpers/format-date'
 
-import { general as labels } from '../../i18n/en/cycle-day'
 import { Colors, Containers, Spacing, Typography } from '../../styles'
 import { HIT_SLOP } from '../../config'
+import { useTranslation } from 'react-i18next'
 
 const SymptomPageTitle = ({ date, onNextCycleDay, onPrevCycleDay }) => {
+  const { t } = useTranslation()
   const title = dateToTitle(date)
 
   const { getCycleDayNumber } = cycleModule()
   const cycleDayNumber = getCycleDayNumber(date)
-  const subtitle = cycleDayNumber && `${labels.cycleDayNumber}${cycleDayNumber}`
+  const subtitle =
+    cycleDayNumber && t('cycleDay.subTitle', { cycleDay: cycleDayNumber })
 
   const formattedTitle =
     title.length > 21 ? title.substring(0, 18) + '...' : title

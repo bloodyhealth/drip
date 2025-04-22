@@ -138,11 +138,6 @@ export const temperature = {
 
 export const noteExplainer = 'Anything you want to add for the day?'
 
-export const general = {
-  cycleDayNumber: 'Cycle day ',
-  today: 'Today',
-}
-
 export const sharedDialogs = {
   cancel: 'Cancel',
   areYouSureTitle: 'Are you sure?',
