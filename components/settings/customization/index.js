@@ -117,9 +117,11 @@ const Settings = () => {
     saveNoteTrackingCategory(value)
   }
 
-  const fertilityTrackingText = isFertilityTrackingEnabled
-    ? labels.fertilityTracking.on
-    : labels.fertilityTracking.off
+  const fertilityTrackingText = t(
+    `hamburgerMenu.settings.customization.fertilityPhases.${
+      isFertilityTrackingEnabled ? 'on' : 'off'
+    }`
+  )
 
   const secondarySymptomButtons = [
     {
@@ -206,8 +208,12 @@ const Settings = () => {
   const fertilityDisabledPrompt = () => {
     if (!manageFertilityFeature) {
       Alert.alert(
-        labels.fertilityTracking.disabledTitle,
-        labels.fertilityTracking.disabled
+        t(
+          'hamburgerMenu.settings.customization.fertilityPhases.disabledModal.title'
+        ),
+        t(
+          'hamburgerMenu.settings.customization.fertilityPhases.disabledModal.description'
+        )
       )
     }
   }
@@ -270,8 +276,16 @@ const Settings = () => {
       </Segment>
 
       <Pressable onPress={fertilityDisabledPrompt}>
-        <Segment title={labels.fertilityTracking.title}>
-          <AppText>{labels.fertilityTracking.message}</AppText>
+        <Segment
+          title={t(
+            'hamburgerMenu.settings.customization.fertilityPhases.title'
+          )}
+        >
+          <AppText>
+            {t(
+              'hamburgerMenu.settings.customization.fertilityPhases.description'
+            )}
+          </AppText>
           <AppSwitch
             onToggle={fertilityTrackingToggle}
             text={fertilityTrackingText}

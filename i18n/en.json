@@ -96,6 +96,16 @@
     },
     "settings": {
       "customization": {
+        "fertilityPhases": {
+          "description": "If you enter menstrual bleeding, temperature and cervical mucus or cervix data according to the sympto-thermal method, drip will calculate cycle phases with the provided data.",
+          "disabledModal": {
+            "title": "Disabled",
+            "description": "To use fertility phases calculation please enable both temperature tracking and either cervical mucus or cervix tracking above."
+          },
+          "off": "If you switch this on, drip will show fertility related information.",
+          "on": "If you switch this off, drip will not show fertility related information.",
+          "title": "Fertility phases calculation"
+        },
         "infertileDaysInfo": {
           "note": "drip. applies the sympto-thermal method for calculating infertile days at the start of the cycle (see <0>{{urlText}}</0> for more info). However, drip. does not currently apply the so called 20-day-rule, which determines infertile days at the cycle start from past cycle lengths in case no past sympto-thermal info is available.",
           "title": "Infertile days at cycle start"
