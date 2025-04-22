@@ -31,7 +31,6 @@ import {
   temperatureTrackingCategoryObservable,
   useCervixAsSecondarySymptomObservable,
 } from '../../../local-storage'
-import labels from '../../../i18n/en/settings'
 import { SYMPTOMS } from '../../../config'
 import { InfertileDaysInfo } from './sections/InfertileDaysInfo'
 import { PeriodPrediction } from './sections/period-prediction'
@@ -219,8 +218,12 @@ const Settings = () => {
   }
 
   return (
-    <AppPage title={labels.customization.title}>
-      <Segment title={labels.customization.trackingCategories}>
+    <AppPage title={t('hamburgerMenu.settings.customization.title')}>
+      <Segment
+        title={t(
+          'hamburgerMenu.settings.customization.trackingCategories.title'
+        )}
+      >
         <TrackingCategorySwitch
           onToggle={temperatureTrackingCategoryToggle}
           text={t(`symptoms.${SYMPTOMS[1]}`)}
@@ -298,9 +301,11 @@ const Settings = () => {
       <PeriodPrediction />
 
       <Segment
-        subheader={labels.customization.subheaderSymptoThermalMethod}
+        subheader={t(
+          'hamburgerMenu.settings.customization.titleSymptoThermalMethod'
+        )}
         last
-      ></Segment>
+      />
 
       <Pressable onPress={sliderDisabledPrompt}>
         <Segment

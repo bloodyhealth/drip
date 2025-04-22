@@ -132,6 +132,11 @@
           },
           "saveError": "Could not save temperature scale settings",
           "title": "Temperature scale"
+        },
+        "title": "Customization",
+        "titleSymptoThermalMethod": "Sympto-thermal method settings",
+        "trackingCategories": {
+          "title": "Tracking categories"
         }
       },
       "data": {
