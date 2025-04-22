@@ -293,6 +293,7 @@
   "shared": {
     "cancel": "Cancel",
     "confirmToProceed": "Confirm to proceed",
+    "date": "Date",
     "day_one": "{{count}} day",
     "day_other": "{{count}} days",
     "ok": "OK",
