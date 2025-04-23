@@ -21,6 +21,35 @@
       },
       "exclude": "You can exclude this value if it's not menstrual bleeding"
     },
+    "cervix": {
+      "opening": {
+        "symptoms": {
+          "closed": "closed",
+          "medium": "medium",
+          "open": "open"
+        },
+        "description": "Is your cervix open or closed?",
+        "title": "opening"
+      },
+      "firmness": {
+        "symptoms": {
+          "hard": "hard",
+          "soft": "soft"
+        },
+        "description": "When it's hard, it might feel like the tip of your nose",
+        "title": "firmness"
+      },
+      "position": {
+        "symptoms": {
+          "low": "low",
+          "medium": "medium",
+          "high": "high"
+        },
+        "description": "How high up in the vagina is the cervix?",
+        "title": "position"
+      },
+      "exclude": "You can exclude this value if you don't want to use it for fertility detection."
+    },
     "today": "Today",
     "symptomEditModal": {
       "dataDeleted": "Symptom data was deleted",

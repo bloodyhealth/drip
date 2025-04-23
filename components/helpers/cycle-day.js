@@ -139,24 +139,24 @@ export const symtomPage = {
     ],
   },
   cervix: {
-    excludeText: cervixLabels.excludeExplainer,
+    excludeText: i18n.t('cycleDay.cervix.exclude'),
     note: null,
     selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'opening',
-        options: getLabelsList(cervixLabels.opening.categories),
-        title: cervixLabels.opening.explainer,
+        options: getLabelsListNew('cervix', 'opening'),
+        title: i18n.t('cycleDay.cervix.opening.description'),
       },
       {
         key: 'firmness',
-        options: getLabelsList(cervixLabels.firmness.categories),
-        title: cervixLabels.firmness.explainer,
+        options: getLabelsListNew('cervix', 'firmness'),
+        title: i18n.t('cycleDay.cervix.firmness.description'),
       },
       {
         key: 'position',
-        options: getLabelsList(cervixLabels.position.categories),
-        title: cervixLabels.position.explainer,
+        options: getLabelsListNew('cervix', 'position'),
+        title: i18n.t('cycleDay.cervix.position.description'),
       },
     ],
   },
@@ -375,10 +375,13 @@ const label = {
     )
     let label = filledCategories
       .map((category) => {
+        const symptoms = SYMPTOMS.cervix[category]
+        const symptomValue = cervix[category]
+        const symptom = symptoms[symptomValue]
         return (
-          labels.cervix.subcategories[category] +
+          i18n.t(`cycleDay.cervix.${category}.title`) +
           ': ' +
-          labels.cervix[category].categories[cervix[category]]
+          i18n.t(`cycleDay.cervix.${category}.symptoms.${symptom}`)
         )
       })
       .join(', ')
