@@ -8,7 +8,7 @@ import {
 import { scaleObservable } from '../../local-storage'
 
 import * as labels from '../../i18n/en/cycle-day'
-import { getLabelsListNew, SYMPTOMS } from './labels'
+import { getLabelsList, SYMPTOMS } from './labels'
 import { TEMP_MAX, TEMP_MIN } from '../../config'
 import i18n from '../../i18n/i18n'
 
@@ -130,7 +130,7 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'value',
-        options: getLabelsListNew('bleeding', 'heaviness'),
+        options: getLabelsList('bleeding', 'heaviness'),
         title: i18n.t('cycleDay.bleeding.heaviness.title'),
       },
     ],
@@ -142,17 +142,17 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'opening',
-        options: getLabelsListNew('cervix', 'opening'),
+        options: getLabelsList('cervix', 'opening'),
         title: i18n.t('cycleDay.cervix.opening.description'),
       },
       {
         key: 'firmness',
-        options: getLabelsListNew('cervix', 'firmness'),
+        options: getLabelsList('cervix', 'firmness'),
         title: i18n.t('cycleDay.cervix.firmness.description'),
       },
       {
         key: 'position',
-        options: getLabelsListNew('cervix', 'position'),
+        options: getLabelsList('cervix', 'position'),
         title: i18n.t('cycleDay.cervix.position.description'),
       },
     ],
@@ -164,7 +164,7 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'value',
-        options: getLabelsListNew('desire', 'intensity'),
+        options: getLabelsList('desire', 'intensity'),
         title: i18n.t('cycleDay.desire.intensity.description'),
       },
     ],
@@ -176,12 +176,12 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'feeling',
-        options: getLabelsListNew('mucus', 'feeling'),
+        options: getLabelsList('mucus', 'feeling'),
         title: i18n.t('cycleDay.mucus.feeling.description'),
       },
       {
         key: 'texture',
-        options: getLabelsListNew('mucus', 'texture'),
+        options: getLabelsList('mucus', 'texture'),
         title: i18n.t('cycleDay.mucus.texture.description'),
       },
     ],
