@@ -4,6 +4,11 @@ export const SYMPTOMS = {
   bleeding: {
     heaviness: ['spotting', 'light', 'medium', 'heavy'],
   },
+  cervix: {
+    opening: ['closed', 'medium', 'open'],
+    firmness: ['hard', 'soft'],
+    position: ['low', 'medium', 'high'],
+  },
 }
 
 export const getLabelsList = (categories) =>
