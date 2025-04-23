@@ -8,6 +8,19 @@
     "tutorial": "You can swipe the chart to view more dates."
   },
   "cycleDay": {
+    "bleeding": {
+      "heaviness": {
+        "symptoms": {
+          "spotting": "spotting",
+          "light": "light",
+          "medium": "medium",
+          "heavy": "heavy"
+        },
+        "description": "How heavy is the bleeding?",
+        "title": "Heaviness"
+      },
+      "exclude": "You can exclude this value if it's not menstrual bleeding"
+    },
     "today": "Today",
     "symptomEditModal": {
       "dataDeleted": "Symptom data was deleted",
