@@ -9,6 +9,10 @@ export const SYMPTOMS = {
     firmness: ['hard', 'soft'],
     position: ['low', 'medium', 'high'],
   },
+  mucus: {
+    feeling: ['dry', 'nothing', 'wet', 'slippery'],
+    texture: ['nothing', 'creamy', 'eggWhite'],
+  },
 }
 
 export const getLabelsList = (categories) =>

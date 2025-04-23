@@ -50,6 +50,28 @@
       },
       "exclude": "You can exclude this value if you don't want to use it for fertility detection."
     },
+    "mucus": {
+      "feeling": {
+        "symptoms": {
+          "dry": "dry",
+          "nothing": "nothing",
+          "wet": "wet",
+          "slippery": "slippery"
+        },
+        "title": "feeling",
+        "description": "What does your vaginal entrance feel like?"
+      },
+      "texture": {
+        "symptoms": {
+          "nothing": "nothing",
+          "creamy": "creamy",
+          "eggWhite": "egg white"
+        },
+        "title": "texture",
+        "description": "Looking at and touching your cervical mucus, which describes it best?"
+      },
+      "exclude": "You can exclude this value if you don't want to use it for fertility detection"
+    },
     "today": "Today",
     "symptomEditModal": {
       "dataDeleted": "Symptom data was deleted",
