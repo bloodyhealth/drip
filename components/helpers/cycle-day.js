@@ -173,19 +173,19 @@ export const symtomPage = {
     ],
   },
   mucus: {
-    excludeText: mucusLabels.excludeExplainer,
+    excludeText: i18n.t('cycleDay.mucus.exclude'),
     note: null,
     selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'feeling',
-        options: getLabelsList(mucusLabels.feeling.categories),
-        title: mucusLabels.feeling.explainer,
+        options: getLabelsListNew('mucus', 'feeling'),
+        title: i18n.t('cycleDay.mucus.feeling.description'),
       },
       {
         key: 'texture',
-        options: getLabelsList(mucusLabels.texture.categories),
-        title: mucusLabels.texture.explainer,
+        options: getLabelsListNew('mucus', 'texture'),
+        title: i18n.t('cycleDay.mucus.texture.description'),
       },
     ],
   },
@@ -356,10 +356,13 @@ const label = {
     )
     let label = filledCategories
       .map((category) => {
+        const mucusCategories = SYMPTOMS.mucus[category]
+        const symptomValue = mucus[category]
+        const symptom = mucusCategories[symptomValue]
         return (
-          labels.mucus.subcategories[category] +
+          i18n.t(`cycleDay.mucus.${category}.title`) +
           ': ' +
-          labels.mucus[category].categories[mucus[category]]
+          i18n.t(`cycleDay.mucus.${category}.symptoms.${symptom}`)
         )
       })
       .join(', ')
