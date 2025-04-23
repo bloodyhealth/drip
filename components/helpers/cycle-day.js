@@ -8,13 +8,12 @@ import {
 import { scaleObservable } from '../../local-storage'
 
 import * as labels from '../../i18n/en/cycle-day'
-import { getLabelsList } from './labels'
+import { getLabelsList, getLabelsListNew, SYMPTOMS } from './labels'
 import { TEMP_MAX, TEMP_MIN } from '../../config'
 import i18n from '../../i18n/i18n'
 
 import computeNfpValue from '../../lib/nfp-mucus'
 
-const bleedingLabels = labels.bleeding.labels
 const cervixLabels = labels.cervix
 const contraceptiveLabels = labels.contraceptives.categories
 const intensityLabels = labels.intensity
@@ -128,14 +127,14 @@ export const blank = {
 
 export const symtomPage = {
   bleeding: {
-    excludeText: labels.bleeding.exclude.explainer,
+    excludeText: i18n.t('cycleDay.bleeding.exclude'),
     note: null,
     selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'value',
-        options: getLabelsList(bleedingLabels),
-        title: labels.bleeding.heaviness.explainer,
+        options: getLabelsListNew('bleeding', 'heaviness'),
+        title: i18n.t('cycleDay.bleeding.heaviness.title'),
       },
     ],
   },
@@ -332,7 +331,10 @@ const saveBoxSymptom = (data, date, shouldDeleteData, symptom) => {
 const label = {
   bleeding: ({ value, exclude }) => {
     if (isNumber(value)) {
-      const bleedingLabel = bleedingLabels[value]
+      const symptom = SYMPTOMS.bleeding.heaviness[value]
+      const bleedingLabel = i18n.t(
+        `cycleDay.bleeding.heaviness.symptoms.${symptom}`
+      )
       return exclude ? `(${bleedingLabel})` : bleedingLabel
     }
   },

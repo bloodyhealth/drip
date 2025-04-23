@@ -15,6 +15,19 @@
     "tutorial": "You can swipe the chart to view more dates."
   },
   "cycleDay": {
+    "bleeding": {
+      "heaviness": {
+        "symptoms": {
+          "spotting": "spotting",
+          "light": "light",
+          "medium": "medium",
+          "heavy": "heavy"
+        },
+        "description": "How heavy is the bleeding?",
+        "title": "Heaviness"
+      },
+      "exclude": "You can exclude this value if it's not menstrual bleeding"
+    },
     "bleedingPrediction": {
       "day_one": "Your period is likely to start today or tomorrow.",
       "day_other": "Your period is likely to start today or within the next {{count}} days.",
