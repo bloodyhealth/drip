@@ -8,17 +8,14 @@ import {
 import { scaleObservable } from '../../local-storage'
 
 import * as labels from '../../i18n/en/cycle-day'
-import { getLabelsList, getLabelsListNew, SYMPTOMS } from './labels'
+import { getLabelsListNew, SYMPTOMS } from './labels'
 import { TEMP_MAX, TEMP_MIN } from '../../config'
 import i18n from '../../i18n/i18n'
 
 import computeNfpValue from '../../lib/nfp-mucus'
 
-const cervixLabels = labels.cervix
 const contraceptiveLabels = labels.contraceptives.categories
-const intensityLabels = labels.intensity
 const moodLabels = labels.mood.categories
-const mucusLabels = labels.mucus
 const noteDescription = labels.noteExplainer
 const painLabels = labels.pain.categories
 const sexLabels = labels.sex.categories
@@ -167,8 +164,8 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'value',
-        options: getLabelsList(intensityLabels),
-        title: labels.desire.explainer,
+        options: getLabelsListNew('desire', 'intensity'),
+        title: i18n.t('cycleDay.desire.intensity.description'),
       },
     ],
   },
@@ -396,7 +393,9 @@ const label = {
   note: (note) => note.value,
   desire: ({ value }) => {
     if (isNumber(value)) {
-      return intensityLabels[value]
+      const intensitySymptoms = SYMPTOMS.desire.intensity
+      const symptom = intensitySymptoms[value]
+      return i18n.t(`cycleDay.desire.intensity.symptoms.${symptom}`)
     }
   },
   sex: (sex) => {

@@ -13,6 +13,9 @@ export const SYMPTOMS = {
     feeling: ['dry', 'nothing', 'wet', 'slippery'],
     texture: ['nothing', 'creamy', 'eggWhite'],
   },
+  desire: {
+    intensity: ['low', 'medium', 'high'],
+  },
 }
 
 export const getLabelsList = (categories) =>

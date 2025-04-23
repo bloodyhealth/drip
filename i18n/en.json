@@ -65,6 +65,17 @@
       },
       "exclude": "You can exclude this value if you don't want to use it for fertility detection."
     },
+    "desire": {
+      "intensity": {
+        "title": "Intensity",
+        "description": "How would you rate your sexual desire?",
+        "symptoms": {
+          "low": "low",
+          "medium": "medium",
+          "high": "high"
+        }
+      }
+    },
     "mucus": {
       "feeling": {
         "symptoms": {
