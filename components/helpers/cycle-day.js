@@ -400,22 +400,25 @@ const label = {
   },
   sex: (sex) => {
     sex = mapRealmObjToJsObj(sex)
-    const sexLabel = []
-    if (sex && Object.values({ ...sex }).some((val) => val)) {
-      Object.keys(sex).forEach((key) => {
-        if (sex[key] && key !== 'other' && key !== 'note') {
-          sexLabel.push(sexLabels[key] || contraceptiveLabels[key])
+
+    const relevantSymptoms = sex
+      ? Object.keys(sex).filter((symptom) => Boolean(sex[symptom]))
+      : []
+
+    return relevantSymptoms
+      .reduce((labels, symptom) => {
+        if (symptom === 'note') {
+          return labels
         }
-        if (key === 'other' && sex.other) {
-          let label = contraceptiveLabels[key]
-          if (sex.note) {
-            label = `${label} (${sex.note})`
-          }
-          sexLabel.push(label)
+        if (symptom === 'other') {
+          const noteLabel = sex.note ? ` (${sex.note})` : ''
+          const label = `${contraceptiveLabels[symptom]}${noteLabel}`
+
+          return [...labels, label]
         }
-      })
-      return sexLabel.join(', ')
-    }
+        return [...labels, sexLabels[symptom] || contraceptiveLabels[symptom]]
+      }, [])
+      .join(', ')
   },
   pain: (pain) => {
     pain = mapRealmObjToJsObj(pain)
