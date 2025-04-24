@@ -16,6 +16,20 @@ export const SYMPTOMS = {
   desire: {
     intensity: ['low', 'medium', 'high'],
   },
+  sex: {
+    activity: ['solo', 'partner'],
+    contraceptives: [
+      'condom',
+      'pill',
+      'iud',
+      'patch',
+      'ring',
+      'implant',
+      'diaphragm',
+      'none',
+      'other',
+    ],
+  },
 }
 
 export const getLabelsList = (category, subCategory) => {
@@ -24,4 +38,15 @@ export const getLabelsList = (category, subCategory) => {
     label: i18n.t(`cycleDay.${category}.${subCategory}.symptoms.${symptom}`),
     value: i,
   }))
+}
+
+export const getLabels = (category, subCategory) => {
+  const symptoms = SYMPTOMS[category][subCategory]
+
+  const labels = symptoms.map((symptom) => [
+    symptom,
+    i18n.t(`cycleDay.${category}.${subCategory}.symptoms.${symptom}`),
+  ])
+
+  return Object.fromEntries(labels)
 }

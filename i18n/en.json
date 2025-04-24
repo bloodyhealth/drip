@@ -98,6 +98,29 @@
       },
       "exclude": "You can exclude this value if you don't want to use it for fertility detection"
     },
+    "sex": {
+      "activity": {
+        "symptoms": {
+          "solo": "solo",
+          "partner": "partner"
+        },
+        "description": "Were you sexually active today?"
+      },
+      "contraceptives": {
+        "symptoms": {
+          "condom": "condom",
+          "pill": "pill",
+          "iud": "iud",
+          "patch": "patch",
+          "ring": "ring",
+          "implant": "implant",
+          "diaphragm": "diaphragm",
+          "none": "none",
+          "other": "other"
+        },
+        "description": "Did you use contraceptives?"
+      }
+    },
     "today": "Today",
     "symptomEditModal": {
       "dataDeleted": "Symptom data was deleted",

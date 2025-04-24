@@ -8,7 +8,7 @@ import {
 import { scaleObservable } from '../../local-storage'
 
 import * as labels from '../../i18n/en/cycle-day'
-import { getLabelsList, SYMPTOMS } from './labels'
+import { getLabels, getLabelsList, SYMPTOMS } from './labels'
 import { TEMP_MAX, TEMP_MIN } from '../../config'
 import i18n from '../../i18n/i18n'
 
@@ -222,13 +222,13 @@ export const symtomPage = {
     selectBoxGroups: [
       {
         key: 'sex',
-        options: sexLabels,
-        title: labels.sex.explainer,
+        options: getLabels('sex', 'activity'),
+        title: i18n.t('cycleDay.sex.activity.description'),
       },
       {
         key: 'contraceptives',
-        options: contraceptiveLabels,
-        title: labels.contraceptives.explainer,
+        options: getLabels('sex', 'contraceptives'),
+        title: i18n.t('cycleDay.sex.contraceptives.description'),
       },
     ],
     selectTabGroups: null,
@@ -416,7 +416,14 @@ const label = {
 
           return [...labels, label]
         }
-        return [...labels, sexLabels[symptom] || contraceptiveLabels[symptom]]
+        const translationKey =
+          symptom === 'solo' || symptom === 'partner'
+            ? 'activity'
+            : 'contraceptives'
+        return [
+          ...labels,
+          i18n.t(`cycleDay.sex.${translationKey}.symptoms.${symptom}`),
+        ]
       }, [])
       .join(', ')
   },
