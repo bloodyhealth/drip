@@ -32,6 +32,11 @@ export const SYMPTOMS = {
   },
 }
 
+/**
+ * Generates symptom labels and numeric values
+ * @returns Symptom labels mapped to numeric values
+ * e.g. [{"label": "hard", "value": 0}, {"label": "soft", "value": 1}]
+ */
 export const getOptionsNumeric = (category, subCategory) => {
   const symptoms = SYMPTOMS[category][subCategory]
   return symptoms.map((symptom, i) => ({
@@ -40,6 +45,11 @@ export const getOptionsNumeric = (category, subCategory) => {
   }))
 }
 
+/**
+ * Generates symptom labels and string values
+ * @returns Symptom keys mapped to string labels,
+ * e.g. {"partner": "Partner", "solo": "Solo"}
+ */
 export const getOptions = (category, subCategory) => {
   const symptoms = SYMPTOMS[category][subCategory]
 
