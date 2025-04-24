@@ -353,9 +353,9 @@ const label = {
     )
     let label = filledCategories
       .map((category) => {
-        const mucusCategories = SYMPTOMS.mucus[category]
+        const mucusSymptoms = SYMPTOMS.mucus[category]
         const symptomValue = mucus[category]
-        const symptom = mucusCategories[symptomValue]
+        const symptom = mucusSymptoms[symptomValue]
         return (
           i18n.t(`cycleDay.mucus.${category}.title`) +
           ': ' +
@@ -375,9 +375,9 @@ const label = {
     )
     let label = filledCategories
       .map((category) => {
-        const symptoms = SYMPTOMS.cervix[category]
+        const cervixSymptoms = SYMPTOMS.cervix[category]
         const symptomValue = cervix[category]
-        const symptom = symptoms[symptomValue]
+        const symptom = cervixSymptoms[symptomValue]
         return (
           i18n.t(`cycleDay.cervix.${category}.title`) +
           ': ' +
