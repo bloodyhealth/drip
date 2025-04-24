@@ -18,7 +18,6 @@ const contraceptiveLabels = labels.contraceptives.categories
 const moodLabels = labels.mood.categories
 const noteDescription = labels.noteExplainer
 const painLabels = labels.pain.categories
-const sexLabels = labels.sex.categories
 const temperatureLabels = labels.temperature
 
 const minutes = ChronoUnit.MINUTES

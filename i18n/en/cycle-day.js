@@ -1,15 +1,6 @@
 export const mucusNFP = ['t', 'Ø', 'f', 'S', 'S+']
 export const intensity = ['low', 'medium', 'high']
 
-export const sex = {
-  categories: {
-    solo: 'solo',
-    partner: 'partner',
-  },
-  header: 'Activity',
-  explainer: 'Were you sexually active today?',
-}
-
 export const contraceptives = {
   categories: {
     condom: 'condom',
