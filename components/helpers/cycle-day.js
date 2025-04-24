@@ -409,11 +409,11 @@ const label = {
           return labels
         }
         if (symptom === 'other') {
-          const contraceptiveLabels = i18n.t(
+          const contraceptivesLabel = i18n.t(
             `cycleDay.sex.contraceptives.symptoms.${symptom}`
           )
           const noteLabel = sex.note ? ` (${sex.note})` : ''
-          const label = contraceptiveLabels + noteLabel
+          const label = contraceptivesLabel + noteLabel
 
           return [...labels, label]
         }
