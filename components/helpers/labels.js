@@ -32,7 +32,7 @@ export const SYMPTOMS = {
   },
 }
 
-export const getLabelsList = (category, subCategory) => {
+export const getOptionsNumeric = (category, subCategory) => {
   const symptoms = SYMPTOMS[category][subCategory]
   return symptoms.map((symptom, i) => ({
     label: i18n.t(`cycleDay.${category}.${subCategory}.symptoms.${symptom}`),
@@ -40,7 +40,7 @@ export const getLabelsList = (category, subCategory) => {
   }))
 }
 
-export const getLabels = (category, subCategory) => {
+export const getOptions = (category, subCategory) => {
   const symptoms = SYMPTOMS[category][subCategory]
 
   const labels = symptoms.map((symptom) => [
