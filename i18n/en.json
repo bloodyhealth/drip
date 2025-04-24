@@ -17,7 +17,7 @@
           "heavy": "heavy"
         },
         "description": "How heavy is the bleeding?",
-        "title": "Heaviness"
+        "title": "heaviness"
       },
       "exclude": "You can exclude this value if it's not menstrual bleeding"
     },

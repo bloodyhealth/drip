@@ -131,7 +131,7 @@ export const symtomPage = {
       {
         key: 'value',
         options: getLabelsList('bleeding', 'heaviness'),
-        title: i18n.t('cycleDay.bleeding.heaviness.title'),
+        title: i18n.t('cycleDay.bleeding.heaviness.description'),
       },
     ],
   },
