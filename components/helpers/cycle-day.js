@@ -8,7 +8,7 @@ import {
 import { scaleObservable } from '../../local-storage'
 
 import * as labels from '../../i18n/en/cycle-day'
-import { getLabels, getLabelsList, SYMPTOMS } from './labels'
+import { getOptions, getOptionsNumeric, SYMPTOMS } from './labels'
 import { TEMP_MAX, TEMP_MIN } from '../../config'
 import i18n from '../../i18n/i18n'
 
@@ -129,7 +129,7 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'value',
-        options: getLabelsList('bleeding', 'heaviness'),
+        options: getOptionsNumeric('bleeding', 'heaviness'),
         title: i18n.t('cycleDay.bleeding.heaviness.description'),
       },
     ],
@@ -141,17 +141,17 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'opening',
-        options: getLabelsList('cervix', 'opening'),
+        options: getOptionsNumeric('cervix', 'opening'),
         title: i18n.t('cycleDay.cervix.opening.description'),
       },
       {
         key: 'firmness',
-        options: getLabelsList('cervix', 'firmness'),
+        options: getOptionsNumeric('cervix', 'firmness'),
         title: i18n.t('cycleDay.cervix.firmness.description'),
       },
       {
         key: 'position',
-        options: getLabelsList('cervix', 'position'),
+        options: getOptionsNumeric('cervix', 'position'),
         title: i18n.t('cycleDay.cervix.position.description'),
       },
     ],
@@ -163,7 +163,7 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'value',
-        options: getLabelsList('desire', 'intensity'),
+        options: getOptionsNumeric('desire', 'intensity'),
         title: i18n.t('cycleDay.desire.intensity.description'),
       },
     ],
@@ -175,12 +175,12 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'feeling',
-        options: getLabelsList('mucus', 'feeling'),
+        options: getOptionsNumeric('mucus', 'feeling'),
         title: i18n.t('cycleDay.mucus.feeling.description'),
       },
       {
         key: 'texture',
-        options: getLabelsList('mucus', 'texture'),
+        options: getOptionsNumeric('mucus', 'texture'),
         title: i18n.t('cycleDay.mucus.texture.description'),
       },
     ],
@@ -221,12 +221,12 @@ export const symtomPage = {
     selectBoxGroups: [
       {
         key: 'sex',
-        options: getLabels('sex', 'activity'),
+        options: getOptions('sex', 'activity'),
         title: i18n.t('cycleDay.sex.activity.description'),
       },
       {
         key: 'contraceptives',
-        options: getLabels('sex', 'contraceptives'),
+        options: getOptions('sex', 'contraceptives'),
         title: i18n.t('cycleDay.sex.contraceptives.description'),
       },
     ],
