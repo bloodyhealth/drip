@@ -14,7 +14,6 @@ import i18n from '../../i18n/i18n'
 
 import computeNfpValue from '../../lib/nfp-mucus'
 
-const contraceptiveLabels = labels.contraceptives.categories
 const moodLabels = labels.mood.categories
 const noteDescription = labels.noteExplainer
 const painLabels = labels.pain.categories
@@ -410,8 +409,11 @@ const label = {
           return labels
         }
         if (symptom === 'other') {
+          const contraceptiveLabels = i18n.t(
+            `cycleDay.sex.contraceptives.symptoms.${symptom}`
+          )
           const noteLabel = sex.note ? ` (${sex.note})` : ''
-          const label = `${contraceptiveLabels[symptom]}${noteLabel}`
+          const label = contraceptiveLabels + noteLabel
 
           return [...labels, label]
         }
