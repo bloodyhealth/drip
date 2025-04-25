@@ -61,6 +61,23 @@
         }
       }
     },
+    "mood": {
+      "feelings": {
+        "symptoms": {
+          "happy": "happy",
+          "sad": "sad",
+          "stressed": "stressed",
+          "balanced": "balanced",
+          "fine": "fine",
+          "anxious": "anxious",
+          "energetic": "energetic",
+          "fatigue": "fatigue",
+          "angry": "angry",
+          "other": "other"
+        },
+        "description": "How did you feel today?"
+      }
+    },
     "mucus": {
       "feeling": {
         "symptoms": {

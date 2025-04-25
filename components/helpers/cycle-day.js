@@ -14,7 +14,6 @@ import i18n from '../../i18n/i18n'
 
 import computeNfpValue from '../../lib/nfp-mucus'
 
-const moodLabels = labels.mood.categories
 const noteDescription = labels.noteExplainer
 const painLabels = labels.pain.categories
 const temperatureLabels = labels.temperature
@@ -190,8 +189,8 @@ export const symtomPage = {
     selectBoxGroups: [
       {
         key: 'mood',
-        options: moodLabels,
-        title: labels.mood.explainer,
+        options: getOptions('mood', 'feelings'),
+        title: i18n.t('cycleDay.mood.feelings.description'),
       },
     ],
     selectTabGroups: null,
@@ -449,22 +448,26 @@ const label = {
   },
   mood: (mood) => {
     mood = mapRealmObjToJsObj(mood)
-    const moodLabel = []
-    if (mood && Object.values({ ...mood }).some((val) => val)) {
-      Object.keys(mood).forEach((key) => {
-        if (mood[key] && key !== 'other' && key !== 'note') {
-          moodLabel.push(moodLabels[key])
-        }
-        if (key === 'other' && mood.other) {
-          let label = moodLabels[key]
-          if (mood.note) {
-            label = `${label} (${mood.note})`
-          }
-          moodLabel.push(label)
-        }
-      })
-      return moodLabel.join(', ')
-    }
+
+    const relevantSymptoms = mood
+      ? Object.keys(mood).filter((symptom) => Boolean(mood[symptom]))
+      : []
+
+    const moodLabels = relevantSymptoms.reduce((labels, symptom) => {
+      if (symptom === 'note') {
+        return labels
+      }
+      const moodLabel = i18n.t(`cycleDay.mood.feelings.symptoms.${symptom}`)
+
+      if (symptom === 'other') {
+        const noteLabel = mood.note ? ` (${mood.note})` : ''
+
+        return [...labels, moodLabel.concat(noteLabel)]
+      }
+      return [...labels, moodLabel]
+    }, [])
+
+    return moodLabels.join(', ')
   },
 }
 
