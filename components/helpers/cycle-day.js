@@ -15,7 +15,6 @@ import i18n from '../../i18n/i18n'
 import computeNfpValue from '../../lib/nfp-mucus'
 
 const noteDescription = labels.noteExplainer
-const painLabels = labels.pain.categories
 const temperatureLabels = labels.temperature
 
 const minutes = ChronoUnit.MINUTES
@@ -207,8 +206,8 @@ export const symtomPage = {
     selectBoxGroups: [
       {
         key: 'pain',
-        options: painLabels,
-        title: labels.pain.explainer,
+        options: getOptions('pain', 'feelings'),
+        title: i18n.t('cycleDay.pain.feelings.description'),
       },
     ],
     selectTabGroups: null,
@@ -429,22 +428,25 @@ const label = {
   },
   pain: (pain) => {
     pain = mapRealmObjToJsObj(pain)
-    const painLabel = []
-    if (pain && Object.values({ ...pain }).some((val) => val)) {
-      Object.keys(pain).forEach((key) => {
-        if (pain[key] && key !== 'other' && key !== 'note') {
-          painLabel.push(painLabels[key])
-        }
-        if (key === 'other' && pain.other) {
-          let label = painLabels[key]
-          if (pain.note) {
-            label = `${label} (${pain.note})`
-          }
-          painLabel.push(label)
-        }
-      })
-      return painLabel.join(', ')
-    }
+    const relevantSymptoms = pain
+      ? Object.keys(pain).filter((symptom) => Boolean(pain[symptom]))
+      : []
+
+    const painLabels = relevantSymptoms.reduce((labels, symptom) => {
+      if (symptom === 'note') {
+        return labels
+      }
+      const painLabel = i18n.t(`cycleDay.pain.feelings.symptoms.${symptom}`)
+
+      if (symptom === 'other') {
+        const noteLabel = pain.note ? ` (${pain.note})` : ''
+
+        return [...labels, painLabel.concat(noteLabel)]
+      }
+      return [...labels, painLabel]
+    }, [])
+
+    return painLabels.join(', ')
   },
   mood: (mood) => {
     mood = mapRealmObjToJsObj(mood)

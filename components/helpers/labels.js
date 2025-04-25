@@ -27,6 +27,18 @@ export const SYMPTOMS = {
     feeling: ['dry', 'nothing', 'wet', 'slippery'],
     texture: ['nothing', 'creamy', 'eggWhite'],
   },
+  pain: {
+    feelings: [
+      'cramps',
+      'ovulationPain',
+      'headache',
+      'backache',
+      'nausea',
+      'tenderBreasts',
+      'migraine',
+      'other',
+    ],
+  },
   desire: {
     intensity: ['low', 'medium', 'high'],
   },

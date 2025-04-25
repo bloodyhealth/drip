@@ -1,20 +1,6 @@
 export const mucusNFP = ['t', 'Ø', 'f', 'S', 'S+']
 export const intensity = ['low', 'medium', 'high']
 
-export const pain = {
-  categories: {
-    cramps: 'cramps',
-    ovulationPain: 'ovulation pain',
-    headache: 'headache',
-    backache: 'backache',
-    nausea: 'nausea',
-    tenderBreasts: 'tender breasts',
-    migraine: 'migraine',
-    other: 'other',
-  },
-  explainer: 'How did your body feel today?',
-}
-
 export const temperature = {
   note: {
     header: 'Note',
