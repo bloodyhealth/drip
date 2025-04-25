@@ -320,7 +320,7 @@ const saveBoxSymptom = (data, date, shouldDeleteData, symptom) => {
   saveSymptom(symptom, date, valuesToSave)
 }
 
-const getLabelWithNote = (symptoms, category, subCategory) => {
+const getLabelWithNote = (symptoms, categories) => {
   const relevantSymptoms = symptoms
     ? Object.keys(symptoms).filter((symptom) => Boolean(symptoms[symptom]))
     : []
@@ -329,9 +329,11 @@ const getLabelWithNote = (symptoms, category, subCategory) => {
     if (symptom === 'note') {
       return labels
     }
-    const label = i18n.t(
-      `cycleDay.${category}.${subCategory}.symptoms.${symptom}`
+    const translationKeys = categories.map(
+      ([category, subCategory]) =>
+        `cycleDay.${category}.${subCategory}.symptoms.${symptom}`
     )
+    const label = i18n.t(translationKeys)
 
     if (symptom === 'other') {
       const noteLabel = symptoms.note ? ` (${symptoms.note})` : ''
@@ -420,43 +422,19 @@ const label = {
   sex: (sex) => {
     sex = mapRealmObjToJsObj(sex)
 
-    const relevantSymptoms = sex
-      ? Object.keys(sex).filter((symptom) => Boolean(sex[symptom]))
-      : []
-
-    return relevantSymptoms
-      .reduce((labels, symptom) => {
-        if (symptom === 'note') {
-          return labels
-        }
-        if (symptom === 'other') {
-          const contraceptivesLabel = i18n.t(
-            `cycleDay.sex.contraceptives.symptoms.${symptom}`
-          )
-          const noteLabel = sex.note ? ` (${sex.note})` : ''
-          const label = contraceptivesLabel + noteLabel
-
-          return [...labels, label]
-        }
-
-        return [
-          ...labels,
-          i18n.t([
-            `cycleDay.sex.activity.symptoms.${symptom}`,
-            `cycleDay.sex.contraceptives.symptoms.${symptom}`,
-          ]),
-        ]
-      }, [])
-      .join(', ')
+    return getLabelWithNote(sex, [
+      ['sex', 'activity'],
+      ['sex', 'contraceptives'],
+    ])
   },
   pain: (pain) => {
     pain = mapRealmObjToJsObj(pain)
-    return getLabelWithNote(pain, 'pain', 'feelings')
+    return getLabelWithNote(pain, [['pain', 'feelings']])
   },
   mood: (mood) => {
     mood = mapRealmObjToJsObj(mood)
 
-    return getLabelWithNote(mood, 'mood', 'feelings')
+    return getLabelWithNote(mood, [['mood', 'feelings']])
   },
 }
 
