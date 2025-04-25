@@ -320,9 +320,17 @@ const saveBoxSymptom = (data, date, shouldDeleteData, symptom) => {
   saveSymptom(symptom, date, valuesToSave)
 }
 
-const getLabelWithNote = (symptoms, categories) => {
-  const relevantSymptoms = symptoms
-    ? Object.keys(symptoms).filter((symptom) => Boolean(symptoms[symptom]))
+/**
+ * Function to generate labels for symptom data where users can add note
+ * @param {Object} symptomData maps each symptom to user input, e.g. {"condom": true, "diaphragm": false, "note": "Some user input",...}
+ * @param {*} categories Allow to to look for translations in different categories, e.g. `sex.activity` and `sex.contraceptives`
+ * @returns Comma-separated labels
+ */
+const getLabelWithNote = (symptomData, categories) => {
+  const relevantSymptoms = symptomData
+    ? Object.keys(symptomData).filter((symptom) =>
+        Boolean(symptomData[symptom])
+      )
     : []
 
   const labels = relevantSymptoms.reduce((labels, symptom) => {
@@ -336,7 +344,7 @@ const getLabelWithNote = (symptoms, categories) => {
     const label = i18n.t(translationKeys)
 
     if (symptom === 'other') {
-      const noteLabel = symptoms.note ? ` (${symptoms.note})` : ''
+      const noteLabel = symptomData.note ? ` (${symptomData.note})` : ''
 
       return [...labels, label.concat(noteLabel)]
     }
