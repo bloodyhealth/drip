@@ -320,6 +320,30 @@ const saveBoxSymptom = (data, date, shouldDeleteData, symptom) => {
   saveSymptom(symptom, date, valuesToSave)
 }
 
+const getLabelWithNote = (symptoms, category, subCategory) => {
+  const relevantSymptoms = symptoms
+    ? Object.keys(symptoms).filter((symptom) => Boolean(symptoms[symptom]))
+    : []
+
+  const labels = relevantSymptoms.reduce((labels, symptom) => {
+    if (symptom === 'note') {
+      return labels
+    }
+    const label = i18n.t(
+      `cycleDay.${category}.${subCategory}.symptoms.${symptom}`
+    )
+
+    if (symptom === 'other') {
+      const noteLabel = symptoms.note ? ` (${symptoms.note})` : ''
+
+      return [...labels, label.concat(noteLabel)]
+    }
+    return [...labels, label]
+  }, [])
+
+  return labels.join(', ')
+}
+
 const label = {
   bleeding: ({ value, exclude }) => {
     if (isNumber(value)) {
@@ -427,48 +451,12 @@ const label = {
   },
   pain: (pain) => {
     pain = mapRealmObjToJsObj(pain)
-    const relevantSymptoms = pain
-      ? Object.keys(pain).filter((symptom) => Boolean(pain[symptom]))
-      : []
-
-    const painLabels = relevantSymptoms.reduce((labels, symptom) => {
-      if (symptom === 'note') {
-        return labels
-      }
-      const painLabel = i18n.t(`cycleDay.pain.feelings.symptoms.${symptom}`)
-
-      if (symptom === 'other') {
-        const noteLabel = pain.note ? ` (${pain.note})` : ''
-
-        return [...labels, painLabel.concat(noteLabel)]
-      }
-      return [...labels, painLabel]
-    }, [])
-
-    return painLabels.join(', ')
+    return getLabelWithNote(pain, 'pain', 'feelings')
   },
   mood: (mood) => {
     mood = mapRealmObjToJsObj(mood)
 
-    const relevantSymptoms = mood
-      ? Object.keys(mood).filter((symptom) => Boolean(mood[symptom]))
-      : []
-
-    const moodLabels = relevantSymptoms.reduce((labels, symptom) => {
-      if (symptom === 'note') {
-        return labels
-      }
-      const moodLabel = i18n.t(`cycleDay.mood.feelings.symptoms.${symptom}`)
-
-      if (symptom === 'other') {
-        const noteLabel = mood.note ? ` (${mood.note})` : ''
-
-        return [...labels, moodLabel.concat(noteLabel)]
-      }
-      return [...labels, moodLabel]
-    }, [])
-
-    return moodLabels.join(', ')
+    return getLabelWithNote(mood, 'mood', 'feelings')
   },
 }
 
