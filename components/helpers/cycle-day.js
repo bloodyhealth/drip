@@ -14,7 +14,6 @@ import i18n from '../../i18n/i18n'
 
 import computeNfpValue from '../../lib/nfp-mucus'
 
-const noteDescription = labels.noteExplainer
 const temperatureLabels = labels.temperature
 
 const minutes = ChronoUnit.MINUTES
@@ -196,7 +195,7 @@ export const symtomPage = {
   },
   note: {
     excludeText: null,
-    note: noteDescription,
+    note: i18n.t('cycleDay.note.description'),
     selectBoxGroups: null,
     selectTabGroups: null,
   },
