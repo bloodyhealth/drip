@@ -438,13 +438,13 @@ const label = {
 
           return [...labels, label]
         }
-        const translationKey =
-          symptom === 'solo' || symptom === 'partner'
-            ? 'activity'
-            : 'contraceptives'
+
         return [
           ...labels,
-          i18n.t(`cycleDay.sex.${translationKey}.symptoms.${symptom}`),
+          i18n.t([
+            `cycleDay.sex.activity.symptoms.${symptom}`,
+            `cycleDay.sex.contraceptives.symptoms.${symptom}`,
+          ]),
         ]
       }, [])
       .join(', ')
