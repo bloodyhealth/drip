@@ -393,7 +393,10 @@ const label = {
       })
       .join(', ')
 
-    if (isNumber(mucus.value)) label += ` => ${labels.mucusNFP[mucus.value]}`
+    if (isNumber(mucus.value)) {
+      label += ` => ${i18n.t(`cycleDay.mucus.nfp.${mucus.value}`)}`
+    }
+
     if (mucus.exclude) label = `(${label})`
 
     return label

@@ -1,5 +1,3 @@
-export const mucusNFP = ['t', 'Ø', 'f', 'S', 'S+']
-
 export const temperature = {
   note: {
     header: 'Note',

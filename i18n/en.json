@@ -104,6 +104,13 @@
         "title": "feeling",
         "description": "What does your vaginal entrance feel like?"
       },
+      "nfp": {
+        "0": "t",
+        "1": "Ø",
+        "2": "f",
+        "3": "S",
+        "4": "S+"
+      },
       "texture": {
         "symptoms": {
           "nothing": "nothing",
