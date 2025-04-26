@@ -1,5 +1,6 @@
 import Reminders from './reminders/reminders'
 import Customization from './customization'
+import Language from './language'
 import DataManagement from './data-management/DataManagement'
 import Password from './password'
 import About from './About'
@@ -14,4 +15,5 @@ export default {
   About,
   License,
   PrivacyPolicy,
+  Language,
 }
