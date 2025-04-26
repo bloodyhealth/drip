@@ -8,18 +8,14 @@ import {
 import { scaleObservable } from '../../local-storage'
 
 import * as labels from '../../i18n/en/cycle-day'
-import { getLabelsList } from './labels'
+import { getLabelsList, SYMPTOMS } from './labels'
 import { TEMP_MAX, TEMP_MIN } from '../../config'
 import i18n from '../../i18n/i18n'
 
 import computeNfpValue from '../../lib/nfp-mucus'
 
-const bleedingLabels = labels.bleeding.labels
-const cervixLabels = labels.cervix
 const contraceptiveLabels = labels.contraceptives.categories
-const intensityLabels = labels.intensity
 const moodLabels = labels.mood.categories
-const mucusLabels = labels.mucus
 const noteDescription = labels.noteExplainer
 const painLabels = labels.pain.categories
 const sexLabels = labels.sex.categories
@@ -128,36 +124,36 @@ export const blank = {
 
 export const symtomPage = {
   bleeding: {
-    excludeText: labels.bleeding.exclude.explainer,
+    excludeText: i18n.t('cycleDay.bleeding.exclude'),
     note: null,
     selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'value',
-        options: getLabelsList(bleedingLabels),
-        title: labels.bleeding.heaviness.explainer,
+        options: getLabelsList('bleeding', 'heaviness'),
+        title: i18n.t('cycleDay.bleeding.heaviness.description'),
       },
     ],
   },
   cervix: {
-    excludeText: cervixLabels.excludeExplainer,
+    excludeText: i18n.t('cycleDay.cervix.exclude'),
     note: null,
     selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'opening',
-        options: getLabelsList(cervixLabels.opening.categories),
-        title: cervixLabels.opening.explainer,
+        options: getLabelsList('cervix', 'opening'),
+        title: i18n.t('cycleDay.cervix.opening.description'),
       },
       {
         key: 'firmness',
-        options: getLabelsList(cervixLabels.firmness.categories),
-        title: cervixLabels.firmness.explainer,
+        options: getLabelsList('cervix', 'firmness'),
+        title: i18n.t('cycleDay.cervix.firmness.description'),
       },
       {
         key: 'position',
-        options: getLabelsList(cervixLabels.position.categories),
-        title: cervixLabels.position.explainer,
+        options: getLabelsList('cervix', 'position'),
+        title: i18n.t('cycleDay.cervix.position.description'),
       },
     ],
   },
@@ -168,25 +164,25 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'value',
-        options: getLabelsList(intensityLabels),
-        title: labels.desire.explainer,
+        options: getLabelsList('desire', 'intensity'),
+        title: i18n.t('cycleDay.desire.intensity.description'),
       },
     ],
   },
   mucus: {
-    excludeText: mucusLabels.excludeExplainer,
+    excludeText: i18n.t('cycleDay.mucus.exclude'),
     note: null,
     selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'feeling',
-        options: getLabelsList(mucusLabels.feeling.categories),
-        title: mucusLabels.feeling.explainer,
+        options: getLabelsList('mucus', 'feeling'),
+        title: i18n.t('cycleDay.mucus.feeling.description'),
       },
       {
         key: 'texture',
-        options: getLabelsList(mucusLabels.texture.categories),
-        title: mucusLabels.texture.explainer,
+        options: getLabelsList('mucus', 'texture'),
+        title: i18n.t('cycleDay.mucus.texture.description'),
       },
     ],
   },
@@ -332,7 +328,10 @@ const saveBoxSymptom = (data, date, shouldDeleteData, symptom) => {
 const label = {
   bleeding: ({ value, exclude }) => {
     if (isNumber(value)) {
-      const bleedingLabel = bleedingLabels[value]
+      const symptom = SYMPTOMS.bleeding.heaviness[value]
+      const bleedingLabel = i18n.t(
+        `cycleDay.bleeding.heaviness.symptoms.${symptom}`
+      )
       return exclude ? `(${bleedingLabel})` : bleedingLabel
     }
   },
@@ -354,10 +353,13 @@ const label = {
     )
     let label = filledCategories
       .map((category) => {
+        const mucusSymptoms = SYMPTOMS.mucus[category]
+        const symptomValue = mucus[category]
+        const symptom = mucusSymptoms[symptomValue]
         return (
-          labels.mucus.subcategories[category] +
+          i18n.t(`cycleDay.mucus.${category}.title`) +
           ': ' +
-          labels.mucus[category].categories[mucus[category]]
+          i18n.t(`cycleDay.mucus.${category}.symptoms.${symptom}`)
         )
       })
       .join(', ')
@@ -373,10 +375,13 @@ const label = {
     )
     let label = filledCategories
       .map((category) => {
+        const cervixSymptoms = SYMPTOMS.cervix[category]
+        const symptomValue = cervix[category]
+        const symptom = cervixSymptoms[symptomValue]
         return (
-          labels.cervix.subcategories[category] +
+          i18n.t(`cycleDay.cervix.${category}.title`) +
           ': ' +
-          labels.cervix[category].categories[cervix[category]]
+          i18n.t(`cycleDay.cervix.${category}.symptoms.${symptom}`)
         )
       })
       .join(', ')
@@ -388,7 +393,9 @@ const label = {
   note: (note) => note.value,
   desire: ({ value }) => {
     if (isNumber(value)) {
-      return intensityLabels[value]
+      const intensitySymptoms = SYMPTOMS.desire.intensity
+      const symptom = intensitySymptoms[value]
+      return i18n.t(`cycleDay.desire.intensity.symptoms.${symptom}`)
     }
   },
   sex: (sex) => {
