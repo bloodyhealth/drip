@@ -114,16 +114,6 @@ export const mood = {
 }
 
 export const temperature = {
-  outOfRangeWarning:
-    'This temperature value is out of the current range for the temperature chart. You can change the range in the settings.',
-  outOfAbsoluteRangeWarning:
-    'This temperature value is too high or low to be shown on the temperature chart.',
-  temperature: {
-    header: 'Temperature',
-    explainer:
-      'Take your temperature right after waking up, before getting out of bed',
-  },
-  time: 'Time',
   note: {
     header: 'Note',
     explainer:
@@ -137,13 +127,3 @@ export const temperature = {
 }
 
 export const noteExplainer = 'Anything you want to add for the day?'
-
-export const sharedDialogs = {
-  cancel: 'Cancel',
-  areYouSureTitle: 'Are you sure?',
-  areYouSureToDelete: 'Are you sure you want to delete this entry?',
-  reallyDeleteData: 'Yes, I am sure',
-  save: 'Save',
-  delete: 'Delete',
-  disabledInfo: 'There is some data missing',
-}
