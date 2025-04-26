@@ -14,8 +14,6 @@ import i18n from '../../i18n/i18n'
 
 import computeNfpValue from '../../lib/nfp-mucus'
 
-const noteDescription = labels.noteExplainer
-const painLabels = labels.pain.categories
 const temperatureLabels = labels.temperature
 
 const minutes = ChronoUnit.MINUTES
@@ -197,7 +195,7 @@ export const symtomPage = {
   },
   note: {
     excludeText: null,
-    note: noteDescription,
+    note: i18n.t('cycleDay.note.description'),
     selectBoxGroups: null,
     selectTabGroups: null,
   },
@@ -207,8 +205,8 @@ export const symtomPage = {
     selectBoxGroups: [
       {
         key: 'pain',
-        options: painLabels,
-        title: labels.pain.explainer,
+        options: getOptions('pain', 'feelings'),
+        title: i18n.t('cycleDay.pain.feelings.description'),
       },
     ],
     selectTabGroups: null,
@@ -322,6 +320,40 @@ const saveBoxSymptom = (data, date, shouldDeleteData, symptom) => {
   saveSymptom(symptom, date, valuesToSave)
 }
 
+/**
+ * Function to generate labels for symptom data where users can add note
+ * @param {Object} symptomData maps each symptom to user input, e.g. {"condom": true, "diaphragm": false, "note": "Some user input",...}
+ * @param {*} categories Allow to to look for translations in different categories, e.g. `sex.activity` and `sex.contraceptives`
+ * @returns Comma-separated labels
+ */
+const getLabelWithNote = (symptomData, categories) => {
+  const relevantSymptoms = symptomData
+    ? Object.keys(symptomData).filter((symptom) =>
+        Boolean(symptomData[symptom])
+      )
+    : []
+
+  const labels = relevantSymptoms.reduce((labels, symptom) => {
+    if (symptom === 'note') {
+      return labels
+    }
+    const translationKeys = categories.map(
+      ([category, subCategory]) =>
+        `cycleDay.${category}.${subCategory}.symptoms.${symptom}`
+    )
+    const label = i18n.t(translationKeys)
+
+    if (symptom === 'other') {
+      const noteLabel = symptomData.note ? ` (${symptomData.note})` : ''
+
+      return [...labels, label.concat(noteLabel)]
+    }
+    return [...labels, label]
+  }, [])
+
+  return labels.join(', ')
+}
+
 const label = {
   bleeding: ({ value, exclude }) => {
     if (isNumber(value)) {
@@ -398,76 +430,19 @@ const label = {
   sex: (sex) => {
     sex = mapRealmObjToJsObj(sex)
 
-    const relevantSymptoms = sex
-      ? Object.keys(sex).filter((symptom) => Boolean(sex[symptom]))
-      : []
-
-    return relevantSymptoms
-      .reduce((labels, symptom) => {
-        if (symptom === 'note') {
-          return labels
-        }
-        if (symptom === 'other') {
-          const contraceptivesLabel = i18n.t(
-            `cycleDay.sex.contraceptives.symptoms.${symptom}`
-          )
-          const noteLabel = sex.note ? ` (${sex.note})` : ''
-          const label = contraceptivesLabel + noteLabel
-
-          return [...labels, label]
-        }
-        const translationKey =
-          symptom === 'solo' || symptom === 'partner'
-            ? 'activity'
-            : 'contraceptives'
-        return [
-          ...labels,
-          i18n.t(`cycleDay.sex.${translationKey}.symptoms.${symptom}`),
-        ]
-      }, [])
-      .join(', ')
+    return getLabelWithNote(sex, [
+      ['sex', 'activity'],
+      ['sex', 'contraceptives'],
+    ])
   },
   pain: (pain) => {
     pain = mapRealmObjToJsObj(pain)
-    const painLabel = []
-    if (pain && Object.values({ ...pain }).some((val) => val)) {
-      Object.keys(pain).forEach((key) => {
-        if (pain[key] && key !== 'other' && key !== 'note') {
-          painLabel.push(painLabels[key])
-        }
-        if (key === 'other' && pain.other) {
-          let label = painLabels[key]
-          if (pain.note) {
-            label = `${label} (${pain.note})`
-          }
-          painLabel.push(label)
-        }
-      })
-      return painLabel.join(', ')
-    }
+    return getLabelWithNote(pain, [['pain', 'feelings']])
   },
   mood: (mood) => {
     mood = mapRealmObjToJsObj(mood)
 
-    const relevantSymptoms = mood
-      ? Object.keys(mood).filter((symptom) => Boolean(mood[symptom]))
-      : []
-
-    const moodLabels = relevantSymptoms.reduce((labels, symptom) => {
-      if (symptom === 'note') {
-        return labels
-      }
-      const moodLabel = i18n.t(`cycleDay.mood.feelings.symptoms.${symptom}`)
-
-      if (symptom === 'other') {
-        const noteLabel = mood.note ? ` (${mood.note})` : ''
-
-        return [...labels, moodLabel.concat(noteLabel)]
-      }
-      return [...labels, moodLabel]
-    }, [])
-
-    return moodLabels.join(', ')
+    return getLabelWithNote(mood, [['mood', 'feelings']])
   },
 }
 

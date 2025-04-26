@@ -115,6 +115,24 @@
       },
       "exclude": "You can exclude this value if you don't want to use it for fertility detection"
     },
+    "note": {
+      "description": "Anything you want to add for the day?"
+    },
+    "pain": {
+      "feelings": {
+        "symptoms": {
+          "cramps": "cramps",
+          "ovulationPain": "ovulation pain",
+          "headache": "headache",
+          "backache": "backache",
+          "nausea": "nausea",
+          "tenderBreasts": "tender breasts",
+          "migraine": "migraine",
+          "other": "other"
+        },
+        "description": "How did your body feel today?"
+      }
+    },
     "sex": {
       "activity": {
         "symptoms": {
