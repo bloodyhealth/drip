@@ -31,7 +31,6 @@ import {
   temperatureTrackingCategoryObservable,
   useCervixAsSecondarySymptomObservable,
 } from '../../../local-storage'
-import labels from '../../../i18n/en/settings'
 import { SYMPTOMS } from '../../../config'
 import { InfertileDaysInfo } from './sections/InfertileDaysInfo'
 import { PeriodPrediction } from './sections/period-prediction'
@@ -117,9 +116,11 @@ const Settings = () => {
     saveNoteTrackingCategory(value)
   }
 
-  const fertilityTrackingText = isFertilityTrackingEnabled
-    ? labels.fertilityTracking.on
-    : labels.fertilityTracking.off
+  const fertilityTrackingText = t(
+    `hamburgerMenu.settings.customization.fertilityPhases.${
+      isFertilityTrackingEnabled ? 'on' : 'off'
+    }`
+  )
 
   const secondarySymptomButtons = [
     {
@@ -206,15 +207,23 @@ const Settings = () => {
   const fertilityDisabledPrompt = () => {
     if (!manageFertilityFeature) {
       Alert.alert(
-        labels.fertilityTracking.disabledTitle,
-        labels.fertilityTracking.disabled
+        t(
+          'hamburgerMenu.settings.customization.fertilityPhases.disabledModal.title'
+        ),
+        t(
+          'hamburgerMenu.settings.customization.fertilityPhases.disabledModal.description'
+        )
       )
     }
   }
 
   return (
-    <AppPage title={labels.customization.title}>
-      <Segment title={labels.customization.trackingCategories}>
+    <AppPage title={t('hamburgerMenu.settings.customization.title')}>
+      <Segment
+        title={t(
+          'hamburgerMenu.settings.customization.trackingCategories.title'
+        )}
+      >
         <TrackingCategorySwitch
           onToggle={temperatureTrackingCategoryToggle}
           text={t(`symptoms.${SYMPTOMS[1]}`)}
@@ -270,8 +279,16 @@ const Settings = () => {
       </Segment>
 
       <Pressable onPress={fertilityDisabledPrompt}>
-        <Segment title={labels.fertilityTracking.title}>
-          <AppText>{labels.fertilityTracking.message}</AppText>
+        <Segment
+          title={t(
+            'hamburgerMenu.settings.customization.fertilityPhases.title'
+          )}
+        >
+          <AppText>
+            {t(
+              'hamburgerMenu.settings.customization.fertilityPhases.description'
+            )}
+          </AppText>
           <AppSwitch
             onToggle={fertilityTrackingToggle}
             text={fertilityTrackingText}
@@ -284,9 +301,11 @@ const Settings = () => {
       <PeriodPrediction />
 
       <Segment
-        subheader={labels.customization.subheaderSymptoThermalMethod}
+        subheader={t(
+          'hamburgerMenu.settings.customization.titleSymptoThermalMethod'
+        )}
         last
-      ></Segment>
+      />
 
       <Pressable onPress={sliderDisabledPrompt}>
         <Segment

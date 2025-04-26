@@ -6,19 +6,20 @@ import AppText from '../common/app-text'
 import Button from '../common/button'
 
 import { Containers } from '../../styles'
-import { shared } from '../../i18n/en/labels'
+import { useTranslation } from 'react-i18next'
 
 const NoData = ({ navigate }) => {
+  const { t } = useTranslation()
   return (
     <View style={styles.container}>
-      <AppText>{shared.noDataWarning}</AppText>
+      <AppText>{t('chart.noData.description')}</AppText>
       <Button
         isCTA
         onPress={() => {
           navigate('CycleDay')
         }}
       >
-        {shared.noDataButtonText}
+        {t('chart.noData.buttonText')}
       </Button>
     </View>
   )

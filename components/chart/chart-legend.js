@@ -6,16 +6,17 @@ import AppText from '../common/app-text'
 
 import { Sizes, Typography } from '../../styles'
 import { CHART_YAXIS_WIDTH } from '../../config'
-import { shared as labels } from '../../i18n/en/labels'
+import { useTranslation } from 'react-i18next'
 
 const ChartLegend = ({ height }) => {
+  const { t } = useTranslation()
   return (
     <View style={[styles.container, { height }]}>
       <View style={[styles.singleLabelContainer, { height: height / 2 }]}>
         <AppText style={styles.textBold}>#</AppText>
       </View>
       <View style={[styles.singleLabelContainer, { height: height / 2 }]}>
-        <AppText style={styles.text}>{labels.date}</AppText>
+        <AppText style={styles.text}>{t('shared.date')}</AppText>
       </View>
     </View>
   )
