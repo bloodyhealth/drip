@@ -10,7 +10,7 @@ export const LearnMore = ({ symptom }) => {
   const nfpKey = ['bleeding', 'temperature', 'mucus', 'cervix'].includes(
     symptom
   )
-    ? 'nfpTfyReminder'
+    ? 'nfpThinkForYourselfReminder'
     : 'noNfpSymptom'
   return (
     <AppText>
