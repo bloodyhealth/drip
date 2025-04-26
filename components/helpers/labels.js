@@ -9,6 +9,20 @@ export const SYMPTOMS = {
     firmness: ['hard', 'soft'],
     position: ['low', 'medium', 'high'],
   },
+  mood: {
+    feelings: [
+      'happy',
+      'sad',
+      'stressed',
+      'balanced',
+      'fine',
+      'anxious',
+      'energetic',
+      'fatigue',
+      'angry',
+      'other',
+    ],
+  },
   mucus: {
     feeling: ['dry', 'nothing', 'wet', 'slippery'],
     texture: ['nothing', 'creamy', 'eggWhite'],

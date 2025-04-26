@@ -15,22 +15,6 @@ export const pain = {
   explainer: 'How did your body feel today?',
 }
 
-export const mood = {
-  categories: {
-    happy: 'happy',
-    sad: 'sad',
-    stressed: 'stressed',
-    balanced: 'balanced',
-    fine: 'fine',
-    anxious: 'anxious',
-    energetic: 'energetic',
-    fatigue: 'fatigue',
-    angry: 'angry',
-    other: 'other',
-  },
-  explainer: 'How did you feel today?',
-}
-
 export const temperature = {
   note: {
     header: 'Note',
