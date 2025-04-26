@@ -7,14 +7,11 @@ import {
 } from '../../db'
 import { scaleObservable } from '../../local-storage'
 
-import * as labels from '../../i18n/en/cycle-day'
 import { getOptions, getOptionsNumeric, SYMPTOMS } from './labels'
 import { TEMP_MAX, TEMP_MIN } from '../../config'
 import i18n from '../../i18n/i18n'
 
 import computeNfpValue from '../../lib/nfp-mucus'
-
-const temperatureLabels = labels.temperature
 
 const minutes = ChronoUnit.MINUTES
 
@@ -229,8 +226,8 @@ export const symtomPage = {
     selectTabGroups: null,
   },
   temperature: {
-    excludeText: temperatureLabels.exclude.explainer,
-    note: temperatureLabels.note.explainer,
+    excludeText: i18n.t('cycleDay.temperature.exclude'),
+    note: i18n.t('cycleDay.temperature.note'),
     selectBoxGroups: null,
     selectTabGroups: null,
   },
