@@ -8,17 +8,15 @@ import {
 import { scaleObservable } from '../../local-storage'
 
 import * as labels from '../../i18n/en/cycle-day'
-import { getLabelsList, SYMPTOMS } from './labels'
+import { getOptions, getOptionsNumeric, SYMPTOMS } from './labels'
 import { TEMP_MAX, TEMP_MIN } from '../../config'
 import i18n from '../../i18n/i18n'
 
 import computeNfpValue from '../../lib/nfp-mucus'
 
-const contraceptiveLabels = labels.contraceptives.categories
 const moodLabels = labels.mood.categories
 const noteDescription = labels.noteExplainer
 const painLabels = labels.pain.categories
-const sexLabels = labels.sex.categories
 const temperatureLabels = labels.temperature
 
 const minutes = ChronoUnit.MINUTES
@@ -130,7 +128,7 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'value',
-        options: getLabelsList('bleeding', 'heaviness'),
+        options: getOptionsNumeric('bleeding', 'heaviness'),
         title: i18n.t('cycleDay.bleeding.heaviness.description'),
       },
     ],
@@ -142,17 +140,17 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'opening',
-        options: getLabelsList('cervix', 'opening'),
+        options: getOptionsNumeric('cervix', 'opening'),
         title: i18n.t('cycleDay.cervix.opening.description'),
       },
       {
         key: 'firmness',
-        options: getLabelsList('cervix', 'firmness'),
+        options: getOptionsNumeric('cervix', 'firmness'),
         title: i18n.t('cycleDay.cervix.firmness.description'),
       },
       {
         key: 'position',
-        options: getLabelsList('cervix', 'position'),
+        options: getOptionsNumeric('cervix', 'position'),
         title: i18n.t('cycleDay.cervix.position.description'),
       },
     ],
@@ -164,7 +162,7 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'value',
-        options: getLabelsList('desire', 'intensity'),
+        options: getOptionsNumeric('desire', 'intensity'),
         title: i18n.t('cycleDay.desire.intensity.description'),
       },
     ],
@@ -176,12 +174,12 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'feeling',
-        options: getLabelsList('mucus', 'feeling'),
+        options: getOptionsNumeric('mucus', 'feeling'),
         title: i18n.t('cycleDay.mucus.feeling.description'),
       },
       {
         key: 'texture',
-        options: getLabelsList('mucus', 'texture'),
+        options: getOptionsNumeric('mucus', 'texture'),
         title: i18n.t('cycleDay.mucus.texture.description'),
       },
     ],
@@ -222,13 +220,13 @@ export const symtomPage = {
     selectBoxGroups: [
       {
         key: 'sex',
-        options: sexLabels,
-        title: labels.sex.explainer,
+        options: getOptions('sex', 'activity'),
+        title: i18n.t('cycleDay.sex.activity.description'),
       },
       {
         key: 'contraceptives',
-        options: contraceptiveLabels,
-        title: labels.contraceptives.explainer,
+        options: getOptions('sex', 'contraceptives'),
+        title: i18n.t('cycleDay.sex.contraceptives.description'),
       },
     ],
     selectTabGroups: null,
@@ -400,22 +398,35 @@ const label = {
   },
   sex: (sex) => {
     sex = mapRealmObjToJsObj(sex)
-    const sexLabel = []
-    if (sex && Object.values({ ...sex }).some((val) => val)) {
-      Object.keys(sex).forEach((key) => {
-        if (sex[key] && key !== 'other' && key !== 'note') {
-          sexLabel.push(sexLabels[key] || contraceptiveLabels[key])
+
+    const relevantSymptoms = sex
+      ? Object.keys(sex).filter((symptom) => Boolean(sex[symptom]))
+      : []
+
+    return relevantSymptoms
+      .reduce((labels, symptom) => {
+        if (symptom === 'note') {
+          return labels
         }
-        if (key === 'other' && sex.other) {
-          let label = contraceptiveLabels[key]
-          if (sex.note) {
-            label = `${label} (${sex.note})`
-          }
-          sexLabel.push(label)
+        if (symptom === 'other') {
+          const contraceptivesLabel = i18n.t(
+            `cycleDay.sex.contraceptives.symptoms.${symptom}`
+          )
+          const noteLabel = sex.note ? ` (${sex.note})` : ''
+          const label = contraceptivesLabel + noteLabel
+
+          return [...labels, label]
         }
-      })
-      return sexLabel.join(', ')
-    }
+        const translationKey =
+          symptom === 'solo' || symptom === 'partner'
+            ? 'activity'
+            : 'contraceptives'
+        return [
+          ...labels,
+          i18n.t(`cycleDay.sex.${translationKey}.symptoms.${symptom}`),
+        ]
+      }, [])
+      .join(', ')
   },
   pain: (pain) => {
     pain = mapRealmObjToJsObj(pain)
