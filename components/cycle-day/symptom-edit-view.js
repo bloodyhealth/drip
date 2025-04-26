@@ -22,11 +22,12 @@ import { blank, save, shouldShow, symtomPage } from '../helpers/cycle-day'
 import { showToast } from '../helpers/general'
 
 import { fertilityTrackingObservable } from '../../local-storage'
-import { shared as sharedLabels } from '../../i18n/en/labels'
-import info from '../../i18n/en/symptom-info'
 import { Colors, Containers, Sizes, Spacing } from '../../styles'
+import { useTranslation } from 'react-i18next'
+import { LearnMore } from './LearnMore'
 
 const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
+  const { t } = useTranslation()
   const symptomConfig = symtomPage[symptom]
   const [data, setData] = useState(symptomData ? symptomData : blank[symptom])
   const [shouldShowInfo, setShouldShowInfo] = useState(false)
@@ -56,7 +57,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
 
   const onRemove = () => {
     save[symptom](data, date, true)
-    showToast(sharedLabels.dataDeleted)
+    showToast(t('cycleDay.symptomEditModal.dataDeleted'))
     onClose()
   }
 
@@ -69,7 +70,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
 
     if (hasDataChanged()) {
       save[symptom](data, date, false)
-      showToast(sharedLabels.dataSaved)
+      showToast(t('cycleDay.symptomEditModal.dataSaved'))
     }
 
     onClose()
@@ -170,7 +171,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
                 {isOtherSelected && (
                   <AppTextInput
                     {...inputProps}
-                    placeholder={sharedLabels.enter}
+                    placeholder={t('cycleDay.symptomEditModal.enter')}
                     value={data.note}
                     onChangeText={(value) => onSelectBoxNote(value)}
                   />
@@ -196,7 +197,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             <AppTextInput
               {...inputProps}
               onChangeText={onEditNote}
-              placeholder={sharedLabels.enter}
+              placeholder={t('cycleDay.symptomEditModal.enter')}
               testID="noteInput"
               value={noteText !== null ? noteText : ''}
             />
@@ -204,18 +205,18 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
         )}
         <View style={styles.buttonsContainer}>
           <Button iconName={iconName} isSmall onPress={onPressLearnMore}>
-            {sharedLabels.learnMore}
+            {t('cycleDay.symptomEditModal.learnMore.title')}
           </Button>
           <Button isSmall onPress={onRemove}>
-            {sharedLabels.remove}
+            {t('cycleDay.symptomEditModal.remove')}
           </Button>
           <Button isCTA isSmall onPress={onSave}>
-            {sharedLabels.save}
+            {t('cycleDay.symptomEditModal.save')}
           </Button>
         </View>
         {shouldShowInfo && (
           <Segment last style={styles.segmentBorder}>
-            <AppText>{info[symptom].text}</AppText>
+            <LearnMore symptom={symptom} />
           </Segment>
         )}
       </ScrollView>

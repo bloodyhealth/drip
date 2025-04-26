@@ -27,7 +27,7 @@ const temperatureLabels = labels.temperature
 const minutes = ChronoUnit.MINUTES
 
 const isNumber = (value) => typeof value === 'number'
-export const shouldShow = (value) => (value !== null ? true : false)
+export const shouldShow = (value) => value !== null
 
 export const formatTemperature = (temperature) =>
   !temperature
