@@ -12,7 +12,7 @@ import links from '../../common/links'
 import { useTranslation } from 'react-i18next'
 
 const AboutSection = () => {
-  const { t } = useTranslation(null, { keyPrefix: 'hamburgerMenu.about' })
+  const { t } = useTranslation(null, { keyPrefix: 'sideMenu.about' })
 
   return (
     <AppPage title={t('title')}>

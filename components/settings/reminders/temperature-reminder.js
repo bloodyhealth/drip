@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next'
 
 const TemperatureReminder = () => {
   const { t } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.settings.reminders.temperatureReminder',
+    keyPrefix: 'sideMenu.settings.reminders.temperatureReminder',
   })
   const [isEnabled, setIsEnabled] = useState(
     tempReminderObservable.value.enabled

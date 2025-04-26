@@ -9,7 +9,7 @@ import { saveLanguage } from '../../../local-storage'
 
 const Language = () => {
   const { t, i18n } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.settings.language',
+    keyPrefix: 'sideMenu.settings.language',
   })
   const onPress = (lang) => {
     i18n.changeLanguage(lang)

@@ -10,7 +10,7 @@ import AppLink from '../../../common/AppLink'
 
 export const InfertileDaysInfo = () => {
   const { t } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.settings.customization.infertileDaysInfo',
+    keyPrefix: 'sideMenu.settings.customization.infertileDaysInfo',
   })
   return (
     <Segment last>

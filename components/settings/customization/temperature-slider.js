@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next'
 
 const TemperatureSlider = ({ disabled }) => {
   const { t } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.settings.customization.temperatureScale',
+    keyPrefix: 'sideMenu.settings.customization.temperatureScale',
   })
   const savedValue = scaleObservable.value
   const [minTemperature, setMinTemperature] = useState(savedValue.min)

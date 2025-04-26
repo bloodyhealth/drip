@@ -17,7 +17,7 @@ export default function ExportData({
   closePasswordConfirmation,
 }) {
   const { t } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.settings.data.export',
+    keyPrefix: 'sideMenu.settings.data.export',
   })
 
   async function startExport() {

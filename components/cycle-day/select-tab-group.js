@@ -23,9 +23,9 @@ export default function SelectTabGroup({
   const showDisabledAlert = (label) => {
     if (label === t('symptoms.cervix') || label === t('symptoms.mucus')) {
       Alert.alert(
-        t('hamburgerMenu.settings.customization.secondarySymptom.alert.title'),
+        t('sideMenu.settings.customization.secondarySymptom.alert.title'),
         t(
-          'hamburgerMenu.settings.customization.secondarySymptom.alert.textFertilityTrackingDisabled'
+          'sideMenu.settings.customization.secondarySymptom.alert.textFertilityTrackingDisabled'
         )
       )
     }

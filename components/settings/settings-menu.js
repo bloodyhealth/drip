@@ -17,7 +17,7 @@ const menuItems = [
 const SettingsMenu = ({ navigate }) => {
   const { t } = useTranslation()
   return (
-    <AppPage title={t('hamburgerMenu.settings.title')}>
+    <AppPage title={t('sideMenu.settings.title')}>
       {menuItems.map((menuItem, i) => {
         const last = menuItems.length === i + 1
 

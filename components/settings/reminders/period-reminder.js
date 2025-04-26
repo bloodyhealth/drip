@@ -34,7 +34,7 @@ const PeriodReminder = () => {
   }
 
   const { t } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.settings.reminders.periodReminder',
+    keyPrefix: 'sideMenu.settings.reminders.periodReminder',
   })
 
   const reminderText =

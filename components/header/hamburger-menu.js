@@ -27,7 +27,7 @@ const HamburgerMenu = ({ navigate }) => {
   const [isOpen, setIsOpen] = useState(false)
   const closeMenu = () => setIsOpen(false)
 
-  const { t } = useTranslation(null, { keyPrefix: 'hamburgerMenu.menuItems' })
+  const { t } = useTranslation(null, { keyPrefix: 'sideMenu.menuItems' })
 
   if (!isOpen)
     return (

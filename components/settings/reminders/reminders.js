@@ -15,7 +15,7 @@ import { Alert, Pressable } from 'react-native'
 
 const Reminders = () => {
   const { t } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.settings.reminders',
+    keyPrefix: 'sideMenu.settings.reminders',
   })
 
   const periodReminderDisabledPrompt = () => {

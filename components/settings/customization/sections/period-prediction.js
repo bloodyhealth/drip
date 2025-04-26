@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next'
 
 export const PeriodPrediction = () => {
   const { t } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.settings.customization.periodPrediction',
+    keyPrefix: 'sideMenu.settings.customization.periodPrediction',
   })
   const [isEnabled, setIsEnabled] = useState(periodPredictionObservable.value)
 

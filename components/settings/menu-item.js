@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next'
 
 const MenuItem = ({ item, last, navigate }) => {
   const { t } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.settings.menuItem',
+    keyPrefix: 'sideMenu.settings.menuItem',
   })
   return (
     <Segment last={last}>

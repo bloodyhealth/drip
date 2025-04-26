@@ -25,7 +25,7 @@ const DeleteData = ({
   setIsLoading,
 }) => {
   const { t } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.settings.data.delete',
+    keyPrefix: 'sideMenu.settings.data.delete',
   })
 
   const isPasswordSet = hasEncryptionObservable.value

@@ -15,7 +15,7 @@ export default function ImportData({
   setIsLoading,
 }) {
   const { t } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.settings.data.import',
+    keyPrefix: 'sideMenu.settings.data.import',
   })
 
   async function startImport(shouldDeleteExistingData) {

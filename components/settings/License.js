@@ -10,7 +10,7 @@ import Segment from '../common/segment'
 import { Spacing } from '../../styles'
 
 const License = ({ children }) => {
-  const { t } = useTranslation(null, { keyPrefix: 'hamburgerMenu.license' })
+  const { t } = useTranslation(null, { keyPrefix: 'sideMenu.license' })
   const currentYear = new Date().getFullYear()
   const link = 'https://www.gnu.org/licenses/gpl-3.0.html'
   return (

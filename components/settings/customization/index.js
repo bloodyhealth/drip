@@ -117,7 +117,7 @@ const Settings = () => {
   }
 
   const fertilityTrackingText = t(
-    `hamburgerMenu.settings.customization.fertilityPhases.${
+    `sideMenu.settings.customization.fertilityPhases.${
       isFertilityTrackingEnabled ? 'on' : 'off'
     }`
   )
@@ -170,18 +170,18 @@ const Settings = () => {
   const secondarySymptomDisabledPrompt = () => {
     if (!isFertilityTrackingEnabled) {
       Alert.alert(
-        t('hamburgerMenu.settings.customization.secondarySymptom.alert.title'),
+        t('sideMenu.settings.customization.secondarySymptom.alert.title'),
         t(
-          'hamburgerMenu.settings.customization.secondarySymptom.alert.textFertilityTrackingDisabled'
+          'sideMenu.settings.customization.secondarySymptom.alert.textFertilityTrackingDisabled'
         )
       )
     } else if (
       !isMucusTrackingCategoryEnabled == isCervixTrackingCategoryEnabled
     ) {
       Alert.alert(
-        t('hamburgerMenu.settings.customization.secondarySymptom.alert.title'),
+        t('sideMenu.settings.customization.secondarySymptom.alert.title'),
         t(
-          'hamburgerMenu.settings.customization.secondarySymptom.alert.textMissingSecondarySymptoms'
+          'sideMenu.settings.customization.secondarySymptom.alert.textMissingSecondarySymptoms'
         )
       )
     }
@@ -194,11 +194,9 @@ const Settings = () => {
   const sliderDisabledPrompt = () => {
     if (!isTemperatureTrackingCategoryEnabled) {
       Alert.alert(
+        t('sideMenu.settings.customization.temperatureScale.disabled.title'),
         t(
-          'hamburgerMenu.settings.customization.temperatureScale.disabled.title'
-        ),
-        t(
-          'hamburgerMenu.settings.customization.temperatureScale.disabled.description'
+          'sideMenu.settings.customization.temperatureScale.disabled.description'
         )
       )
     }
@@ -208,21 +206,19 @@ const Settings = () => {
     if (!manageFertilityFeature) {
       Alert.alert(
         t(
-          'hamburgerMenu.settings.customization.fertilityPhases.disabledModal.title'
+          'sideMenu.settings.customization.fertilityPhases.disabledModal.title'
         ),
         t(
-          'hamburgerMenu.settings.customization.fertilityPhases.disabledModal.description'
+          'sideMenu.settings.customization.fertilityPhases.disabledModal.description'
         )
       )
     }
   }
 
   return (
-    <AppPage title={t('hamburgerMenu.settings.customization.title')}>
+    <AppPage title={t('sideMenu.settings.customization.title')}>
       <Segment
-        title={t(
-          'hamburgerMenu.settings.customization.trackingCategories.title'
-        )}
+        title={t('sideMenu.settings.customization.trackingCategories.title')}
       >
         <TrackingCategorySwitch
           onToggle={temperatureTrackingCategoryToggle}
@@ -280,14 +276,10 @@ const Settings = () => {
 
       <Pressable onPress={fertilityDisabledPrompt}>
         <Segment
-          title={t(
-            'hamburgerMenu.settings.customization.fertilityPhases.title'
-          )}
+          title={t('sideMenu.settings.customization.fertilityPhases.title')}
         >
           <AppText>
-            {t(
-              'hamburgerMenu.settings.customization.fertilityPhases.description'
-            )}
+            {t('sideMenu.settings.customization.fertilityPhases.description')}
           </AppText>
           <AppSwitch
             onToggle={fertilityTrackingToggle}
@@ -302,21 +294,17 @@ const Settings = () => {
 
       <Segment
         subheader={t(
-          'hamburgerMenu.settings.customization.titleSymptoThermalMethod'
+          'sideMenu.settings.customization.titleSymptoThermalMethod'
         )}
         last
       />
 
       <Pressable onPress={sliderDisabledPrompt}>
         <Segment
-          title={t(
-            'hamburgerMenu.settings.customization.temperatureScale.title'
-          )}
+          title={t('sideMenu.settings.customization.temperatureScale.title')}
         >
           <AppText>
-            {t(
-              'hamburgerMenu.settings.customization.temperatureScale.description'
-            )}
+            {t('sideMenu.settings.customization.temperatureScale.description')}
           </AppText>
           <TemperatureSlider disabled={!isTemperatureTrackingCategoryEnabled} />
         </Segment>
@@ -324,12 +312,10 @@ const Settings = () => {
 
       <Pressable onPress={secondarySymptomDisabledPrompt}>
         <Segment
-          title={t(
-            'hamburgerMenu.settings.customization.secondarySymptom.title'
-          )}
+          title={t('sideMenu.settings.customization.secondarySymptom.title')}
         >
           <AppText>
-            {t('hamburgerMenu.settings.customization.secondarySymptom.text')}
+            {t('sideMenu.settings.customization.secondarySymptom.text')}
           </AppText>
           <SelectTabGroup
             activeButton={useCervixAsSecondarySymptom}

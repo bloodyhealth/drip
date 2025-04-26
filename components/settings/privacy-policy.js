@@ -10,7 +10,7 @@ import { Colors, Sizes } from '../../styles'
 
 const PrivacyPolicy = () => {
   const { t } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.privacyPolicy',
+    keyPrefix: 'sideMenu.privacyPolicy',
   })
   const sections = ['intro', 'dataUse', 'permissions', 'transparency']
 
