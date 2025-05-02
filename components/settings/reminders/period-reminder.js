@@ -13,12 +13,15 @@ import {
 } from '../../../local-storage'
 
 const PeriodReminder = () => {
+  const { t } = useTranslation(null, {
+    keyPrefix: 'sideMenu.settings.reminders.periodReminder',
+  })
+
   const isPeriodPredictionEnabled = periodPredictionObservable.value
 
   const [isPeriodReminderEnabled, setIsPeriodReminderEnabled] = useState(
     periodReminderObservable.value.enabled
   )
-  const appSwitchValue = isPeriodPredictionEnabled && isPeriodReminderEnabled
 
   const [advanceNoticeDays, setAdvanceNoticeDays] = useState(
     advanceNoticeDaysObservable.value
@@ -34,9 +37,7 @@ const PeriodReminder = () => {
     saveAdvanceNoticeDays(days)
   }
 
-  const { t } = useTranslation(null, {
-    keyPrefix: 'sideMenu.settings.reminders.periodReminder',
-  })
+  const appSwitchValue = isPeriodPredictionEnabled && isPeriodReminderEnabled
 
   const reminderText =
     advanceNoticeDays == 1
