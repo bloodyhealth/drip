@@ -3,7 +3,7 @@
 A menstrual cycle tracking app that's open-source and leaves your data on your phone. Use it to track your menstrual cycle and/or for fertility awareness!
 Find more information on [our website](https://dripapp.org/).
 
- [<img src="https://dripapp.org/assets/get.png"
+[<img src="https://dripapp.org/assets/get.png"
      alt="Get it here"
      height="55">](https://dripapp.org/release/v1.2311.14.apk)
 [<img src="https://dripapp.org/assets/badge_google-play.png"
@@ -43,14 +43,14 @@ Once you have nvm running you can install node 14:
 
 #### On Apple Silicon M1
 
-NodeJS 14 does not compile on the M1 architecture, so it has to be installed through Rosetta: https://devzilla.io/using-nodejs-14-with-mac-silicon-m1 . 
-To activate Rosetta and switch to intel emulation run: 
+NodeJS 14 does not compile on the M1 architecture, so it has to be installed through Rosetta: https://devzilla.io/using-nodejs-14-with-mac-silicon-m1 .
+To activate Rosetta and switch to intel emulation run:
 
     arch -x86_64 zsh
 
-Run 
+Run
 
-    arch 
+    arch
 
 again to verify that it returns "i386".
 Now install node 14:
@@ -95,11 +95,11 @@ i. Open a terminal, navigate to the drip folder and run
     yarn install
 
 In a separate tab, that needs to keep running as long as you want to keep the app connected, run
-   
+
     yarn start
 
 Also run in a new tab
-    
+
     yarn android
 
 ii. To see logging output, run the following command in another tab:
@@ -155,15 +155,15 @@ If a bug in the currently used Flipper version prevents building the project, co
 
     #use_flipper!()
 
-Run 
+Run
 
-    pod install 
+    pod install
 
 from the ios directory again to reload the dependencies.
 
 #### [MacOS] Java problems
 
-Make sure that you have Java 1.8 by running `java -version`.
+Make sure that you have Java 11 running `java -version`.
 
 If you don't have Java installed, or your Java version is different, the app may not work. You can try just using Android Studio's Java by prepending it to your `$PATH` in your shell profile:
 `$ export PATH="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin:${PATH}"`
