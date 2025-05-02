@@ -53,7 +53,6 @@ const PeriodReminder = () => {
       />
       {appSwitchValue && (
         <AdvanceNoticeDaysSlider
-          disabled={isPeriodPredictionDisabled}
           advanceNoticeDays={parseInt(advanceNoticeDays)}
           onAdvanceNoticeDaysChange={handleAdvanceNoticeDaysChange}
         />
