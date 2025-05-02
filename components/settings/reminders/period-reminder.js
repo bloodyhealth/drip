@@ -39,11 +39,15 @@ const PeriodReminder = () => {
 
   const isReminderEnabled = isPeriodPredictionEnabled && isPeriodReminderEnabled
 
+  const reminderText = isReminderEnabled
+    ? t('reminderText', { count: advanceNoticeDays })
+    : t('reminderTextDisabled')
+
   return (
     <>
       <AppSwitch
         onToggle={periodReminderToggle}
-        text={t('reminderText', { count: advanceNoticeDays })}
+        text={reminderText}
         value={isReminderEnabled}
         disabled={!isPeriodPredictionEnabled}
       />
