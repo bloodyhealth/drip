@@ -37,17 +37,17 @@ const PeriodReminder = () => {
     saveAdvanceNoticeDays(days)
   }
 
-  const appSwitchValue = isPeriodPredictionEnabled && isPeriodReminderEnabled
+  const isReminderEnabled = isPeriodPredictionEnabled && isPeriodReminderEnabled
 
   return (
     <>
       <AppSwitch
         onToggle={periodReminderToggle}
         text={t('reminderText', { count: advanceNoticeDays })}
-        value={appSwitchValue}
+        value={isReminderEnabled}
         disabled={!isPeriodPredictionEnabled}
       />
-      {appSwitchValue && (
+      {isReminderEnabled && (
         <AdvanceNoticeDaysSlider
           advanceNoticeDays={parseInt(advanceNoticeDays)}
           onAdvanceNoticeDaysChange={handleAdvanceNoticeDaysChange}
