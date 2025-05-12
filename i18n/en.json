@@ -458,7 +458,7 @@
         "periodReminder": {
           "title": "Next period reminder",
           "reminderText": "Reminder set for $t(shared.day) before your next period is likely to start.",
-          "reminderTextDisabled": "Get a notification before your next period is likely to start.",
+          "reminderTextDisabled": "Set a reminder before your next period is likely to start.",
           "notification": "Your next period is likely to start in {{advanceNoticeDays}} to {{daysToEndOfPrediction}} days.",
           "alert": {
             "title": "Period predictions turned off",
