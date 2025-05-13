@@ -13,7 +13,11 @@ import {
 } from '../../../local-storage'
 
 const PeriodReminder = () => {
-  const isPeriodPredictionDisabled = !periodPredictionObservable.value
+  const { t } = useTranslation(null, {
+    keyPrefix: 'sideMenu.settings.reminders.periodReminder',
+  })
+
+  const isPeriodPredictionEnabled = periodPredictionObservable.value
 
   const [isPeriodReminderEnabled, setIsPeriodReminderEnabled] = useState(
     periodReminderObservable.value.enabled
@@ -33,26 +37,22 @@ const PeriodReminder = () => {
     saveAdvanceNoticeDays(days)
   }
 
-  const { t } = useTranslation(null, {
-    keyPrefix: 'sideMenu.settings.reminders.periodReminder',
-  })
+  const isReminderEnabled = isPeriodPredictionEnabled && isPeriodReminderEnabled
 
-  const reminderText =
-    advanceNoticeDays == 1
-      ? t('reminderTextSingular')
-      : t('reminderTextPlural', { days: advanceNoticeDays })
+  const reminderText = isReminderEnabled
+    ? t('reminderText', { count: advanceNoticeDays })
+    : t('reminderTextDisabled')
 
   return (
     <>
       <AppSwitch
         onToggle={periodReminderToggle}
         text={reminderText}
-        value={isPeriodReminderEnabled}
-        disabled={isPeriodPredictionDisabled}
+        value={isReminderEnabled}
+        disabled={!isPeriodPredictionEnabled}
       />
-      {isPeriodReminderEnabled && (
+      {isReminderEnabled && (
         <AdvanceNoticeDaysSlider
-          disabled={isPeriodPredictionDisabled}
           advanceNoticeDays={parseInt(advanceNoticeDays)}
           onAdvanceNoticeDaysChange={handleAdvanceNoticeDaysChange}
         />
