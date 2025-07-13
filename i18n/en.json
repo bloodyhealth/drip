@@ -307,6 +307,7 @@
     "date": "Date",
     "day_one": "{{count}} day",
     "day_other": "{{count}} days",
+    "error": "Error",
     "ok": "OK",
     "tryAgain": "Try again"
   },
