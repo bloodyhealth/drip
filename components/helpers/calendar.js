@@ -36,9 +36,9 @@ export const predictionToCalFormat = (predictedDays) => {
       accSet[day] = {
         customStyles: {
           container: {
-            borderColor: i === middleIndex ? shades[3] : shades[0],
+            borderColor: shades[3], //i === middleIndex ? shades[3] : shades[0],
             borderStyle: i === middleIndex ? 'solid' : 'dashed',
-            borderWidth: 1,
+            borderWidth: 2,
           },
         },
       }
@@ -61,6 +61,22 @@ export const todayToCalFormat = () => {
       },
     },
   }
+}
+
+export const mergeContainerStyles = (obj1, obj2) => {
+  const result = { ...obj1 }
+  for (const dayString in obj2) {
+    if (result.hasOwnProperty(dayString)) {
+      result[dayString]['customStyles']['container'] = {
+        ...result[dayString].customStyles.container,
+        ...obj2[dayString].customStyles.container,
+      }
+    } else {
+      result[dayString] = obj2[dayString]
+    }
+  }
+
+  return result
 }
 
 const styles = {
