@@ -66,7 +66,7 @@ export const todayToCalFormat = () => {
 export const mergeContainerStyles = (obj1, obj2) => {
   const result = { ...obj1 }
   for (const dayString in obj2) {
-    if (result.hasOwnProperty(dayString)) {
+    if (dayString in result) {
       result[dayString]['customStyles']['container'] = {
         ...result[dayString].customStyles.container,
         ...obj2[dayString].customStyles.container,
