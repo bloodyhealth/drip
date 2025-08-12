@@ -1,6 +1,6 @@
 import { Alert } from 'react-native'
-import { shared as sharedLabels } from '../../../i18n/en/labels'
+import i18n from '../../../i18n/i18n'
 
 export default function alertError(msg) {
-  Alert.alert(sharedLabels.errorTitle, msg)
+  Alert.alert(i18n.t('shared.error'), msg)
 }

@@ -76,6 +76,19 @@
         }
       }
     },
+    "fertilityStatus": {
+      "fertile": "fertile",
+      "fertileUntilEvening": "Fertile phase ends in the evening",
+      "infertile": "infertile",
+      "periOvu": "We were not able to detect both a temperature shift and cervical mucus or cervix shift.",
+      "periOvuUntilEvening": "We detected a temperature shift ($t(cycleDay.fertilityStatus.temperatureShift, {\"count\": {{rule}} }) temperature rule), as well as a cervical mucus/cervix shift according to the sympto-thermal method. In the evening today you may assume infertility, but always remember to double-check for yourself. Make sure the data makes sense to you.",
+      "postOvu": "We detected a temperature shift ($t(cycleDay.fertilityStatus.temperatureShift, {\"count\": {{rule}} }) temperature rule), as well as a cervical mucus/cervix shift according to the sympto-thermal method. You may assume infertility, but always remember to double-check for yourself. Make sure the data makes sense to you.",
+      "preOvu": "According to the sympto-thermal method, you may assume 5 days of infertility at the beginning of your cycle, provided you don't observe any fertile cervical mucus or cervix values.",
+      "temperatureShift_zero": "regular",
+      "temperatureShift_one": "1st exception",
+      "temperatureShift_other": "2nd exception",
+      "unknown": "We cannot show any cycle information because no period data has been added."
+    },
     "mood": {
       "feelings": {
         "symptoms": {
@@ -294,6 +307,7 @@
     "date": "Date",
     "day_one": "{{count}} day",
     "day_other": "{{count}} days",
+    "error": "Error",
     "ok": "OK",
     "tryAgain": "Try again"
   },
