@@ -10,6 +10,7 @@ import {
   predictionToCalFormat,
   toCalFormat,
   todayToCalFormat,
+  mergeContainerStyles,
 } from './helpers/calendar'
 
 const CalendarView = ({ setDate, navigate }) => {
@@ -21,12 +22,20 @@ const CalendarView = ({ setDate, navigate }) => {
     navigate('CycleDay')
   }
 
-  const markedDates = Object.assign(
-    {},
-    todayToCalFormat(),
-    toCalFormat(bleedingDays),
+  const markedDates = mergeContainerStyles(
+    {
+      ...todayToCalFormat(),
+      ...toCalFormat(bleedingDays),
+    },
     predictionToCalFormat(predictedMenses)
   )
+  // const markedDates = Object.assign(
+  //   {},
+  //   todayToCalFormat(),
+  //   toCalFormat(bleedingDays),
+  //   predictionToCalFormat(predictedMenses)
+  // )
+  console.log(JSON.stringify(markedDates, null, 2))
 
   return (
     <View style={styles.container}>
