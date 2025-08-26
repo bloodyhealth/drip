@@ -144,37 +144,37 @@ describe('mergeContainerStyles', () => {
     expect(mergeContainerStyles(obj1, obj2)).toEqual(expected)
   })
 
-  //     test('does not modify original objects', () => {
-  //         const obj1 = {
-  //             "2025-06-12": {
-  //                 "customStyles": {
-  //                     "container": {
-  //                         "backgroundColor": "#cf323d"
-  //                     }
-  //                 }
-  //             }
-  //         };
+  test('does not modify original objects', () => {
+    const obj1 = {
+      '2025-06-12': {
+        customStyles: {
+          container: {
+            backgroundColor: '#cf323d',
+          },
+        },
+      },
+    }
 
-  //         const obj2 = {
-  //             "2025-06-12": {
-  //                 "customStyles": {
-  //                     "container": {
-  //                         "paddingBottom": 10
-  //                     }
-  //                 }
-  //             }
-  //         };
+    const obj2 = {
+      '2025-06-12': {
+        customStyles: {
+          container: {
+            paddingBottom: 10,
+          },
+        },
+      },
+    }
 
-  //         mergeContainerStyles(obj1, obj2);
+    mergeContainerStyles(obj1, obj2)
 
-  //         expect(obj1).toEqual({
-  //             "2025-06-12": {
-  //                 "customStyles": {
-  //                     "container": {
-  //                         "backgroundColor": "#cf323d"
-  //                     }
-  //                 }
-  //             }
-  //         });
-  //     });
+    expect(obj1).toEqual({
+      '2025-06-12': {
+        customStyles: {
+          container: {
+            backgroundColor: '#cf323d',
+          },
+        },
+      },
+    })
+  })
 })

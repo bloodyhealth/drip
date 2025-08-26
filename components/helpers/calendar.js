@@ -63,21 +63,61 @@ export const todayToCalFormat = () => {
   }
 }
 
+export function isPlainObject(data) {
+  // helper function to determine whether the data is a plain object
+  if (typeof data !== 'object' || data === null) {
+    return false
+  }
+  const proto = Object.getPrototypeOf(data)
+  return proto === null || proto === Object.prototype
+}
+
 export const mergeContainerStyles = (obj1, obj2) => {
-  const result = { ...obj1 }
-  for (const dayString in obj2) {
-    if (dayString in result) {
-      result[dayString]['customStyles']['container'] = {
-        ...result[dayString].customStyles.container,
-        ...obj2[dayString].customStyles.container,
-      }
-    } else {
-      result[dayString] = obj2[dayString]
+  // merge object, but no deep merge yet
+  const result = { ...obj1, ...obj2 }
+  for (const key in obj2) {
+    if (!(key in obj1)) {
+      // they don't share this key. nothing to do.
+      continue
     }
+    const obj1Value = obj1[key]
+    if (!isPlainObject(obj1Value)) {
+      // The value in obj1 is not a mergable object so the value from
+      // obj2 (which was already copied in the shallow merge) would be used
+      // as-is.
+      continue
+    }
+
+    const obj2Value = obj2[key]
+    if (!isPlainObject(obj2Value)) {
+      // The value in obj2 is not a mergable object either, so it will
+      // override the object in obj1.
+      continue
+    }
+
+    // Both obj1 and obj2 have a mergable object for this key, so we
+    // recursively merge them.
+    result[key] = mergeContainerStyles(obj1Value, obj2Value)
   }
 
   return result
 }
+
+// export const mergeContainerStyles = (obj1, obj2) => {
+//   const result = { ...obj1 }
+//   for (const dayString in obj2) {
+//     if (dayString in result) {
+//       result[dayString]['customStyles']['container'] = {
+//         ...result[dayString].customStyles.container,
+//         ...obj2[dayString].customStyles.container,
+//       }
+//     } else {
+//       result[dayString] = obj2[dayString]
+//     }
+//   }
+
+//   return result
+// }
 
 const styles = {
   calendarToday: {
