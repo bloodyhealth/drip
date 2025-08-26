@@ -29,13 +29,6 @@ const CalendarView = ({ setDate, navigate }) => {
     },
     predictionToCalFormat(predictedMenses)
   )
-  // const markedDates = Object.assign(
-  //   {},
-  //   todayToCalFormat(),
-  //   toCalFormat(bleedingDays),
-  //   predictionToCalFormat(predictedMenses)
-  // )
-  // console.log(JSON.stringify(markedDates, null, 2))
 
   return (
     <View style={styles.container}>
