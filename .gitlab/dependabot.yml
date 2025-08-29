@@ -13,5 +13,5 @@ updates:
       - dependency-name: 'realm'
       - dependency-name: 'react'
       - dependency-name: 'react-native'
-      - dependency-name: 'react-native-push-notifications'
+      # - dependency-name: 'react-native-push-notifications'
       - dependency-name: '@babel/core'

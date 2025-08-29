@@ -9,7 +9,7 @@ import Menu from './menu'
 import { viewsList } from './views'
 import { pages } from './pages'
 
-import setupNotifications from '../lib/notifications'
+// import setupNotifications from '../lib/notifications'
 import { closeDb } from '../db'
 
 const App = ({ restartApp }) => {
@@ -37,7 +37,7 @@ const App = ({ restartApp }) => {
     return () => backHandler.remove()
   })
 
-  useEffect(() => setupNotifications(setCurrentPage, setDate), [])
+  // useEffect(() => setupNotifications(setCurrentPage, setDate), [])
 
   const Page = viewsList[currentPage]
   const isTemperatureEditView = currentPage === 'TemperatureEditView'
