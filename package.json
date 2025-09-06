@@ -17,7 +17,7 @@
     "ios15": "react-native run-ios --simulator=\"iPhone 15 Plus\"",
     "log": "react-native log-android",
     "test": "jest test && yarn lint",
-    "test-watch": "jest --watch test",
+    "test:watch": "jest --watch test",
     "lint": "eslint components lib test styles db",
     "devtool": "adb shell input keyevent 82",
     "build-android-apk-release": "cd android && ./gradlew clean && ./gradlew assembleRelease && cd ..",
