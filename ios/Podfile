@@ -15,7 +15,9 @@ target 'drip' do
     # Hermes is now enabled by default. Disable by setting this flag to false.
     # Upcoming versions of React Native may rely on get_default_flags(), but
     # we make it explicit here to aid in the React Native upgrade process.
-    :hermes_enabled => true,
+    # realm v10 is not compatible with hermes, thus we need to enable it before upgrading
+    # https://github.com/realm/realm-js/issues/3940
+    :hermes_enabled => false,
     :fabric_enabled => flags[:fabric_enabled],
     # Enables Flipper.
     #

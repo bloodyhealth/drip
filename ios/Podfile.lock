@@ -14,8 +14,6 @@ PODS:
     - GCDWebServer/Core (= 3.5.4)
   - GCDWebServer/Core (3.5.4)
   - glog (0.3.5)
-  - hermes-engine (0.70.15)
-  - libevent (2.1.12)
   - RCT-Folly (2021.07.22.00):
     - boost
     - DoubleConversion
@@ -27,12 +25,6 @@ PODS:
     - DoubleConversion
     - fmt (~> 6.2.1)
     - glog
-  - RCT-Folly/Futures (2021.07.22.00):
-    - boost
-    - DoubleConversion
-    - fmt (~> 6.2.1)
-    - glog
-    - libevent
   - RCTRequired (0.70.15)
   - RCTTypeSafety (0.70.15):
     - FBLazyVector (= 0.70.15)
@@ -210,17 +202,6 @@ PODS:
     - React-logger (= 0.70.15)
     - React-perflogger (= 0.70.15)
     - React-runtimeexecutor (= 0.70.15)
-  - React-hermes (0.70.15):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2021.07.22.00)
-    - RCT-Folly/Futures (= 2021.07.22.00)
-    - React-cxxreact (= 0.70.15)
-    - React-jsi (= 0.70.15)
-    - React-jsiexecutor (= 0.70.15)
-    - React-jsinspector (= 0.70.15)
-    - React-perflogger (= 0.70.15)
   - React-jsi (0.70.15):
     - boost (= 1.76.0)
     - DoubleConversion
@@ -341,8 +322,6 @@ DEPENDENCIES:
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - hermes-engine (from `../node_modules/react-native/sdks/hermes/hermes-engine.podspec`)
-  - libevent (~> 2.1.12)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -354,7 +333,6 @@ DEPENDENCIES:
   - React-Core/RCTWebSocket (from `../node_modules/react-native/`)
   - React-CoreModules (from `../node_modules/react-native/React/CoreModules`)
   - React-cxxreact (from `../node_modules/react-native/ReactCommon/cxxreact`)
-  - React-hermes (from `../node_modules/react-native/ReactCommon/hermes`)
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
@@ -388,7 +366,6 @@ SPEC REPOS:
   trunk:
     - fmt
     - GCDWebServer
-    - libevent
     - Toast
 
 EXTERNAL SOURCES:
@@ -402,8 +379,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/React/FBReactNativeSpec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
-  hermes-engine:
-    :podspec: "../node_modules/react-native/sdks/hermes/hermes-engine.podspec"
   RCT-Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec"
   RCTRequired:
@@ -424,8 +399,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/React/CoreModules"
   React-cxxreact:
     :path: "../node_modules/react-native/ReactCommon/cxxreact"
-  React-hermes:
-    :path: "../node_modules/react-native/ReactCommon/hermes"
   React-jsi:
     :path: "../node_modules/react-native/ReactCommon/jsi"
   React-jsiexecutor:
@@ -491,8 +464,6 @@ SPEC CHECKSUMS:
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
-  hermes-engine: 2592781da1571e4375dfd897f9462638c2d0ceb9
-  libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   RCT-Folly: 0080d0a6ebf2577475bda044aa59e2ca1f909cda
   RCTRequired: 2a96ea90ffddd10cc43115bd93803692e09b5d9a
   RCTTypeSafety: 02c99baddcf0b3393bf58e6d9b792e83a37716b4
@@ -503,7 +474,6 @@ SPEC CHECKSUMS:
   React-Core: 93efb81ef85fafee7f83f7ef6ecf546b2e1ee2c0
   React-CoreModules: 4eb535b1650b718cb3680767c1b9a1cacf649cbc
   React-cxxreact: 283248db3101de28d6cf0fe438a2dc95537ee472
-  React-hermes: 5439b771de0b04930c97888cc4c28852aa37389c
   React-jsi: 560bdf0bc36d5c137ac962c0eb4b60b50c304d77
   React-jsiexecutor: d2eebcd5a432f90be3baa5d1309f47d05478ea61
   React-jsinspector: bfedded1f4f562d29c2d4a8bb795c9a150a739e4
@@ -534,6 +504,6 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   Yoga: d6134eb3d6e3675afc1d6d65ccb3169b60e21980
 
-PODFILE CHECKSUM: 80483eeee52bc296fab076cad6eadd1bdc75d808
+PODFILE CHECKSUM: 17929713d4ffbeacfa5799a12bb5a1142a7b548a
 
 COCOAPODS: 1.12.1
