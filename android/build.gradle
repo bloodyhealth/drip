@@ -41,10 +41,6 @@ allprojects {
             url 'https://maven.google.com/'
             name 'Google'
         }
-        maven {
-            // All of Detox' artifacts are provided via the npm module
-            url "$rootDir/../node_modules/detox/Detox-android"
-        }
     }
 }
 

@@ -3,7 +3,7 @@
 A menstrual cycle tracking app that's open-source and leaves your data on your phone. Use it to track your menstrual cycle and/or for fertility awareness!
 Find more information on [our website](https://dripapp.org/).
 
- [<img src="https://dripapp.org/assets/get.png"
+[<img src="https://dripapp.org/assets/get.png"
      alt="Get it here"
      height="55">](https://dripapp.org/release/v1.2311.14.apk)
 [<img src="https://dripapp.org/assets/badge_google-play.png"
@@ -43,14 +43,14 @@ Once you have nvm running you can install node 14:
 
 #### On Apple Silicon M1
 
-NodeJS 14 does not compile on the M1 architecture, so it has to be installed through Rosetta: https://devzilla.io/using-nodejs-14-with-mac-silicon-m1 . 
-To activate Rosetta and switch to intel emulation run: 
+NodeJS 14 does not compile on the M1 architecture, so it has to be installed through Rosetta: https://devzilla.io/using-nodejs-14-with-mac-silicon-m1 .
+To activate Rosetta and switch to intel emulation run:
 
     arch -x86_64 zsh
 
-Run 
+Run
 
-    arch 
+    arch
 
 again to verify that it returns "i386".
 Now install node 14:
@@ -95,11 +95,11 @@ i. Open a terminal, navigate to the drip folder and run
     yarn install
 
 In a separate tab, that needs to keep running as long as you want to keep the app connected, run
-   
+
     yarn start
 
 Also run in a new tab
-    
+
     yarn android
 
 ii. To see logging output, run the following command in another tab:
@@ -155,9 +155,9 @@ If a bug in the currently used Flipper version prevents building the project, co
 
     #use_flipper!()
 
-Run 
+Run
 
-    pod install 
+    pod install
 
 from the ios directory again to reload the dependencies.
 
@@ -206,30 +206,6 @@ For example, if you would like to clear android part of the project and re-insta
 You can run the tests with:
 
     yarn test
-
-### End to end tests
-
-1. Check what testing device is specified in [package.json](https://gitlab.com/bloodyhealth/drip/blob/main/package.json) under:
-   ```
-   {"detox":
-     {"configurations":
-       {"name": "NEXUS_DEVICE_OR_WHATEVER_SPECIFIED_DEVICE"}
-     }
-   }
-   ```
-2. Check if the current device is already installed on your machine. Go to `cd ~/Android/sdk/emulator/` or wherever you have Android installed on your machine. Here you can run `./emulator -list-avds` and compare the devices with the one you found in step 1.
-3. Open Android Studio and go to -> Tools -> AVD manager -> `+Create virtual device` and select the device checked in the previous step
-4. Use the emulator on your machine to run it without heavy Android Studio, e.g. in `~/Android/Sdk/emulator` OR chose to run the emulator within Android Studio
-   4.1 Here run: `$ ./emulator -avd NEXUS_DEVICE_OR_WHATEVER_SPECIFIED_DEVICE`
-   4.2 You might need to specify the following environment variables in your zsh or bash file according to where you have it installed. You can find exact path in Android Studio (Android Studio Preferences → Appearance and Behavior → System Settings → Android SDK). After adding environment variables, you might need to restart your terminal or source the modified bash profile (i.e. "source ~/.bash_profile").
-   `export ANDROID_HOME="/home/myname/Android/Sdk" export ANDROID_SDK_ROOT="/home/myname/Android/Sdk" export ANDROID_AVD_HOME="/home/myname/.android/avd"`
-5. For the first time you need to get the app on the phone or if you run into this error:
-   `'app-debug-androidTest.apk' could not be found`
-   --> open a new 2nd tab and run (in your drip folder): `cd android and ./gradlew assembleAndroidTest`
-   Otherwise just open a new 2nd tab to run (in your drip folder) `yarn android`
-6. Open a new 3rd tab to run `./node_modules/.bin/detox test -c android.emu.debug`
-
-Hopefully you see the magic happening clicking through the app and happy test results on your console :sun_with_face: !
 
 ### Manual testing
 
