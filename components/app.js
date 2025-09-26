@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { BackHandler, StyleSheet, View } from 'react-native'
+import { BackHandler, StyleSheet, View, Button } from 'react-native'
 import PropTypes from 'prop-types'
-
 import { LocalDate } from '@js-joda/core'
 
 import Header from './header'
@@ -9,7 +8,10 @@ import Menu from './menu'
 import { viewsList } from './views'
 import { pages } from './pages'
 
-// import setupNotifications from '../lib/notifications'
+import notifee, { EventType } from '@notifee/react-native'
+import setupNotifications from '../lib/notifications/setup'
+import { handleNotificationPress } from '../lib/notifications/utils'
+
 import { closeDb } from '../db'
 
 const App = ({ restartApp }) => {
@@ -33,11 +35,33 @@ const App = ({ restartApp }) => {
       'hardwareBackPress',
       goBack
     )
-
     return () => backHandler.remove()
   })
+  useEffect(() => {
+    const unsubscribe = notifee.onForegroundEvent(({ type, detail }) => {
+      if (type === EventType.PRESS) {
+        handleNotificationPress(detail, { setDate, setCurrentPage })
+      }
+    })
 
-  // useEffect(() => setupNotifications(setCurrentPage, setDate), [])
+    // Background events does redirect to correst screen (missing to open the date in which to add the data)
+    notifee.onBackgroundEvent(async ({ type, detail }) => {
+      if (type === EventType.PRESS) {
+        handleNotificationPress(detail, { setDate, setCurrentPage })
+      }
+    })
+
+    return () => unsubscribe()
+  }, [])
+
+  // debugging purpose
+  async function initNotifications() {
+    try {
+      await setupNotifications()
+    } catch (error) {
+      console.error('Error initializing notifications:', error)
+    }
+  }
 
   const Page = viewsList[currentPage]
   const isTemperatureEditView = currentPage === 'TemperatureEditView'
@@ -51,6 +75,11 @@ const App = ({ restartApp }) => {
 
   return (
     <View style={styles.container}>
+      <Button
+        title="Initialize Notifications"
+        onPress={() => initNotifications()}
+      />
+
       <Header {...headerProps} />
       <Page {...pageProps} restartApp={restartApp} />
       <Menu currentPage={currentPage} navigate={setCurrentPage} />

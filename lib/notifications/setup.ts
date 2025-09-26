@@ -1,3 +1,28 @@
+// // lib/notifications.js
+import notifee, { AndroidImportance } from '@notifee/react-native'
+import setupTemperatureNotifications from './temperature'
+
+export const CHANNELS = {
+  TEMPERATURE: {
+    id: 'temperature_reminder',
+    name: 'Temperature Reminders',
+    importance: AndroidImportance.HIGH,
+  },
+  // PERIOD: {
+  //   id: 'period_reminder',
+  //   name: 'Period Predictions',
+  //   importance: AndroidImportance.HIGH,
+  // }
+}
+
+export default async function setupNotifications() {
+  await notifee.requestPermission()
+
+  await notifee.createChannel(CHANNELS.TEMPERATURE)
+
+  setupTemperatureNotifications()
+}
+
 // import { Platform } from 'react-native'
 // import {
 //   tempReminderObservable,
@@ -31,6 +56,8 @@
 //     channelName: 'drip reminder', // (required)
 //     playSound: false, // (optional) default: true
 //   })
+
+// NEED TO UNDERSTAND THIS MORE
 
 //   PushNotification.configure({
 //     onNotification: (notification) => {
