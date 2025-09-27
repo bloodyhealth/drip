@@ -1,4 +1,4 @@
-image: node:14
+image: node:14-alpine
 
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
@@ -8,9 +8,9 @@ cache:
 
 test_async:
   script:
-    - npm install npm@7.0.1 -g
-    - npm install
-    - npm test
+    - yarn install --frozen-lockfile
+    - yarn test
+    - yarn lint
 
 variables:
   DEPENDABOT_IMAGE: docker.io/andrcuns/dependabot-gitlab:0.23.0
