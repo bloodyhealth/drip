@@ -1,11 +1,11 @@
-import { mergeContainerStyles } from '../../components/helpers/calendar'
+import mergeDeep from '../../common/object'
 jest.mock('../../local-storage', () => ({
   periodPredictionObservable: true,
 }))
 
 describe('mergeContainerStyles', () => {
   test('merges styles for existing keys', () => {
-    const obj1 = {
+    const baseObj = {
       '2025-06-12': {
         customStyles: {
           container: {
@@ -19,7 +19,7 @@ describe('mergeContainerStyles', () => {
       },
     }
 
-    const obj2 = {
+    const overrideObj = {
       '2025-06-12': {
         customStyles: {
           container: {
@@ -45,18 +45,18 @@ describe('mergeContainerStyles', () => {
       },
     }
 
-    expect(mergeContainerStyles(obj1, obj2)).toEqual(expected)
+    expect(mergeDeep(baseObj, overrideObj)).toEqual(expected)
   })
 
   test('handles empty objects', () => {
-    const obj1 = {}
-    const obj2 = {}
+    const baseObj = {}
+    const overrideObj = {}
 
-    expect(mergeContainerStyles(obj1, obj2)).toEqual({})
+    expect(mergeDeep(baseObj, overrideObj)).toEqual({})
   })
 
   test('returns original object when second object is empty', () => {
-    const obj1 = {
+    const baseObj = {
       '2025-06-12': {
         customStyles: {
           container: {
@@ -67,14 +67,14 @@ describe('mergeContainerStyles', () => {
       },
     }
 
-    const obj2 = {}
+    const overrideObj = {}
 
-    expect(mergeContainerStyles(obj1, obj2)).toEqual(obj1)
+    expect(mergeDeep(baseObj, overrideObj)).toEqual(baseObj)
   })
 
   test('returns original object when first object is empty', () => {
-    const obj1 = {}
-    const obj2 = {
+    const baseObj = {}
+    const overrideObj = {
       '2025-06-12': {
         customStyles: {
           container: {
@@ -84,11 +84,11 @@ describe('mergeContainerStyles', () => {
       },
     }
 
-    expect(mergeContainerStyles(obj1, obj2)).toEqual(obj2)
+    expect(mergeDeep(baseObj, overrideObj)).toEqual(overrideObj)
   })
 
   test('merges multiple keys correctly', () => {
-    const obj1 = {
+    const baseObj = {
       '2025-06-12': {
         customStyles: {
           container: {
@@ -105,7 +105,7 @@ describe('mergeContainerStyles', () => {
       },
     }
 
-    const obj2 = {
+    const overrideObj = {
       '2025-06-12': {
         customStyles: {
           container: {
@@ -141,11 +141,11 @@ describe('mergeContainerStyles', () => {
       },
     }
 
-    expect(mergeContainerStyles(obj1, obj2)).toEqual(expected)
+    expect(mergeDeep(baseObj, overrideObj)).toEqual(expected)
   })
 
   test('does not modify original objects', () => {
-    const obj1 = {
+    const baseObj = {
       '2025-06-12': {
         customStyles: {
           container: {
@@ -155,7 +155,7 @@ describe('mergeContainerStyles', () => {
       },
     }
 
-    const obj2 = {
+    const overrideObj = {
       '2025-06-12': {
         customStyles: {
           container: {
@@ -165,9 +165,9 @@ describe('mergeContainerStyles', () => {
       },
     }
 
-    mergeContainerStyles(obj1, obj2)
+    mergeDeep(baseObj, overrideObj)
 
-    expect(obj1).toEqual({
+    expect(baseObj).toEqual({
       '2025-06-12': {
         customStyles: {
           container: {

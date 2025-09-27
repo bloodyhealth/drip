@@ -12,6 +12,7 @@ import {
   todayToCalFormat,
   mergeContainerStyles,
 } from './helpers/calendar'
+import { mergeDeep } from '../common/object'
 
 const CalendarView = ({ setDate, navigate }) => {
   const bleedingDays = getBleedingDaysSortedByDate()
@@ -22,13 +23,39 @@ const CalendarView = ({ setDate, navigate }) => {
     navigate('CycleDay')
   }
 
-  const markedDates = mergeContainerStyles(
+  const markedDates = mergeDeep(
     {
       ...todayToCalFormat(),
       ...toCalFormat(bleedingDays),
     },
     predictionToCalFormat(predictedMenses)
   )
+  const baseObj = {
+    '2025-06-12': {
+      customStyles: {
+        container: {
+          backgroundColor: '#cf323d',
+          paddingTop: 2.7411764705882353,
+        },
+        text: {
+          color: '#E9F2ED',
+        },
+      },
+    },
+  }
+
+  const overrideObj = {
+    '2025-06-12': {
+      customStyles: {
+        container: {
+          backgroundColor: '#ffffff',
+          paddingBottom: 10,
+        },
+      },
+    },
+  }
+  console.log('new')
+  console.log(mergeDeep(baseObj, overrideObj)['2025-06-12'])
 
   return (
     <View style={styles.container}>
