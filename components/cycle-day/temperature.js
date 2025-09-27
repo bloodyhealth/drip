@@ -31,6 +31,7 @@ const Temperature = ({ data, date, save }) => {
     if (temperature) {
       save(temperature, 'value')
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function onChangeTemperature(value) {
