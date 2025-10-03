@@ -1,7 +1,7 @@
 import notifee, { TriggerType, TimestampTrigger } from '@notifee/react-native'
-import { CHANNELS } from './setup'
+import { CHANNELS } from './channel'
 import { tempReminderObservable } from '../../local-storage'
-
+import { cancelNotifications, createChannel } from './channel'
 import i18n from '../../i18n/i18n'
 
 async function sendNotification(trigger) {
@@ -29,14 +29,6 @@ async function sendNotification(trigger) {
   }
 }
 
-async function cancelTemperatureNotifications() {
-  try {
-    await notifee.cancelNotification(CHANNELS.TEMPERATURE.id)
-  } catch (error) {
-    console.error('Error canceling notifications:', error)
-  }
-}
-
 function getReminderTimestamp(time: string): number {
   const [hours, minutes] = time.split(':').map(Number)
   const now = new Date()
@@ -52,17 +44,18 @@ function getReminderTimestamp(time: string): number {
   return reminderDate.getTime()
 }
 
-export default async function setupTemperatureNotifications() {
+export async function setupTemperatureNotifications() {
+  await createChannel('TEMPERATURE')
+
   tempReminderObservable(async (reminder) => {
-    await cancelTemperatureNotifications()
+    await cancelNotifications('TEMPERATURE')
 
     if (!reminder.enabled) return
-    // // for deubgging purpose
-    const timestamp = Date.now() + 5 * 1000 // 30 seconds in milliseconds
+    // for debugging purpose
+    // const timestamp = Date.now() + 5 * 1000 // 5 seconds in milliseconds
 
-    // const timestamp = getReminderTimestamp(reminder.time);
+    const timestamp = getReminderTimestamp(reminder.time)
 
-    // Create a time-based trigger
     const trigger: TimestampTrigger = {
       type: TriggerType.TIMESTAMP,
       timestamp,

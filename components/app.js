@@ -37,6 +37,7 @@ const App = ({ restartApp }) => {
     )
     return () => backHandler.remove()
   })
+
   useEffect(() => {
     const unsubscribe = notifee.onForegroundEvent(({ type, detail }) => {
       if (type === EventType.PRESS) {
@@ -51,17 +52,10 @@ const App = ({ restartApp }) => {
       }
     })
 
+    setupNotifications()
+
     return () => unsubscribe()
   }, [])
-
-  // debugging purpose
-  async function initNotifications() {
-    try {
-      await setupNotifications()
-    } catch (error) {
-      console.error('Error initializing notifications:', error)
-    }
-  }
 
   const Page = viewsList[currentPage]
   const isTemperatureEditView = currentPage === 'TemperatureEditView'
@@ -75,11 +69,6 @@ const App = ({ restartApp }) => {
 
   return (
     <View style={styles.container}>
-      <Button
-        title="Initialize Notifications"
-        onPress={() => initNotifications()}
-      />
-
       <Header {...headerProps} />
       <Page {...pageProps} restartApp={restartApp} />
       <Menu currentPage={currentPage} navigate={setCurrentPage} />
