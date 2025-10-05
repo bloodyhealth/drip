@@ -1,5 +1,4 @@
 import { LocalDate } from '@js-joda/core'
-import { verticalScale } from 'react-native-size-matters'
 
 import { Colors, Fonts, Sizes } from '../../styles'
 import { periodPredictionObservable } from '../../local-storage'
@@ -14,7 +13,6 @@ export const toCalFormat = (bleedingDaysSortedByDate) => {
       customStyles: {
         container: {
           backgroundColor: shades[day.bleeding.value],
-          paddingTop: verticalScale(2),
         },
         text: {
           color: Colors.turquoiseLight,
@@ -36,9 +34,11 @@ export const predictionToCalFormat = (predictedDays) => {
       accSet[day] = {
         customStyles: {
           container: {
-            borderColor: i === middleIndex ? shades[3] : shades[0],
+            borderColor: shades[3],
             borderStyle: i === middleIndex ? 'solid' : 'dashed',
-            borderWidth: 1,
+            borderWidth: 2,
+            justifyContent: 'center',
+            alignItems: 'center',
           },
         },
       }
