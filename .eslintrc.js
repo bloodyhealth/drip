@@ -1,6 +1,10 @@
 module.exports = {
   root: true,
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended-legacy',
+  ],
   env: {
     node: true,
     jest: true,
@@ -30,5 +34,6 @@ module.exports = {
     'prefer-const': 'error',
     'react/prop-types': 2,
     'no-extra-semi': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 }
