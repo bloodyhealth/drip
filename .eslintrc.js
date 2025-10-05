@@ -34,5 +34,6 @@ module.exports = {
     'prefer-const': 'error',
     'react/prop-types': 2,
     'no-extra-semi': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 }
