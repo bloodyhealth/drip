@@ -1,9 +1,9 @@
-import mergeDeep from '../../common/object'
+import { mergeDeep } from '../../common/object'
 jest.mock('../../local-storage', () => ({
   periodPredictionObservable: true,
 }))
 
-describe('mergeContainerStyles', () => {
+describe('merge container styles', () => {
   test('merges styles for existing keys', () => {
     const baseObj = {
       '2025-06-12': {
