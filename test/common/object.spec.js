@@ -176,5 +176,15 @@ describe('merge container styles', () => {
         },
       },
     })
+
+    expect(overrideObj).toEqual({
+      '2025-06-12': {
+        customStyles: {
+          container: {
+            paddingBottom: 10,
+          },
+        },
+      },
+    })
   })
 })
