@@ -480,14 +480,14 @@
           }
         },
         "temperatureReminder": {
+          "title": "Temperature reminder",
+          "timeSet": "Daily reminder set for {{time}}",
+          "noTimeSet": "Set a time for a daily reminder to take your temperature",
+          "notification": "Record your morning temperature",
           "alert": {
             "title": "Temperature turned off",
             "text": "To use the temperature reminder please first enable the temperature tracking category in the customization settings."
-          },
-          "notification": "Record your morning temperature",
-          "noTimeSet": "Set a time for a daily reminder to take your temperature",
-          "timeSet": "Daily reminder set for {{time}}",
-          "title": "Temperature reminder"
+          }
         }
       },
       "menuItem": {
