@@ -16,17 +16,17 @@
   },
   "cycleDay": {
     "bleeding": {
+      "exclude": "You can exclude this value if it's not menstrual bleeding",
       "heaviness": {
+        "description": "How heavy is the bleeding?",
         "symptoms": {
-          "spotting": "spotting",
+          "heavy": "heavy",
           "light": "light",
           "medium": "medium",
-          "heavy": "heavy"
+          "spotting": "spotting"
         },
-        "description": "How heavy is the bleeding?",
         "title": "heaviness"
-      },
-      "exclude": "You can exclude this value if it's not menstrual bleeding"
+      }
     },
     "bleedingPrediction": {
       "day_one": "Your period is likely to start today or tomorrow.",
@@ -35,45 +35,44 @@
       "future": "Your next period is likely to start in {{start}} to {{end}} days.",
       "past": "Based on your documented data, your period was likely to start between {{start}} and {{end}}."
     },
-    "subTitle": "Cycle day {{cycleDay}}",
     "cervix": {
+      "exclude": "You can exclude this value if you don't want to use it for fertility detection.",
+      "firmness": {
+        "description": "When it's hard, it might feel like the tip of your nose",
+        "symptoms": {
+          "hard": "hard",
+          "soft": "soft"
+        },
+        "title": "firmness"
+      },
       "opening": {
+        "description": "Is your cervix open or closed?",
         "symptoms": {
           "closed": "closed",
           "medium": "medium",
           "open": "open"
         },
-        "description": "Is your cervix open or closed?",
         "title": "opening"
       },
-      "firmness": {
-        "symptoms": {
-          "hard": "hard",
-          "soft": "soft"
-        },
-        "description": "When it's hard, it might feel like the tip of your nose",
-        "title": "firmness"
-      },
       "position": {
-        "symptoms": {
-          "low": "low",
-          "medium": "medium",
-          "high": "high"
-        },
         "description": "How high up in the vagina is the cervix?",
+        "symptoms": {
+          "high": "high",
+          "low": "low",
+          "medium": "medium"
+        },
         "title": "position"
-      },
-      "exclude": "You can exclude this value if you don't want to use it for fertility detection."
+      }
     },
     "desire": {
       "intensity": {
-        "title": "Intensity",
         "description": "How would you rate your sexual desire?",
         "symptoms": {
+          "high": "high",
           "low": "low",
-          "medium": "medium",
-          "high": "high"
-        }
+          "medium": "medium"
+        },
+        "title": "Intensity"
       }
     },
     "fertilityStatus": {
@@ -82,40 +81,41 @@
       "infertile": "infertile",
       "periOvu": "We were not able to detect both a temperature shift and cervical mucus or cervix shift.",
       "periOvuUntilEvening": "We detected a temperature shift ($t(cycleDay.fertilityStatus.temperatureShift, {\"count\": {{rule}} }) temperature rule), as well as a cervical mucus/cervix shift according to the sympto-thermal method. In the evening today you may assume infertility, but always remember to double-check for yourself. Make sure the data makes sense to you.",
-      "postOvu": "We detected a temperature shift ($t(cycleDay.fertilityStatus.temperatureShift, {\"count\": {{rule}} }) temperature rule), as well as a cervical mucus/cervix shift according to the sympto-thermal method. You may assume infertility, but always remember to double-check for yourself. Make sure the data makes sense to you.",
+      "postOvu": "We detected a temperature shift ($t(cycleDay.fertilityStatus.temperatureShift, {\"count\": {{rule}} })) temperature rule), as well as a cervical mucus/cervix shift according to the sympto-thermal method. You may assume infertility, but always remember to double-check for yourself. Make sure the data makes sense to you.",
       "preOvu": "According to the sympto-thermal method, you may assume 5 days of infertility at the beginning of your cycle, provided you don't observe any fertile cervical mucus or cervix values.",
-      "temperatureShift_zero": "regular",
       "temperatureShift_one": "1st exception",
       "temperatureShift_other": "2nd exception",
+      "temperatureShift_zero": "regular",
       "unknown": "We cannot show any cycle information because no period data has been added."
     },
     "mood": {
       "feelings": {
+        "description": "How did you feel today?",
         "symptoms": {
-          "happy": "happy",
-          "sad": "sad",
-          "stressed": "stressed",
-          "balanced": "balanced",
-          "fine": "fine",
+          "angry": "angry",
           "anxious": "anxious",
+          "balanced": "balanced",
           "energetic": "energetic",
           "fatigue": "fatigue",
-          "angry": "angry",
-          "other": "other"
-        },
-        "description": "How did you feel today?"
+          "fine": "fine",
+          "happy": "happy",
+          "other": "other",
+          "sad": "sad",
+          "stressed": "stressed"
+        }
       }
     },
     "mucus": {
+      "exclude": "You can exclude this value if you don't want to use it for fertility detection",
       "feeling": {
+        "description": "What does your vaginal entrance feel like?",
         "symptoms": {
           "dry": "dry",
           "nothing": "nothing",
-          "wet": "wet",
-          "slippery": "slippery"
+          "slippery": "slippery",
+          "wet": "wet"
         },
-        "title": "feeling",
-        "description": "What does your vaginal entrance feel like?"
+        "title": "feeling"
       },
       "nfp": {
         "0": "t",
@@ -125,74 +125,72 @@
         "4": "S+"
       },
       "texture": {
+        "description": "Looking at and touching your cervical mucus, which describes it best?",
         "symptoms": {
-          "nothing": "nothing",
           "creamy": "creamy",
-          "eggWhite": "egg white"
+          "eggWhite": "egg white",
+          "nothing": "nothing"
         },
-        "title": "texture",
-        "description": "Looking at and touching your cervical mucus, which describes it best?"
-      },
-      "exclude": "You can exclude this value if you don't want to use it for fertility detection"
+        "title": "texture"
+      }
     },
     "note": {
       "description": "Anything you want to add for the day?"
     },
     "pain": {
       "feelings": {
+        "description": "How did your body feel today?",
         "symptoms": {
-          "cramps": "cramps",
-          "ovulationPain": "ovulation pain",
-          "headache": "headache",
           "backache": "backache",
-          "nausea": "nausea",
-          "tenderBreasts": "tender breasts",
+          "cramps": "cramps",
+          "headache": "headache",
           "migraine": "migraine",
-          "other": "other"
-        },
-        "description": "How did your body feel today?"
+          "nausea": "nausea",
+          "other": "other",
+          "ovulationPain": "ovulation pain",
+          "tenderBreasts": "tender breasts"
+        }
       }
     },
     "sex": {
       "activity": {
+        "description": "Were you sexually active today?",
         "symptoms": {
-          "solo": "solo",
-          "partner": "partner"
-        },
-        "description": "Were you sexually active today?"
+          "partner": "partner",
+          "solo": "solo"
+        }
       },
       "contraceptives": {
+        "description": "Did you use contraceptives?",
         "symptoms": {
           "condom": "condom",
-          "pill": "pill",
-          "iud": "iud",
-          "patch": "patch",
-          "ring": "ring",
-          "implant": "implant",
           "diaphragm": "diaphragm",
+          "implant": "implant",
+          "iud": "iud",
           "none": "none",
-          "other": "other"
-        },
-        "description": "Did you use contraceptives?"
+          "other": "other",
+          "patch": "patch",
+          "pill": "pill",
+          "ring": "ring"
+        }
       }
     },
-    "today": "Today",
+    "subTitle": "Cycle day {{cycleDay}}",
     "symptomEditModal": {
       "dataDeleted": "Symptom data was deleted",
       "dataSaved": "Symptom data was saved",
       "enter": "Enter",
       "learnMore": {
-        "title": "Learn more",
         "generalInfo": {
-          "excludeExplainer": "You can exclude these values, so they won't be taken into account for any fertility calculation.",
-          "cycleRelation": "It may be influenced by or have an impact on your menstrual cycles and its hormonal changes.",
           "chartNfp": "On the chart, you can track fertility signs. When both a valid temperature shift and a cervical mucus or cervix shift have been detected, an orange line will be displayed on the chart. This indicates the end of the peri-ovulatory and the beginning of the post-ovulatory phase.",
+          "cycleRelation": "It may be influenced by or have an impact on your menstrual cycles and its hormonal changes.",
+          "excludeExplainer": "You can exclude these values, so they won't be taken into account for any fertility calculation.",
           "nfpThinkForYourselfReminder": "When - on a daily/regular basis - you track:\n1. your basal body temperature,\n2. your cervical mucus OR your cervix,\n3. and menstrual bleeding,\nthe app helps you identify in which phase of the menstrual cycle you are.\n\ndrip. makes period predictions for you and helps you apply the sympto-thermal method for fertility awareness. But please remember that this app is made by humans, and humans make mistakes. Always think for yourself: \"Does this make sense?\" Remember, you don't need an app to understand your cycle! However, drip. wants to support you and make period tracking easier, more transparent and secure.\n\nPlease find more info on the sympto-thermal method in <0>{{urlText}}</0>.",
           "noNfpSymptom": "The app allows you to track this symptom for your information, it is not taken into account for any calculation. On the chart you can check how often you track this symptom.\n\nIf you are curious to learn more about the sympto-thermal method that is used for fertility tracking within the app, you can visit <0>{{urlText}}</0>."
         },
         "symptoms": {
           "bleeding": {
-            "description": "Tracking menstrual bleeding allows you to know the beginning and the end of a menstrual cycle.\nAfter tracking at least 3 menstrual cycles, drip. will give you an overview of\n · how long your cycles last on average (in \"stats\")\n· whether the length of your cycles varied significantly (in \"stats\" and in bleeding predictions)\n· predict your next 3 cycles with a range of 3 or 5 days (on home screen and \"calendar\") if this functionality is enabled in the customization settings.\n\nThe app allows you to track different intensities of bleeding. On the chart and on the calendar, bleeding values are colored in different shades of red. The darker, the more intense your bleeding. Every bleeding value that is not excluded is taken into account for fertility calculation and period predictions.\n\nExcluding bleeding values is for tracking bleeding when it's not marking the start of a new cycle or the continuation of menstrual bleeding the day(s) before, e.g. bleeding caused by ovulation or a miscarriage."
+            "description": "Tracking menstrual bleeding allows you to know the beginning and the end of a menstrual cycle.\nAfter tracking at least 3 menstrual cycles, drip. will give you an overview of\n · how long your cycles last on average (in \"stats\")\n· whether the length of your cycles varied significantly (in \"stats\" and in bleeding predictions)\n· predict your next 3 cycles with a range of 3 or 5 days (on home screen and \"calendar\") if this functionality is enabled in the customization settings.\n\nThe app allows you to track different intensities of bleeding. On the chart and on the calendar, bleeding values are colored in different shades of red. The darker, the more intense your bleeding. Every bleeding value that is not excluded is taken into account for fertility calculation and period predictions.\n\nExcluding bleeding values is for tracking bleeding when it's not marking the start of a new cycle or the continuation of menstrual bleeding, e.g. bleeding caused by ovulation or a miscarriage."
           },
           "cervix": {
             "description": "The cervix is located inside of the body at the end of the vaginal canal, between the vagina and the uterus.\n\nTracking how open or closed and how firm or soft the cervix feels can help determine in which phase of the menstrual cycle you are.\n\nBy default, the secondary symptom the app uses for the sympto-thermal method is cervical mucus, but you can change it to cervix in \"Settings\" -> \"Customization\".\n\n· How to identify a fertile cervix?\nA fertile cervix is open and feels soft like your earlobes. In contrast, an infertile cervix feels closed and hard, like the tip of your nose. If the cervix feels anything other than closed and hard, drip. takes it as a sign of fertility. On the chart, a fertile cervix is colored in dark yellow, and infertile cervix is colored in light yellow.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp)\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)"
@@ -204,7 +202,7 @@
             "description": "The app allows you to track your mood.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.cycleRelation)"
           },
           "mucus": {
-            "description": "Cervical mucus can help determine in which phase of the menstrual cycle you are.\n\nBy default the secondary symptom the app uses for the sympto-thermal method is cervical mucus. You can change this in the customization settings.\n\n· How to identify fertile cervical mucus?\nTracking the feeling and the texture of your cervical mucus on a daily basis helps you identify changes of the quality of the cervical mucus. The values you enter for both feeling and texture of your cervical mucus are combined by drip. into one of five values following the sympto-thermal method.\n\nFrom lowest to best quality:\n· t = (dry feeling + no texture),\n· ∅ = (no feeling + no texture),\n· f = (wet feeling + no texture),\n· S = (no OR wet feeling + creamy texture),\n· S+ = (any feeling + egg white texture) OR (slippery feeling + any texture).\n\nOn the chart, cervical mucus is colored in blue: the darker the shade of blue the better the quality of your cervical mucus.\n\nPlease note that drip. does not yet support \"parenthesis values\": According to the sympto-thermal method, you can qualify a cervical mucus value by putting parentheses around it, to indicate that it doesn't fully meet the descriptors of one of the five categories, and instead is in between. This functionality will be supported in the future.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp)\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)"
+            "description": "Observing and tracking cervical mucus can help determine in which phase of the menstrual cycle you are.\n\nBy default the secondary symptom the app uses for the sympto-thermal method is cervical mucus. You can change this in the customization settings.\n\n· How to identify fertile cervical mucus?\nTracking the feeling and the texture of your cervical mucus on a daily basis helps you identify changes of the quality of the cervical mucus. The values you enter for both feeling and texture of your cervical mucus are combined by drip. into one of five values following the sympto-thermal method.\n\nFrom lowest to most fertile quality:\n· t = (dry feeling + no texture),\n· ∅ = (no feeling + no texture),\n· f = (wet feeling + no texture),\n· S = (no OR wet feeling + creamy texture),\n· S+ = (any feeling + egg white texture) OR (slippery feeling + any texture).\n\nOn the chart, cervical mucus is colored in blue: the darker the shade of blue the more fertile the quality of your cervical mucus.\n\nPlease note that drip. does not yet support \"parenthesis values\": According to the sympto-thermal method, you can qualify a cervical mucus value by putting parentheses around it, to indicate that it doesn't fully meet the descriptors of one of the five categories, and instead is in between. This functionality will be supported in the future.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp)\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)"
           },
           "note": {
             "description": "Note allows you to track any extra information you want to save. It is the only category that can store information for a date in the future. This can be helpful for reminding you of an appointment."
@@ -216,9 +214,10 @@
             "description": "The app allows you to track sex independently from sexual desire. You can differentiate between masturbation and sex with a partner/partners. Here you can also track your contraceptive method(s). Only sexual activity will be shown in the \"chart\" section, lighter purple indicating solo sex and darker purple partner sex. Did you know that having an orgasm can help release cramps?"
           },
           "temperature": {
-            "description": "One of the body signs you need to track for knowing your fertility status is your body basal temperature. The body temperature changes over the course of a menstrual cycle, it rises after ovulation.\n\nBy default the secondary symptom is cervical mucus, but you can change it to cervix in \"Settings\" -> \"Customization\".\n\n· What is body basal temperature?\nIt's your temperature after lying still for at least 6 hours. For many, this is when they are waking up in the morning after sleeping at least 6 hours and before getting up.\n\n· Which thermometer to use?\nThe thermometer must indicate 2 decimal places.\n\n· How to measure?\nYou can measure rectally, vaginally or orally. If you chose rectal or vaginal measurement, you need to measure for at least 3 minutes. If you chose oral measurement, you should measure for at least 5 minutes. Pick one way and stick to it.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp)\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)"
+            "description": "One of the body signs you need to track for knowing your fertility status is your basal body temperature. The body temperature changes over the course of a menstrual cycle, it rises after ovulation.\n\nBy default, the secondary symptom is cervical mucus, but you can change it to cervix in \"Settings\" -> \"Customization\".\n\n· What is basal body temperature?\nIt's your temperature after lying still for at least 6 hours. For many, this is when they are waking up in the morning after sleeping at least 6 hours and before getting up.\n\n· Which thermometer should be used?\nThe thermometer must indicate 2 decimal places.\n\n· How to measure?\nYou can measure rectally, vaginally or orally. If you chose rectal or vaginal measurement, you need to measure for at least 3 minutes. If you chose oral measurement, you should measure for at least 5 minutes. Pick one way and stick to it.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp)\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)"
           }
-        }
+        },
+        "title": "Learn more"
       },
       "remove": "Remove",
       "save": "Save"
@@ -232,16 +231,17 @@
         "outOfChartRange": "This temperature value is too high or low to be shown on the temperature chart.",
         "outOfUserDefinedRange": "This temperature value is out of the current range for the temperature chart. You can change the range in the settings."
       }
-    }
+    },
+    "today": "Today"
   },
   "labels": {
     "bleedingPrediction": {
       "noPrediction": "As soon as you have tracked 3 menstrual cycles, drip. will make predictions for the next ones."
     },
     "home": {
+      "addDataForToday": "add data for today",
       "cycleDay": " day of your cycle",
-      "cyclePhase": " cycle phase - ",
-      "addDataForToday": "add data for today"
+      "cyclePhase": " cycle phase - "
     }
   },
   "links": {
@@ -256,12 +256,12 @@
       "ios": "After the password is updated the app will automatically close. Please reopen it manually."
     },
     "backupReminderChangePassword": {
-      "title": "Read this before making changes to your password",
-      "text": "Just to be safe, please backup your data using the export function before making any changes to your password.\nLonger passwords are better! Consider using a passphrase.\nPlease also make sure you do not lose your password. There is no way to recover your data if you do.\nMaking any changes to your password setting will keep your data as it was before.\n"
+      "text": "Just to be safe, please backup your data using the export function before making any changes to your password.\nLonger passwords are better! Consider using a passphrase.\nPlease also make sure you do not lose your password. There is no way to recover your data if you do.\nMaking any changes to your password setting will keep your data as it was before.\n",
+      "title": "Read this before making changes to your password"
     },
     "backupReminderDeletePassword": {
-      "title": "Read this before deleting your password",
-      "text": "Deleting your password means your data will no longer be encrypted.\nJust to be safe, please backup your data using the export function before deleting your password.\nMaking any changes to your password setting will keep your data as it was before and restart the app.\n"
+      "text": "Deleting your password means your data will no longer be encrypted.\nJust to be safe, please backup your data using the export function before deleting your password.\nMaking any changes to your password setting will keep your data as it was before and restart the app.\n",
+      "title": "Read this before deleting your password"
     },
     "buttons": {
       "create": "Set password",
@@ -269,15 +269,15 @@
       "save": "Save password",
       "update": "Change password"
     },
+    "changePassword": {
+      "passwordsDontMatch": "Password and confirmation don't match",
+      "placeholder": "Please enter a new password",
+      "placeholderConfirmation": "Please confirm your password"
+    },
     "createPassword": {
       "textPasswordNotSet": "Encrypt the app's database with a password. You need to enter the password every time the app is started.",
       "textPasswordSet": "Password protection and database encryption is currently enabled",
       "title": "App password"
-    },
-    "changePassword": {
-      "placeholder": "Please enter a new password",
-      "placeholderConfirmation": "Please confirm your password",
-      "passwordsDontMatch": "Password and confirmation don't match"
     },
     "deleteDataDialog": {
       "confirm": "Yes, I am sure",
@@ -307,63 +307,65 @@
     "date": "Date",
     "day_one": "{{count}} day",
     "day_other": "{{count}} days",
-    "error": "Error",
     "ok": "OK",
     "tryAgain": "Try again"
   },
   "sideMenu": {
     "about": {
       "credits": {
-        "title": "Credits",
+        "madeBy": "Made by:",
         "text": "We love the drip. team. Thanks and lots of <3 to all of our condriputors. Thanks to Paula Härtel for the symptom tracking icons. All the other icons from:",
-        "madeBy": "Made by:"
+        "title": "Credits"
       },
       "donate": {
         "button": "Donate here",
-        "title": "Support us",
-        "text": "The drips are developing this app on a volunteer basis. We are always grateful for support. This could mean condriputing to the code, giving feedback, suggesting improvements or features, testing or donating. It helps and motivates us maintaining this app and developing new features. Thank you for your support!"
+        "text": "The drips are developing this app on a volunteer basis. We are always grateful for support. This could mean condriputing to the code, giving feedback, suggesting improvements or features, testing or donating. It helps and motivates us maintaining this app and developing new features. Thank you for your support!",
+        "title": "Support us"
       },
       "intro": {
-        "text": "Please note that your data is stored locally on your phone and not on a server. This means your data cannot be read by anyone else unless they have access to your phone. We want to ensure that you stay in control of your own data. If you are planning to switch or reset your phone, please remember to export your data before doing so. You can reinstall the app afterwards and import your data.\n\nIf you encounter any issues, please take a look at our Frequently Asked Questions page.",
+        "contact": "\nIf your issue is not listed, don't hesitate to contact us via email. You can also contribute to the code base on Gitlab and visit our website.",
         "faq": "FAQ",
-        "contact": "\nIf your issue is not listed, don't hesitate to contact us via email. You can also contribute to the code base on Gitlab and visit our website."
+        "text": "Please note that your data is stored locally on your phone and not on a server. This means your data cannot be read by anyone else unless they have access to your phone. We want to ensure that you stay in control of your own data. If you are planning to switch or reset your phone, please remember to export your data before doing so. You can reinstall the app afterwards and import your data.\n\nIf you encounter any issues, please take a look at our Frequently Asked Questions page."
       },
       "philosophy": {
-        "title": "Remember to think for yourself",
-        "text": "drip. makes period predictions for you and helps you apply the sympto-thermal method for fertility awareness. But please remember that this app is made by humans, and humans make mistakes. Always think for yourself: \"Does this make sense?\" Remember, you don't need an app to understand your cycle! However, drip. wants to support you and make period tracking easier, more transparent and secure."
+        "text": "drip. makes period predictions for you and helps you apply the sympto-thermal method for fertility awareness. But please remember that this app is made by humans, and humans make mistakes. Always think for yourself: \"Does this make sense?\" Remember, you don't need an app to understand your cycle! However, drip. wants to support you and make period tracking easier, more transparent and secure.",
+        "title": "Remember to think for yourself"
       },
       "title": "About",
       "version": {
         "title": "Version"
       }
     },
+    "info": {
+      "title": "info"
+    },
     "license": {
-      "title": "drip. an open-source cycle tracking app",
-      "text": "Copyright (C) {{currentYear}} Heart of Code e.V.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details:"
+      "text": "Copyright (C) {{currentYear}} Heart of Code e.V.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details:",
+      "title": "drip. an open-source cycle tracking app"
     },
     "menuItems": {
       "about": "About",
       "license": "License",
-      "settings": "Settings",
-      "privacyPolicy": "Privacy Policy"
+      "privacyPolicy": "Privacy Policy",
+      "settings": "Settings"
     },
     "privacyPolicy": {
-      "title": "Privacy Policy",
-      "intro": {
-        "title": "Introduction",
-        "text": "This Privacy Policy sets out how the app drip. uses and protects your personal data that you generate and store within the app."
-      },
       "dataUse": {
-        "title": "Data use",
-        "text": "Drip. respects and celebrates your privacy. There is no collection of usage data or personal information, no ads, no spyware. Drip. can store data related to menstrual health locally on your device.\n\nThis includes:\n• settings\n• menstrual cycle tracking data\n\nThe data is used to display statistics and apply fertility awareness rules. This data cannot be accessed by other apps.\n\nIf you wish to delete all your app data you can do so by navigating to Settings, Data and Delete app data. This can also be done by uninstalling the app."
+        "text": "Drip. respects and celebrates your privacy. There is no collection of usage data or personal information, no ads, no spyware. Drip. can store data related to menstrual health locally on your device.\n\nThis includes:\n• settings\n• menstrual cycle tracking data\n\nThe data is used to display statistics and apply fertility awareness rules. This data cannot be accessed by other apps.\n\nIf you wish to delete all your app data you can do so by navigating to Settings, Data and Delete app data. This can also be done by uninstalling the app.",
+        "title": "Data use"
+      },
+      "intro": {
+        "text": "This Privacy Policy sets out how the app drip. uses and protects your personal data that you generate and store within the app.",
+        "title": "Introduction"
       },
       "permissions": {
-        "title": "Permissions",
-        "text": "For using reminders in drip. you need to allow push notifications. If you don't want to use this feature you simply don't allow notifications for the app."
+        "text": "For using reminders in drip. you need to allow push notifications. If you don't want to use this feature you simply don't allow notifications for the app.",
+        "title": "Permissions"
       },
+      "title": "Privacy Policy",
       "transparency": {
-        "title": "Transparency",
-        "text": "You can read through the source code of drip. to ensure the given information is correct. The source code is like a recipe: It tells you how much and what kind of ingredients you need and how you prepare them to cook a tasty meal or program a funky app.\n\nBuon appetito!"
+        "text": "You can read through the source code of drip. to ensure the given information is correct. The source code is like a recipe: It tells you how much and what kind of ingredients you need and how you prepare them to cook a tasty meal or program a funky app.\n\nBuon appetito!",
+        "title": "Transparency"
       }
     },
     "settings": {
@@ -371,8 +373,8 @@
         "fertilityPhases": {
           "description": "If you enter menstrual bleeding, temperature and cervical mucus or cervix data according to the sympto-thermal method, drip will calculate cycle phases with the provided data.",
           "disabledModal": {
-            "title": "Disabled",
-            "description": "To use fertility phases calculation please enable both temperature tracking and either cervical mucus or cervix tracking above."
+            "description": "To use fertility phases calculation please enable both temperature tracking and either cervical mucus or cervix tracking above.",
+            "title": "Disabled"
           },
           "off": "If you switch this on, drip will show fertility related information.",
           "on": "If you switch this off, drip will not show fertility related information.",
@@ -389,18 +391,18 @@
         },
         "secondarySymptom": {
           "alert": {
-            "textMissingSecondarySymptoms": "To switch the secondary symptom both cervical mucus and cervix need to be enabled above.",
             "textFertilityTrackingDisabled": "To set a secondary symptom please first enable the cervical mucus or cervix tracking category as well as temperature and fertility phases calculation above.",
+            "textMissingSecondarySymptoms": "To switch the secondary symptom both cervical mucus and cervix need to be enabled above.",
             "title": "Disabled"
           },
-          "title": "Secondary symptom",
-          "text": "Please choose your preferred secondary symptom for fertility detection according to the sympto-thermal method:"
+          "text": "Please choose your preferred secondary symptom for fertility detection according to the sympto-thermal method:",
+          "title": "Secondary symptom"
         },
         "temperatureScale": {
           "description": "Change the minimum and maximum value for the temperature chart.",
           "disabled": {
-            "title": "Disabled",
-            "description": "To use the temperature scale please first enable temperature tracking above."
+            "description": "To use the temperature scale please first enable temperature tracking above.",
+            "title": "Disabled"
           },
           "saveError": "Could not save temperature scale settings",
           "title": "Temperature scale"
@@ -436,8 +438,8 @@
             "noData": "There is no data to export",
             "sharingFailed": "There was a problem sharing the data export file"
           },
-          "text": "Export data in CSV format for backup or so you can use it elsewhere",
-          "title": "My drip. data export"
+          "text": "Export data in CSV format for backup or other use",
+          "title": "My drip data export"
         },
         "import": {
           "button": "Import data",
@@ -463,41 +465,23 @@
       },
       "language": {
         "languages": {
-          "en-US": "English",
-          "de-DE": "German"
+          "de-DE": "German",
+          "en-US": "English"
         },
         "title": "Language"
       },
-      "reminders": {
-        "periodReminder": {
-          "title": "Next period reminder",
-          "reminderText": "Reminder set for $t(shared.day) before your next period is likely to start.",
-          "reminderTextDisabled": "Set a reminder before your next period is likely to start.",
-          "notification": "Your next period is likely to start in {{advanceNoticeDays}} to {{daysToEndOfPrediction}} days.",
-          "alert": {
-            "title": "Period predictions turned off",
-            "text": "To use the period reminder please first enable period predictions in the customization settings."
-          }
-        },
-        "temperatureReminder": {
-          "alert": {
-            "title": "Temperature turned off",
-            "text": "To use the temperature reminder please first enable the temperature tracking category in the customization settings."
-          },
-          "notification": "Record your morning temperature",
-          "noTimeSet": "Set a time for a daily reminder to take your temperature",
-          "timeSet": "Daily reminder set for {{time}}",
-          "title": "Temperature reminder"
-        }
-      },
       "menuItem": {
+        "customization": {
+          "name": "Customization",
+          "text": "Define how you want to use drip"
+        },
         "dataManagement": {
           "name": "Data",
           "text": "Import, export or delete your data"
         },
-        "customization": {
-          "name": "Customization",
-          "text": "Define how you want to use drip"
+        "info": {
+          "name": "Info",
+          "text": "Learn more about how drip works"
         },
         "language": {
           "name": "Language",
@@ -509,47 +493,62 @@
         },
         "reminders": {
           "name": "Reminders",
-          "text": "Turn on/off reminders"
+          "text": "Turn reminders on/off"
+        }
+      },
+      "reminders": {
+        "periodReminder": {
+          "alert": {
+            "text": "To use the period reminder please first enable period predictions in the customization settings.",
+            "title": "Period predictions turned off"
+          },
+          "notification": "Your next period is likely to start in {{advanceNoticeDays}} to {{daysToEndOfPrediction}} days.",
+          "reminderText": "Reminder set for $t(shared.day) before your next period is likely to start.",
+          "reminderTextDisabled": "Set a reminder before your next period is likely to start.",
+          "title": "Next period reminder"
         },
-        "info": {
-          "name": "Info",
-          "text": "Learn more about how drip works"
+        "temperatureReminder": {
+          "alert": {
+            "text": "To use the temperature reminder please first enable the temperature tracking category in the customization settings.",
+            "title": "Temperature turned off"
+          },
+          "noTimeSet": "Set a time for a daily reminder to take your temperature",
+          "notification": "Record your morning temperature",
+          "timeSet": "Daily reminder set for {{time}}",
+          "title": "Temperature reminder"
         }
       },
       "title": "Settings"
-    },
-    "info": {
-      "title": "info"
     }
   },
   "stats": {
-    "noData": "At least one completed cycle is needed to display stats.",
+    "details": {
+      "bleedingDays": "Bleeding",
+      "cycleLength": "Cycle length",
+      "cycleStart": "Cycle start"
+    },
+    "footnote": "Based on the standard deviation of the length of all your tracked cycles, drip calculates a range for the start day of the next 3 cycles.  The range is 3 days if your standard deviation is less than 1.5 and 5 days if the value is greater than 1.5.\n\nThe standard deviation tells you how much the length of your cycles varies. 0 means that all your cycles are exactly the same length and the higher the value, the more the cycle length varies.",
     "intro": "Basic statistics about the length of your cycles.",
+    "noData": "At least one completed cycle is needed to display stats.",
     "overview": {
       "average": "Average cycle",
+      "completedCycles": "completed\ncycles",
       "days": "days",
-      "min": "Shortest",
       "max": "Longest",
-      "standardDeviation": "Standard\ndeviation",
-      "completedCycles": "completed\ncycles"
+      "min": "Shortest",
+      "standardDeviation": "Standard\ndeviation"
     },
-    "showStats": "Show period details",
-    "details": {
-      "cycleStart": "Cycle start",
-      "cycleLength": "Cycle length",
-      "bleedingDays": "Bleeding"
-    },
-    "footnote": "Based on the standard deviation of the length of all your tracked cycles, drip. calculates a range for the start day of the next 3 cycles.  The range is 3 days if your standard deviation is less than 1.5 and 5 days if the value is greater than 1.5.\n\nThe standard deviation tells you how much the length of your cycles varies. 0 means that all your cycles are exactly the same length and the higher the value, the more the cycle length varies."
+    "showStats": "Show period details"
   },
   "symptoms": {
     "bleeding": "bleeding",
-    "temperature": "temperature",
-    "mucus": "cervical mucus",
     "cervix": "cervix",
-    "note": "note",
     "desire": "desire",
-    "sex": "sex",
+    "mood": "mood",
+    "mucus": "cervical mucus",
+    "note": "note",
     "pain": "pain",
-    "mood": "mood"
+    "sex": "sex",
+    "temperature": "temperature"
   }
 }
