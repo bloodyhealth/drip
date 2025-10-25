@@ -16,6 +16,7 @@ _Note_: You need the release-key for Android to bundle a signed release that can
 ## Release steps
 
 ### 1. [Code](#code)
+
 - 1.1 [Version updating](#version-updating)
 - 1.2 [Android builds](#android-builds)
 - 1.3 [iOS builds](#ios-builds)
@@ -23,12 +24,14 @@ _Note_: You need the release-key for Android to bundle a signed release that can
 - 1.5 [Release tag](#release-tag)
 
 ### 2. [Documentation](#documentation)
+
 - 2.1 [Changelog](#changelog)
 - 2.2 [Release notes](#release-notes)
 - 2.3 [Releases on Gitlab](#releases-on-gitlab)
 - 2.4 [Phone screenshots](#phone-screenshots)
 
 ### 3. [Publishing](#publishing)
+
 - 3.1 [Google Play Console](#google-play-console)
 - 3.2 [Apple App Store Connect](#apple-app-store-connect)
 - 3.3 [F-droid](#f-droid)
@@ -40,27 +43,22 @@ _Note_: You need the release-key for Android to bundle a signed release that can
 
 ### Version updating
 
-When you are done with a chore, a feature or a bugfix, you may want to share it with testers and eventually publish a release. In order to identify a specific app version we can update the version name, which is created based on the following format: `1.yymm.d` e.g. `1.2311.7`. If you want to upload a new app version to Google Play you also need to update the version code.
+When you are done with a chore, a feature or a bugfix, you may want to share it with testers and eventually publish a release. In order to identify a specific app version we can update the version name, which is created based on the following format: `1.yymm.d` e.g. `1.2311.7`. If you want to upload a new app version to Google Play or Apple's App Store you also need to update the version code.
 
 The following command will:
 
-- create a new versionName and a new higher versionCode (+1)
+- create a new version number
+- create a new versionName and a new higher versionCode (+1) for Android
+- create a new CFBundleShortVersionString for iOS
 - create a commit including a tag named after the new release version name.
 
 ```
 yarn release
 ```
 
-The versionName and versionCode [are defined here](https://gitlab.com/bloodyhealth/drip/-/blob/5401789c46f4a02915ab900ef284581be420451c/android/app/build.gradle#L137-138) and in [package.json](https://gitlab.com/bloodyhealth/drip/-/blob/5401789c46f4a02915ab900ef284581be420451c/package.json#L3).
+The version number is defined here in [package.json](https://gitlab.com/bloodyhealth/drip/-/blob/b33ccff0756828e91ded655a2a91b9a6e8a87f56/package.json#L3).
 
-**Note for iOS**
-
-Update the version number for iOS in `ios/drip/Info.plist` under:
-
-```
-<key>CFBundleShortVersionString</key>
-<string>1.2403.19</string>
-```
+The versionName and versionCode for Android [are defined here in build.gradle](https://gitlab.com/bloodyhealth/drip/-/blob/1bac513a69ccd65b218bef412aa7832392b5e8be/android/app/build.gradle#L154-155) and the version number for iOS [here in ios/drip/Info.plist](https://gitlab.com/bloodyhealth/drip/-/blob/b33ccff0756828e91ded655a2a91b9a6e8a87f56/ios/drip/Info.plist#L22).
 
 ### Android builds
 
@@ -141,20 +139,20 @@ Any tag starting with "Release" or "Android" will be checked by https://gitlab.c
 
 The [changelog](https://gitlab.com/bloodyhealth/drip/-/blob/main/CHANGELOG.md) should reflect the technical / code changes between a previous and the new version. Please update the changelog file with any relevant additions, fixes and changes in the following format:
 
->**v1.yymm.d**
+> **v1.yymm.d**
 >
->**Changes**
+> **Changes**
 >
->Changing the color of funky button
->Updating a library from 1.2.3 to 2.3.4
+> Changing the color of funky button
+> Updating a library from 1.2.3 to 2.3.4
 >
->**Adds**
+> **Adds**
 >
->New feature for calendar
+> New feature for calendar
 >
->**Fixed**
+> **Fixed**
 >
->Small bug in chart
+> Small bug in chart
 
 ### Release notes
 
@@ -164,7 +162,7 @@ Google Play limits these notes to 500 characters, whereas Apple's App Store limi
 
 ### Releases on Gitlab
 
-Under [Releases](https://gitlab.com/bloodyhealth/drip/-/releases) we keep track of all drip releases. 
+Under [Releases](https://gitlab.com/bloodyhealth/drip/-/releases) we keep track of all drip releases.
 
 ### Phone screenshots
 
