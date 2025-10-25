@@ -31,4 +31,7 @@ module.exports = {
     'react/prop-types': 2,
     'no-extra-semi': 'off',
   },
+  globals: {
+    __DEV__: true,
+  },
 }
