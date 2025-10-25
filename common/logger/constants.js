@@ -13,6 +13,7 @@ export const LOG_LEVELS = {
 
 // Configuration
 export const LOG_CONFIG = {
+  logDirectory: LOG_DIR,
   path: `${LOG_DIR}/${LOG_FILE}`,
   maxFileSize: 1024 * 1024, // 1MB
   maxFiles: 1,

@@ -9,6 +9,7 @@ import Segment from '../../common/segment'
 import AppText from '../../common/app-text'
 import Button from '../../common/button'
 import { useTranslation } from 'react-i18next'
+import logger from '../../../common/logger'
 
 export default function ImportData({
   closePasswordConfirmation,
@@ -56,6 +57,7 @@ export default function ImportData({
       await importCsv(fileContent, shouldDeleteExistingData)
       Alert.alert(t('success.title'), t('success.message'))
     } catch (err) {
+      logger.error(err.message)
       showImportErrorAlert(err.message)
     }
   }

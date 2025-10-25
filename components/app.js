@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BackHandler, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
+import logger from '../common/logger'
 
 import { LocalDate } from '@js-joda/core'
 
@@ -33,6 +34,8 @@ const App = ({ restartApp }) => {
       'hardwareBackPress',
       goBack
     )
+
+    logger.info('App mounted')
 
     return () => backHandler.remove()
   })
