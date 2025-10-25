@@ -21,6 +21,7 @@
     "lint": "eslint components common lib test styles db",
     "devtool": "adb shell input keyevent 82",
     "translations:import": "node scripts/translations-import.mjs",
+    "translations:upload": "node scripts/translations-upload.mjs",
     "build-android-apk-release": "cd android && ./gradlew clean && ./gradlew assembleRelease && cd ..",
     "sign-android-apk-release": "zipalign -v -p 4 ./android/app/build/outputs/apk/release/app-release.apk ./android/app/build/outputs/apk/release/app-release_signed.apk",
     "build-android-aab-release": "cd android && ./gradlew clean && ./gradlew :app:bundleRelease && cd ..",
