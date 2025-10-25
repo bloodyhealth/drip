@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.2510.25 Android & iOS
+
+### Changes
+
+- Small text improvements for secondary symptom switch
+
+### Adds
+
+- Custom period reminder: Set a period reminder for 1 to 7 days before the next period
+- Behind the scenes: Preparation of text for Translations
+
+### Fixed
+
+- On calendar excluded bleeding values are now visible on days when a period was predicted to start
+
 ## v1.2411.20 Android & iOS
 
 ### Changes
