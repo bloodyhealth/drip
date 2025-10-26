@@ -1,5 +1,10 @@
 image: node:14-alpine
 
+# Define stages
+stages:
+  - test
+  - deploy
+
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
@@ -7,10 +12,40 @@ cache:
     - node_modules/
 
 test_async:
+  stage: test
   script:
     - yarn install --frozen-lockfile
     - yarn test
     - yarn lint
+
+# Upload translations to Lokalise when PR is merged to main
+upload_translations:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE == "push"
+      when: on_success
+    - when: never
+  before_script:
+    - yarn install --frozen-lockfile
+  script:
+    - echo "📤 Uploading translations to Lokalise..."
+    - echo "🔍 Checking environment variables..."
+    - |
+      if [ -z "$LOKALISE_PROJECT_ID" ]; then
+        echo "❌ LOKALISE_PROJECT_ID is not set"
+        exit 1
+      fi
+    - |
+      if [ -z "$LOKALISE_API_TOKEN" ]; then
+        echo "❌ LOKALISE_API_TOKEN is not set"
+        exit 1
+      fi
+    - echo "✅ Environment variables are set"
+    - yarn translations:upload
+
+  variables:
+    LOKALISE_PROJECT_ID: $LOKALISE_PROJECT_ID
+    LOKALISE_API_TOKEN: $LOKALISE_API_TOKEN
 
 variables:
   DEPENDABOT_IMAGE: docker.io/andrcuns/dependabot-gitlab:0.23.0
