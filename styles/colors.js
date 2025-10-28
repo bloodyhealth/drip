@@ -2,15 +2,9 @@ const redColor = '#c3000d'
 export const shadesOfRed = ['#e7999e', '#db666d', '#cf323d', '#c3000d'] // light to dark
 
 const blueColor = '#6975ab'
-const shadesOfBlue = [
-  '#c4dbff',
-  '#97a8d5',
-  anotherBlueColor,
-  '#3c4281',
-  '#0d0d55',
-] // light to dark
+const shadesOfBlue = ['#c4dbff', '#97a8d5', blueColor, '#3c4281', '#0d0d55'] // light to dark
 const yellowColor = '#facc00'
-const shadesOfYellow = ['#fdeeab', anotherYellowColor] // light to dark
+const shadesOfYellow = ['#fdeeab', yellowColor] // light to dark
 const magentaColor = '#6f2565'
 const shadesOfMagenta = ['#a87ca2', '#8b5083', magentaColor] // light to dark
 const pinkColor = '#9e346c'
