@@ -5,10 +5,10 @@ const blueColor = '#6975ab'
 const shadesOfBlue = ['#c4dbff', '#97a8d5', blueColor, '#3c4281', '#0d0d55'] // light to dark
 const yellowColor = '#facc00'
 const shadesOfYellow = ['#fdeeab', yellowColor] // light to dark
-const magentaColor = '#6f2565'
-const shadesOfMagenta = ['#a87ca2', '#8b5083', magentaColor] // light to dark
-const pinkColor = '#9e346c'
-const shadesOfPink = ['#c485a6', '#b15c89', pinkColor] // light to dark
+const violetColor = '#4d006b'
+const shadesOfviolet = ['#c4abce', '#8a579d', violetColor] // light to dark
+const pinkColor = '#d10070'
+const shadesOfPink = ['#f0abd0', '#e157a1', pinkColor] // light to dark
 const lightGreenColor = '#bccd67'
 const orangeColor = '#bc6642'
 const mintColor = '#6ca299'
@@ -42,8 +42,8 @@ export default {
       shades: shadesOfYellow,
     },
     sex: {
-      color: magentaColor,
-      shades: shadesOfMagenta,
+      color: violetColor,
+      shades: shadesOfviolet,
     },
     desire: {
       color: pinkColor,
