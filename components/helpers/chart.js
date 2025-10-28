@@ -152,13 +152,16 @@ export const symptomColorMethods = {
   mucus: (symptomData) => {
     const { feeling, texture } = symptomData
     const colorIndex = feeling + texture
+    if (colorIndex >= 4) {
+      return 4
+    } // value range for cervical mucus is 0-4
     return colorIndex
   },
   cervix: (symptomData) => {
     const { opening, firmness } = symptomData
     const isDataComplete = opening !== null && firmness !== null
     const isClosedAndHard = isDataComplete && opening === 0 && firmness === 0
-    const colorIndex = isClosedAndHard ? 0 : 2
+    const colorIndex = isClosedAndHard ? 0 : 1 // value range for cervix is 0-1
     return colorIndex
   },
   sex: (symptomData) => {
