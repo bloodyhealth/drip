@@ -167,7 +167,13 @@ export const symptomColorMethods = {
   sex: (symptomData) => {
     const { solo, partner } = symptomData
     const colorIndex =
-      solo !== null && partner !== null ? solo + 2 * partner - 1 : 0
+      solo !== null && partner !== null
+        ? 2
+        : solo !== null
+        ? 0
+        : partner !== null
+        ? 1
+        : 0
     return colorIndex
   },
   bleeding: (symptomData) => {
@@ -178,6 +184,7 @@ export const symptomColorMethods = {
   desire: (symptomData) => {
     const { value } = symptomData
     const colorIndex = value
+    console.log('colorIndex for desire: ', colorIndex)
     return colorIndex
   },
   default: () => {
