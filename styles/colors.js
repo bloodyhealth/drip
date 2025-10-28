@@ -1,13 +1,13 @@
 const redColor = '#c3000d'
 export const shadesOfRed = ['#e7999e', '#db666d', '#cf323d', '#c3000d'] // light to dark
-const violetColor = '#6a7b98'
-const shadesOfViolet = [
+const blueColor = '#6a7b98'
+const shadesOfBlue = [
   '#e3e7ed',
   '#c8cfdc',
   '#acb8cb',
   '#91a0ba',
   '#7689a9',
-  violetColor,
+  blueColor,
 ] // light to dark
 const yellowColor = '#dbb40c'
 const shadesOfYellow = ['#f0e19d', '#e9d26d', '#e2c33c', yellowColor] // light to dark
@@ -40,8 +40,8 @@ export default {
       color: turquoiseDark,
     },
     mucus: {
-      color: violetColor,
-      shades: shadesOfViolet,
+      color: blueColor,
+      shades: shadesOfBlue,
     },
     cervix: {
       color: yellowColor,
