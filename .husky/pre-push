@@ -1,0 +1,3 @@
+echo "🧹️Running pre-push hook: Linting files before pushing branch..."
+pnpm lint
+echo "✅️ Linting passed!"
