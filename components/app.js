@@ -9,10 +9,10 @@ import { viewsList } from './views'
 import { pages } from './pages'
 
 import notifee, { EventType } from '@notifee/react-native'
-import setupNotifications from '../lib/notifications/setup'
 import { handleNotificationPress } from '../lib/notifications/utils'
 
 import { closeDb } from '../db'
+import NotificationService from '../lib/notifications/notification-service'
 
 const App = ({ restartApp }) => {
   const [date, setDate] = useState(LocalDate.now().toString())
@@ -39,6 +39,8 @@ const App = ({ restartApp }) => {
   })
 
   useEffect(() => {
+    NotificationService.initialize()
+
     const unsubscribe = notifee.onForegroundEvent(({ type, detail }) => {
       if (type === EventType.PRESS) {
         handleNotificationPress(detail, { setDate, setCurrentPage })
@@ -52,9 +54,7 @@ const App = ({ restartApp }) => {
       }
     })
 
-    setupNotifications()
-
-    return () => unsubscribe()
+    return unsubscribe
   }, [])
 
   const Page = viewsList[currentPage]
