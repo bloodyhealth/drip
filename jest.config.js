@@ -3,7 +3,7 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   setupFilesAfterEnv: ['./jest-setup.js'],
   transformIgnorePatterns: [
-    'node_modules/(?!((jest-)?react-native(-.*)?|@react-native(-community)?)/)',
+    'node_modules/(?!((jest-)?react-native(-.*)?|@react-native(-community)?|@notifee)/)',
   ],
   watchPlugins: [
     'jest-watch-typeahead/filename',
