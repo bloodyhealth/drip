@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BackHandler, StyleSheet, View, Button } from 'react-native'
+import { BackHandler, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { LocalDate } from '@js-joda/core'
 
