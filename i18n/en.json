@@ -470,7 +470,7 @@
       },
       "reminders": {
         "periodReminder": {
-          "name": "Period Predictions",
+          "name": "Period predictions",
           "title": "Next period reminder",
           "reminderText": "Reminder set for $t(shared.day) before your next period is likely to start.",
           "reminderTextDisabled": "Set a reminder before your next period is likely to start.",
@@ -481,7 +481,7 @@
           }
         },
         "temperatureReminder": {
-          "name": "Temperature Reminders",
+          "name": "Temperature reminders",
           "title": "Temperature reminder",
           "timeSet": "Daily reminder set for {{time}}",
           "noTimeSet": "Set a time for a daily reminder to take your temperature",
