@@ -7,6 +7,7 @@ import { LocalDate } from '@js-joda/core'
 
 import Header from './header'
 import Menu from './menu'
+import ErrorBoundary from './common/error-boundary'
 import { viewsList } from './views'
 import { pages } from './pages'
 
@@ -53,11 +54,13 @@ const App = ({ restartApp }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <Header {...headerProps} />
-      <Page {...pageProps} restartApp={restartApp} />
-      <Menu currentPage={currentPage} navigate={setCurrentPage} />
-    </View>
+    <ErrorBoundary navigate={setCurrentPage}>
+      <View style={styles.container}>
+        <Header {...headerProps} />
+        <Page {...pageProps} restartApp={restartApp} />
+        <Menu currentPage={currentPage} navigate={setCurrentPage} />
+      </View>
+    </ErrorBoundary>
   )
 }
 
