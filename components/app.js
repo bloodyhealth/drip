@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BackHandler, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { LocalDate } from '@js-joda/core'
@@ -8,11 +8,8 @@ import Menu from './menu'
 import { viewsList } from './views'
 import { pages } from './pages'
 
-import notifee, { EventType } from '@notifee/react-native'
-import { handleNotificationPress } from '../lib/notifications/utils'
-
 import { closeDb } from '../db'
-import NotificationService from '../lib/notifications/notification-service'
+import { useNotifications } from '../lib/notifications/useNotifications'
 
 const App = ({ restartApp }) => {
   const [date, setDate] = useState(LocalDate.now().toString())
@@ -38,24 +35,7 @@ const App = ({ restartApp }) => {
     return () => backHandler.remove()
   })
 
-  useEffect(() => {
-    NotificationService.initialize()
-
-    const unsubscribe = notifee.onForegroundEvent(({ type, detail }) => {
-      if (type === EventType.PRESS) {
-        handleNotificationPress(detail, { setDate, setCurrentPage })
-      }
-    })
-
-    // Background events does redirect to correst screen (missing to open the date in which to add the data)
-    notifee.onBackgroundEvent(async ({ type, detail }) => {
-      if (type === EventType.PRESS) {
-        handleNotificationPress(detail, { setDate, setCurrentPage })
-      }
-    })
-
-    return unsubscribe
-  }, [])
+  useNotifications({ setCurrentPage, setDate })
 
   const Page = viewsList[currentPage]
   const isTemperatureEditView = currentPage === 'TemperatureEditView'
