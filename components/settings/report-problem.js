@@ -27,11 +27,10 @@ export default function ReportProblem() {
     setIsLoading(true)
     try {
       // Get current log file path (based on today's date)
-      const logPath = logger.finalize()
+      logger.finalize()
+      const logPath = await logger.getCurrentLogFilePath()
 
-      // Check if log file exists
-      const fileExists = await RNFS.exists(logPath)
-      if (!fileExists) {
+      if (!logPath) {
         alertError(t('error.noLogFile'))
         setIsLoading(false)
         return
@@ -49,6 +48,7 @@ export default function ReportProblem() {
         failOnCancel: false,
       })
     } catch (error) {
+      console.log(error)
       // User cancelled or error occurred
       if (error.message !== 'User did not share') {
         alertError(t('error.sharingFailed'))

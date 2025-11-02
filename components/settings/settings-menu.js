@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import AppPage from '../common/app-page'
 import MenuItem from './menu-item'
 
 import { useTranslation } from 'react-i18next'
+import Button from '../common/button'
 
 const menuItems = [
   { label: 'customization', componentName: 'Customization' },
@@ -17,6 +18,16 @@ const menuItems = [
 
 const SettingsMenu = ({ navigate }) => {
   const { t } = useTranslation()
+
+  const [hasError, setHasError] = useState(false)
+
+  if (hasError) {
+    throw new Error('Oh no! The app crashed')
+  }
+
+  const triggerCrash = () => {
+    setHasError(true)
+  }
   return (
     <AppPage title={t('sideMenu.settings.title')}>
       {menuItems.map((menuItem, i) => {
@@ -26,6 +37,9 @@ const SettingsMenu = ({ navigate }) => {
           <MenuItem item={menuItem} key={i} last={last} navigate={navigate} />
         )
       })}
+      <Button isCTA onPress={triggerCrash}>
+        Crash app
+      </Button>
     </AppPage>
   )
 }

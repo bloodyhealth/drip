@@ -8,6 +8,7 @@ export default {
   debug: (source, message) => logger.log('DEBUG', source, message),
   clearAllLogFiles: () => logger.clearAllLogFiles(),
   finalize: () => logger.finalize(),
+  getCurrentLogFilePath: () => logger.getCurrentLogFilePath(),
 }
 
 class Logger {
@@ -138,6 +139,18 @@ class Logger {
     const timestampStr = new Date().toISOString()
     const levelStr = level.padEnd(5)
     return `[${timestampStr}] ${levelStr} ${source} ${message}\n`
+  }
+
+  // Get the current log file path if it exists, null otherwise
+  async getCurrentLogFilePath() {
+    try {
+      const currentLogPath = getCurrentLogFilePath()
+      const fileExists = await RNFS.exists(currentLogPath)
+      return fileExists ? currentLogPath : null
+    } catch (error) {
+      console.error('Logger: Failed to get current log file path:', error)
+      return null
+    }
   }
 
   // Get all log files in the log directory

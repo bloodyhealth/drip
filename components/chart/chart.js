@@ -64,10 +64,6 @@ const CycleChart = ({ navigate, setDate }) => {
     setChartFlag()
   }
 
-  // TODO: Remove chart crash
-  const emptyArray = undefined
-  emptyArray[1]
-
   const cycleDaysSortedByDate = getCycleDaysSortedByDate()
 
   const chartSymptoms = getSymptomsFromCycleDays(cycleDaysSortedByDate)
