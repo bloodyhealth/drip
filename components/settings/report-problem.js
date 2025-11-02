@@ -11,7 +11,6 @@ import Button from '../common/button'
 import Segment from '../common/segment'
 import alertError from './common/alert-error'
 import logger from '../../common/logger/logger'
-import { getCurrentLogFilePath } from '../../common/logger/constants'
 import links from '../../common/links'
 import { Colors } from '../../styles'
 
@@ -28,7 +27,7 @@ export default function ReportProblem() {
     setIsLoading(true)
     try {
       // Get current log file path (based on today's date)
-      const logPath = getCurrentLogFilePath()
+      const logPath = logger.finalize()
 
       // Check if log file exists
       const fileExists = await RNFS.exists(logPath)
@@ -38,8 +37,6 @@ export default function ReportProblem() {
         return
       }
 
-      // Share the log file via email with recipient pre-filled
-      // Note: 'to' parameter works on Android, iOS may require user to add recipient manually
       await Share.open({
         title: t('emailSubject'),
         url: `file://${logPath}`,

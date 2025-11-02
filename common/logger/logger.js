@@ -1,36 +1,24 @@
 import RNFS from 'react-native-fs'
 import { LOG_CONFIG, LOG_LEVELS, getCurrentLogFilePath } from './constants'
 
+export default {
+  error: (source, message) => logger.log('ERROR', source, message),
+  warn: (source, message) => logger.log('WARN', source, message),
+  info: (source, message) => logger.log('INFO', source, message),
+  debug: (source, message) => logger.log('DEBUG', source, message),
+  clearAllLogFiles: () => logger.clearAllLogFiles(),
+  finalize: () => logger.finalize(),
+}
+
 class Logger {
-  isInitialized = false
-  initializationPromise = null
+  tempStorage = []
+  isReady = false
 
   async init() {
-    // Return existing promise if initialization is already in progress
-    if (this.initializationPromise) {
-      return this.initializationPromise
-    }
-
-    if (this.isInitialized) {
+    if (this.isReady) {
       return
     }
-
-    this.initializationPromise = this._doInit()
-    try {
-      await this.initializationPromise
-    } finally {
-      this.initializationPromise = null
-    }
-  }
-
-  async _doInit() {
-    try {
-      await this.createDir()
-      this.isInitialized = true
-    } catch (error) {
-      console.error('Logger: Failed to initialize logger:', error)
-      throw error
-    }
+    await this.createDir()
   }
 
   log(level, source, message) {
@@ -46,26 +34,52 @@ class Logger {
     })
   }
 
+  async isDirectoryReady() {
+    const logDir = LOG_CONFIG.logDirectory
+    return await RNFS.exists(logDir)
+  }
+
   async createDir() {
     const logDir = LOG_CONFIG.logDirectory
 
     const dirExists = await RNFS.exists(logDir)
 
-    // PicturesDirectoryPath should already exist, but we check anyway
+    // DocumentDirectoryPath should already exist, but we check anyway
     // If it doesn't exist, we'll try to create it (though this shouldn't be necessary)
     if (!dirExists) {
       try {
         // Note: mkdir might not create parent directories
-        // But PicturesDirectoryPath should already exist on both platforms
+        // But DocumentDirectoryPath should already exist on both platforms
         await RNFS.mkdir(logDir)
       } catch (mkdirError) {
         // Directory might have been created by another process, or mkdir failed
-        // If PicturesDirectoryPath doesn't exist, that's unusual, but we'll continue
+        // If DocumentDirectoryPath doesn't exist, that's unusual, but we'll continue
         console.warn(
           'Logger: Could not create log directory (may already exist):',
           mkdirError
         )
       }
+    }
+  }
+
+  async flushTempStorage() {
+    if (this.tempStorage.length === 0) {
+      return
+    }
+
+    try {
+      const currentLogPath = getCurrentLogFilePath()
+      await this.ensureFileExists(currentLogPath)
+
+      // Write all temp storage entries to the file
+      const allEntries = this.tempStorage.join('')
+      await RNFS.appendFile(currentLogPath, allEntries, 'utf8')
+
+      // Clear temp storage after successful write
+      this.tempStorage = []
+    } catch (error) {
+      console.error('Logger: Failed to flush temp storage:', error)
+      throw error
     }
   }
 
@@ -90,19 +104,22 @@ class Logger {
 
   async writeToFile({ level, source, message }) {
     try {
-      await this.init()
-      if (!this.isInitialized) {
-        console.error('Logger: Not initialized, cannot write log')
+      const logEntry = this.formatLogEntry({ level, source, message })
+
+      if (!this.isReady) {
+        // Directory not ready, store in temp storage
+        this.tempStorage.push(logEntry)
         return
       }
 
+      // Directory is ready, flush temp storage first if there's any data
+      if (this.tempStorage.length > 0) {
+        await this.flushTempStorage()
+      }
+
+      // Now write the new log entry
       const currentLogPath = getCurrentLogFilePath()
-
       await this.ensureFileExists(currentLogPath)
-
-      const logEntry = this.formatLogEntry({ level, source, message })
-
-      // Append to log file
       await RNFS.appendFile(currentLogPath, logEntry, 'utf8')
 
       // Also log to console in development
@@ -126,7 +143,6 @@ class Logger {
   // Get all log files in the log directory
   async getAllLogFiles() {
     try {
-      await this.init()
       const logDir = LOG_CONFIG.logDirectory
       const dirExists = await RNFS.exists(logDir)
       if (!dirExists) {
@@ -144,6 +160,19 @@ class Logger {
     }
   }
 
+  // Finalize the log file by flushing any remaining temp storage
+  async finalize() {
+    try {
+      // Flush temp storage if there's any data
+      if (this.tempStorage.length > 0) {
+        await this.flushTempStorage()
+      }
+    } catch (error) {
+      console.error('Logger: Failed to finalize log file:', error)
+      throw error
+    }
+  }
+
   // Clear all log files
   async clearAllLogFiles() {
     try {
@@ -158,12 +187,4 @@ class Logger {
 }
 
 const logger = new Logger()
-
-// Export the logger object with methods
-export default {
-  error: (source, message) => logger.log('ERROR', source, message),
-  warn: (source, message) => logger.log('WARN', source, message),
-  info: (source, message) => logger.log('INFO', source, message),
-  debug: (source, message) => logger.log('DEBUG', source, message),
-  clearAllLogFiles: () => logger.clearAllLogFiles(),
-}
+logger.init()
