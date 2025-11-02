@@ -345,7 +345,8 @@
       "about": "About",
       "license": "License",
       "settings": "Settings",
-      "privacyPolicy": "Privacy Policy"
+      "privacyPolicy": "Privacy Policy",
+      "reportProblem": "Report a problem"
     },
     "privacyPolicy": {
       "title": "Privacy Policy",
@@ -517,6 +518,16 @@
         }
       },
       "title": "Settings"
+    },
+    "reportProblem": {
+      "title": "Report a problem",
+      "text": "If you're experiencing issues with the app, you can send us the log file to help us diagnose the problem. Our email address is:",
+      "button": "Send log file",
+      "emailSubject": "drip. app log file",
+      "error": {
+        "noLogFile": "No log file found. Please use the app first to generate logs.",
+        "sharingFailed": "Failed to share log file. Please try again."
+      }
     },
     "info": {
       "title": "info"

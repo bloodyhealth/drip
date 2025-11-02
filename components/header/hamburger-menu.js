@@ -21,6 +21,7 @@ const settingsMenuItems = [
   { labelKey: 'about', componentName: 'About' },
   { labelKey: 'license', componentName: 'License' },
   { labelKey: 'privacyPolicy', componentName: 'PrivacyPolicy' },
+  { labelKey: 'reportProblem', componentName: 'ReportProblem' },
 ]
 
 const HamburgerMenu = ({ navigate }) => {
