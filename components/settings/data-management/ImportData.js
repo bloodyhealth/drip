@@ -57,7 +57,6 @@ export default function ImportData({
       await importCsv(fileContent, shouldDeleteExistingData)
       Alert.alert(t('success.title'), t('success.message'))
     } catch (err) {
-      logger.error(err.message)
       showImportErrorAlert(err.message)
     }
   }

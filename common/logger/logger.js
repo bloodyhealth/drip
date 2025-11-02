@@ -1,17 +1,31 @@
 import RNFS from 'react-native-fs'
-import { LOG_CONFIG, LOG_LEVELS } from './constants'
+import { LOG_CONFIG, LOG_LEVELS, getCurrentLogFilePath } from './constants'
 
 class Logger {
   isInitialized = false
+  initializationPromise = null
+
   async init() {
     // Return existing promise if initialization is already in progress
+    if (this.initializationPromise) {
+      return this.initializationPromise
+    }
+
     if (this.isInitialized) {
       return
     }
 
+    this.initializationPromise = this._doInit()
+    try {
+      await this.initializationPromise
+    } finally {
+      this.initializationPromise = null
+    }
+  }
+
+  async _doInit() {
     try {
       await this.createDir()
-      await this.createFile()
       this.isInitialized = true
     } catch (error) {
       console.error('Logger: Failed to initialize logger:', error)
@@ -19,19 +33,15 @@ class Logger {
     }
   }
 
-  // Main logging function
-  log(level, message) {
-    // Check if this log level should be written
+  log(level, source, message) {
     if (LOG_LEVELS[level] > LOG_CONFIG.currentLevel) {
       return
     }
 
-    // Convert message to string if it's not already
     const messageStr =
       typeof message === 'string' ? message : JSON.stringify(message)
 
-    // Write to file asynchronously (don't await to avoid blocking)
-    this.writeToFile(level, messageStr).catch((error) => {
+    this.writeToFile({ level, source, message: messageStr }).catch((error) => {
       console.error('Logger error:', error)
     })
   }
@@ -59,33 +69,41 @@ class Logger {
     }
   }
 
-  async createFile() {
+  async ensureFileExists(filePath) {
     // Check if log file exists, create if it doesn't
-    const fileExists = await RNFS.exists(LOG_CONFIG.path)
+    // This handles race conditions by checking again if creation fails
+    const fileExists = await RNFS.exists(filePath)
     if (!fileExists) {
       try {
-        await RNFS.writeFile(LOG_CONFIG.path, '', 'utf8')
+        await RNFS.writeFile(filePath, '', 'utf8')
       } catch (error) {
-        console.error('Logger: Failed to create file:', error)
-        throw error
+        // Race condition: file might have been created by another write operation
+        // Check again to see if it exists now
+        const stillMissing = !(await RNFS.exists(filePath))
+        if (stillMissing) {
+          console.error('Logger: Failed to create file:', error)
+          throw error
+        }
       }
     }
   }
 
-  // Write log entry to file
-  async writeToFile(level, message) {
+  async writeToFile({ level, source, message }) {
     try {
-      // Ensure initialization before writing
       await this.init()
       if (!this.isInitialized) {
         console.error('Logger: Not initialized, cannot write log')
         return
       }
 
-      const logEntry = this.formatLogEntry(level, message)
+      const currentLogPath = getCurrentLogFilePath()
+
+      await this.ensureFileExists(currentLogPath)
+
+      const logEntry = this.formatLogEntry({ level, source, message })
 
       // Append to log file
-      await RNFS.appendFile(LOG_CONFIG.path, logEntry, 'utf8')
+      await RNFS.appendFile(currentLogPath, logEntry, 'utf8')
 
       // Also log to console in development
       if (__DEV__) {
@@ -99,10 +117,43 @@ class Logger {
     }
   }
 
-  formatLogEntry(level, message, timestamp = new Date()) {
-    const timestampStr = timestamp.toISOString()
+  formatLogEntry({ level, source, message }) {
+    const timestampStr = new Date().toISOString()
     const levelStr = level.padEnd(5)
-    return `[${timestampStr}] ${levelStr} ${message}\n`
+    return `[${timestampStr}] ${levelStr} ${source} ${message}\n`
+  }
+
+  // Get all log files in the log directory
+  async getAllLogFiles() {
+    try {
+      await this.init()
+      const logDir = LOG_CONFIG.logDirectory
+      const dirExists = await RNFS.exists(logDir)
+      if (!dirExists) {
+        return []
+      }
+
+      const files = await RNFS.readDir(logDir)
+      return files.filter(
+        (file) =>
+          file.name.startsWith('drip-logs-') && file.name.endsWith('.txt')
+      )
+    } catch (error) {
+      console.error('Logger: Failed to get all log files:', error)
+      return []
+    }
+  }
+
+  // Clear all log files
+  async clearAllLogFiles() {
+    try {
+      const logFiles = await this.getAllLogFiles()
+      await Promise.all(logFiles.map((file) => RNFS.unlink(file.path)))
+      return logFiles.length
+    } catch (error) {
+      console.error('Logger: Failed to clear log files:', error)
+      throw error
+    }
   }
 }
 
@@ -110,8 +161,9 @@ const logger = new Logger()
 
 // Export the logger object with methods
 export default {
-  error: (message) => logger.log('ERROR', message),
-  warn: (message) => logger.log('WARN', message),
-  info: (message) => logger.log('INFO', message),
-  debug: (message) => logger.log('DEBUG', message),
+  error: (source, message) => logger.log('ERROR', source, message),
+  warn: (source, message) => logger.log('WARN', source, message),
+  info: (source, message) => logger.log('INFO', source, message),
+  debug: (source, message) => logger.log('DEBUG', source, message),
+  clearAllLogFiles: () => logger.clearAllLogFiles(),
 }

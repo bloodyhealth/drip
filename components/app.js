@@ -36,8 +36,6 @@ const App = ({ restartApp }) => {
       goBack
     )
 
-    logger.info('App mounted')
-
     return () => backHandler.remove()
   })
 

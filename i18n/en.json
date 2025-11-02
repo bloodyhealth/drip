@@ -527,6 +527,16 @@
       "error": {
         "noLogFile": "No log file found. Please use the app first to generate logs.",
         "sharingFailed": "Failed to share log file. Please try again."
+      },
+      "clearLogs": {
+        "button": "Clear all log files",
+        "confirmTitle": "Clear Log Files",
+        "confirmMessage": "Are you sure you want to delete all log files? This action cannot be undone.",
+        "cancel": "Cancel",
+        "confirm": "Clear",
+        "successTitle": "Log Files Cleared",
+        "successMessage": "Successfully deleted {{count}} log file(s).",
+        "error": "Failed to clear log files. Please try again."
       }
     },
     "info": {

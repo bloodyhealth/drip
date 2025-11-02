@@ -25,7 +25,10 @@ class ErrorBoundary extends React.Component {
       errorInfo.componentStack || 'No component stack available'
 
     // Log error details
-    logger.error(`${errorMessage}\nComponent Stack: ${componentStack}`)
+    logger.error(
+      'ErrorBoundary',
+      `${errorMessage}\nComponent Stack: ${componentStack}`
+    )
 
     // Store error details in state for display
     this.setState({
@@ -34,23 +37,13 @@ class ErrorBoundary extends React.Component {
     })
   }
 
-  handleGoHome = () => {
-    // Reset error state
-    this.setState({ hasError: false, error: null, errorInfo: null })
-
-    // Navigate to Home screen
-    if (this.props.navigate) {
-      this.props.navigate('Home')
-    }
-  }
-
-  handleReportProblem = () => {
+  handleButtonClick = (screen) => {
     // Reset error state so user can navigate to ReportProblem screen
     this.setState({ hasError: false, error: null, errorInfo: null })
 
     // Navigate to ReportProblem screen
     if (this.props.navigate) {
-      this.props.navigate('ReportProblem')
+      this.props.navigate(screen)
     }
   }
 
@@ -67,10 +60,13 @@ class ErrorBoundary extends React.Component {
             </AppText>
             <View style={styles.buttonRow}>
               <View style={styles.buttonWrapper}>
-                <Button isCTA onPress={this.handleGoHome}>
+                <Button isCTA onPress={() => this.handleButtonClick('Home')}>
                   Go to Home
                 </Button>
-                <Button isCTA onPress={this.handleReportProblem}>
+                <Button
+                  isCTA
+                  onPress={() => this.handleButtonClick('ReportProblem')}
+                >
                   Report problem
                 </Button>
               </View>

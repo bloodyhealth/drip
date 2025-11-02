@@ -13,6 +13,7 @@ import AppLoadingView from './common/app-loading'
 import AppStatusBar from './common/app-status-bar'
 import AcceptLicense from './AcceptLicense'
 import PasswordPrompt from './PasswordPrompt'
+import logger from '../common/logger'
 
 export default function AppWrapper() {
   const [isLoading, setIsLoading] = useState(true)
@@ -47,6 +48,7 @@ export default function AppWrapper() {
   }
 
   useEffect(() => {
+    logger.info('AppWrapper', 'Init app')
     prepareApp()
   }, [])
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text } from 'react-native'
+import { Alert, Text } from 'react-native'
 import RNFS from 'react-native-fs'
 import Share from 'react-native-share'
 import { useTranslation } from 'react-i18next'
@@ -10,7 +10,8 @@ import AppText from '../common/app-text'
 import Button from '../common/button'
 import Segment from '../common/segment'
 import alertError from './common/alert-error'
-import { LOG_CONFIG } from '../../common/logger/constants'
+import logger from '../../common/logger/logger'
+import { getCurrentLogFilePath } from '../../common/logger/constants'
 import links from '../../common/links'
 import { Colors } from '../../styles'
 
@@ -26,7 +27,8 @@ export default function ReportProblem() {
   async function shareLogFile() {
     setIsLoading(true)
     try {
-      const logPath = LOG_CONFIG.path
+      // Get current log file path (based on today's date)
+      const logPath = getCurrentLogFilePath()
 
       // Check if log file exists
       const fileExists = await RNFS.exists(logPath)
@@ -59,6 +61,32 @@ export default function ReportProblem() {
     }
   }
 
+  async function clearAllLogFiles() {
+    Alert.alert(t('clearLogs.confirmTitle'), t('clearLogs.confirmMessage'), [
+      {
+        text: t('clearLogs.cancel'),
+        style: 'cancel',
+      },
+      {
+        text: t('clearLogs.confirm'),
+        onPress: async () => {
+          setIsLoading(true)
+          try {
+            const deletedCount = await logger.clearAllLogFiles()
+            Alert.alert(
+              t('clearLogs.successTitle'),
+              t('clearLogs.successMessage', { count: deletedCount })
+            )
+          } catch (error) {
+            alertError(t('clearLogs.error'))
+          } finally {
+            setIsLoading(false)
+          }
+        },
+      },
+    ])
+  }
+
   if (isLoading) return <AppLoadingView />
 
   return (
@@ -73,6 +101,7 @@ export default function ReportProblem() {
         <Button isCTA onPress={shareLogFile}>
           {t('button')}
         </Button>
+        <Button onPress={clearAllLogFiles}>{t('clearLogs.button')}</Button>
       </Segment>
     </AppPage>
   )
