@@ -553,5 +553,21 @@
     "sex": "sex",
     "pain": "pain",
     "mood": "mood"
+  },
+  "notifications": {
+    "androidBackgroundRestrictions": {
+      "batteryOptimization": {
+        "title": "Restrictions detected: battery optimization",
+        "text": "To ensure notifications are delivered, please disable battery optimization for the app."
+      },
+      "powerManager": {
+        "title": "Restrictions detected: power management",
+        "text": "To ensure notifications are delivered, please adjust your settings to prevent the app from being killed"
+      },
+      "cta": {
+        "openSettings": "OK, open settings",
+        "cancel": "Cancel"
+      }
+    }
   }
 }

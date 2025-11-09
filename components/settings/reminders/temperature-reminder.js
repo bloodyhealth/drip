@@ -12,6 +12,7 @@ import {
 import padWithZeros from '../../helpers/pad-time-with-zeros'
 
 import { useTranslation } from 'react-i18next'
+import AndroidBackgroundRestrictions from '../../../lib/notifications/android-background-restrictions'
 
 const TemperatureReminder = () => {
   const { t } = useTranslation(null, {
@@ -32,12 +33,15 @@ const TemperatureReminder = () => {
     }
   }
 
-  const onPickDate = (date) => {
+  const onPickDate = async (date) => {
     const time = padWithZeros(date)
     setIsEnabled(true)
     setIsTimePickerVisible(false)
     setTime(time)
     saveTempReminder({ time, enabled: true })
+
+    // Check Android background restrictions when enabling reminder
+    await AndroidBackgroundRestrictions.checkAllRestrictions()
   }
 
   const onPickDateCancel = () => {

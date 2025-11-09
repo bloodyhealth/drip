@@ -11,6 +11,7 @@ import {
   saveAdvanceNoticeDays,
   advanceNoticeDaysObservable,
 } from '../../../local-storage'
+import AndroidBackgroundRestrictions from '../../../lib/notifications/android-background-restrictions'
 
 const PeriodReminder = () => {
   const { t } = useTranslation(null, {
@@ -27,9 +28,14 @@ const PeriodReminder = () => {
     advanceNoticeDaysObservable.value
   )
 
-  const periodReminderToggle = (isEnabled) => {
+  const periodReminderToggle = async (isEnabled) => {
     setIsPeriodReminderEnabled(isEnabled)
     savePeriodReminder({ enabled: isEnabled })
+
+    // Check Android background restrictions when enabling reminder
+    if (isEnabled) {
+      await AndroidBackgroundRestrictions.checkAllRestrictions()
+    }
   }
 
   const handleAdvanceNoticeDaysChange = (days) => {

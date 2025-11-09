@@ -213,3 +213,14 @@ export async function saveLanguage(selectedLanguage) {
     console.error('Error when storing language in local storage')
   }
 }
+
+export async function saveAndroidBackgroundRestrictions(
+  restrictionType,
+  value
+) {
+  await AsyncStorage.setItem(restrictionType, value)
+}
+
+export async function getAndroidBackgroundRestrictions(restrictionType) {
+  return AsyncStorage.getItem(restrictionType)
+}
