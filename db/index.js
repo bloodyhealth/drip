@@ -67,6 +67,12 @@ export function getBleedingDaysSortedByDate() {
     .filtered('bleeding != null')
     .sorted('date', true)
 }
+
+export function getSymptomsWithData(symptoms) {
+  return symptoms.filter((symptom) => {
+    return !db.objects('CycleDay').filtered(`${symptom} != null`).isEmpty()
+  })
+}
 export function getTemperatureDaysSortedByDate() {
   return db
     .objects('CycleDay')
