@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Dimensions, PixelRatio, StyleSheet, View } from 'react-native'
 
@@ -12,7 +12,7 @@ import NoTemperature from './no-temperature'
 import Tutorial from './Tutorial'
 import YAxis from './y-axis'
 
-import { getCycleDaysSortedByDate } from '../../db'
+import { getSymptomsWithData } from '../../db'
 import {
   getChartFlag,
   setChartFlag,
@@ -32,12 +32,8 @@ import {
   CHART_GRID_LINE_HORIZONTAL_WIDTH,
   CHART_SYMPTOM_HEIGHT_RATIO,
   CHART_XAXIS_HEIGHT_RATIO,
-  SYMPTOMS,
 } from '../../config'
 import { Spacing } from '../../styles'
-
-const getSymptomsFromCycleDays = (cycleDays) =>
-  SYMPTOMS.filter((symptom) => cycleDays.some((cycleDay) => cycleDay[symptom]))
 
 const CycleChart = ({ navigate, setDate }) => {
   const [shouldShowHint, setShouldShowHint] = useState(false)
@@ -64,9 +60,8 @@ const CycleChart = ({ navigate, setDate }) => {
     setChartFlag()
   }
 
-  const cycleDaysSortedByDate = getCycleDaysSortedByDate()
+  const chartSymptoms = useMemo(() => getSymptomsWithData(), [])
 
-  const chartSymptoms = getSymptomsFromCycleDays(cycleDaysSortedByDate)
   const symptomRowSymptoms = chartSymptoms.filter(
     (symptom) => symptom !== 'temperature'
   )
