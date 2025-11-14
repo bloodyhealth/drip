@@ -156,13 +156,11 @@ function tryToCreateCycleDayFromImport(day, i) {
 }
 
 export function getAmountOfCycleDays() {
-  const cycleDaysSortedByDate = getCycleDaysSortedByDate()
-  const amountOfCycleDays = cycleDaysSortedByDate.length
-  if (!amountOfCycleDays) return 0
-  const earliest = cycleDaysSortedByDate[amountOfCycleDays - 1]
+  const oldestCycleDay = db.objects('CycleDay').sorted('date', false)[0]
+  if (!oldestCycleDay) return 0
   const today = LocalDate.now()
-  const earliestAsLocalDate = LocalDate.parse(earliest.date)
-  return earliestAsLocalDate.until(today, ChronoUnit.DAYS)
+  const oldestAsLocalDate = LocalDate.parse(oldestCycleDay.date)
+  return oldestAsLocalDate.until(today, ChronoUnit.DAYS) + 1
 }
 
 export function getSchema() {
