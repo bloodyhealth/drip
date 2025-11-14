@@ -28,7 +28,7 @@ const DayColumn = ({
   xAxisHeight,
 }) => {
   const momentDate = moment(dateString)
-  const isWeekend = momentDate.day() == 0 || momentDate.day() == 6
+  const isWeekend = momentDate.day() === 0 || momentDate.day() === 6
   const cycleDayData = getCycleDay(dateString)
   let data = {}
 
