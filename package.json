@@ -13,8 +13,7 @@
   "scripts": {
     "start": "react-native start",
     "android": "react-native run-android",
-    "ios": "react-native run-ios --simulator=\"iPhone 8 Plus\"",
-    "ios15": "react-native run-ios --simulator=\"iPhone 15 Plus\"",
+    "ios": "react-native run-ios",
     "log": "react-native log-android",
     "test": "jest test",
     "test:watch": "jest --watch test",
