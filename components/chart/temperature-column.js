@@ -16,6 +16,17 @@ const TemperatureColumn = ({
   columnHeight,
   isWeekend,
 }) => {
+  // Log TemperatureColumn render
+  console.log('[TemperatureColumn] Rendering', {
+    timestamp: Date.now(),
+    horizontalLinePosition,
+    isVerticalLine,
+    hasData: !!data,
+    dataY: data?.y,
+    columnHeight,
+    isWeekend,
+  })
+
   const x = CHART_STROKE_WIDTH / 2
 
   const backgroundColor = isWeekend ? Colors.greyVeryLight : 'white'

@@ -6,6 +6,16 @@ import LoadingMoreView from './loading-more'
 
 const MainGrid = (props) => {
   const [endReached, setEndReached] = useState(false)
+
+  // Log MainGrid render
+  console.log('[MainGrid] Rendering', {
+    timestamp: Date.now(),
+    dataLength: props.data?.length,
+    renderItemRef: props.renderItem?.toString?.().substring(0, 50),
+    initialNumToRender: props.initialNumToRender,
+    contentContainerStyle: props.contentContainerStyle,
+  })
+
   return (
     <FlatList
       horizontal={true}

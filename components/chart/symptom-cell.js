@@ -17,6 +17,16 @@ const SymptomCell = ({
   isSymptomDataComplete,
   isWeekend,
 }) => {
+  // Log SymptomCell render
+  console.log(`[SymptomCell] Rendering: ${symptom}`, {
+    timestamp: Date.now(),
+    index,
+    symptomValue,
+    isSymptomDataComplete,
+    isWeekend,
+    height,
+  })
+
   const shouldDrawDot = symptomValue !== false
   // Determine the background color based on isWeekend prop
   const backgroundColor = isWeekend ? Colors.greyVeryLight : 'white'

@@ -10,6 +10,12 @@ import { getOrdinalSuffix } from '../helpers/home'
 import { Typography, Sizes } from '../../styles'
 
 const CycleDayLabel = ({ height, date }) => {
+  // Log CycleDayLabel render
+  console.log(`[CycleDayLabel] Rendering: ${date}`, {
+    timestamp: Date.now(),
+    height,
+  })
+
   const cycleDayNumber = cycleModule().getCycleDayNumber(date)
   const cycleDayLabel = cycleDayNumber ? cycleDayNumber : ' '
 

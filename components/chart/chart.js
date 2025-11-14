@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react'
+import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Dimensions, PixelRatio, StyleSheet, View } from 'react-native'
 
@@ -173,6 +173,72 @@ const CycleChart = ({ navigate, setDate }) => {
   // Memoize columns to avoid creating new array on every render
   const columns = useMemo(() => makeColumnInfo(), [])
 
+  // Log memoized values
+  useEffect(() => {
+    console.log('[Chart] Memoized values:', {
+      cycleDaysLength: cycleDaysSortedByDate?.length,
+      chartSymptoms: chartSymptoms,
+      symptomRowEnabledSymptoms: symptomRowEnabledSymptoms,
+      columnsLength: columns?.length,
+      columnsFirst3: columns?.slice(0, 3),
+      symptomHeight,
+      columnHeight,
+      xAxisHeight,
+      shouldShowTemperatureColumn,
+    })
+  }, [
+    cycleDaysSortedByDate,
+    chartSymptoms,
+    symptomRowEnabledSymptoms,
+    columns,
+    symptomHeight,
+    columnHeight,
+    xAxisHeight,
+    shouldShowTemperatureColumn,
+  ])
+
+  // Track dependency changes for renderColumn
+  const prevDeps = useRef()
+  useEffect(() => {
+    const currentDeps = {
+      setDate,
+      navigate,
+      symptomHeight,
+      columnHeight,
+      symptomRowEnabledSymptoms,
+      chartSymptoms,
+      shouldShowTemperatureColumn,
+      xAxisHeight,
+    }
+
+    if (prevDeps.current) {
+      Object.keys(currentDeps).forEach((key) => {
+        if (prevDeps.current[key] !== currentDeps[key]) {
+          console.log(`[renderColumn] Dependency changed: ${key}`, {
+            prev: prevDeps.current[key],
+            current: currentDeps[key],
+            prevType: typeof prevDeps.current[key],
+            currentType: typeof currentDeps[key],
+            prevIsArray: Array.isArray(prevDeps.current[key]),
+            currentIsArray: Array.isArray(currentDeps[key]),
+            prevLength: prevDeps.current[key]?.length,
+            currentLength: currentDeps[key]?.length,
+            prevRef:
+              typeof prevDeps.current[key] === 'function'
+                ? prevDeps.current[key].toString().substring(0, 50)
+                : prevDeps.current[key]?.toString?.() ||
+                  String(prevDeps.current[key]),
+            currentRef:
+              typeof currentDeps[key] === 'function'
+                ? currentDeps[key].toString().substring(0, 50)
+                : currentDeps[key]?.toString?.() || String(currentDeps[key]),
+          })
+        }
+      })
+    }
+    prevDeps.current = currentDeps
+  })
+
   // Use useCallback to prevent renderColumn from being recreated on every render
   const renderColumn = useCallback(
     ({ item }) => {
@@ -203,6 +269,14 @@ const CycleChart = ({ navigate, setDate }) => {
   )
 
   const hasDataToDisplay = chartSymptoms.length > 0
+
+  // Log chart render
+  console.log('[Chart] Rendering CycleChart', {
+    timestamp: Date.now(),
+    hasDataToDisplay,
+    columnsLength: columns?.length,
+    renderColumnRef: renderColumn?.toString?.().substring(0, 50),
+  })
 
   if (!hasDataToDisplay) {
     return <NoData navigate={navigate} />

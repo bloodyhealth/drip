@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { TouchableOpacity } from 'react-native'
 import moment from 'moment'
@@ -27,9 +27,42 @@ const DayColumn = ({
   symptomRowSymptoms,
   xAxisHeight,
 }) => {
+  // Log DayColumn render
+  console.log(`[DayColumn] Rendering: ${dateString}`, {
+    timestamp: Date.now(),
+    chartSymptomsLength: chartSymptoms?.length,
+    symptomRowSymptomsLength: symptomRowSymptoms?.length,
+    columnHeight,
+    symptomHeight,
+    xAxisHeight,
+    shouldShowTemperatureColumn,
+  })
+
   const momentDate = moment(dateString)
   const isWeekend = momentDate.day() === 0 || momentDate.day() === 6
-  const cycleDayData = getCycleDay(dateString)
+
+  // Track getCycleDay calls
+  const cycleDayData = useMemo(() => {
+    const result = getCycleDay(dateString)
+    console.log(`[DayColumn] getCycleDay for ${dateString}:`, {
+      exists: !!result,
+      ref: result?.toString?.() || typeof result,
+      hasTemperature: !!result?.temperature,
+      hasBleeding: !!result?.bleeding,
+    })
+    return result
+  }, [dateString])
+
+  // Compute data and temperature value separately for useMemo dependencies
+  const temperatureValue = useMemo(() => {
+    const temp = cycleDayData?.temperature?.value
+    console.log(
+      `[DayColumn] Computing temperatureValue for ${dateString}:`,
+      temp
+    )
+    return temp ?? null
+  }, [dateString, cycleDayData?.temperature?.value])
+
   let data = {}
 
   if (cycleDayData) {
@@ -57,11 +90,17 @@ const DayColumn = ({
     }, data)
   }
 
-  const fhmAndLtl = nfpLines()(
-    dateString,
-    data.temperature ? data.temperature.value : null,
-    columnHeight
-  )
+  // Track nfpLines calls
+  const fhmAndLtl = useMemo(() => {
+    console.log(`[DayColumn] Calling nfpLines for ${dateString}`, {
+      hasTemperature: !!temperatureValue,
+      temperatureValue,
+      columnHeight,
+    })
+    const result = nfpLines()(dateString, temperatureValue, columnHeight)
+    console.log(`[DayColumn] nfpLines result for ${dateString}:`, result)
+    return result
+  }, [dateString, temperatureValue, columnHeight])
 
   const onDaySelect = (date) => {
     setDate(date)
