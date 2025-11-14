@@ -186,7 +186,7 @@ export const symptomColorMethods = {
 // Chart helpers
 
 export function makeColumnInfo() {
-  let amountOfCycleDays = getAmountOfCycleDays()
+  let amountOfCycleDays = Math.min(getAmountOfCycleDays(), 300)
   // if there's not much data yet, we want to show at least 30 days on the chart
   if (amountOfCycleDays < 30) {
     amountOfCycleDays = 30
