@@ -40,8 +40,11 @@ export default function ImportData({
     const fileInfo = await getFileInfo()
     if (!fileInfo) return null
 
+    const filePath =
+      Platform.OS === 'ios' ? decodeURI(fileInfo.uri) : fileInfo.uri
+
     try {
-      const fileContent = await rnfs.readFile(fileInfo.uri, 'utf8')
+      const fileContent = await rnfs.readFile(filePath, 'utf8')
       return fileContent
     } catch (err) {
       return showImportErrorAlert(t('error.couldNotOpenFile'))
