@@ -7,18 +7,12 @@ import AppLink from '../common/AppLink'
 
 export const LearnMore = ({ symptom }) => {
   const { t } = useTranslation()
-  const nfpKey = ['bleeding', 'temperature', 'mucus', 'cervix'].includes(
-    symptom
-  )
-    ? 'nfpThinkForYourselfReminder'
-    : 'noNfpSymptom'
+
   return (
     <AppText>
-      {t(`cycleDay.symptomEditModal.learnMore.symptoms.${symptom}.description`)}
-      {'\n\n'}
       <Trans
         t={t}
-        i18nKey={`cycleDay.symptomEditModal.learnMore.generalInfo.${nfpKey}`}
+        i18nKey={`cycleDay.symptomEditModal.learnMore.symptoms.${symptom}.description`}
         components={[<AppLink key={links.wiki.url} url={links.wiki.url} />]}
         values={{ urlText: links.wiki.text }}
       />

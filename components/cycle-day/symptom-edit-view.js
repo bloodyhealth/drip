@@ -30,9 +30,9 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const { t } = useTranslation()
   const symptomConfig = symtomPage[symptom]
   const [data, setData] = useState(symptomData ? symptomData : blank[symptom])
-  const [shouldShowInfo, setShouldShowInfo] = useState(false)
+  const [isLearnMoreExpanded, setIsLearnMoreExpanded] = useState(false)
   const getParsedData = () => JSON.parse(JSON.stringify(data))
-  const onPressLearnMore = () => setShouldShowInfo(!shouldShowInfo)
+  const onPressLearnMore = () => setIsLearnMoreExpanded(!isLearnMoreExpanded)
   const isFertilityTrackingEnabled = fertilityTrackingObservable.value
 
   const onEditNote = (note) => {
@@ -114,7 +114,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
     parsedData[group.key] = parsedData[group.key] !== value ? value : null
     setData(parsedData)
   }
-  const iconName = shouldShowInfo ? 'chevron-up' : 'chevron-down'
+  const iconName = isLearnMoreExpanded ? 'chevron-up' : 'chevron-down'
   const noteText = symptom === 'note' ? data.value : data.note
   const inputProps = {
     multiline: true,
@@ -214,7 +214,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             {t('cycleDay.symptomEditModal.save')}
           </Button>
         </View>
-        {shouldShowInfo && (
+        {isLearnMoreExpanded && (
           <Segment last style={styles.segmentBorder}>
             <LearnMore symptom={symptom} />
           </Segment>
