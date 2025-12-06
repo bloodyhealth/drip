@@ -69,11 +69,19 @@ export function getBleedingDaysSortedByDate() {
     .sorted('date', true)
 }
 
+/**
+ * Get all symptoms that have at least one data point in the database
+ * @returns {string[]} List of filtered symptoms
+ */
 export function getSymptomsWithData() {
   return SYMPTOMS.filter((symptom) => {
-    return !db.objects('CycleDay').filtered(`${symptom} != null`).isEmpty()
+    const cycleDaysWithSymptom = db
+      .objects('CycleDay')
+      .filtered(`${symptom} != null`)
+    return !cycleDaysWithSymptom.isEmpty()
   })
 }
+
 export function getTemperatureDaysSortedByDate() {
   return db
     .objects('CycleDay')
@@ -156,12 +164,18 @@ function tryToCreateCycleDayFromImport(day, i) {
   }
 }
 
+/**
+ * Get the amount of days since the oldest cycle day.
+ * @returns {number}
+ */
 export function getAmountOfCycleDays() {
-  const oldestCycleDay = db.objects('CycleDay').sorted('date', false)[0]
-  if (!oldestCycleDay) return 0
+  const cycleDays = db.objects('CycleDay').sorted('date', false)
+  if (cycleDays.isEmpty()) return 0
+
+  const oldestCycleDay = cycleDays[0]
   const today = LocalDate.now()
   const oldestAsLocalDate = LocalDate.parse(oldestCycleDay.date)
-  return oldestAsLocalDate.until(today, ChronoUnit.DAYS) + 1
+  return oldestAsLocalDate.until(today, ChronoUnit.DAYS)
 }
 
 export function getSchema() {
