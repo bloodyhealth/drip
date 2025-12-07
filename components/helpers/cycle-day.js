@@ -348,6 +348,10 @@ const getLabelWithNote = (symptomData, categories) => {
     return [...labels, label]
   }, [])
 
+  if (labels.length === 0) {
+    return null
+  }
+
   return labels.join(', ')
 }
 
