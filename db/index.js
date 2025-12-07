@@ -5,6 +5,7 @@ import fs from 'react-native-fs'
 import schemas from './schemas'
 import cycleModule from '../lib/cycle'
 import maybeSetNewCycleStart from '../lib/set-new-cycle-start'
+import { SYMPTOMS } from '../config'
 
 let db
 let checkIsMensesStart
@@ -67,6 +68,20 @@ export function getBleedingDaysSortedByDate() {
     .filtered('bleeding != null')
     .sorted('date', true)
 }
+
+/**
+ * Get all symptoms that have at least one data point in the database
+ * @returns {string[]} List of filtered symptoms
+ */
+export function getSymptomsWithData() {
+  return SYMPTOMS.filter((symptom) => {
+    const cycleDaysWithSymptom = db
+      .objects('CycleDay')
+      .filtered(`${symptom} != null`)
+    return !cycleDaysWithSymptom.isEmpty()
+  })
+}
+
 export function getTemperatureDaysSortedByDate() {
   return db
     .objects('CycleDay')
@@ -149,14 +164,18 @@ function tryToCreateCycleDayFromImport(day, i) {
   }
 }
 
+/**
+ * Get the amount of days since the oldest cycle day.
+ * @returns {number}
+ */
 export function getAmountOfCycleDays() {
-  const cycleDaysSortedByDate = getCycleDaysSortedByDate()
-  const amountOfCycleDays = cycleDaysSortedByDate.length
-  if (!amountOfCycleDays) return 0
-  const earliest = cycleDaysSortedByDate[amountOfCycleDays - 1]
+  const cycleDays = db.objects('CycleDay').sorted('date', false)
+  if (cycleDays.isEmpty()) return 0
+
+  const oldestCycleDay = cycleDays[0]
   const today = LocalDate.now()
-  const earliestAsLocalDate = LocalDate.parse(earliest.date)
-  return earliestAsLocalDate.until(today, ChronoUnit.DAYS)
+  const oldestAsLocalDate = LocalDate.parse(oldestCycleDay.date)
+  return oldestAsLocalDate.until(today, ChronoUnit.DAYS)
 }
 
 export function getSchema() {

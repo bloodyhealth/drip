@@ -13,7 +13,8 @@
   "scripts": {
     "start": "react-native start",
     "android": "react-native run-android",
-    "ios": "react-native run-ios --simulator=\"iPhone 8 Plus\"",
+    "ios": "react-native run-ios",
+    "ios8": "react-native run-ios --simulator=\"iPhone 8 Plus\"",
     "ios15": "react-native run-ios --simulator=\"iPhone 15 Plus\"",
     "log": "react-native log-android",
     "test": "jest test",
@@ -29,7 +30,7 @@
     "tag-release": "node ./tools/bin/tag-release.js",
     "release": "node ./tools/release-wizard.js",
     "clear": ". scripts/clear.sh",
-    "postinstall": "npx jetify",
+    "postinstall": "npx jetify && patch-package",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -45,6 +46,8 @@
     "moment": "^2.29.4",
     "object-path": "^0.11.4",
     "obv": "0.0.1",
+    "patch-package": "^8.0.1",
+    "postinstall-postinstall": "^2.1.0",
     "prop-types": "^15.8.1",
     "react": "17.0.2",
     "react-i18next": "^15.4.1",
@@ -102,5 +105,6 @@
   "bugs": {
     "url": "https://gitlab.com/bloodyhealth/drip/issues"
   },
-  "homepage": "https://gitlab.com/bloodyhealth/drip#README"
+  "homepage": "https://gitlab.com/bloodyhealth/drip#README",
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
