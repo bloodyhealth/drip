@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## v1.2512.8 Android & iOS
+## v1.2512.8 Android (Fdroid only) & iOS
 
 ### Fixed
 
