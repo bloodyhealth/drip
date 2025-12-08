@@ -1,17 +1,17 @@
-const redColor = '#c3000d'
+const red = '#c3000d'
 export const shadesOfRed = ['#e7999e', '#db666d', '#cf323d', '#c3000d'] // light to dark
 
-const blueColor = '#6975ab'
-const shadesOfBlue = ['#c4dbff', '#97a8d5', blueColor, '#3c4281', '#0d0d55'] // light to dark
-const yellowColor = '#facc00'
-const shadesOfYellow = ['#fdeeab', yellowColor] // light to dark
-const violetColor = '#4d006b'
-const shadesOfviolet = ['#c4abce', '#8a579d', violetColor] // light to dark
-const pinkColor = '#d10070'
-const shadesOfPink = ['#f0abd0', '#e157a1', pinkColor] // light to dark
-const lightGreenColor = '#bccd67'
-const orangeColor = '#bc6642'
-const mintColor = '#6ca299'
+const blue = '#6975ab'
+const shadesOfBlue = ['#c4dbff', '#97a8d5', blue, '#3c4281', '#0d0d55'] // light to dark
+const yellow = '#facc00'
+const shadesOfYellow = ['#fdeeab', yellow] // light to dark
+const violet = '#4d006b'
+const shadesOfViolet = ['#c4abce', '#8a579d', violet] // light to dark
+const pink = '#d10070'
+const shadesOfPink = ['#f0abd0', '#e157a1', pink] // light to dark
+const lightGreen = '#bccd67'
+const orange = '#bc6642'
+const mint = '#6ca299'
 const turquoiseDark = '#69CBC1'
 
 export default {
@@ -27,39 +27,39 @@ export default {
   turquoiseLight: '#E9F2ED',
   iconColors: {
     bleeding: {
-      color: redColor,
+      color: red,
       shades: shadesOfRed,
     },
     temperature: {
       color: turquoiseDark,
     },
     mucus: {
-      color: blueColor,
+      color: blue,
       shades: shadesOfBlue,
     },
     cervix: {
-      color: yellowColor,
+      color: yellow,
       shades: shadesOfYellow,
     },
     sex: {
-      color: violetColor,
-      shades: shadesOfviolet,
+      color: violet,
+      shades: shadesOfViolet,
     },
     desire: {
-      color: pinkColor,
+      color: pink,
       shades: shadesOfPink,
     },
     pain: {
-      color: lightGreenColor,
-      shades: [lightGreenColor],
+      color: lightGreen,
+      shades: [lightGreen],
     },
     mood: {
-      color: orangeColor,
-      shades: [orangeColor],
+      color: orange,
+      shades: [orange],
     },
     note: {
-      color: mintColor,
-      shades: [mintColor],
+      color: mint,
+      shades: [mint],
     },
   },
 }
