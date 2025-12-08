@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.2512.8 Android & iOS
+
+### Fixed
+
+- crash after importing a csv when the file name included a space
+- crash after selecting and then unselecting a sex/mood value
+- crash of the chart for users with many cycle days
+
 ## v1.2510.25 Android & iOS
 
 ### Changes
