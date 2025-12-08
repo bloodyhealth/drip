@@ -5,7 +5,6 @@ import fs from 'react-native-fs'
 import schemas from './schemas'
 import cycleModule from '../lib/cycle'
 import maybeSetNewCycleStart from '../lib/set-new-cycle-start'
-import { SYMPTOMS } from '../config'
 
 let db
 let checkIsMensesStart
@@ -67,19 +66,6 @@ export function getBleedingDaysSortedByDate() {
     .objects('CycleDay')
     .filtered('bleeding != null')
     .sorted('date', true)
-}
-
-/**
- * Get all symptoms that have at least one data point in the database
- * @returns {string[]} List of filtered symptoms
- */
-export function getSymptomsWithData() {
-  return SYMPTOMS.filter((symptom) => {
-    const cycleDaysWithSymptom = db
-      .objects('CycleDay')
-      .filtered(`${symptom} != null`)
-    return !cycleDaysWithSymptom.isEmpty()
-  })
 }
 
 export function getTemperatureDaysSortedByDate() {
