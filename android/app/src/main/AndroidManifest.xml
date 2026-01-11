@@ -26,23 +26,25 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:allowBackup="false"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="${usesCleartextTraffic}"
+        android:supportsRtl="true">
 
         <!-- <meta-data
             android:name="com.dieam.reactnativepushnotification.notification_foreground"
             android:value="false" />
         <meta-data
             android:name="com.dieam.reactnativepushnotification.notification_color"
-            android:resource="@color/purple" /> 
+            android:resource="@color/purple" />
         <meta-data
             android:name="com.dieam.reactnativepushnotification.default_notification_channel_id"
             android:value="..." /> -->
 
-        <!-- <receiver 
+        <!-- <receiver
             android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationActions"
             android:exported="false"
             tools:ignore="MissingClass" />
-        <receiver 
+        <receiver
             android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationPublisher"
             android:exported="false" />
         <receiver
