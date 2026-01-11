@@ -88,13 +88,12 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
 
   const onSelectBox = (key) => {
     const parsedData = getParsedData()
+
+    const newValue = data[key] === true ? null : true
+    parsedData[key] = newValue
+
     if (key === 'other') {
-      Object.assign(parsedData, {
-        note: null,
-        [key]: !data[key],
-      })
-    } else {
-      Object.assign(parsedData, { [key]: !data[key] })
+      parsedData.note = null
     }
 
     setData(parsedData)
