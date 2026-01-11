@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.2601.11 iOS and F-droid only
+
+### Fixed
+
+- wrong display of colorful dot for pain, mood or sex in the chart after deselecting a value
+
 ## v1.2512.8 iOS only
 
 ### Fixed
