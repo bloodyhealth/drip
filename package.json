@@ -37,7 +37,6 @@
     "@notifee/react-native": "^9.1.8",
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-async-storage/async-storage": "^2.2.0",
-    "@react-native-community/art": "^1.2.0",
     "@react-native-community/datetimepicker": "^8.6.0",
     "csvtojson": "^2.0.14",
     "i18next": "^25.7.4",
@@ -58,6 +57,7 @@
     "react-native-share": "^12.2.2",
     "react-native-simple-toast": "^3.3.2",
     "react-native-size-matters": "^0.4.2",
+    "react-native-svg": "^15.15.1",
     "react-native-vector-icons": "^9.2.0",
     "realm": "^20.2.0",
     "sympto": "3.0.2"
