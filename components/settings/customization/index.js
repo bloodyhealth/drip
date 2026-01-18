@@ -176,7 +176,7 @@ const Settings = () => {
         )
       )
     } else if (
-      !isMucusTrackingCategoryEnabled == isCervixTrackingCategoryEnabled
+      !isMucusTrackingCategoryEnabled === isCervixTrackingCategoryEnabled
     ) {
       Alert.alert(
         t('sideMenu.settings.customization.secondarySymptom.alert.title'),

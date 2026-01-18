@@ -5,21 +5,21 @@ const TemperatureSchema = {
     exclude: 'bool',
     time: {
       type: 'string',
-      optional: true
+      optional: true,
     },
     note: {
       type: 'string',
-      optional: true
-    }
-  }
+      optional: true,
+    },
+  },
 }
 
 const BleedingSchema = {
   name: 'Bleeding',
   properties: {
     value: 'int',
-    exclude: 'bool'
-  }
+    exclude: 'bool',
+  },
 }
 
 const MucusSchema = {
@@ -28,8 +28,8 @@ const MucusSchema = {
     feeling: 'int',
     texture: 'int',
     value: 'int',
-    exclude: 'bool'
-  }
+    exclude: 'bool',
+  },
 }
 
 const CervixSchema = {
@@ -37,23 +37,23 @@ const CervixSchema = {
   properties: {
     opening: 'int',
     firmness: 'int',
-    position: {type: 'int', optional: true },
-    exclude: 'bool'
-  }
+    position: { type: 'int', optional: true },
+    exclude: 'bool',
+  },
 }
 
 const NoteSchema = {
   name: 'Note',
   properties: {
-    value: 'string'
-  }
+    value: 'string',
+  },
 }
 
 const DesireSchema = {
   name: 'Desire',
   properties: {
-    value: 'int'
-  }
+    value: 'int',
+  },
 }
 
 const SexSchema = {
@@ -70,8 +70,8 @@ const SexSchema = {
     diaphragm: { type: 'bool', optional: true },
     none: { type: 'bool', optional: true },
     other: { type: 'bool', optional: true },
-    note: { type: 'string', optional: true }
-  }
+    note: { type: 'string', optional: true },
+  },
 }
 
 const PainSchema = {
@@ -85,8 +85,8 @@ const PainSchema = {
     tenderBreasts: { type: 'bool', optional: true },
     migraine: { type: 'bool', optional: true },
     other: { type: 'bool', optional: true },
-    note: { type: 'string', optional: true }
-  }
+    note: { type: 'string', optional: true },
+  },
 }
 
 const CycleDaySchema = {
@@ -95,38 +95,46 @@ const CycleDaySchema = {
   properties: {
     date: 'string',
     temperature: {
-      type: 'Temperature',
-      optional: true
+      type: 'object',
+      objectType: 'Temperature',
+      optional: true,
     },
     bleeding: {
-      type: 'Bleeding',
-      optional: true
+      type: 'object',
+      objectType: 'Bleeding',
+      optional: true,
     },
     mucus: {
-      type: 'Mucus',
-      optional: true
+      type: 'object',
+      objectType: 'Mucus',
+      optional: true,
     },
     cervix: {
-      type: 'Cervix',
-      optional: true
+      type: 'object',
+      objectType: 'Cervix',
+      optional: true,
     },
     note: {
-      type: 'Note',
-      optional: true
+      type: 'object',
+      objectType: 'Note',
+      optional: true,
     },
     desire: {
-      type: 'Desire',
-      optional: true
+      type: 'object',
+      objectType: 'Desire',
+      optional: true,
     },
     sex: {
-      type: 'Sex',
-      optional: true
+      type: 'object',
+      objectType: 'Sex',
+      optional: true,
     },
     pain: {
-      type: 'Pain',
-      optional: true
-    }
-  }
+      type: 'object',
+      objectType: 'Pain',
+      optional: true,
+    },
+  },
 }
 
 export default {
@@ -139,10 +147,10 @@ export default {
     NoteSchema,
     DesireSchema,
     SexSchema,
-    PainSchema
+    PainSchema,
   ],
   schemaVersion: 1,
-  migration: (oldRealm, newRealm) => {
+  onMigration: (oldRealm, newRealm) => {
     if (oldRealm.schemaVersion >= 1) return
     const oldCycleDays = oldRealm.objects('CycleDay')
     const newCycleDays = newRealm.objects('CycleDay')
@@ -152,5 +160,5 @@ export default {
       newCycleDays[i].sex.diaphragm = null
       newCycleDays[i].sex.none = null
     })
-  }
+  },
 }

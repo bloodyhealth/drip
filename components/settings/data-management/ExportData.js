@@ -4,7 +4,7 @@ import { getCycleDaysSortedByDate, mapRealmObjToJsObj } from '../../../db'
 import getDataAsCsvDataUri from '../../../lib/import-export/export-to-csv'
 import alertError from '../common/alert-error'
 import { EXPORT_FILE_NAME } from './constants'
-import RNFS from 'react-native-fs'
+import * as fs from '@dr.pogodin/react-native-fs'
 import { useTranslation } from 'react-i18next'
 
 import AppText from '../../common/app-text'
@@ -56,8 +56,8 @@ export default function ExportData({
 
   async function shareData(data) {
     try {
-      const path = `${RNFS.DocumentDirectoryPath}/${EXPORT_FILE_NAME}`
-      await RNFS.writeFile(path, data)
+      const path = `${fs.DocumentDirectoryPath}/${EXPORT_FILE_NAME}`
+      await fs.writeFile(path, data)
 
       await Share.open({
         title: t('title'),

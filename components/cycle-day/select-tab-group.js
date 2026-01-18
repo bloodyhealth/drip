@@ -17,7 +17,7 @@ export default function SelectTabGroup({
   // TODO https://gitlab.com/bloodyhealth/drip/-/issues/707
   const oneTimeTransformIntoNumber =
     typeof activeButton === 'boolean' && Number(activeButton)
-  const isSecondarySymptomSwitch = buttons[0]['label'] === t('symptoms.mucus')
+  const isSecondarySymptomSwitch = buttons[0].label === t('symptoms.mucus')
 
   // Disable is only used for secondarySymptom in customization, if more come up maybe consider more tidy solution
   const showDisabledAlert = (label) => {

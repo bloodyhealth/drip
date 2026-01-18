@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { View } from 'react-native'
 import { Colors } from '../../styles'
 
-import { Surface, Path } from '@react-native-community/art'
+import { Svg } from 'react-native-svg'
 
 import ChartLine from './chart-line'
 import DotAndLine from './dot-and-line'
@@ -20,43 +21,45 @@ const TemperatureColumn = ({
 
   const backgroundColor = isWeekend ? Colors.greyVeryLight : 'white'
   return (
-    <Surface
-      width={CHART_COLUMN_WIDTH}
-      height={columnHeight}
-      style={{ backgroundColor: backgroundColor }}
+    <View
+      style={{
+        width: CHART_COLUMN_WIDTH,
+        height: columnHeight,
+        backgroundColor,
+      }}
     >
-      <ChartLine path={new Path().lineTo(0, columnHeight)} />
+      <Svg width={CHART_COLUMN_WIDTH} height={columnHeight}>
+        <ChartLine path={`M 0 0 L 0 ${columnHeight}`} />
 
-      {horizontalLinePosition && (
-        <ChartLine
-          path={new Path()
-            .moveTo(0, horizontalLinePosition)
-            .lineTo(CHART_COLUMN_WIDTH, horizontalLinePosition)}
-          isNfpLine={true}
-          key="ltl"
-        />
-      )}
+        {horizontalLinePosition && (
+          <ChartLine
+            path={`M 0 ${horizontalLinePosition} L ${CHART_COLUMN_WIDTH} ${horizontalLinePosition}`}
+            isNfpLine={true}
+            key="ltl"
+          />
+        )}
 
-      {isVerticalLine && (
-        <ChartLine
-          path={new Path().moveTo(x, x).lineTo(x, columnHeight)}
-          isNfpLine={true}
-          key="fhm"
-        />
-      )}
+        {isVerticalLine && (
+          <ChartLine
+            path={`M ${x} ${x} L ${x} ${columnHeight}`}
+            isNfpLine={true}
+            key="fhm"
+          />
+        )}
 
-      {data && typeof data.y !== 'undefined' && (
-        <DotAndLine
-          y={data.y}
-          exclude={data.temperatureExclude}
-          rightY={data.rightY}
-          rightTemperatureExclude={data.rightTemperatureExclude}
-          leftY={data.leftY}
-          leftTemperatureExclude={data.leftTemperatureExclude}
-          key="dotandline"
-        />
-      )}
-    </Surface>
+        {data && typeof data.y !== 'undefined' && (
+          <DotAndLine
+            y={data.y}
+            exclude={data.temperatureExclude}
+            rightY={data.rightY}
+            rightTemperatureExclude={data.rightTemperatureExclude}
+            leftY={data.leftY}
+            leftTemperatureExclude={data.leftTemperatureExclude}
+            key="dotandline"
+          />
+        )}
+      </Svg>
+    </View>
   )
 }
 

@@ -12,7 +12,7 @@ describe('Footnote component', () => {
   })
 
   test('when no children, renders nothing', () => {
-    const { toJSON } = render(<Footnote></Footnote>)
+    const { toJSON } = render(<Footnote />)
 
     expect(toJSON()).toMatchSnapshot()
   })

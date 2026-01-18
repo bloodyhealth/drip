@@ -1,34 +1,13 @@
 module.exports = {
   root: true,
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
-  env: {
-    node: true,
-    jest: true,
-    es6: true,
-  },
-  parser: '@babel/eslint-parser',
-  parserOptions: {
-    requireConfigFile: false,
-    babelOptions: {
-      presets: ['@babel/preset-react'],
-    },
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2018,
-  },
-  plugins: ['react'],
-  settings: {
-    react: {
-      version: require('./package.json').dependencies.react,
-    },
-  },
+  extends: '@react-native',
   rules: {
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-var': 'error',
     'prefer-const': 'error',
     'react/prop-types': 2,
     'no-extra-semi': 'off',
+    'no-shadow': 'warn',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 }

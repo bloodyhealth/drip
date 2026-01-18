@@ -81,7 +81,7 @@ const Home = ({ navigate, setDate }) => {
         </View>
       )}
 
-      {!isFertilityTrackingEnabled && <View style={styles.largePadding}></View>}
+      {!isFertilityTrackingEnabled && <View style={styles.largePadding} />}
       <Button isCTA isSmall={false} onPress={navigateToCycleDayView}>
         {t('labels.home.addDataForToday')}
       </Button>

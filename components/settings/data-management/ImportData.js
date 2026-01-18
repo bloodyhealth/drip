@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Alert, Platform } from 'react-native'
-import DocumentPicker from 'react-native-document-picker'
-import rnfs from 'react-native-fs'
+import { pick, types } from '@react-native-documents/picker'
+import * as fs from '@dr.pogodin/react-native-fs'
 import importCsv from '../../../lib/import-export/import-from-csv'
 import alertError from '../common/alert-error'
 import Segment from '../../common/segment'
@@ -26,14 +26,23 @@ export default function ImportData({
 
   async function getFileInfo() {
     try {
-      const fileInfo = await DocumentPicker.pickSingle({
-        type: [DocumentPicker.types.csv, 'text/comma-separated-values'],
+      const fileInfo = await pick({
+        type: [types.csv, 'text/comma-separated-values'],
       })
-      return fileInfo
+      return fileInfo[0]
     } catch (error) {
-      if (DocumentPicker.isCancel(error)) return // User cancelled the picker, exit any dialogs or menus and move on
+      if (error?.code === 'OPERATION_CANCELED') return // User cancelled the picker, exit any dialogs or menus and move on
       showImportErrorAlert(error)
     }
+  }
+
+  async function getFilePath(fileInfo) {
+    if (Platform.OS === 'ios') {
+      return decodeURI(fileInfo.uri)
+    }
+    const destPath = `${fs.TemporaryDirectoryPath}/${fileInfo.name}`
+    await fs.copyFile(fileInfo.uri, destPath)
+    return destPath
   }
 
   async function getFileContent() {
@@ -41,10 +50,12 @@ export default function ImportData({
     if (!fileInfo) return null
 
     try {
-      const fileContent = await rnfs.readFile(fileInfo.uri, 'utf8')
-      return fileContent
-    } catch (err) {
-      return showImportErrorAlert(t('error.couldNotOpenFile'))
+      const filePath = await getFilePath(fileInfo)
+
+      return await fs.readFile(filePath, 'utf8')
+    } catch {
+      showImportErrorAlert(t('error.couldNotOpenFile'))
+      return null
     }
   }
 

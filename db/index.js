@@ -1,6 +1,6 @@
-import Realm from 'realm'
+import { Realm } from 'realm'
 import { LocalDate, ChronoUnit } from '@js-joda/core'
-import fs from 'react-native-fs'
+import * as fs from '@dr.pogodin/react-native-fs'
 
 import schemas from './schemas'
 import cycleModule from '../lib/cycle'
@@ -16,7 +16,7 @@ export async function openDb(hash) {
     realmConfig.encryptionKey = hashToInt8Array(hash)
   }
 
-  // perform migrations if necessary, see https://realm.io/docs/javascript/2.8.0/#migrations
+  // perform migrations if necessary
   // we open the db temporarily, to get the schema version even if the db is encrypted
   let tempConnection
   try {

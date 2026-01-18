@@ -1,4 +1,4 @@
-image: node:16.20
+image: node:20
 
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
@@ -8,9 +8,10 @@ cache:
 
 test_async:
   script:
-    - yarn install --frozen-lockfile
-    - yarn test
-    - yarn lint
+    - corepack enable
+    - pnpm install
+    - pnpm test
+    - pnpm lint
 
 variables:
   DEPENDABOT_IMAGE: docker.io/andrcuns/dependabot-gitlab:0.23.0
@@ -36,4 +37,4 @@ dependabot:
   rules:
     - if: $DEPENDENCY_UPDATES_DISABLED
       when: never
-    - if: '$CI_PIPELINE_SOURCE == "schedule" && $PACKAGE_MANAGER_SET =~ /(\bnpm|yarn\b)/'
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $PACKAGE_MANAGER_SET =~ /(\bnpm|pnpm\b)/'

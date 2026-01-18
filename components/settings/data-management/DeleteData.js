@@ -1,5 +1,5 @@
 import React from 'react'
-import RNFS from 'react-native-fs'
+import * as fs from '@dr.pogodin/react-native-fs'
 import { Alert } from 'react-native'
 import PropTypes from 'prop-types'
 
@@ -16,7 +16,7 @@ import Segment from '../../common/segment'
 import AppText from '../../common/app-text'
 import { useTranslation } from 'react-i18next'
 
-const exportedFilePath = `${RNFS.DocumentDirectoryPath}/${EXPORT_FILE_NAME}`
+const exportedFilePath = `${fs.DocumentDirectoryPath}/${EXPORT_FILE_NAME}`
 
 const DeleteData = ({
   closePasswordConfirmation,
@@ -35,7 +35,7 @@ const DeleteData = ({
   }
 
   const alertBeforeDeletion = async () => {
-    const hasNoData = isDbEmpty() && !(await RNFS.exists(exportedFilePath))
+    const hasNoData = isDbEmpty() && !(await fs.exists(exportedFilePath))
     if (hasNoData) {
       return alertError(t('error.noData'))
     }
@@ -54,9 +54,9 @@ const DeleteData = ({
   }
 
   const deleteExportedFile = async () => {
-    const doesFileExist = await RNFS.exists(exportedFilePath)
+    const doesFileExist = await fs.exists(exportedFilePath)
     if (doesFileExist) {
-      await RNFS.unlink(exportedFilePath)
+      await fs.unlink(exportedFilePath)
     }
   }
 
