@@ -132,7 +132,7 @@ export function getTemperatureProps(symptomData, columnHeight, dateString) {
   const { value, exclude } = symptomData
   const neighborTemperatureGraphPoints = getInfoForNeighborColumns(
     dateString,
-    columnHeight,
+    columnHeight
   )
 
   for (const key in neighborTemperatureGraphPoints) {
@@ -144,7 +144,7 @@ export function getTemperatureProps(symptomData, columnHeight, dateString) {
       y: normalizeToScale(value, columnHeight),
       temperatureExclude: exclude,
     },
-    extractedData,
+    extractedData
   )
 }
 
@@ -166,7 +166,7 @@ export const symptomColorMethods = {
   },
   sex: (symptomData) => {
     const { solo, partner } = symptomData
-    const colorIndex = (solo !== null) + (partner !== null)
+    const colorIndex = solo && partner ? 2 : partner ? 1 : 0
     return colorIndex
   },
   bleeding: (symptomData) => {
