@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Alert, Platform } from 'react-native'
-import DocumentPicker from 'react-native-document-picker'
+import { errorCodes, pick, types } from '@react-native-documents/picker'
 import rnfs from 'react-native-fs'
 import importCsv from '../../../lib/import-export/import-from-csv'
 import alertError from '../common/alert-error'
@@ -26,12 +26,12 @@ export default function ImportData({
 
   async function getFileInfo() {
     try {
-      const fileInfo = await DocumentPicker.pickSingle({
-        type: [DocumentPicker.types.csv, 'text/comma-separated-values'],
+      const [fileInfo] = await pick({
+        type: [types.csv, 'text/comma-separated-values'],
       })
       return fileInfo
     } catch (error) {
-      if (DocumentPicker.isCancel(error)) return // User cancelled the picker, exit any dialogs or menus and move on
+      if (error.code === errorCodes.OPERATION_CANCELED) return // User canceled the picker, exit any dialogs or menus and move on
       showImportErrorAlert(error)
     }
   }

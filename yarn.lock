@@ -2662,6 +2662,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-documents/picker@npm:^12.0.1":
+  version: 12.0.1
+  resolution: "@react-native-documents/picker@npm:12.0.1"
+  peerDependencies:
+    react: "*"
+    react-native: ">=0.79.0"
+  checksum: 10c0/1077f80fdb76fcad283997f56a7f2eb263ace2a73da788e4b29dc926a78149c04a6eea1d4aeddef75c9f176fbbc9206a1c64c10c2d0c85c86cca85be023f7c00
+  languageName: node
+  linkType: hard
+
 "@react-native/assets-registry@npm:0.82.1":
   version: 0.82.1
   resolution: "@react-native/assets-registry@npm:0.82.1"
@@ -4663,6 +4673,7 @@ __metadata:
     "@react-native-community/cli-platform-android": "npm:^20.1.0"
     "@react-native-community/cli-platform-ios": "npm:^20.1.0"
     "@react-native-community/datetimepicker": "npm:^8.6.0"
+    "@react-native-documents/picker": "npm:^12.0.1"
     "@react-native/babel-preset": "npm:^0.82.0"
     "@react-native/metro-config": "npm:^0.82.0"
     "@rnx-kit/align-deps": "npm:^3.4.0"
@@ -4687,7 +4698,6 @@ __metadata:
     react-i18next: "npm:^15.7.4"
     react-native: "npm:^0.82.0"
     react-native-calendars: "npm:^1.1313.0"
-    react-native-document-picker: "npm:^9.3.1"
     react-native-fs: "npm:^2.18.0"
     react-native-modal-datetime-picker: "npm:18.0.0"
     react-native-permissions: "npm:^5.4.4"
@@ -9137,22 +9147,6 @@ __metadata:
     moment:
       optional: true
   checksum: 10c0/a1c7325755ebac65bfed8224c1308ab430fa5dea43c95fed027eb23745b075f6ec1906cce18d95a3f5dcd127860aebebddb3a040408a281071e3f6d0cd19c5b9
-  languageName: node
-  linkType: hard
-
-"react-native-document-picker@npm:^9.3.1":
-  version: 9.3.1
-  resolution: "react-native-document-picker@npm:9.3.1"
-  dependencies:
-    invariant: "npm:^2.2.4"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-    react-native-windows: "*"
-  peerDependenciesMeta:
-    react-native-windows:
-      optional: true
-  checksum: 10c0/62ac1c1567fb4aabd791c03768e51b0898de727e37bb695cca9fc72c31eb3f2d75faf5bc7fb4be86a3e2b96b77cf948558b496412ecf17687ca006eb52ef6dd8
   languageName: node
   linkType: hard
 
