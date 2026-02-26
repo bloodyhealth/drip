@@ -117,6 +117,21 @@ describe('getPredictedMenses', () => {
       const result = getPredictedMenses()
       expect(result).toEqual([])
     })
+
+    test('if cycle variation is too high relative to period distance', () => {
+      const cycleDaysSortedByDate = [
+        { date: '2018-08-05', bleeding: { value: 2 } },
+        { date: '2018-07-31', bleeding: { value: 2 } },
+      ]
+
+      const { getPredictedMenses } = cycleModule({
+        cycleDaysSortedByDate,
+        cycleStartsSortedByDate: cycleDaysSortedByDate,
+        minCyclesForPrediction: 1,
+      })
+      const result = getPredictedMenses()
+      expect(result).toEqual([])
+    })
   })
 
   describe('works', () => {

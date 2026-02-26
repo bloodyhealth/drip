@@ -187,4 +187,38 @@ describe('merge container styles', () => {
       },
     })
   })
+
+  test('recursively merges deeply nested objects', () => {
+    const baseObj = {
+      a: {
+        b: {
+          c: 1,
+          d: 2,
+        },
+      },
+    }
+    const overrideObj = {
+      a: {
+        b: {
+          c: 99,
+          e: 3,
+        },
+      },
+    }
+    expect(mergeDeep(baseObj, overrideObj)).toEqual({
+      a: {
+        b: {
+          c: 99,
+          d: 2,
+          e: 3,
+        },
+      },
+    })
+  })
+
+  test('overrides nested object with non-object value', () => {
+    const baseObj = { a: { b: 1 } }
+    const overrideObj = { a: 'string' }
+    expect(mergeDeep(baseObj, overrideObj)).toEqual({ a: 'string' })
+  })
 })

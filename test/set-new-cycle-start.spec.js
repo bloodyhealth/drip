@@ -144,4 +144,44 @@ describe('maybeSetNewCycleStart', () => {
     expect(cycleStartDay.isCycleStart).toBeFalsy()
     expect(cycleStartDay.bleeding).toEqual(deletedBleedingValue)
   })
+
+  test('sets isCycleStart when a valid bleeding value is set', () => {
+    const [cycleStartDay, mensesDaysAfter] = getFixtures()
+    const validBleedingValue = { value: 2, exclude: false }
+    maybeSetNewCycleStart({
+      val: validBleedingValue,
+      cycleDay: cycleStartDay,
+      mensesDaysAfter,
+      checkIsMensesStart,
+    })
+    expect(cycleStartDay.bleeding).toEqual(validBleedingValue)
+  })
+
+  test('clears isCycleStart from following menses days when new bleeding value is set', () => {
+    const [cycleStartDay, mensesDaysAfter] = getFixtures()
+    mensesDaysAfter[0].isCycleStart = true
+    const validBleedingValue = { value: 2, exclude: false }
+    maybeSetNewCycleStart({
+      val: validBleedingValue,
+      cycleDay: cycleStartDay,
+      mensesDaysAfter,
+      checkIsMensesStart,
+    })
+    mensesDaysAfter.forEach((day) => {
+      expect(day.isCycleStart).toBeFalsy()
+    })
+  })
+  test('does not set cycle start when next day is not a menses start', () => {
+    const [cycleStartDay, mensesDaysAfter] = getFixtures()
+    const checkIsMensesStartFalse = () => false
+    maybeSetNewCycleStart({
+      val: null,
+      cycleDay: cycleStartDay,
+      mensesDaysAfter,
+      checkIsMensesStart: checkIsMensesStartFalse,
+    })
+    mensesDaysAfter.forEach((day) => {
+      expect(day.isCycleStart).toBeFalsy()
+    })
+  })
 })
