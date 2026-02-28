@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.2601.11 iOS and F-droid only
+
+### Fixed
+
+- wrong display of colorful dot for pain, mood or sex in the chart after deselecting a value
+
+## v1.2512.8 iOS only
+
+### Fixed
+
+- crash after importing a csv when the file name included a space
+- crash after selecting and then unselecting a sex/mood value
+- crash of the chart for users with many cycle days
+
+## v1.2510.25 Android & iOS
+
+### Changes
+
+- Small text improvements for secondary symptom switch
+
+### Adds
+
+- Custom period reminder: Set a period reminder for 1 to 7 days before the next period
+- Behind the scenes: Preparation of text for Translations
+
+### Fixed
+
+- On calendar excluded bleeding values are now visible on days when a period was predicted to start
+
 ## v1.2411.20 Android & iOS
 
 ### Changes

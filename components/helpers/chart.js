@@ -152,19 +152,21 @@ export const symptomColorMethods = {
   mucus: (symptomData) => {
     const { feeling, texture } = symptomData
     const colorIndex = feeling + texture
+    if (colorIndex >= 4) {
+      return 4
+    } // value range for cervical mucus is 0-4
     return colorIndex
   },
   cervix: (symptomData) => {
     const { opening, firmness } = symptomData
     const isDataComplete = opening !== null && firmness !== null
     const isClosedAndHard = isDataComplete && opening === 0 && firmness === 0
-    const colorIndex = isClosedAndHard ? 0 : 2
+    const colorIndex = isClosedAndHard ? 0 : 1 // value range for cervix is 0-1
     return colorIndex
   },
   sex: (symptomData) => {
     const { solo, partner } = symptomData
-    const colorIndex =
-      solo !== null && partner !== null ? solo + 2 * partner - 1 : 0
+    const colorIndex = solo && partner ? 2 : partner ? 1 : 0
     return colorIndex
   },
   bleeding: (symptomData) => {
@@ -186,7 +188,7 @@ export const symptomColorMethods = {
 // Chart helpers
 
 export function makeColumnInfo() {
-  let amountOfCycleDays = getAmountOfCycleDays()
+  let amountOfCycleDays = Math.min(getAmountOfCycleDays(), 2 * 365) // load data for 2 years
   // if there's not much data yet, we want to show at least 30 days on the chart
   if (amountOfCycleDays < 30) {
     amountOfCycleDays = 30

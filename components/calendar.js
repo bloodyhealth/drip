@@ -11,6 +11,7 @@ import {
   toCalFormat,
   todayToCalFormat,
 } from './helpers/calendar'
+import { mergeDeep } from '../common/object'
 
 const CalendarView = ({ setDate, navigate }) => {
   const bleedingDays = getBleedingDaysSortedByDate()
@@ -21,10 +22,11 @@ const CalendarView = ({ setDate, navigate }) => {
     navigate('CycleDay')
   }
 
-  const markedDates = Object.assign(
-    {},
-    todayToCalFormat(),
-    toCalFormat(bleedingDays),
+  const markedDates = mergeDeep(
+    {
+      ...todayToCalFormat(),
+      ...toCalFormat(bleedingDays),
+    },
     predictionToCalFormat(predictedMenses)
   )
 

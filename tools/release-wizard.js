@@ -1,14 +1,20 @@
 const readline = require('readline')
 const updateVersion = require('./update-version')
+const updatePlistVersion = require('./update-plist-version')
 const createTagForRelease = require('./tag-release')
 const makeCommitRelease = require('./commit-release')
 
-process.on('unhandledRejection', err => { throw(err) })
+process.on('unhandledRejection', (err) => {
+  throw err
+})
 
 async function leadThroughRelease() {
-  console.log("Yay, a release! Let's do this. First, let's update the version everywhere and create a new git tag.")
+  console.log(
+    "Yay, a release! Let's do this. First, let's update the version everywhere and create a new git tag."
+  )
 
   await updateVersion()
+  await updatePlistVersion()
   await createTagForRelease()
 
   const rl = readline.createInterface({

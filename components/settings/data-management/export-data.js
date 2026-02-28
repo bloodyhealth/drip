@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 import { getCycleDaysSortedByDate, mapRealmObjToJsObj } from '../../../db'
 import getDataAsCsvDataUri from '../../../lib/import-export/export-to-csv'
 import alertError from '../common/alert-error'
@@ -56,7 +57,9 @@ export default function ExportData({
 
   async function shareData(data) {
     try {
-      const path = `${fs.DocumentDirectoryPath}/${EXPORT_FILE_NAME}`
+      const dateString = moment().format('YYYY-MM-DD')
+      const fileName = `${EXPORT_FILE_NAME}-${dateString}.csv`
+      const path = `${fs.DocumentDirectoryPath}/${fileName}`
       await fs.writeFile(path, data)
 
       await Share.open({
