@@ -229,7 +229,9 @@ export async function deleteDbAndOpenNew() {
 }
 
 export function clearDb() {
-  db.write(db.deleteAll)
+  db.write(() => {
+    db.deleteAll()
+  })
 }
 
 function hashToInt8Array(hash) {
