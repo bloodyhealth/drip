@@ -1,10 +1,16 @@
-image: node:20
+image: node:20-alpine
 
-# This folder is cached between builds
-# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
+  key:
+    files:
+      - pnpm-lock.yaml
   paths:
     - node_modules/
+    - .pnpm-store/
+
+variables:
+  PNPM_HOME: .pnpm-store
+  DEPENDABOT_IMAGE: docker.io/andrcuns/dependabot-gitlab:0.23.0
 
 test_async:
   script:
@@ -12,9 +18,6 @@ test_async:
     - pnpm install
     - pnpm test
     - pnpm lint
-
-variables:
-  DEPENDABOT_IMAGE: docker.io/andrcuns/dependabot-gitlab:0.23.0
 
 .dependabot-gitlab:
   image:
@@ -24,7 +27,7 @@ variables:
     GIT_STRATEGY: none
     RAILS_ENV: production
     SECRET_KEY_BASE: key
-    PACKAGE_MANAGER: npm
+    PACKAGE_MANAGER: pnpm
     SETTINGS__GITLAB_URL: $CI_SERVER_URL
     SETTINGS__STANDALONE: 'true'
     SETTINGS__LOG_COLOR: 'true'
