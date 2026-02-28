@@ -59,7 +59,8 @@ export default function ExportData({
     try {
       const dateString = moment().format('YYYY-MM-DD')
       const fileName = `${EXPORT_FILE_NAME}-${dateString}.csv`
-      const path = `${fs.DocumentDirectoryPath}/${fileName}`
+      const path = `${fs.TemporaryDirectoryPath}/${fileName}`
+
       await fs.writeFile(path, data)
 
       await Share.open({
@@ -71,7 +72,7 @@ export default function ExportData({
         failOnCancel: false,
       })
     } catch (err) {
-      throw new Error(t('error.sharingFailed'))
+      throw new Error(`${t('error.sharingFailed')}: ${err.message}`)
     }
   }
 
