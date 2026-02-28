@@ -43,5 +43,3 @@ export const HIT_SLOP = {
   left: scale(20),
   right: scale(20),
 }
-
-export const STATUSBAR_HEIGHT = StatusBar.currentHeight

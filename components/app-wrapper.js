@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
+import { StyleSheet } from 'react-native'
 import i18n from '../i18n/i18n'
 
 import {
@@ -50,22 +52,37 @@ export default function AppWrapper() {
     prepareApp()
   }, [])
 
-  if (isLoading) {
-    return <AppLoadingView />
+  const renderContent = () => {
+    if (isLoading) return <AppLoadingView />
+
+    if (!isLicenseAccepted) {
+      return <AcceptLicense setLicense={() => setIsLicenseAccepted(true)} />
+    }
+
+    if (isDbEncrypted) {
+      return <PasswordPrompt enableShowApp={() => setIsDbEncrypted(false)} />
+    }
+
+    return <App restartApp={() => checkIsDbEncrypted()} />
   }
 
-  if (!isLicenseAccepted) {
-    return <AcceptLicense setLicense={() => setIsLicenseAccepted(true)} />
-  }
+  const showStatusBar = !isLoading && isLicenseAccepted
 
   return (
-    <>
-      <AppStatusBar />
-      {isDbEncrypted ? (
-        <PasswordPrompt enableShowApp={() => setIsDbEncrypted(false)} />
-      ) : (
-        <App restartApp={() => checkIsDbEncrypted()} />
-      )}
-    </>
+    <SafeAreaProvider>
+      <SafeAreaView
+        edges={['top', 'bottom', 'left', 'right']}
+        style={styles.container}
+      >
+        {showStatusBar && <AppStatusBar />}
+        {renderContent()}
+      </SafeAreaView>
+    </SafeAreaProvider>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})

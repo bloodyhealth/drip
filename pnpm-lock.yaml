@@ -61,6 +61,9 @@ importers:
       react-native-calendars:
         specifier: ^1.1313.0
         version: 1.1314.0(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(react@19.2.0))(react@19.2.0)
+      react-native-edge-to-edge:
+        specifier: ^1.8.1
+        version: 1.8.1(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(react@19.2.0))(react@19.2.0)
       react-native-modal-datetime-picker:
         specifier: 18.0.0
         version: 18.0.0(@react-native-community/datetimepicker@8.6.0(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(react@19.2.0))(react@19.2.0))(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(react@19.2.0))
@@ -5767,6 +5770,15 @@ packages:
       }
     engines: { node: '>=18' }
 
+  react-native-edge-to-edge@1.8.1:
+    resolution:
+      {
+        integrity: sha512-bhvsKqeX9PGkY9wBUk9vni/tJNJdKtLPbs/j3e/3CdV4JmUWfTXYYoL+4Hc8Wmej+5eJxkc8KOFa454ruFWBCA==,
+      }
+    peerDependencies:
+      react: '*'
+      react-native: '*'
+
   react-native-modal-datetime-picker@18.0.0:
     resolution:
       {
@@ -11280,6 +11292,11 @@ snapshots:
     transitivePeerDependencies:
       - react
       - react-native
+
+  react-native-edge-to-edge@1.8.1(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(react@19.2.0))(react@19.2.0):
+    dependencies:
+      react: 19.2.0
+      react-native: 0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(react@19.2.0)
 
   react-native-modal-datetime-picker@18.0.0(@react-native-community/datetimepicker@8.6.0(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(react@19.2.0))(react@19.2.0))(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(react@19.2.0)):
     dependencies:
