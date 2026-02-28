@@ -16,6 +16,7 @@ _Note_: You need the release-key for Android to bundle a signed release that can
 ## Release steps
 
 ### 1. [Code](#code)
+
 - 1.1 [Version updating](#version-updating)
 - 1.2 [Android builds](#android-builds)
 - 1.3 [iOS builds](#ios-builds)
@@ -23,12 +24,14 @@ _Note_: You need the release-key for Android to bundle a signed release that can
 - 1.5 [Release tag](#release-tag)
 
 ### 2. [Documentation](#documentation)
+
 - 2.1 [Changelog](#changelog)
 - 2.2 [Release notes](#release-notes)
 - 2.3 [Releases on Gitlab](#releases-on-gitlab)
 - 2.4 [Phone screenshots](#phone-screenshots)
 
 ### 3. [Publishing](#publishing)
+
 - 3.1 [Google Play Console](#google-play-console)
 - 3.2 [Apple App Store Connect](#apple-app-store-connect)
 - 3.3 [F-droid](#f-droid)
@@ -48,7 +51,7 @@ The following command will:
 - create a commit including a tag named after the new release version name.
 
 ```
-yarn release
+pnpm release
 ```
 
 The versionName and versionCode [are defined here](https://gitlab.com/bloodyhealth/drip/-/blob/5401789c46f4a02915ab900ef284581be420451c/android/app/build.gradle#L137-138) and in [package.json](https://gitlab.com/bloodyhealth/drip/-/blob/5401789c46f4a02915ab900ef284581be420451c/package.json#L3).
@@ -75,7 +78,7 @@ APK versus AAB
 To build a release apk file, run the following command:
 
 ```
-yarn build-android-apk-release
+pnpm build-android-apk-release
 ```
 
 _which is a shortcut for:_ `cd android && ./gradlew clean && ./gradlew assembleRelease && cd ..`
@@ -85,7 +88,7 @@ This will create a new apk file named `app-release.apk` under `./android/app/bui
 For signing an apk you can run this command:
 
 ```
-yarn sign-android-apk-release
+pnpm sign-android-apk-release
 ```
 
 _which is a shortcut for:_ `zipalign -v -p 4 ./android/app/build/outputs/apk/release/app-release.apk ./android/app/build/outputs/apk/release/app-release_signed.apk`
@@ -97,7 +100,7 @@ It adds a file name `app-release_signed.apk` in the same folder in `./android/ap
 To build a release aab file, run:
 
 ```
-yarn build-android-aab-release
+pnpm build-android-aab-release
 ```
 
 _which is a shortcut for:_ `cd android && ./gradlew clean && ./gradlew :app:bundleRelease && cd ..`
@@ -107,7 +110,7 @@ It creates a new aab file named `app-release.aab` under `./android/app/build/out
 For signing an aab you first need to configure the base module’s build.gradle file with your app’s signing information. You can then run this command:
 
 ```
-yarn sign-android-aab-release
+pnpm sign-android-aab-release
 ```
 
 _which is a shortcut for:_ `jarsigner -keystore ./android/app/drip-release-key.keystore ./android/app/build/outputs/bundle/release/app-release.aab drip-release-key`
@@ -141,20 +144,20 @@ Any tag starting with "Release" or "Android" will be checked by https://gitlab.c
 
 The [changelog](https://gitlab.com/bloodyhealth/drip/-/blob/main/CHANGELOG.md) should reflect the technical / code changes between a previous and the new version. Please update the changelog file with any relevant additions, fixes and changes in the following format:
 
->**v1.yymm.d**
+> **v1.yymm.d**
 >
->**Changes**
+> **Changes**
 >
->Changing the color of funky button
->Updating a library from 1.2.3 to 2.3.4
+> Changing the color of funky button
+> Updating a library from 1.2.3 to 2.3.4
 >
->**Adds**
+> **Adds**
 >
->New feature for calendar
+> New feature for calendar
 >
->**Fixed**
+> **Fixed**
 >
->Small bug in chart
+> Small bug in chart
 
 ### Release notes
 
@@ -164,7 +167,7 @@ Google Play limits these notes to 500 characters, whereas Apple's App Store limi
 
 ### Releases on Gitlab
 
-Under [Releases](https://gitlab.com/bloodyhealth/drip/-/releases) we keep track of all drip releases. 
+Under [Releases](https://gitlab.com/bloodyhealth/drip/-/releases) we keep track of all drip releases.
 
 ### Phone screenshots
 
