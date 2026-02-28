@@ -219,7 +219,7 @@ export async function changeDbEncryption(hash) {
 }
 
 export function isDbEmpty() {
-  return db.empty
+  return db.isEmpty
 }
 
 export async function deleteDbAndOpenNew() {
