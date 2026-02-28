@@ -1,5 +1,5 @@
 import React from 'react'
-import AcceptLicense from '../components/AcceptLicense'
+import AcceptLicense from '../components/accept-license'
 
 import { saveLicenseFlag } from '../local-storage'
 import { render, screen, fireEvent } from './test-utils'

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { BackHandler, StyleSheet, View } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
-import License from './settings/License'
+import License from './settings/license'
 import Button from './common/button'
 
 import { saveLicenseFlag } from '../local-storage'

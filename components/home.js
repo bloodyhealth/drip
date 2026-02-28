@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 
 import AppText from './common/app-text'
-import Asterisk from './common/Asterisk'
+import Asterisk from './common/asterisk'
 import Button from './common/button'
-import Footnote from './common/Footnote'
+import Footnote from './common/footnote'
 
 import cycleModule from '../lib/cycle'
 import { getFertilityStatusForDay } from '../lib/sympto-adapter'

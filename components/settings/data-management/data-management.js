@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 
 import AppLoadingView from '../../common/app-loading'
 import AppPage from '../../common/app-page'
-import DeleteData from './DeleteData'
-import ImportData from './ImportData'
-import ExportData from './ExportData'
+import DeleteData from './delete-data'
+import ImportData from './import-data'
+import ExportData from './export-data'
 
 const DataManagement = () => {
   const [isLoading, setIsLoading] = useState(false)

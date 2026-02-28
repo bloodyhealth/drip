@@ -3,7 +3,7 @@ import { Platform, Linking } from 'react-native'
 
 import AppPage from '../common/app-page'
 import AppText from '../common/app-text'
-import AppLink from '../common/AppLink'
+import AppLink from '../common/app-link'
 import Segment from '../common/segment'
 import Button from '../common/button'
 import ButtonRow from '../common/button-row'

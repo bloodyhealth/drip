@@ -24,7 +24,7 @@ import { showToast } from '../helpers/general'
 import { fertilityTrackingObservable } from '../../local-storage'
 import { Colors, Containers, Sizes, Spacing } from '../../styles'
 import { useTranslation } from 'react-i18next'
-import { LearnMore } from './LearnMore'
+import { LearnMore } from './learn-more'
 
 const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const { t } = useTranslation()

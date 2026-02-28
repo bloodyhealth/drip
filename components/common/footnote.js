@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { StyleSheet, View } from 'react-native'
 
 import AppText from '../common/app-text'
-import Asterisk from '../common/Asterisk'
+import Asterisk from './asterisk'
 
 import { Colors, Spacing } from '../../styles'
 

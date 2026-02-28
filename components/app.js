@@ -9,7 +9,7 @@ import { viewsList } from './views'
 import { pages } from './pages'
 
 import { closeDb } from '../db'
-import { useNotifications } from '../lib/notifications/useNotifications'
+import { useNotifications } from '../lib/notifications/use-notifications'
 
 const App = ({ restartApp }) => {
   const [date, setDate] = useState(LocalDate.now().toString())

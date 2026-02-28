@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react-native'
 
-import Footnote from '../../../components/common/Footnote'
+import Footnote from '../../../components/common/footnote'
 
 describe('Footnote component', () => {
   test('when children are present, renders them', () => {

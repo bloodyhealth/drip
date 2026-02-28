@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next'
 
 import AppText from '../common/app-text'
 import Button from '../common/button'
-import Footnote from '../common/Footnote'
-import StatsOverview from './StatsOverview'
-import PeriodDetailsModal from './PeriodDetailsModal'
+import Footnote from '../common/footnote'
+import StatsOverview from './stats-overview'
+import PeriodDetailsModal from './period-details-modal'
 
 import cycleModule from '../../lib/cycle'
 import { getCycleLengthStats as getCycleInfo } from '../../lib/cycle-length'

@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native'
 
 import AppPage from '../common/app-page'
 import AppText from '../common/app-text'
-import AppLink from '../common/AppLink'
+import AppLink from '../common/app-link'
 import Segment from '../common/segment'
 import { Spacing } from '../../styles'
 

@@ -6,7 +6,7 @@ import AppText from '../../../common/app-text'
 import Segment from '../../../common/segment'
 import { Trans, useTranslation } from 'react-i18next'
 import links from '../../../../common/links'
-import AppLink from '../../../common/AppLink'
+import AppLink from '../../../common/app-link'
 
 export const InfertileDaysInfo = () => {
   const { t } = useTranslation(null, {
