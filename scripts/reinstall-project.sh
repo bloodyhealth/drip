@@ -9,6 +9,6 @@ echo "PNPM install..."
 pnpm install
 
 echo "Pods install..."
-cd ios && pod install && cd ..
+cd ios && bundle install && bundle exec pod install && cd ..
 
 echo "\x1b[35;01m""Done re-installing dependencies!""\x1b[39;49;00m"
