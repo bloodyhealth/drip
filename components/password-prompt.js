@@ -10,7 +10,7 @@ import Header from './header'
 
 import { saveEncryptionFlag } from '../local-storage'
 import { deleteDbAndOpenNew, openDb } from '../db'
-import { Containers, Spacing } from '../styles'
+import { Spacing } from '../styles'
 import { useTranslation } from 'react-i18next'
 
 const PasswordPrompt = ({ enableShowApp }) => {
@@ -86,15 +86,15 @@ const PasswordPrompt = ({ enableShowApp }) => {
             placeholder={t('unlockApp.placeholder')}
           />
           <View style={styles.containerButtons}>
-            <Button onPress={onConfirmDeletion}>
-              {t('unlockApp.forgotPassword')}
-            </Button>
             <Button
               disabled={!isPasswordEntered}
               isCTA={isPasswordEntered}
               onPress={unlockApp}
             >
               {t('unlockApp.title')}
+            </Button>
+            <Button style={styles.forgotButton} onPress={onConfirmDeletion}>
+              {t('unlockApp.forgotPassword')}
             </Button>
           </View>
         </KeyboardAvoidingView>
@@ -114,8 +114,12 @@ const styles = StyleSheet.create({
     marginHorizontal: Spacing.base,
   },
   containerButtons: {
-    ...Containers.rowContainer,
-    justifyContent: 'space-around',
+    marginTop: Spacing.base,
+    rowGap: Spacing.tiny,
+    alignItems: 'flex-start',
+  },
+  forgotButton: {
+    width: '100%',
   },
 })
 
