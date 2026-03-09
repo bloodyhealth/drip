@@ -10,22 +10,10 @@
 		0C80B921A6F3F58F76C31292 /* libPods-drip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-drip.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		42D1FB282F53157600B1C8DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D1FB272F53157600B1C8DF /* AppDelegate.swift */; };
-		540918B325AB726000086AE1 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 540918A325AB725F00086AE1 /* OpenSans-Light.ttf */; };
-		540918B725AB726000086AE1 /* Jost-700-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 540918A425AB725F00086AE1 /* Jost-700-Bold.otf */; };
-		540918BB25AB726000086AE1 /* Menu.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 540918A525AB725F00086AE1 /* Menu.ttf */; };
-		540918BF25AB726000086AE1 /* drip-home-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 540918A625AB726000086AE1 /* drip-home-icons.ttf */; };
-		540918C325AB726000086AE1 /* Jost-400-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 540918A725AB726000086AE1 /* Jost-400-Book.otf */; };
-		540918CB25AB726000086AE1 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 540918A925AB726000086AE1 /* OpenSans-SemiBold.ttf */; };
 		5472A44A25BB7806005E81DE /* drip-home-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44125BB7806005E81DE /* drip-home-icons.ttf */; };
-		5472A44C25BB7807005E81DE /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44225BB7806005E81DE /* OpenSans-Light.ttf */; };
-		5472A44E25BB7807005E81DE /* Prompt-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44325BB7806005E81DE /* Prompt-ExtraLight.ttf */; };
-		5472A44F25BB7807005E81DE /* Prompt-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44325BB7806005E81DE /* Prompt-ExtraLight.ttf */; };
 		5472A45025BB7807005E81DE /* Jost-400-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44425BB7806005E81DE /* Jost-400-Book.otf */; };
 		5472A45225BB7807005E81DE /* Jost-700-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44525BB7806005E81DE /* Jost-700-Bold.otf */; };
 		5472A45425BB7807005E81DE /* Menu.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44625BB7806005E81DE /* Menu.ttf */; };
-		5472A45625BB7807005E81DE /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44725BB7806005E81DE /* OpenSans-SemiBold.ttf */; };
-		5472A45825BB7807005E81DE /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44825BB7806005E81DE /* OpenSans-LightItalic.ttf */; };
-		5472A45925BB7807005E81DE /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44825BB7806005E81DE /* OpenSans-LightItalic.ttf */; };
 		5472A45A25BB7807005E81DE /* drip-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44925BB7806005E81DE /* drip-icon-font.ttf */; };
 		5472A45B25BB7807005E81DE /* drip-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44925BB7806005E81DE /* drip-icon-font.ttf */; };
 		5472A45E25BB7C43005E81DE /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A45C25BB7C42005E81DE /* Entypo.ttf */; };
@@ -35,7 +23,6 @@
 		54DFE73E25D94DED0025C3FC /* cycle-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 54DFE73C25D94DED0025C3FC /* cycle-icon.png */; };
 		62F2A4645AC84CDC9506FF27 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEBF0735214455AAEDF56D5 /* libc++.tbd */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		BD7041F2826E4A2CBE6CB87D /* RealmJSTests.xctest in Frameworks */ = {isa = PBXBuildFile; fileRef = F79F72C5390646E0A06AAE68 /* RealmJSTests.xctest */; };
 		C1B60E3D1CB982C1DC3D3649 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1232D2C7A761C56D1B96A689 /* PrivacyInfo.xcprivacy */; };
 		D91133DCE120440893E2FD2E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8C8B91E0A747B3883A0D56 /* libz.tbd */; };
 /* End PBXBuildFile section */
@@ -59,20 +46,10 @@
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-drip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-drip.debug.xcconfig"; path = "Target Support Files/Pods-drip/Pods-drip.debug.xcconfig"; sourceTree = "<group>"; };
 		42D1FB272F53157600B1C8DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = drip/AppDelegate.swift; sourceTree = "<group>"; };
-		540918A325AB725F00086AE1 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Light.ttf"; path = "../../assets/fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
-		540918A425AB725F00086AE1 /* Jost-700-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jost-700-Bold.otf"; path = "../../assets/fonts/Jost-700-Bold.otf"; sourceTree = "<group>"; };
-		540918A525AB725F00086AE1 /* Menu.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Menu.ttf; path = ../../assets/fonts/Menu.ttf; sourceTree = "<group>"; };
-		540918A625AB726000086AE1 /* drip-home-icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "drip-home-icons.ttf"; path = "../../assets/fonts/drip-home-icons.ttf"; sourceTree = "<group>"; };
-		540918A725AB726000086AE1 /* Jost-400-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jost-400-Book.otf"; path = "../../assets/fonts/Jost-400-Book.otf"; sourceTree = "<group>"; };
-		540918A925AB726000086AE1 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-SemiBold.ttf"; path = "../../assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		5472A44125BB7806005E81DE /* drip-home-icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "drip-home-icons.ttf"; path = "../assets/fonts/drip-home-icons.ttf"; sourceTree = "<group>"; };
-		5472A44225BB7806005E81DE /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Light.ttf"; path = "../assets/fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
-		5472A44325BB7806005E81DE /* Prompt-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Prompt-ExtraLight.ttf"; path = "../assets/fonts/Prompt-ExtraLight.ttf"; sourceTree = "<group>"; };
 		5472A44425BB7806005E81DE /* Jost-400-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jost-400-Book.otf"; path = "../assets/fonts/Jost-400-Book.otf"; sourceTree = "<group>"; };
 		5472A44525BB7806005E81DE /* Jost-700-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jost-700-Bold.otf"; path = "../assets/fonts/Jost-700-Bold.otf"; sourceTree = "<group>"; };
 		5472A44625BB7806005E81DE /* Menu.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Menu.ttf; path = ../assets/fonts/Menu.ttf; sourceTree = "<group>"; };
-		5472A44725BB7806005E81DE /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-SemiBold.ttf"; path = "../assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
-		5472A44825BB7806005E81DE /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-LightItalic.ttf"; path = "../assets/fonts/OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		5472A44925BB7806005E81DE /* drip-icon-font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "drip-icon-font.ttf"; path = "../assets/fonts/drip-icon-font.ttf"; sourceTree = "<group>"; };
 		5472A45C25BB7C42005E81DE /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		548C3D3A2898FB0600013449 /* drip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "drip-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -81,19 +58,10 @@
 		5709B34CF0A7D63546082F79 /* Pods-drip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-drip.release.xcconfig"; path = "Target Support Files/Pods-drip/Pods-drip.release.xcconfig"; sourceTree = "<group>"; };
 		5C649EDC281151BC005FED46 /* dripRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = dripRelease.entitlements; path = drip/dripRelease.entitlements; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-drip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-drip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7A5827160B914D2B99C47381 /* libRealmReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRealmReact.a; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = drip/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		84CCEBD3B2C44758853BC941 /* libRNFS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFS.a; sourceTree = "<group>"; };
-		90224CB4571D41C4969E9722 /* libGCDWebServers.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libGCDWebServers.a; sourceTree = "<group>"; };
 		9AEBF0735214455AAEDF56D5 /* libc++.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		A8B59389C2FC4F19BD30ABC3 /* libRNShare.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNShare.a; sourceTree = "<group>"; };
-		AB636AA0286D45CE9B23B2C3 /* libRCTRestart.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTRestart.a; sourceTree = "<group>"; };
 		CD8C8B91E0A747B3883A0D56 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		D211D71BE5A8436A978770A9 /* libRNDocumentPicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDocumentPicker.a; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F5039D0A572B4BBCB7995891 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
-		F710D85E391D4094816E1B62 /* libRealmJS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRealmJS.a; sourceTree = "<group>"; };
-		F79F72C5390646E0A06AAE68 /* RealmJSTests.xctest */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RealmJSTests.xctest; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +78,6 @@
 			files = (
 				62F2A4645AC84CDC9506FF27 /* libc++.tbd in Frameworks */,
 				D91133DCE120440893E2FD2E /* libz.tbd in Frameworks */,
-				BD7041F2826E4A2CBE6CB87D /* RealmJSTests.xctest in Frameworks */,
 				0C80B921A6F3F58F76C31292 /* libPods-drip.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,10 +96,6 @@
 				5472A44425BB7806005E81DE /* Jost-400-Book.otf */,
 				5472A44525BB7806005E81DE /* Jost-700-Bold.otf */,
 				5472A44625BB7806005E81DE /* Menu.ttf */,
-				5472A44225BB7806005E81DE /* OpenSans-Light.ttf */,
-				5472A44825BB7806005E81DE /* OpenSans-LightItalic.ttf */,
-				5472A44725BB7806005E81DE /* OpenSans-SemiBold.ttf */,
-				5472A44325BB7806005E81DE /* Prompt-ExtraLight.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -166,21 +129,6 @@
 		42C7F9942202468200F22656 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				7A5827160B914D2B99C47381 /* libRealmReact.a */,
-				A8B59389C2FC4F19BD30ABC3 /* libRNShare.a */,
-				F5039D0A572B4BBCB7995891 /* libRNVectorIcons.a */,
-				D211D71BE5A8436A978770A9 /* libRNDocumentPicker.a */,
-				84CCEBD3B2C44758853BC941 /* libRNFS.a */,
-				AB636AA0286D45CE9B23B2C3 /* libRCTRestart.a */,
-				90224CB4571D41C4969E9722 /* libGCDWebServers.a */,
-				F710D85E391D4094816E1B62 /* libRealmJS.a */,
-				F79F72C5390646E0A06AAE68 /* RealmJSTests.xctest */,
-				540918A325AB725F00086AE1 /* OpenSans-Light.ttf */,
-				540918A925AB726000086AE1 /* OpenSans-SemiBold.ttf */,
-				540918A725AB726000086AE1 /* Jost-400-Book.otf */,
-				540918A525AB725F00086AE1 /* Menu.ttf */,
-				540918A625AB726000086AE1 /* drip-home-icons.ttf */,
-				540918A425AB725F00086AE1 /* Jost-700-Bold.otf */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -311,16 +259,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				540918B325AB726000086AE1 /* OpenSans-Light.ttf in Resources */,
-				540918CB25AB726000086AE1 /* OpenSans-SemiBold.ttf in Resources */,
-				540918C325AB726000086AE1 /* Jost-400-Book.otf in Resources */,
-				540918BB25AB726000086AE1 /* Menu.ttf in Resources */,
 				54DFE73E25D94DED0025C3FC /* cycle-icon.png in Resources */,
-				5472A44F25BB7807005E81DE /* Prompt-ExtraLight.ttf in Resources */,
 				5472A45E25BB7C43005E81DE /* Entypo.ttf in Resources */,
-				5472A45925BB7807005E81DE /* OpenSans-LightItalic.ttf in Resources */,
-				540918BF25AB726000086AE1 /* drip-home-icons.ttf in Resources */,
-				540918B725AB726000086AE1 /* Jost-700-Bold.otf in Resources */,
 				54DFE73B25D94D6E0025C3FC /* swipe.png in Resources */,
 				5472A45B25BB7807005E81DE /* drip-icon-font.ttf in Resources */,
 			);
@@ -330,19 +270,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5472A44C25BB7807005E81DE /* OpenSans-Light.ttf in Resources */,
 				5472A45425BB7807005E81DE /* Menu.ttf in Resources */,
 				5472A45A25BB7807005E81DE /* drip-icon-font.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				5472A45825BB7807005E81DE /* OpenSans-LightItalic.ttf in Resources */,
-				5472A45625BB7807005E81DE /* OpenSans-SemiBold.ttf in Resources */,
 				5472A45025BB7807005E81DE /* Jost-400-Book.otf in Resources */,
 				54DFE73D25D94DED0025C3FC /* cycle-icon.png in Resources */,
 				54DFE73A25D94D6E0025C3FC /* swipe.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				5472A44A25BB7806005E81DE /* drip-home-icons.ttf in Resources */,
 				5472A45225BB7807005E81DE /* Jost-700-Bold.otf in Resources */,
-				5472A44E25BB7807005E81DE /* Prompt-ExtraLight.ttf in Resources */,
 				C1B60E3D1CB982C1DC3D3649 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,9 +310,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-drip/Pods-drip-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-drip/Pods-drip-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -413,9 +353,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-drip/Pods-drip-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-drip/Pods-drip-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
