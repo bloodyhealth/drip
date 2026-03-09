@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
-import { scale } from 'react-native-size-matters'
 
 import AppText from '../common/app-text'
 import DripIcon from '../../assets/drip-icons'
@@ -11,6 +10,7 @@ import { isDateInFuture } from '../helpers/cycle-day'
 
 import { Colors, Sizes, Spacing } from '../../styles'
 import { useTranslation } from 'react-i18next'
+import { scale } from '../../common/scale-utils'
 
 const SymptomBox = ({
   date,

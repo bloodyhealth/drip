@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { ImageBackground, SafeAreaView, ScrollView, View } from 'react-native'
-import { ScaledSheet } from 'react-native-size-matters'
+import { ImageBackground, StyleSheet, ScrollView, View } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
 import AppText from '../common/app-text'
@@ -14,6 +13,8 @@ import { getCycleLengthStats as getCycleInfo } from '../../lib/cycle-length'
 import { formatDecimal } from '../helpers/cycle-day'
 
 import { Containers, Sizes, Spacing, Typography } from '../../styles'
+import { scale, verticalScale } from '../../common/scale-utils'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const image = require('../../assets/cycle-icon.png')
 
@@ -95,18 +96,18 @@ const column = {
   flexDirection: 'column',
 }
 
-const styles = ScaledSheet.create({
+const styles = StyleSheet.create({
   accentOrange: {
     ...Typography.accentOrange,
-    fontSize: Sizes.small,
+    fontSize: scale(Sizes.small),
   },
   accentPurpleGiant: {
     ...Typography.accentPurpleGiant,
-    marginTop: Spacing.base * -2,
+    marginTop: verticalScale(Spacing.base * -2),
   },
   accentPurpleHuge: {
     ...Typography.accentPurpleHuge,
-    marginTop: Spacing.base * -1,
+    marginTop: verticalScale(Spacing.base * -1),
   },
   container: {
     alignItems: 'center',
@@ -120,22 +121,21 @@ const styles = ScaledSheet.create({
   columnRight: {
     ...column,
     flex: 5,
-    paddingTop: Spacing.small,
+    paddingTop: verticalScale(Spacing.small),
   },
   image: {
     resizeMode: 'contain',
   },
   imageContainter: {
-    paddingTop: Spacing.large * 2.5,
-    marginBottom: Spacing.large,
+    paddingTop: verticalScale(Spacing.large * 2.5),
+    marginBottom: verticalScale(Spacing.large),
   },
   overviewContainer: {
-    paddingHorizontal: Spacing.base,
-    paddingTop: Spacing.base,
+    paddingHorizontal: scale(Spacing.base),
+    paddingTop: verticalScale(Spacing.base),
   },
   pageContainer: {
     ...Containers.pageContainer,
   },
 })
-
 export default Stats

@@ -1,5 +1,5 @@
-import { PixelRatio, StatusBar } from 'react-native'
-import { scale, verticalScale } from 'react-native-size-matters'
+import { PixelRatio } from 'react-native'
+import { scale, verticalScale } from './common/scale-utils'
 
 export const SYMPTOMS = [
   'bleeding',

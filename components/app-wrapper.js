@@ -63,7 +63,7 @@ export default function AppWrapper() {
       return <PasswordPrompt enableShowApp={() => setIsDbEncrypted(false)} />
     }
 
-    return <App restartApp={() => checkIsDbEncrypted()} />
+    return <App restartApp={checkIsDbEncrypted} />
   }
 
   const showStatusBar = !isLoading && isLicenseAccepted
