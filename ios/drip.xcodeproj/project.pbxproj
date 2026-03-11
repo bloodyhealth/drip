@@ -207,6 +207,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
 				6EB0868C391E01DF797537E2 /* [CP] Embed Pods Frameworks */,
+				421FB9B12F5F7F620078174F /* Generate Hermes dSYM */,
 			);
 			buildRules = (
 			);
@@ -302,6 +303,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"\\\"$WITH_ENVIRONMENT\\\" \\\"$REACT_NATIVE_XCODE\\\"\"\n";
 		};
+		421FB9B12F5F7F620078174F /* Generate Hermes dSYM */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Hermes dSYM";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nFRAMEWORK=\"${PODS_ROOT}/hermes-engine/destroot/Library/Frameworks/universal/hermesvm.xcframework/ios-arm64/hermesvm.framework\"\nDSYM_OUTPUT=\"${DWARF_DSYM_FOLDER_PATH}/hermesvm.framework.dSYM\"\n\nif [ ! -d \"$DSYM_OUTPUT\" ]; then\n  dsymutil \"$FRAMEWORK/hermesvm\" -o \"$DSYM_OUTPUT\"\nfi\n";
+		};
 		6EB0868C391E01DF797537E2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -310,13 +329,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-drip/Pods-drip-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-drip/Pods-drip-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -353,13 +368,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-drip/Pods-drip-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-drip/Pods-drip-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
