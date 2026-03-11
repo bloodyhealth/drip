@@ -2712,7 +2712,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - RNShare (12.2.5):
+  - RNShare (12.0.10):
     - boost
     - DoubleConversion
     - fast_float
@@ -3168,7 +3168,7 @@ SPEC CHECKSUMS:
   RNDateTimePicker: 97a86d7c8b51f2d51f694a9dddfe5996dfd9a407
   RNNotifee: 5e3b271e8ea7456a36eec994085543c9adca9168
   RNPermissions: e5dd84f29e7a3871451f88efa83dfa6227806b51
-  RNShare: 60a6937925595bf06a0061ffe8a34dbbdd8c6584
+  RNShare: ca16c4eb4f0cc6ee6de3a72cd71eddb816984f0d
   RNSVG: 595abfa0f9ac26d56afcaaedf4e37a00f54cab71
   RNVectorIcons: 5784330be9dddb5474e8b378d5f6947996c84e55
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
