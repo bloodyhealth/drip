@@ -92,6 +92,18 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('drip-release-key.keystore')
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storePassword keystoreProperties['storePassword']
+            if (project.hasProperty('DRIP_RELEASE_STORE_FILE')) {
+                storeFile file(DRIP_RELEASE_STORE_FILE)
+                storePassword DRIP_RELEASE_STORE_PASSWORD
+                keyAlias DRIP_RELEASE_KEY_ALIAS
+                keyPassword DRIP_RELEASE_KEY_PASSWORD
+            }
+        }
     }
     buildTypes {
         debug {
