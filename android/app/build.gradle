@@ -82,8 +82,8 @@ android {
         applicationId "com.drip"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-         versionCode 42
-         versionName "1.2411.20"
+         versionCode 47
+         versionName "1.2603.13"
     }
     signingConfigs {
         debug {
