@@ -5,34 +5,42 @@ import {
 import cycleModule from '../cycle'
 import i18n from '../../i18n/i18n'
 import NotificationService from './notification-service'
-import { CHANNELS, NOTIFICATION_TYPE } from './constants'
 import { getBleedingDaysSortedByDate } from '../../db'
 import nothingChanged from '../../db/db-unchanged'
 import moment from 'moment'
+import { NotificationConfig } from './types.ts'
+import { AndroidImportance } from '@notifee/react-native'
 
-function getNotificationConfig(advanceNoticeDays, daysToEndOfPrediction) {
+let isSetup: boolean = false
+
+function getNotificationConfig(
+  advanceNoticeDays: number,
+  daysToEndOfPrediction: number
+): NotificationConfig {
   return {
+    id: 'period',
     title: i18n.t('sideMenu.settings.reminders.periodReminder.title'),
     body: i18n.t('notification', {
       advanceNoticeDays,
       daysToEndOfPrediction,
     }),
-    android: {
-      channelId: CHANNELS.PERIOD.id,
+    channel: {
+      id: 'period',
+      name: i18n.t('notifications.period.channelName'),
+      importance: AndroidImportance.DEFAULT,
     },
     data: {
       screen: 'Home',
-      notificationType: NOTIFICATION_TYPE.PERIOD,
     },
   }
 }
 
 export async function setupPeriodNotifications() {
-  await NotificationService.createChannel(NOTIFICATION_TYPE.PERIOD)
-
+  if (isSetup) return
+  isSetup = true
   periodReminderObservable(setupNotification, false)
   advanceNoticeDaysObservable(setupNotification, false)
-  getBleedingDaysSortedByDate().addListener((_, changes) => {
+  getBleedingDaysSortedByDate().addListener((_: unknown, changes: any[]) => {
     // the listener fires on setup, so we check if there were actually any changes
     if (nothingChanged(changes)) {
       return
@@ -43,7 +51,7 @@ export async function setupPeriodNotifications() {
 }
 
 async function setupNotification() {
-  await NotificationService.cancelNotifications(NOTIFICATION_TYPE.PERIOD)
+  await NotificationService.cancelNotification('period')
 
   if (!periodReminderObservable.value.enabled) return
 
@@ -65,7 +73,7 @@ async function setupNotification() {
  *   The first date (bleedingPrediction[0]) is used as the predicted start date.
  *   The array length is used to calculate the total duration of the predicted period.
  */
-async function scheduleNotificationForPrediction(bleedingPrediction) {
+async function scheduleNotificationForPrediction(bleedingPrediction: any) {
   const predictedBleedingStart = moment(
     bleedingPrediction[0],
     'YYYY-MM-DD'

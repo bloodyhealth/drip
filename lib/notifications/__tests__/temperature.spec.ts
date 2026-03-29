@@ -1,19 +1,27 @@
 import { tempReminderObservable } from '../../../local-storage'
 import { setupTemperatureNotifications } from '../temperature'
-import { NOTIFICATION_TYPE } from '../constants'
 import { RepeatFrequency } from '@notifee/react-native'
+import { NotificationType } from '../types.ts'
+import { NotificationService } from '../notification-service.ts'
 
-// Mock NotificationService
-const mockCreateChannel = jest.fn(() => Promise.resolve())
-const mockCancelNotifications = jest.fn(() => Promise.resolve())
-const mockScheduleNotification = jest.fn(() => Promise.resolve())
+const mockCancelNotification = jest.fn((_: NotificationType) =>
+  Promise.resolve()
+)
+const mockScheduleNotification = jest.fn(
+  (
+    ..._: Parameters<typeof NotificationService.prototype.scheduleNotification>
+  ) => Promise.resolve()
+)
 
 jest.mock('../notification-service', () => ({
   __esModule: true,
   default: {
-    createChannel: (...args) => mockCreateChannel(...args),
-    cancelNotifications: (...args) => mockCancelNotifications(...args),
-    scheduleNotification: (...args) => mockScheduleNotification(...args),
+    cancelNotification: (id: NotificationType) => mockCancelNotification(id),
+    scheduleNotification: (
+      ...args: Parameters<
+        typeof NotificationService.prototype.scheduleNotification
+      >
+    ) => mockScheduleNotification(...args),
   },
 }))
 
@@ -39,18 +47,16 @@ describe('Test temperature notifications', () => {
     it('cancels old notifications when reminder changes', async () => {
       tempReminderObservable.set({ enabled: true, time: '09:00' })
 
-      expect(mockCancelNotifications).toHaveBeenCalledTimes(1)
-      expect(mockCancelNotifications).toHaveBeenCalledWith(
-        NOTIFICATION_TYPE.TEMPERATURE
-      )
+      expect(mockCancelNotification).toHaveBeenCalledTimes(1)
+      expect(mockCancelNotification).toHaveBeenCalledWith('temperature')
     })
 
     it('does not schedule notification when reminder is disabled', async () => {
-      mockCancelNotifications.mockClear()
+      mockCancelNotification.mockClear()
       mockScheduleNotification.mockClear()
       tempReminderObservable.set({ enabled: false, time: '09:00' })
 
-      expect(mockCancelNotifications).toHaveBeenCalledTimes(1)
+      expect(mockCancelNotification).toHaveBeenCalledTimes(1)
       expect(mockScheduleNotification).not.toHaveBeenCalled()
     })
 
@@ -73,19 +79,21 @@ describe('Test temperature notifications', () => {
 
       tempReminderObservable.set({ enabled: true, time })
 
-      await new Promise((r) => setTimeout(r, 200))
+      await new Promise<void>((resolve) => setTimeout(resolve, 200))
 
       expect(mockScheduleNotification).toHaveBeenCalledTimes(1)
       expect(mockScheduleNotification).toHaveBeenCalledWith(
         expect.objectContaining({
+          id: 'temperature',
           title: expect.any(String),
           body: expect.any(String),
-          android: expect.objectContaining({
-            channelId: 'temperature_reminder',
+          channel: expect.objectContaining({
+            id: 'temperature',
+            name: expect.any(String),
+            importance: expect.any(Number),
           }),
           data: expect.objectContaining({
             screen: 'TemperatureEditView',
-            notificationType: NOTIFICATION_TYPE.TEMPERATURE,
           }),
         }),
         expectedTimestamp,

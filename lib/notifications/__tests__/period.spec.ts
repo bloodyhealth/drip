@@ -3,7 +3,8 @@ import {
   advanceNoticeDaysObservable,
 } from '../../../local-storage'
 import { setupPeriodNotifications } from '../period'
-import { NOTIFICATION_TYPE } from '../constants'
+import { NotificationType } from '../types.ts'
+import { NotificationService } from '../notification-service.ts'
 
 // Mock AsyncStorage
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -15,16 +16,24 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 }))
 
 // Mock NotificationService
-const mockCreateChannel = jest.fn(() => Promise.resolve())
-const mockCancelNotifications = jest.fn(() => Promise.resolve())
-const mockScheduleNotification = jest.fn(() => Promise.resolve())
+const mockCancelNotification = jest.fn((_: NotificationType) =>
+  Promise.resolve()
+)
+const mockScheduleNotification = jest.fn(
+  (
+    ..._: Parameters<typeof NotificationService.prototype.scheduleNotification>
+  ) => Promise.resolve()
+)
 
 jest.mock('../notification-service', () => ({
   __esModule: true,
   default: {
-    createChannel: (...args) => mockCreateChannel(...args),
-    cancelNotifications: (...args) => mockCancelNotifications(...args),
-    scheduleNotification: (...args) => mockScheduleNotification(...args),
+    cancelNotification: (id: NotificationType) => mockCancelNotification(id),
+    scheduleNotification: (
+      ...args: Parameters<
+        typeof NotificationService.prototype.scheduleNotification
+      >
+    ) => mockScheduleNotification(...args),
   },
 }))
 
@@ -46,7 +55,6 @@ describe('Test period notifications', () => {
   beforeAll(async () => {
     await setupPeriodNotifications()
     // Verify setup was called
-    expect(mockCreateChannel).toHaveBeenCalledWith(NOTIFICATION_TYPE.PERIOD)
     expect(mockAddListener).toHaveBeenCalled()
   })
 
@@ -63,7 +71,7 @@ describe('Test period notifications', () => {
     mockGetPredictedMenses.mockReturnValue([])
 
     // Clear any calls from the setup
-    mockCancelNotifications.mockClear()
+    mockCancelNotification.mockClear()
     mockScheduleNotification.mockClear()
   })
 
@@ -75,20 +83,20 @@ describe('Test period notifications', () => {
     it('does not schedule notification when reminder is disabled', async () => {
       // First enable to set up state, then disable
       periodReminderObservable.set({ enabled: true })
-      await new Promise((resolve) => setTimeout(resolve, 50))
-      mockCancelNotifications.mockClear()
+
+      await new Promise<void>((resolve) => setTimeout(resolve, 200))
+
+      mockCancelNotification.mockClear()
       mockScheduleNotification.mockClear()
 
       mockGetPredictedMenses.mockReturnValue([['2025-01-10']])
       periodReminderObservable.set({ enabled: false })
 
       // Wait for async operations
-      await new Promise((resolve) => setTimeout(resolve, 200))
+      await sleep(200)
 
       expect(mockScheduleNotification).not.toHaveBeenCalled()
-      expect(mockCancelNotifications).toHaveBeenCalledWith(
-        NOTIFICATION_TYPE.PERIOD
-      )
+      expect(mockCancelNotification).toHaveBeenCalledWith('period')
     })
   })
 
@@ -96,12 +104,13 @@ describe('Test period notifications', () => {
     const expectedNotification = expect.objectContaining({
       title: expect.any(String),
       body: expect.any(String),
-      android: expect.objectContaining({
-        channelId: 'period_reminder',
+      channel: expect.objectContaining({
+        id: 'period',
+        name: expect.any(String),
+        importance: expect.any(Number),
       }),
       data: expect.objectContaining({
         screen: 'Home',
-        notificationType: NOTIFICATION_TYPE.PERIOD,
       }),
     })
     it('does not schedule notification when there are no predictions', async () => {
@@ -109,7 +118,7 @@ describe('Test period notifications', () => {
       periodReminderObservable.set({ enabled: true })
 
       // Wait for async operations
-      await new Promise((resolve) => setTimeout(resolve, 200))
+      await sleep(200)
 
       expect(mockScheduleNotification).not.toHaveBeenCalled()
     })
@@ -124,7 +133,7 @@ describe('Test period notifications', () => {
       periodReminderObservable.set({ enabled: true })
 
       // Wait for async operations
-      await new Promise((resolve) => setTimeout(resolve, 200))
+      await sleep(200)
 
       // Only the next upcoming prediction (first in the list) should be scheduled
       expect(mockScheduleNotification).toHaveBeenCalledTimes(1)
@@ -143,7 +152,7 @@ describe('Test period notifications', () => {
       periodReminderObservable.set({ enabled: true })
 
       // Wait for async operations
-      await new Promise((resolve) => setTimeout(resolve, 200))
+      await sleep(200)
 
       expect(mockScheduleNotification).not.toHaveBeenCalled()
     })
@@ -151,17 +160,17 @@ describe('Test period notifications', () => {
     it('schedules notification with different advance notice days', async () => {
       advanceNoticeDaysObservable.set(5)
       // Wait for the callback from advanceNoticeDaysObservable to complete
-      await new Promise((resolve) => setTimeout(resolve, 100))
+      await sleep(100)
       // Prediction starts on 2025-01-15
       // Advance notice: 5 days
       // Reminder date: 2025-01-10 06:00:00 local time
       mockGetPredictedMenses.mockReturnValue([['2025-01-15']])
-      mockCancelNotifications.mockClear()
+      mockCancelNotification.mockClear()
       mockScheduleNotification.mockClear()
       periodReminderObservable.set({ enabled: true })
 
       // Wait for async operations
-      await new Promise((resolve) => setTimeout(resolve, 200))
+      await sleep(200)
 
       expect(mockScheduleNotification).toHaveBeenCalledTimes(1)
 
@@ -174,22 +183,19 @@ describe('Test period notifications', () => {
 
     it('cancels existing notifications before scheduling new ones', async () => {
       mockGetPredictedMenses.mockReturnValue([['2025-01-10']])
-      mockCancelNotifications.mockClear()
+      mockCancelNotification.mockClear()
       mockScheduleNotification.mockClear()
       periodReminderObservable.set({ enabled: true })
 
       // Wait for async operations
-      await new Promise((resolve) => setTimeout(resolve, 200))
+      await sleep(200)
 
       // cancelNotifications should be called before scheduleNotification
-      expect(mockCancelNotifications).toHaveBeenCalledTimes(1)
-      expect(mockCancelNotifications).toHaveBeenCalledWith(
-        NOTIFICATION_TYPE.PERIOD
-      )
+      expect(mockCancelNotification).toHaveBeenCalledTimes(1)
+      expect(mockCancelNotification).toHaveBeenCalledWith('period')
       expect(mockScheduleNotification).toHaveBeenCalledTimes(1)
 
-      const cancelCallIndex =
-        mockCancelNotifications.mock.invocationCallOrder[0]
+      const cancelCallIndex = mockCancelNotification.mock.invocationCallOrder[0]
       const scheduleCallIndex =
         mockScheduleNotification.mock.invocationCallOrder[0]
 
@@ -197,3 +203,6 @@ describe('Test period notifications', () => {
     })
   })
 })
+
+const sleep = (ms: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, ms))
