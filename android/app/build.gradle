@@ -82,7 +82,7 @@ android {
         applicationId "com.drip"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-         versionCode 48
+         versionCode 50
          versionName "1.2608.23"
     }
     signingConfigs {
@@ -92,19 +92,20 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+
         release {
-            if (project.hasProperty('DRIP_RELEASE_STORE_FILE')) {
-                storeFile file(DRIP_RELEASE_STORE_FILE)
-                storePassword DRIP_RELEASE_STORE_PASSWORD
-                keyAlias DRIP_RELEASE_KEY_ALIAS
-                keyPassword DRIP_RELEASE_KEY_PASSWORD
-            }
+            storeFile file(DRIP_RELEASE_STORE_FILE)
+            storePassword DRIP_RELEASE_STORE_PASSWORD
+            keyAlias DRIP_RELEASE_KEY_ALIAS
+            keyPassword DRIP_RELEASE_KEY_PASSWORD
         }
     }
+
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
         }
+
         release {
             signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
