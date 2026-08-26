@@ -144,8 +144,8 @@ importers:
         specifier: ^8.19.0
         version: 8.57.1
       husky:
-        specifier: ^8.0.0
-        version: 8.0.3
+        specifier: ^9.1.7
+        version: 9.1.7
       jest:
         specifier: ^29.2.1
         version: 29.7.0(@types/node@25.3.2)
@@ -4059,12 +4059,12 @@ packages:
       }
     engines: { node: '>=10.17.0' }
 
-  husky@8.0.3:
+  husky@9.1.7:
     resolution:
       {
-        integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==,
+        integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==,
       }
-    engines: { node: '>=14' }
+    engines: { node: '>=18' }
     hasBin: true
 
   i18next@25.8.13:
@@ -5955,10 +5955,10 @@ packages:
         integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==,
       }
 
-  react-is@19.2.4:
+  react-is@19.2.8:
     resolution:
       {
-        integrity: sha512-W+EWGn2v0ApPKgKKCy/7s7WHXkboGcsrXE+2joLyVxkbyVQfO3MUEaUQDHoSmb8TFFrSKYa9mw64WZHNHSDzYA==,
+        integrity: sha512-s5un28nYxKJw5gvUHyW5PCC28CvBqLu9r3cWgzHT4Vo/5fqqkFcdRYsGcKf50WMPpjjFZS5d76fn3YCo2njKwQ==,
       }
 
   react-native-calendars@1.1314.0:
@@ -10258,7 +10258,7 @@ snapshots:
 
   human-signals@2.1.0: {}
 
-  husky@8.0.3: {}
+  husky@9.1.7: {}
 
   i18next@25.8.13(typescript@5.9.3):
     dependencies:
@@ -11619,7 +11619,7 @@ snapshots:
 
   react-is@18.3.1: {}
 
-  react-is@19.2.4: {}
+  react-is@19.2.8: {}
 
   react-native-calendars@1.1314.0(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0):
     dependencies:
@@ -11748,7 +11748,7 @@ snapshots:
   react-test-renderer@19.1.1(react@19.2.0):
     dependencies:
       react: 19.2.0
-      react-is: 19.2.4
+      react-is: 19.2.8
       scheduler: 0.26.0
 
   react@19.2.0: {}
