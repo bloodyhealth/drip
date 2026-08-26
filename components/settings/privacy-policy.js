@@ -12,7 +12,14 @@ const PrivacyPolicy = () => {
   const { t } = useTranslation(null, {
     keyPrefix: 'sideMenu.privacyPolicy',
   })
-  const sections = ['intro', 'dataUse', 'permissions', 'transparency']
+  const sections = [
+    'information',
+    'intro',
+    'dataUse',
+    'permissions',
+    'transparency',
+    'lastUpdated',
+  ]
 
   return (
     <AppPage title={t('title')}>
