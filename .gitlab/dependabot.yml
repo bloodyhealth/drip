@@ -1,5 +1,3 @@
-# Configuration taken from this article:
-# https://paperless.blog/dependabot-on-gitlab
 version: 2
 updates:
   - package-ecosystem: npm
