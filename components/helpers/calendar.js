@@ -37,8 +37,6 @@ export const predictionToCalFormat = (predictedDays) => {
             borderColor: shades[3],
             borderStyle: i === middleIndex ? 'solid' : 'dashed',
             borderWidth: 2,
-            justifyContent: 'center',
-            alignItems: 'center',
           },
         },
       }
@@ -80,6 +78,7 @@ export const calendarTheme = {
   textMonthFontWeight: 'bold',
   textDayHeaderFontFamily: Fonts.bold,
   textDayFontSize: Sizes.small,
+  textDayFontWeight: 'normal',
   textMonthFontSize: Sizes.subtitle,
   textDayHeaderFontSize: Sizes.small,
   textSectionTitleColor: Colors.orange,

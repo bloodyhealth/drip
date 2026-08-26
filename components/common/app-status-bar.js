@@ -1,18 +1,16 @@
 import React from 'react'
-import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
+import { SystemBars } from 'react-native-edge-to-edge'
 
 import { Colors } from '../../styles'
-import { STATUSBAR_HEIGHT } from '../../config'
 
 const AppStatusBar = () => (
   <View style={styles.statusBar}>
-    <SafeAreaView>
-      <StatusBar
-        backgroundColor={Colors.purple}
-        barStyle="light-content"
-        translucent
-      />
-    </SafeAreaView>
+    <SystemBars
+      backgroundColor={Colors.purple}
+      barStyle="light-content"
+      translucent
+    />
   </View>
 )
 
@@ -22,7 +20,6 @@ const styles = StyleSheet.create({
   },
   statusBar: {
     backgroundColor: Colors.purple,
-    height: STATUSBAR_HEIGHT,
   },
 })
 

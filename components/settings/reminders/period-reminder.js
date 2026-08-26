@@ -53,7 +53,7 @@ const PeriodReminder = () => {
       />
       {isReminderEnabled && (
         <AdvanceNoticeDaysSlider
-          advanceNoticeDays={parseInt(advanceNoticeDays)}
+          advanceNoticeDays={parseInt(advanceNoticeDays, 10)}
           onAdvanceNoticeDaysChange={handleAdvanceNoticeDaysChange}
         />
       )}

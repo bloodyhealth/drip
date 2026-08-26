@@ -1,5 +1,5 @@
-import { PixelRatio, StatusBar } from 'react-native'
-import { scale, verticalScale } from 'react-native-size-matters'
+import { PixelRatio } from 'react-native'
+import { scale, verticalScale } from './common/scale-utils'
 
 export const SYMPTOMS = [
   'bleeding',
@@ -21,8 +21,8 @@ export const CHART_GRID_LINE_HORIZONTAL_WIDTH =
   PixelRatio.roundToNearestPixel(0.3)
 export const CHART_ICON_SIZE = scale(20)
 export const CHART_STROKE_WIDTH = scale(1.5)
-export const CHART_SYMPTOM_HEIGHT_RATIO = scale(0.06)
-export const CHART_XAXIS_HEIGHT_RATIO = scale(0.1)
+export const CHART_SYMPTOM_HEIGHT_RATIO = 0.06
+export const CHART_XAXIS_HEIGHT_RATIO = 0.1
 export const CHART_YAXIS_WIDTH = scale(32)
 export const CHART_TICK_WIDTH = scale(44)
 
@@ -43,5 +43,3 @@ export const HIT_SLOP = {
   left: scale(20),
   right: scale(20),
 }
-
-export const STATUSBAR_HEIGHT = StatusBar.currentHeight

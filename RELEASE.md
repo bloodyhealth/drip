@@ -53,7 +53,7 @@ The following command will:
 - create a commit including a tag named after the new release version name.
 
 ```
-yarn release
+pnpm release
 ```
 
 The version number is defined here in [package.json](https://gitlab.com/bloodyhealth/drip/-/blob/b33ccff0756828e91ded655a2a91b9a6e8a87f56/package.json#L3).
@@ -73,7 +73,7 @@ APK versus AAB
 To build a release apk file, run the following command:
 
 ```
-yarn build-android-apk-release
+pnpm build-android-apk-release
 ```
 
 _which is a shortcut for:_ `cd android && ./gradlew clean && ./gradlew assembleRelease && cd ..`
@@ -83,7 +83,7 @@ This will create a new apk file named `app-release.apk` under `./android/app/bui
 For signing an apk you can run this command:
 
 ```
-yarn sign-android-apk-release
+pnpm sign-android-apk-release
 ```
 
 _which is a shortcut for:_ `zipalign -v -p 4 ./android/app/build/outputs/apk/release/app-release.apk ./android/app/build/outputs/apk/release/app-release_signed.apk`
@@ -95,7 +95,7 @@ It adds a file name `app-release_signed.apk` in the same folder in `./android/ap
 To build a release aab file, run:
 
 ```
-yarn build-android-aab-release
+pnpm build-android-aab-release
 ```
 
 _which is a shortcut for:_ `cd android && ./gradlew clean && ./gradlew :app:bundleRelease && cd ..`
@@ -105,7 +105,7 @@ It creates a new aab file named `app-release.aab` under `./android/app/build/out
 For signing an aab you first need to configure the base module’s build.gradle file with your app’s signing information. You can then run this command:
 
 ```
-yarn sign-android-aab-release
+pnpm sign-android-aab-release
 ```
 
 _which is a shortcut for:_ `jarsigner -keystore ./android/app/drip-release-key.keystore ./android/app/build/outputs/bundle/release/app-release.aab drip-release-key`

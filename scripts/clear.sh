@@ -10,9 +10,6 @@ then
     exit
   fi
 
-  echo "\x1b[35;01m""Do you want to clear general cache(y/n)?""\x1b[39;49;00m"
-  read cache
-
   echo "\x1b[35;01m""Do you want to re-install project libraries(y/n)?""\x1b[39;49;00m"
   read libraries
 
@@ -27,10 +24,6 @@ else
     key="$1"
 
     case $key in
-      cache)
-        cache="y"
-        shift
-        ;;
       npm)
         libraries="y"
         shift
@@ -44,10 +37,9 @@ else
         shift
         ;;
       all)
+        libraries="y"
         ios="y"
         android="y"
-        cache="y"
-        libraries="y"
         shift
         ;;
       *)
@@ -58,15 +50,9 @@ else
 fi
 
 echo "\x1b[35;01m""Clearing of the following components is starting...""\x1b[39;49;00m"
-echo "cache " $cache
 echo "npm " $libraries
 echo "ios " $ios
 echo "android " $android
-
-if [[ $cache == "y" ]] || [[ $1 == "all" ]];
-then
-  . scripts/clear-cache.sh || true
-fi
 
 if [[ $libraries == "y" ]] || [[ $1 == "all" ]];
 then

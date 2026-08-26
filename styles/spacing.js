@@ -1,4 +1,4 @@
-import { scale } from 'react-native-size-matters'
+import { scale } from '../common/scale-utils'
 
 export default {
   zero: '0%',

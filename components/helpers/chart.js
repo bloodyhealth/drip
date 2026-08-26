@@ -99,7 +99,7 @@ export function isSymptomDataComplete(symptom, dateString) {
       return true
     },
   }
-  return (dataCompletenessCheck[symptom] || dataCompletenessCheck['default'])()
+  return (dataCompletenessCheck[symptom] || dataCompletenessCheck.default)()
 }
 
 function getInfoForNeighborColumns(dateString, columnHeight) {

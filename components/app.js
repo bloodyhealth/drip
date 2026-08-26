@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BackHandler, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
-
 import { LocalDate } from '@js-joda/core'
 
 import Header from './header'
@@ -9,8 +8,8 @@ import Menu from './menu'
 import { viewsList } from './views'
 import { pages } from './pages'
 
-import setupNotifications from '../lib/notifications'
 import { closeDb } from '../db'
+import { useNotifications } from '../lib/notifications/use-notifications'
 
 const App = ({ restartApp }) => {
   const [date, setDate] = useState(LocalDate.now().toString())
@@ -33,11 +32,10 @@ const App = ({ restartApp }) => {
       'hardwareBackPress',
       goBack
     )
-
     return () => backHandler.remove()
   })
 
-  useEffect(() => setupNotifications(setCurrentPage, setDate), [])
+  useNotifications({ setCurrentPage, setDate })
 
   const Page = viewsList[currentPage]
   const isTemperatureEditView = currentPage === 'TemperatureEditView'

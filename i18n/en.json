@@ -250,6 +250,14 @@
     "website": "Website",
     "wiki": "our wiki"
   },
+  "notifications": {
+    "period": {
+      "channelName": "Period reminder"
+    },
+    "temperature": {
+      "channelName": "Temperature reminder"
+    }
+  },
   "password": {
     "backupReminder": {
       "android": "After the password is updated the app will automatically restart.",
@@ -301,6 +309,7 @@
       "title": "Unlock app"
     }
   },
+
   "shared": {
     "cancel": "Cancel",
     "confirmToProceed": "Confirm to proceed",

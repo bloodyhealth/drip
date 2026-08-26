@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import { StyleSheet, Pressable } from 'react-native'
 
 import AppIcon from './app-icon'
 import AppText from './app-text'
 
-import { Colors, Fonts, Sizes, Spacing } from '../../styles'
+import { Colors, Fonts, Sizes } from '../../styles'
+import { moderateScale, scale, verticalScale } from '../../common/scale-utils'
 
 const Button = ({
   children,
@@ -14,22 +15,38 @@ const Button = ({
   isSmall,
   onPress,
   testID,
+  style,
   ...props
 }) => {
-  const buttonStyle = isCTA ? styles.cta : styles.regular
-  const textCTA = isCTA ? styles.buttonTextBold : styles.buttonTextRegular
-  const textStyle = [textCTA, isSmall ? textSmall : text]
-
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onPress}
-      style={buttonStyle}
       testID={testID}
+      style={({ pressed }) => [
+        styles.button,
+        isCTA ? styles.cta : styles.regular,
+        isSmall ? styles.buttonSmall : styles.buttonLarge,
+        pressed && styles.pressed,
+        style,
+      ]}
       {...props}
     >
-      <AppText style={textStyle}>{children}</AppText>
-      {iconName && <AppIcon color={Colors.orange} name={iconName} />}
-    </TouchableOpacity>
+      {({ pressed }) => (
+        <>
+          <AppText
+            style={[
+              styles.buttonText,
+              isCTA ? styles.buttonTextBold : styles.buttonTextRegular,
+              isSmall ? styles.buttonTextSmall : styles.buttonTextLarge,
+              pressed && styles.pressedText,
+            ]}
+          >
+            {children}
+          </AppText>
+          {iconName && <AppIcon color={Colors.orange} name={iconName} />}
+        </>
+      )}
+    </Pressable>
   )
 }
 
@@ -39,6 +56,7 @@ Button.propTypes = {
   isCTA: PropTypes.bool,
   isSmall: PropTypes.bool,
   onPress: PropTypes.func,
+  style: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   testID: PropTypes.string,
 }
 
@@ -46,35 +64,39 @@ Button.defaultProps = {
   isSmall: true,
 }
 
-const text = {
-  padding: Spacing.base,
-  textTransform: 'uppercase',
-}
-
-const textSmall = {
-  fontSize: Sizes.small,
-  padding: Spacing.small,
-  textTransform: 'uppercase',
-}
-
-const button = {
-  alignItems: 'center',
-  alignSelf: 'center',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  marginTop: Spacing.base,
-  paddingHorizontal: Spacing.tiny,
-  minWidth: '15%',
-}
-
 const styles = StyleSheet.create({
-  regular: {
-    ...button,
+  button: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: verticalScale(12),
   },
+  buttonSmall: {
+    borderRadius: moderateScale(20),
+    paddingHorizontal: scale(20),
+    paddingVertical: verticalScale(8),
+  },
+  buttonLarge: {
+    borderRadius: moderateScale(25),
+    paddingHorizontal: scale(28),
+    paddingVertical: verticalScale(12),
+  },
+  regular: {},
   cta: {
     backgroundColor: Colors.orange,
-    borderRadius: 25,
-    ...button,
+  },
+  pressed: {
+    opacity: 0.75,
+  },
+  buttonText: {
+    textTransform: 'uppercase',
+  },
+  buttonTextSmall: {
+    fontSize: Sizes.small,
+  },
+  buttonTextLarge: {
+    fontSize: Sizes.base,
   },
   buttonTextBold: {
     color: 'white',
@@ -83,6 +105,9 @@ const styles = StyleSheet.create({
   buttonTextRegular: {
     color: Colors.greyDark,
     fontFamily: Fonts.main,
+  },
+  pressedText: {
+    opacity: 0.75,
   },
 })
 

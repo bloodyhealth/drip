@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Path, Shape } from '@react-native-community/art'
+import { Path, Circle } from 'react-native-svg'
 
 import { Colors } from '../../styles'
 
@@ -25,20 +25,14 @@ const DotAndLine = ({
   if (leftY) {
     const middleY = (leftY - y) / 2 + y
     excludeLeftLine = leftTemperatureExclude || exclude
-    lineLeft = new Path().moveTo(CHART_COLUMN_MIDDLE, y).lineTo(0, middleY)
+    lineLeft = `M ${CHART_COLUMN_MIDDLE} ${y} L 0 ${middleY}`
   }
   if (rightY) {
     const middleY = (y - rightY) / 2 + rightY
     excludeRightLine = rightTemperatureExclude || exclude
-    lineRight = new Path()
-      .moveTo(CHART_COLUMN_MIDDLE, y)
-      .lineTo(CHART_COLUMN_WIDTH, middleY)
+    lineRight = `M ${CHART_COLUMN_MIDDLE} ${y} L ${CHART_COLUMN_WIDTH} ${middleY}`
   }
 
-  const dot = new Path()
-    .moveTo(CHART_COLUMN_MIDDLE, y - CHART_DOT_RADIUS_TEMPERATURE)
-    .arc(0, CHART_DOT_RADIUS_TEMPERATURE * 2, CHART_DOT_RADIUS_TEMPERATURE)
-    .arc(0, CHART_DOT_RADIUS_TEMPERATURE * -2, CHART_DOT_RADIUS_TEMPERATURE)
   const dotColor = exclude ? Colors.turquoise : Colors.turquoiseDark
   const lineColorLeft = excludeLeftLine
     ? Colors.turquoise
@@ -49,20 +43,26 @@ const DotAndLine = ({
 
   return (
     <React.Fragment>
-      <Shape
-        d={lineLeft}
-        stroke={lineColorLeft}
-        strokeWidth={CHART_STROKE_WIDTH}
-        key={y}
-      />
-      <Shape
-        d={lineRight}
-        stroke={lineColorRight}
-        strokeWidth={CHART_STROKE_WIDTH}
-        key={y + CHART_DOT_RADIUS_SYMPTOM}
-      />
-      <Shape
-        d={dot}
+      {lineLeft && (
+        <Path
+          d={lineLeft}
+          stroke={lineColorLeft}
+          strokeWidth={CHART_STROKE_WIDTH}
+          key={y}
+        />
+      )}
+      {lineRight && (
+        <Path
+          d={lineRight}
+          stroke={lineColorRight}
+          strokeWidth={CHART_STROKE_WIDTH}
+          key={y + CHART_DOT_RADIUS_SYMPTOM}
+        />
+      )}
+      <Circle
+        cx={CHART_COLUMN_MIDDLE}
+        cy={y}
+        r={CHART_DOT_RADIUS_TEMPERATURE}
         stroke={dotColor}
         strokeWidth={CHART_STROKE_WIDTH}
         fill={dotColor}

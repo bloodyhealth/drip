@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Shape } from '@react-native-community/art'
+import { Path } from 'react-native-svg'
 
 import { Colors } from '../../styles'
 import {
@@ -15,11 +15,11 @@ const ChartLine = ({ path, isNfpLine }) => {
     ? CHART_STROKE_WIDTH
     : CHART_GRID_LINE_HORIZONTAL_WIDTH * 2.5
 
-  return <Shape d={path} stroke={color} strokeWidth={width} />
+  return <Path d={path} stroke={color} strokeWidth={width} />
 }
 
 ChartLine.propTypes = {
-  path: PropTypes.object,
+  path: PropTypes.string,
   isNfpLine: PropTypes.bool,
 }
 

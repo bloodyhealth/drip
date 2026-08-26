@@ -28,7 +28,7 @@ const DayColumn = ({
   xAxisHeight,
 }) => {
   const momentDate = moment(dateString)
-  const isWeekend = momentDate.day() == 0 || momentDate.day() == 6
+  const isWeekend = momentDate.day() === 0 || momentDate.day() === 6
   const cycleDayData = getCycleDay(dateString)
   let data = {}
 
@@ -47,7 +47,7 @@ const DayColumn = ({
           // if symptomColorMethods entry doesn't exist for given symptom,
           // use 'default'
           const getSymptomColorIndex =
-            symptomColorMethods[symptom] || symptomColorMethods['default']
+            symptomColorMethods[symptom] || symptomColorMethods.default
 
           symptomDataToDisplay[symptom] = getSymptomColorIndex(symptomData)
         }

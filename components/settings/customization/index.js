@@ -32,7 +32,7 @@ import {
   useCervixAsSecondarySymptomObservable,
 } from '../../../local-storage'
 import { SYMPTOMS } from '../../../config'
-import { InfertileDaysInfo } from './sections/InfertileDaysInfo'
+import { InfertileDaysInfo } from './sections/infertile-days-info'
 import { PeriodPrediction } from './sections/period-prediction'
 
 const Settings = () => {
@@ -176,7 +176,7 @@ const Settings = () => {
         )
       )
     } else if (
-      !isMucusTrackingCategoryEnabled == isCervixTrackingCategoryEnabled
+      !isMucusTrackingCategoryEnabled === isCervixTrackingCategoryEnabled
     ) {
       Alert.alert(
         t('sideMenu.settings.customization.secondarySymptom.alert.title'),

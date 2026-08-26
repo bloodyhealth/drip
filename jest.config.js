@@ -1,9 +1,9 @@
 module.exports = {
-  preset: '@testing-library/react-native',
+  preset: 'react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
-  setupFilesAfterEnv: ['./jest-setup.js'],
+  setupFilesAfterEnv: ['./jest-setup.ts'],
   transformIgnorePatterns: [
-    'node_modules/(?!((jest-)?react-native(-.*)?|@react-native(-community)?)/)',
+    'node_modules/(?!((jest-)?react-native(-.*)?|@react-native(-community)?|@notifee)/)',
   ],
   watchPlugins: [
     'jest-watch-typeahead/filename',

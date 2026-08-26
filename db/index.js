@@ -1,6 +1,6 @@
-import Realm from 'realm'
+import { Realm } from 'realm'
 import { LocalDate, ChronoUnit } from '@js-joda/core'
-import fs from 'react-native-fs'
+import * as fs from '@dr.pogodin/react-native-fs'
 
 import schemas from './schemas'
 import cycleModule from '../lib/cycle'
@@ -17,35 +17,44 @@ export async function openDb(hash) {
     realmConfig.encryptionKey = hashToInt8Array(hash)
   }
 
-  // perform migrations if necessary, see https://realm.io/docs/javascript/2.8.0/#migrations
+  // perform migrations if necessary
   // we open the db temporarily, to get the schema version even if the db is encrypted
   let tempConnection
   try {
     tempConnection = await Realm.open(realmConfig)
   } catch (err) {
-    const isErrorDecrypting = err.toString().includes('decrypt')
-    const isErrorMnemonic = err.toString().includes('Invalid mnemonic')
-    // tried to open without password, but is encrypted or incorrect pwd
-    if (isErrorMnemonic) return false
-    // cannot decrypt db with given pwd
-    if (hash && isErrorDecrypting) return false
+    const msg = err.toString().toLowerCase()
+    const isEncryptionError =
+      msg.includes('decrypt') ||
+      msg.includes('mnemonic') ||
+      msg.includes('encrypted realm file') ||
+      msg.includes('encryption key was supplied')
+
+    if (isEncryptionError) return false
 
     throw err
   }
 
-  let nextSchemaIndex = Realm.schemaVersion(Realm.defaultPath)
+  let nextSchemaIndex = Realm.schemaVersion(
+    tempConnection.path || Realm.defaultPath
+  )
   tempConnection.close()
+
   while (nextSchemaIndex < schemas.length - 1) {
-    const tempConfig = Object.assign(realmConfig, schemas[nextSchemaIndex++])
-    const migratedRealm = new Realm(tempConfig)
+    const tempConfig = {
+      ...realmConfig,
+      ...schemas[nextSchemaIndex++],
+    }
+    const migratedRealm = await Realm.open(tempConfig)
     migratedRealm.close()
   }
 
   // open the Realm with the latest schema
-  realmConfig.schema = schemas[schemas.length - 1]
-  const connection = await Realm.open(
-    Object.assign(realmConfig, schemas[schemas.length - 1])
-  )
+  const latestSchemaConfig = {
+    ...realmConfig,
+    ...schemas[schemas.length - 1],
+  }
+  const connection = await Realm.open(latestSchemaConfig)
 
   db = connection
   const cycle = cycleModule()
@@ -203,8 +212,6 @@ export function tryToImportWithoutDelete(cycleDays) {
 }
 
 export async function changeDbEncryption(hash) {
-  let key
-  if (hash) key = hashToInt8Array(hash)
   const defaultPath = db.path
   const dir = db.path.split('/')
   dir.pop()
@@ -212,14 +219,19 @@ export async function changeDbEncryption(hash) {
   const copyPath = dir.join('/')
   const exists = await fs.exists(copyPath)
   if (exists) await fs.unlink(copyPath)
-  db.writeCopyTo({ path: copyPath, encryptionKey: key })
+  if (hash) {
+    const key = hashToInt8Array(hash)
+    db.writeCopyTo({ path: copyPath, encryptionKey: key })
+  } else {
+    db.writeCopyTo({ path: copyPath })
+  }
   db.close()
   await fs.unlink(defaultPath)
   await fs.moveFile(copyPath, defaultPath)
 }
 
 export function isDbEmpty() {
-  return db.empty
+  return db.isEmpty
 }
 
 export async function deleteDbAndOpenNew() {
@@ -229,7 +241,9 @@ export async function deleteDbAndOpenNew() {
 }
 
 export function clearDb() {
-  db.write(db.deleteAll)
+  db.write(() => {
+    db.deleteAll()
+  })
 }
 
 function hashToInt8Array(hash) {

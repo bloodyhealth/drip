@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet } from 'react-native'
-import Icon from 'react-native-vector-icons/Entypo'
+import { Entypo as Icon } from '@react-native-vector-icons/entypo/static'
 
 import { Sizes } from '../../styles'
 

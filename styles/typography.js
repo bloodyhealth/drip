@@ -1,12 +1,12 @@
 import { Platform } from 'react-native'
-import { scale } from 'react-native-size-matters'
 
 import Colors from './colors'
 import Spacing from './spacing'
+import { scale } from '../common/scale-utils'
 
 export const fonts = {
   main: Platform.OS === 'ios' ? 'Jost-Book' : 'Jost-400-Book',
-  bold : Platform.OS === 'ios' ? 'Jost-Bold' : 'Jost-700-Bold',
+  bold: Platform.OS === 'ios' ? 'Jost-Bold' : 'Jost-700-Bold',
 }
 
 export const sizes = {
@@ -23,7 +23,7 @@ export const sizes = {
 const accentText = {
   fontFamily: fonts.bold,
   textAlignVertical: 'center',
-  textTransform: 'uppercase'
+  textTransform: 'uppercase',
 }
 
 const accentTextBig = {
@@ -43,47 +43,47 @@ const accentTextHuge = {
 
 const accentTextSmall = {
   ...accentText,
-  fontSize: sizes.small
+  fontSize: sizes.small,
 }
 
 const title = {
   color: Colors.purple,
-  marginVertical: Spacing.large
+  marginVertical: Spacing.large,
 }
 
 const label = {
   fontSize: sizes.small,
-  textTransform: 'uppercase'
+  textTransform: 'uppercase',
 }
 
 export default {
   accentOrange: {
     ...accentTextSmall,
-    color: Colors.orange
+    color: Colors.orange,
   },
   accentPurpleBig: {
     ...accentTextBig,
-    color: Colors.purple
+    color: Colors.purple,
   },
   accentPurpleGiant: {
     ...accentTextGiant,
-    color: Colors.purple
+    color: Colors.purple,
   },
   accentPurpleHuge: {
     ...accentTextHuge,
-    color: Colors.purple
+    color: Colors.purple,
   },
   mainText: {
     fontFamily: fonts.main,
-    fontSize: sizes.base
+    fontSize: sizes.base,
   },
   label: {
-    ...label
+    ...label,
   },
   labelBold: {
     color: Colors.greyDark,
     fontWeight: 'bold',
-    ...label
+    ...label,
   },
   labelLight: {
     color: Colors.grey,
@@ -91,7 +91,7 @@ export default {
   },
   subtitle: {
     fontSize: sizes.subtitle,
-    ...title
+    ...title,
   },
   title: {
     alignSelf: 'center',
@@ -99,7 +99,7 @@ export default {
     fontWeight: '700',
     fontSize: sizes.title,
     marginHorizontal: Spacing.base,
-    ...title
+    ...title,
   },
   titleWithoutMargin: {
     alignSelf: 'center',
@@ -107,5 +107,5 @@ export default {
     fontFamily: fonts.bold,
     fontWeight: '700',
     fontSize: sizes.title,
-  }
+  },
 }

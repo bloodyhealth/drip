@@ -24,7 +24,7 @@ import { showToast } from '../helpers/general'
 import { fertilityTrackingObservable } from '../../local-storage'
 import { Colors, Containers, Sizes, Spacing } from '../../styles'
 import { useTranslation } from 'react-i18next'
-import { LearnMore } from './LearnMore'
+import { LearnMore } from './learn-more'
 
 const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const { t } = useTranslation()
@@ -41,7 +41,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
     if (symptom === 'note') {
       Object.assign(parsedData, { value: note })
     } else {
-      parsedData['note'] = note
+      parsedData.note = note
     }
 
     setData(parsedData)
@@ -155,8 +155,8 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
         {shouldShow(symptomConfig.selectBoxGroups) &&
           symtomPage[symptom].selectBoxGroups.map((group) => {
             const isOtherSelected =
-              data['other'] !== null &&
-              data['other'] !== false &&
+              data.other !== null &&
+              data.other !== false &&
               Object.keys(group.options).includes('other')
 
             return (
