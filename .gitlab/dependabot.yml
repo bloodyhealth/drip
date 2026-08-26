@@ -1,14 +1,69 @@
 version: 2
 updates:
-  - package-ecosystem: npm
-    directory: /
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: daily
-    open-pull-requests-limit: 3
+      interval: 'weekly'
+      day: 'monday'
+    open-pull-requests-limit: 5
     ignore:
-      - dependency-name: '*'
-        update-types: ['version-update:semver-patch']
+      # Kept from existing config: Realm upgrades are deliberate and often breaking.
       - dependency-name: 'realm'
+      # Kept from existing/template: React majors must stay aligned with RN.
       - dependency-name: 'react'
-      - dependency-name: 'react-native'
-      - dependency-name: '@babel/core'
+    groups:
+      # React Native core. RN does not bump major often; keep to patches only.
+      react-native:
+        patterns:
+          - 'react-native'
+          - '@react-native/*'
+          - 'metro'
+          - 'metro-*'
+        update-types:
+          - 'patch'
+      react-native-community:
+        patterns:
+          - '@react-native-community/*'
+        update-types:
+          - 'minor'
+          - 'patch'
+      react-native-packages:
+        patterns:
+          - 'react-native-*'
+      testing:
+        patterns:
+          - 'jest'
+          - 'jest-*'
+          - '@jest/*'
+          - '@testing-library/*'
+          - '@types/jest'
+      typescript:
+        patterns:
+          - 'typescript'
+          - '@types/*'
+        update-types:
+          - 'minor'
+          - 'patch'
+      linting:
+        patterns:
+          - 'eslint'
+          - 'eslint-*'
+          - 'prettier'
+      build-tools:
+        patterns:
+          - '@babel/*'
+          - 'babel-*'
+        update-types:
+          - 'minor'
+          - 'patch'
+
+  - package-ecosystem: 'bundler'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+    open-pull-requests-limit: 5
+    groups:
+      bundler-dependencies:
+        patterns:
+          - '*'
