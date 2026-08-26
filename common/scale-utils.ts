@@ -16,7 +16,7 @@ const guidelineBaseHeight = 680
 // Normalize for pixel density so 1pt behaves consistently across densities.
 // This was not in the original library and is the main fix for RN 0.73+.
 const pixelRatio = PixelRatio.get()
-const densityFactor = pixelRatio > 2 ? 2 / pixelRatio : 1
+const densityFactor = pixelRatio > 2 ? 2.7 / pixelRatio : 1
 
 export const scale = (size: number): number =>
   Math.round(
