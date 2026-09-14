@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import {
   Dimensions,
@@ -31,9 +31,32 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const symptomConfig = symtomPage[symptom]
   const [data, setData] = useState(symptomData ? symptomData : blank[symptom])
   const [shouldShowInfo, setShouldShowInfo] = useState(false)
+  const scrollViewRef = useRef(null)
+  const shouldScrollToInfo = useRef(false)
+  const learnMoreButtonY = useRef(0)
   const getParsedData = () => JSON.parse(JSON.stringify(data))
-  const onPressLearnMore = () => setShouldShowInfo(!shouldShowInfo)
   const isFertilityTrackingEnabled = fertilityTrackingObservable.value
+
+  const onPressLearnMore = () => {
+    // only scroll when opening, not when collapsing
+    shouldScrollToInfo.current = !shouldShowInfo
+    setShouldShowInfo(!shouldShowInfo)
+  }
+
+  const onLearnMoreLayout = ({ nativeEvent }) => {
+    learnMoreButtonY.current = nativeEvent.layout.y
+  }
+
+  // fires once the revealed text has been laid out, so it can be scrolled to
+  const onInfoLayout = () => {
+    if (!shouldScrollToInfo.current) return
+
+    shouldScrollToInfo.current = false
+    scrollViewRef.current?.scrollTo({
+      y: learnMoreButtonY.current - Spacing.small,
+      animated: true,
+    })
+  }
 
   const onEditNote = (note) => {
     const parsedData = getParsedData()
@@ -131,6 +154,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
       <ScrollView
         contentContainerStyle={styles.modalContainer}
         keyboardDismissMode="on-drag"
+        ref={scrollViewRef}
       >
         {symptom === 'temperature' && (
           <Temperature
@@ -203,9 +227,6 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
           </Segment>
         )}
         <View style={styles.buttonsContainer}>
-          <Button iconName={iconName} isSmall onPress={onPressLearnMore}>
-            {t('cycleDay.symptomEditModal.learnMore.title')}
-          </Button>
           <Button isSmall onPress={onRemove}>
             {t('cycleDay.symptomEditModal.remove')}
           </Button>
@@ -213,10 +234,20 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             {t('cycleDay.symptomEditModal.save')}
           </Button>
         </View>
+        <Button
+          iconName={iconName}
+          isSmall
+          onLayout={onLearnMoreLayout}
+          onPress={onPressLearnMore}
+        >
+          {t('cycleDay.symptomEditModal.learnMore.title')}
+        </Button>
         {shouldShowInfo && (
-          <Segment last style={styles.segmentBorder}>
-            <LearnMore symptom={symptom} />
-          </Segment>
+          <View onLayout={onInfoLayout}>
+            <Segment last style={styles.segmentBorder}>
+              <LearnMore symptom={symptom} />
+            </Segment>
+          </View>
         )}
       </ScrollView>
     </AppModal>
@@ -233,8 +264,9 @@ SymptomEditView.propTypes = {
 const styles = StyleSheet.create({
   buttonsContainer: {
     ...Containers.rowContainer,
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     paddingHorizontal: Spacing.base,
-    paddingBottom: Spacing.base,
   },
   input: {
     height: Sizes.base * 5,
