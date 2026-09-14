@@ -13,6 +13,7 @@ import { openDb } from '../db'
 import App from './app'
 import AppLoadingView from './common/app-loading'
 import AppStatusBar from './common/app-status-bar'
+import { ErrorBoundary } from './common/error-boundary'
 import AcceptLicense from './accept-license'
 import PasswordPrompt from './password-prompt'
 
@@ -75,7 +76,7 @@ export default function AppWrapper() {
         style={styles.container}
       >
         {showStatusBar && <AppStatusBar />}
-        {renderContent()}
+        <ErrorBoundary>{renderContent()}</ErrorBoundary>
       </SafeAreaView>
     </SafeAreaProvider>
   )

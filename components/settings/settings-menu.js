@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import AppPage from '../common/app-page'
+import { DebugCrashButton } from './debug-crash-button'
 import MenuItem from './menu-item'
 
 import { useTranslation } from 'react-i18next'
@@ -26,6 +27,7 @@ const SettingsMenu = ({ navigate }) => {
           <MenuItem item={menuItem} key={i} last={last} navigate={navigate} />
         )
       })}
+      {__DEV__ && <DebugCrashButton />}
     </AppPage>
   )
 }
