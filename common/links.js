@@ -5,6 +5,10 @@ export default {
     url: 'https://gitlab.com/bloodyhealth/drip',
     text: 'GitLab',
   },
+  gitlabIssues: {
+    url: 'https://gitlab.com/bloodyhealth/drip/-/issues',
+    text: 'GitLab',
+  },
   email: {
     url: 'mailto:drip@mailbox.org',
     text: i18n.t('links.email'),

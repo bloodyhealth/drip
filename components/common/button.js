@@ -6,7 +6,7 @@ import AppIcon from './app-icon'
 import AppText from './app-text'
 
 import { Colors, Fonts, Sizes } from '../../styles'
-import { moderateScale, scale, verticalScale } from '../../common/scale-utils'
+import { moderateScale, scale } from '../../common/scale-utils'
 
 const Button = ({
   children,
@@ -70,17 +70,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: verticalScale(12),
+    marginTop: scale(12),
   },
   buttonSmall: {
     borderRadius: moderateScale(20),
     paddingHorizontal: scale(20),
-    paddingVertical: verticalScale(8),
+    paddingVertical: scale(8),
   },
   buttonLarge: {
     borderRadius: moderateScale(25),
     paddingHorizontal: scale(28),
-    paddingVertical: verticalScale(12),
+    paddingVertical: scale(12),
   },
   regular: {},
   cta: {

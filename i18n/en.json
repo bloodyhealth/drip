@@ -234,6 +234,22 @@
     },
     "today": "Today"
   },
+  "errorBoundary": {
+    "title": "Something went wrong",
+    "intro": "Unfortunately, an unexpected error occurred.",
+    "retry": "Try again",
+    "contact": {
+      "title": "Tell us about it",
+      "text": "drip is made by a small team and reports like yours are how these bugs get found. You can send us the details below by email or open an issue on GitLab.",
+      "emailSubject": "drip crash report ({{version}})"
+    },
+    "details": {
+      "title": "Error details",
+      "version": "Version",
+      "platform": "Platform",
+      "message": "Error"
+    }
+  },
   "labels": {
     "bleedingPrediction": {
       "noPrediction": "As soon as you have tracked 3 menstrual cycles, drip will make predictions for the next ones."

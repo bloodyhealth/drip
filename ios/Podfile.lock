@@ -2713,7 +2713,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - RNShare (12.0.10):
+  - RNShare (12.3.1):
     - boost
     - DoubleConversion
     - fast_float
@@ -3088,12 +3088,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
-  DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
+  DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   fast_float: b32c788ed9c6a8c584d114d0047beda9664e7cc6
   FBLazyVector: f1200e6ef6cf24885501668bdbb9eff4cf48843f
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
-  glog: 476ee3e89abb49e07f822b48323c51c57124b572
-  hermes-engine: e7ad45ce555bb2dc84e8ebd15b7ee4ef8bae5a85
+  glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
+  hermes-engine: e0118642c1a0be755212b1a9bcf9465eb551faf2
   RCT-Folly: 846fda9475e61ec7bcbf8a3fe81edfcaeb090669
   RCTDeprecation: 3b915a7b166f7d04eaeb4ae30aaf24236a016551
   RCTRequired: fcfec6ba532cfe4e53c49e0a4061b5eff87f8c64
@@ -3173,7 +3173,7 @@ SPEC CHECKSUMS:
   RNDateTimePicker: 97a86d7c8b51f2d51f694a9dddfe5996dfd9a407
   RNNotifee: 5e3b271e8ea7456a36eec994085543c9adca9168
   RNPermissions: e5dd84f29e7a3871451f88efa83dfa6227806b51
-  RNShare: ca16c4eb4f0cc6ee6de3a72cd71eddb816984f0d
+  RNShare: bf3fa119b277d4a1729553e870039427bcb80c93
   RNSVG: 595abfa0f9ac26d56afcaaedf4e37a00f54cab71
   RNVectorIcons: 5784330be9dddb5474e8b378d5f6947996c84e55
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748

@@ -13,7 +13,7 @@ const MenuItem = ({ isActive, icon, label, onPress }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Icon name={icon} isActive={isActive} />
-      <Text testID={testID} style={textStyle}>
+      <Text testID={testID} style={textStyle} numberOfLines={1}>
         {label}
       </Text>
     </TouchableOpacity>
