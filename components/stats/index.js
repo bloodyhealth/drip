@@ -13,7 +13,7 @@ import { getCycleLengthStats as getCycleInfo } from '../../lib/cycle-length'
 import { formatDecimal } from '../helpers/cycle-day'
 
 import { Containers, Sizes, Spacing, Typography } from '../../styles'
-import { scale, verticalScale } from '../../common/scale-utils'
+import { scale } from '../../common/scale-utils'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 const image = require('../../assets/cycle-icon.png')
@@ -103,11 +103,11 @@ const styles = StyleSheet.create({
   },
   accentPurpleGiant: {
     ...Typography.accentPurpleGiant,
-    marginTop: verticalScale(Spacing.base * -2),
+    marginTop: scale(Spacing.base * -2),
   },
   accentPurpleHuge: {
     ...Typography.accentPurpleHuge,
-    marginTop: verticalScale(Spacing.base * -1),
+    marginTop: scale(Spacing.base * -1),
   },
   container: {
     alignItems: 'center',
@@ -121,18 +121,18 @@ const styles = StyleSheet.create({
   columnRight: {
     ...column,
     flex: 5,
-    paddingTop: verticalScale(Spacing.small),
+    paddingTop: scale(Spacing.small),
   },
   image: {
     resizeMode: 'contain',
   },
   imageContainter: {
-    paddingTop: verticalScale(Spacing.large * 2.5),
-    marginBottom: verticalScale(Spacing.large),
+    paddingTop: scale(Spacing.large * 2.5),
+    marginBottom: scale(Spacing.large),
   },
   overviewContainer: {
     paddingHorizontal: scale(Spacing.base),
-    paddingTop: verticalScale(Spacing.base),
+    paddingTop: scale(Spacing.base),
   },
   pageContainer: {
     ...Containers.pageContainer,

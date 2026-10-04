@@ -1,5 +1,5 @@
 import { PixelRatio } from 'react-native'
-import { scale, verticalScale } from './common/scale-utils'
+import { scale } from './common/scale-utils'
 
 export const SYMPTOMS = [
   'bleeding',
@@ -38,8 +38,8 @@ export const ADVANCE_PERIOD_NOTICE_DAYS_MAX = 7
 export const ADVANCE_PERIOD_NOTICE_DAYS_INIT_VALUE = 3
 
 export const HIT_SLOP = {
-  top: verticalScale(20),
-  bottom: verticalScale(20),
+  top: scale(20),
+  bottom: scale(20),
   left: scale(20),
   right: scale(20),
 }

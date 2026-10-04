@@ -1,52 +1,34 @@
 import { Dimensions, PixelRatio } from 'react-native'
 
-const { width, height } = Dimensions.get('window')
+// Match these to your design mockups
+const BASE_WIDTH = 375
+const BASE_HEIGHT = 812
 
-// Always use the smaller dimension for horizontal scale,
-// larger for vertical — same as the library, but explicit.
-const [shortDimension, longDimension] =
-  width < height ? [width, height] : [height, width]
-
-// Guideline sizes based on a standard ~5" screen (360×680 logical pixels).
-// RN 0.73+ reports window dimensions more precisely (excludes system bars),
-// so we use slightly smaller bases than the library's 350×680 to compensate.
-const guidelineBaseWidth = 350
-const guidelineBaseHeight = 680
-
-// Normalize for pixel density so 1pt behaves consistently across densities.
-// This was not in the original library and is the main fix for RN 0.73+.
-const pixelRatio = PixelRatio.get()
-const densityFactor = pixelRatio > 2 ? 2.7 / pixelRatio : 1
+// Keep tablets from blowing up and tiny phones from shrinking too much
+const MIN_FACTOR = 0.85
+const MAX_FACTOR = 1.3
 
 export const scale = (size: number): number =>
-  Math.round(
-    PixelRatio.roundToNearestPixel(
-      (shortDimension / guidelineBaseWidth) * size * densityFactor
-    )
-  )
+  snap(size * getFactors().horizontal)
 
-export const verticalScale = (size: number): number =>
-  Math.round(
-    PixelRatio.roundToNearestPixel(
-      (longDimension / guidelineBaseHeight) * size * densityFactor
-    )
-  )
+export const moderateScale = (size: number, factor = 0.5): number => {
+  const scaled = size * getFactors().horizontal
+  return snap(size + (scaled - size) * factor)
+}
 
-export const moderateScale = (size: number, factor: number = 0.5): number =>
-  Math.round(
-    PixelRatio.roundToNearestPixel(size + (scale(size) - size) * factor)
-  )
+const clamp = (value: number) =>
+  Math.min(Math.max(value, MIN_FACTOR), MAX_FACTOR)
 
-export const moderateVerticalScale = (
-  size: number,
-  factor: number = 0.5
-): number =>
-  Math.round(
-    PixelRatio.roundToNearestPixel(size + (verticalScale(size) - size) * factor)
-  )
+const snap = (value: number) => PixelRatio.roundToNearestPixel(value)
 
-// Short aliases
-export const s = scale
-export const vs = verticalScale
-export const ms = moderateScale
-export const mvs = moderateVerticalScale
+// Read on every call, so values reflect the current window
+// (rotation, split-screen, foldables, resizable windows).
+const getFactors = () => {
+  const { width, height } = Dimensions.get('window')
+  const [short, long] = width < height ? [width, height] : [height, width]
+
+  return {
+    horizontal: clamp(short / BASE_WIDTH),
+    vertical: clamp(long / BASE_HEIGHT),
+  }
+}
