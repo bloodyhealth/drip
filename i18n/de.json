@@ -1,591 +1,325 @@
 {
-  "bottomMenu": {
-    "calendar": "Kalender",
-    "chart": "Graph",
-    "stats": "Statistik"
-  },
-  "chart": {
-    "noData": {
-      "buttonText": "Jetzt Daten eintragen.",
-      "description": "Du hast noch keine Daten eingegeben."
-    },
-    "noTemperature": {
-      "description": "Du hast noch keine Temperaturdaten eingegeben."
-    },
-    "tutorial": "Du kannst den Graphen nach links wischen, um weitere Daten anzuzeigen."
-  },
-  "cycleDay": {
-    "bleeding": {
-      "exclude": "Du kannst diesen Wert ausschließen, wenn es sich nicht um eine Menstruationsblutung handelt.",
-      "heaviness": {
-        "description": "Wie stark ist die Blutung?",
-        "symptoms": {
-          "heavy": "stark",
-          "light": "leicht",
-          "medium": "mittel",
-          "spotting": "Schmierblutung"
-        },
-        "title": "Stärke"
-      }
-    },
-    "bleedingPrediction": {
-      "day_one": "Deine Menstruation beginnt wahrscheinlich heute oder morgen.",
-      "day_other": "Deine Menstruation wird wahrscheinlich heute oder in den nächsten {{count}} Tagen beginnen.",
-      "day_zero": "Deine Menstruation beginnt wahrscheinlich heute.",
-      "future": "Deine nächste Menstruation beginnt wahrscheinlich in {{start}} bis {{end}} Tagen.",
-      "past": "Basierend auf deinen eingetragenen Daten hätte deine Menstruation zwischen {{start}} und {{end}} beginnen sollen."
-    },
-    "cervix": {
-      "exclude": "Du kannst diesen Wert ausklammern, wenn du ihn nicht für die Fruchtbarkeitsauswertung verwenden möchtest.",
-      "firmness": {
-        "description": "Wenn sie hart ist, kann sie sich wie die Nasenspitze anfühlen",
-        "symptoms": {
-          "hard": "hart",
-          "soft": "weich"
-        },
-        "title": "Härte"
-      },
-      "opening": {
-        "description": "Ist deine Zervix offen oder geschlossen?",
-        "symptoms": {
-          "closed": "geschlossen",
-          "medium": "mittel",
-          "open": "offen"
-        },
-        "title": "Öffnung"
-      },
-      "position": {
-        "description": "Wie weit oben in der Vagina befindet sich die Zervix?",
-        "symptoms": {
-          "high": "hoch",
-          "low": "tief",
-          "medium": "mittel"
-        },
-        "title": "Lage"
-      }
-    },
-    "desire": {
-      "intensity": {
-        "description": "Wie würdest du deine Lust einschätzen?",
-        "symptoms": {
-          "high": "hoch",
-          "low": "niedrig",
-          "medium": "mittel"
-        },
-        "title": "Intensität"
-      }
-    },
-    "fertilityStatus": {
-      "fertile": "fruchtbar",
-      "fertileUntilEvening": "Die fruchtbare Phase endet heute Abend",
-      "infertile": "unfruchtbar",
-      "periOvu": "Die notwendigen Veränderungen (Temperatur, Zervixschleim / Zervix) zur Annahme der Unfruchtbarkeit nach der sympothermalen Methode sind nicht gegeben.",
-      "periOvuUntilEvening": "Wir haben eine Temperaturverschiebung ($t(cycleDay.fertilityStatus.temperatureShift, {\"count\": {{rule}} }) Temperaturregel) sowie einen Umschwung des Zervixschleim/der Zervix nach der symptothermalen Methode festgestellt. Heute Abend kannst du von Unfruchtbarkeit ausgehen, aber denke immer daran, dich darauf nicht zu verlassen. Prüfe immer, ob dir die Daten sinnvoll erscheinen.",
-      "postOvu": "Wir haben eine Temperaturverschiebung ($t(cycleDay.fertilityStatus.temperatureShift, {\"count\": {{rule}} }) Temperaturregel) sowie eine Zervixschleim-/Zervixverschiebung nach der symptothermalen Methode festgestellt. Du kannst von Unfruchtbarkeit ausgehen, aber denke immer daran, dich nicht darauf zu verlassen. Prüfe immer, ob dir die Daten sinnvoll erscheinen.",
-      "preOvu": "Nach der symptothermalen Methode kannst du am zu Beginn deines Zyklus von 5 Tagen Unfruchtbarkeit ausgehen, solange du keinen fruchtbaren Zervixschleim (oder Zervixwerte) beobachtest.",
-      "temperatureShift_one": "Ausnahmeregel 1",
-      "temperatureShift_other": "Ausnahmeregel 2",
-      "temperatureShift_zero": "Grundregel",
-      "unknown": "Da noch keine Menstruationsdaten eingetragen sind, kann drip keine Zyklusinformationen anzeigen."
-    },
-    "mood": {
-      "feelings": {
-        "description": "Wie hast du dich heute gefühlt?",
-        "symptoms": {
-          "angry": "wütend",
-          "anxious": "ängstlich",
-          "balanced": "ausgeglichen",
-          "energetic": "energiegeladen",
-          "fatigue": "schlapp",
-          "fine": "gut",
-          "happy": "glücklich",
-          "other": "anders",
-          "sad": "traurig",
-          "stressed": "gestresst"
-        }
-      }
-    },
-    "mucus": {
-      "exclude": "Du kannst diesen Wert ausschließen, wenn du ihn nicht für die Fruchtbarkeitsauswertung verwenden möchtest.",
-      "feeling": {
-        "description": "Wie fühlt sich dein Vaginaausgang an?",
-        "symptoms": {
-          "dry": "trocken",
-          "nothing": "nichts",
-          "slippery": "glitschig",
-          "wet": "feucht"
-        },
-        "title": "Gefühl"
-      },
-      "nfp": {
-        "0": "t",
-        "1": "Ø",
-        "2": "f",
-        "3": "S",
-        "4": "S+"
-      },
-      "texture": {
-        "description": "Was beschreibt deinen Zervixschleim am besten beim Ansehen oder Anfassen?",
-        "symptoms": {
-          "creamy": "cremig",
-          "eggWhite": "Eiklar",
-          "nothing": "nichts"
-        },
-        "title": "Konsistenz"
-      }
-    },
-    "note": {
-      "description": "Möchtest du noch etwas für diesen Tag hinzufügen?"
-    },
-    "pain": {
-      "feelings": {
-        "description": "Wie fühlt sich dein Körper heute an?",
-        "symptoms": {
-          "backache": "Rückenschmerzen",
-          "cramps": "Krämpfe",
-          "headache": "Kopfschmerzen",
-          "migraine": "Migräne",
-          "nausea": "Übelkeit",
-          "other": "anderes",
-          "ovulationPain": "Ovulationsschmerz",
-          "tenderBreasts": "sensible Brüste"
-        }
-      }
-    },
-    "sex": {
-      "activity": {
-        "description": "Hattest du heute Sex?",
-        "symptoms": {
-          "partner": "Partner*in",
-          "solo": "Solo"
-        }
-      },
-      "contraceptives": {
-        "description": "Hast du verhütet?",
-        "symptoms": {
-          "condom": "Kondom",
-          "diaphragm": "Diaphragma",
-          "implant": "Hormonimplantat",
-          "iud": "Spirale",
-          "none": "nichts",
-          "other": "andere",
-          "patch": "Verhütungspflaster",
-          "pill": "Pille",
-          "ring": "Vaginalring"
-        }
-      }
-    },
-    "subTitle": "Zyklustag {{cycleDay}}",
-    "symptomEditModal": {
-      "dataDeleted": "Daten wurden gelöscht.",
-      "dataSaved": "Daten wurden gespeichert.",
-      "enter": "Deine Notiz",
-      "learnMore": {
-        "generalInfo": {
-          "chartNfp": "Mit dem Graphen kannst du Fruchtbarkeitszeichen verfolgen. Wenn sowohl eine ausreichende Temperaturveränderung als auch eine Veränderung des Zervixschleims oder der Zervix festgestellt wurde, wird eine orangefarbene Linie auf dem Graphen angezeigt. Diese zeigt das Ende der periovulatorischen und den Beginn der postovulatorischen Phase.",
-          "cycleRelation": "Es kann Einflüsse von deinem Menstruationszyklus und dessen hormonellen Veränderungen geben oder sich auf diese auswirken.",
-          "excludeExplainer": "Du kannst diese Werte ausschließen, sodass sie bei einer Fruchtbarkeitsauswertung nicht berücksichtigt werden.",
-          "nfpThinkForYourselfReminder": "Wenn du – täglich bzw. regelmäßig – Folgendes beobachtest und einträgst:\n1. deine Basaltemperatur,\n2. deinen Zervixschleim oder deinen Cervix,\n3. sowie deine Menstruationsblutung,\ndann hilft dir die App dabei, einzuordnen, in welcher Phase deines Menstruationszyklus du dich befindest.\n\ndrip macht Periodenvorhersagen für dich und unterstützt dich dabei, die sympto-thermale Methode zur Zyklusbeobachtung anzuwenden. Aber bitte denk daran: Diese App wurde von Menschen entwickelt – und Menschen können Fehler machen. Überprüfe deshalb immer selbst: „Ergibt das für mich Sinn?“ Denk daran, dass du keine App brauchst, um deinen Zyklus zu verstehen! Trotzdem möchte dich drip unterstützen und das Tracken deiner Periode einfacher, transparenter und sicherer machen.\n\nWeitere Informationen zur sympto-thermalen Methode findest du unter <0>{{urlText}}</0>.",
-          "noNfpSymptom": "Die App erlaubt Ihnen, dieses Symptom zu Ihrer Information zu verfolgen, es wird bei keiner Berechnung berücksichtigt. Auf dem Diagramm können Sie überprüfen, wie oft Sie dieses Symptom verfolgen. Wenn Sie mehr über die sympto-thermale Methode erfahren möchten, die für die Fruchtbarkeitsverfolgung innerhalb der App verwendet wird, können Sie <0>{{urlText}}</0> besuchen."
-        },
-        "symptoms": {
-          "bleeding": {
-            "description": "Die Verfolgung der Menstruationsblutung ermöglicht es Ihnen, den Beginn und das Ende eines Menstruationszyklus zu kennen.\nNachdem Sie mindestens 3 Menstruationszyklen verfolgt haben, gibt Ihnen drip einen Überblick darüber, - wie lange Ihre Zyklen im Durchschnitt dauern (in der \"Statistik\"), - ob die Länge Ihrer Zyklen signifikant variiert (in der \"Statistik\" und in der Blutungsvorhersage), - ob Sie Ihre nächsten 3 Zyklen mit einer Spanne von 3 oder 5 Tagen vorhersagen können (auf dem Startbildschirm und im \"Kalender\"), wenn diese Funktion in den Anpassungseinstellungen aktiviert ist. Die App ermöglicht es Ihnen, unterschiedliche Blutungsstärken zu verfolgen. Auf dem Diagramm und im Kalender sind die Blutungswerte in verschiedenen Rottönen eingefärbt. Je dunkler, desto stärker ist die Blutung. Jeder Blutungswert, der nicht ausgeschlossen wird, wird für die Fruchtbarkeitsberechnung und die Vorhersage der Periode berücksichtigt. Das Ausschließen von Blutungswerten dient dazu, Blutungen zu verfolgen, die nicht den Beginn eines neuen Zyklus oder die Fortsetzung der Menstruationsblutung markieren, z. B. Blutungen, die durch den Eisprung oder eine Fehlgeburt verursacht werden."
-          },
-          "cervix": {
-            "description": "Der Gebärmutterhals befindet sich im Inneren des Körpers am Ende des Vaginalkanals, zwischen der Vagina und der Gebärmutter. Wenn Sie verfolgen, wie offen oder geschlossen und wie fest oder weich sich der Gebärmutterhals anfühlt, können Sie feststellen, in welcher Phase des Menstruationszyklus Sie sich befinden.\n\nStandardmäßig ist das sekundäre Symptom, das die App für die symptothermale Methode verwendet, Zervixschleim, aber Sie können es unter \"Einstellungen\" -> \"Anpassung\" in Gebärmutterhals ändern. - Wie erkennt man einen fruchtbaren Gebärmutterhals? Ein fruchtbarer Gebärmutterhals ist offen und fühlt sich weich an wie Ihre Ohrläppchen. Im Gegensatz dazu fühlt sich ein unfruchtbarer Muttermund geschlossen und hart an, wie die Spitze Ihrer Nase. Wenn sich der Gebärmutterhals anders als geschlossen und hart anfühlt, ist das für Drip ein Zeichen für Fruchtbarkeit. Auf dem Diagramm ist ein fruchtbarer Gebärmutterhals dunkelgelb und ein unfruchtbarer Gebärmutterhals hellgelb gefärbt. $t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp) $t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)"
-          },
-          "desire": {
-            "description": "Mit der App kannst du deine sexuelle Lust unabhängig von sexuellen Aktivitäten verfolgen.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.cycleRelation)"
-          },
-          "mood": {
-            "description": "Mit der App kannst du deine Stimmung verfolgen.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.cycleRelation)"
-          },
-          "mucus": {
-            "description": "Die Beobachtung und Verfolgung des Zervixschleims kann dabei helfen, festzustellen, in welcher Phase des Menstruationszyklus Sie sich befinden. Standardmäßig ist das sekundäre Symptom, das die App für die sympto-thermale Methode verwendet, der Zervixschleim. Sie können dies in den Anpassungseinstellungen ändern. - Wie erkennt man fruchtbaren Zervixschleim? Das tägliche Aufzeichnen des Gefühls und der Beschaffenheit Ihres Zervixschleims hilft Ihnen, Veränderungen in der Qualität des Zervixschleims zu erkennen. Die Werte, die Sie für das Gefühl und die Beschaffenheit Ihres Zervixschleims eingeben, werden nach der sympto-thermalen Methode tropfenweise zu einem von fünf Werten zusammengefasst. Von der am wenigsten fruchtbaren bis zur am meisten fruchtbaren Qualität: - t = (trockenes Gefühl + keine Beschaffenheit), - ∅ = (kein Gefühl + keine Beschaffenheit), - f = (feuchtes Gefühl + keine Beschaffenheit), - S = (kein ODER feuchtes Gefühl + cremige Beschaffenheit), - S+ = (beliebiges Gefühl + Eiweißbeschaffenheit) ODER (glitschiges Gefühl + beliebige Beschaffenheit).\n\nIn der Tabelle ist der Zervixschleim blau eingefärbt: je dunkler der Blauton, desto fruchtbarer ist die Qualität Ihres Zervixschleims. Bitte beachten Sie, dass drip noch keine \"Klammerwerte\" unterstützt: Nach der sympto-thermalen Methode können Sie einen Zervixschleimwert qualifizieren, indem Sie ihn in Klammern setzen, um anzuzeigen, dass er nicht vollständig den Beschreibungen einer der fünf Kategorien entspricht, sondern dazwischen liegt. Diese Funktion wird in Zukunft unterstützt werden. $t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp) $t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)"
-          },
-          "note": {
-            "description": "In der Kategorie Notiz können zusätzliche Informationen festhalten werden. Es ist die einzige Kategorie, in der Informationen für ein zukünftiges Datum gespeichert werden können. Dies kann hilfreich sein, um sich an einen Termin zu erinnern."
-          },
-          "pain": {
-            "description": "Die App ermöglicht es dir, verschiedene Arten von Schmerzen zu erfassen.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.cycleRelation)"
-          },
-          "sex": {
-            "description": "Die App ermöglicht es Ihnen, Sex unabhängig vom sexuellen Verlangen zu verfolgen. Sie können zwischen Selbstbefriedigung und Sex mit einem Partner/Partnern unterscheiden. Hier können Sie auch Ihre Verhütungsmethode(n) verfolgen. Im Abschnitt \"Diagramm\" werden nur sexuelle Aktivitäten angezeigt, wobei helleres Lila für Solo-Sex und dunkleres Lila für Partner-Sex steht. Wussten Sie, dass ein Orgasmus helfen kann, Krämpfe zu lösen?"
-          },
-          "temperature": {
-            "description": "Eines der Körperzeichen, das Sie verfolgen müssen, um Ihren Fruchtbarkeitsstatus zu kennen, ist Ihre Basaltemperatur. Die Körpertemperatur ändert sich im Laufe eines Menstruationszyklus, nach dem Eisprung steigt sie an. Standardmäßig ist das sekundäre Symptom Zervixschleim, aber Sie können es unter \"Einstellungen\" -> \"Anpassung\" in Zervix ändern. - Was ist die Basaltemperatur? Es ist Ihre Temperatur, nachdem Sie mindestens 6 Stunden lang ruhig gelegen haben. Für viele ist dies der Zeitpunkt, an dem sie morgens aufwachen, nachdem sie mindestens 6 Stunden geschlafen haben und bevor sie aufstehen. - Welches Thermometer sollte verwendet werden? Das Thermometer muss 2 Dezimalstellen anzeigen. - Wie wird gemessen? Sie können rektal, vaginal oder oral messen. Wenn Sie sich für die rektale oder vaginale Messung entscheiden, müssen Sie mindestens 3 Minuten lang messen. Wenn Sie sich für die orale Messung entscheiden, sollten Sie mindestens 5 Minuten lang messen. Entscheiden Sie sich für eine Methode und bleiben Sie dabei. $t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp) $t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)"
-          }
-        },
-        "title": "Mehr Infos"
-      },
-      "remove": "Löschen",
-      "save": "Speichern"
-    },
-    "temperature": {
-      "description": "Miss deine Temperatur direkt nach dem Aufwachen, noch bevor du aufstehst.",
-      "exclude": "Du kannst diesen Wert ausklammern, wenn du ihn nicht für die Fruchtbarkeitsauswertung verwenden möchtest.",
-      "note": "Gibt es etwas, das diesen Wert beeinflusst haben könnte, wie z.B. schlechter Schlaf oder Alkoholkonsum?",
-      "time": "Zeit",
-      "warning": {
-        "outOfChartRange": "Dieser Temperaturwert ist zu hoch oder zu niedrig, um in der Temperaturkurve angezeigt zu werden.",
-        "outOfUserDefinedRange": "Dieser Temperaturwert liegt außerhalb des angezeigten Bereichs für die Temperatur. Du kannst den Bereich in den Einstellungen ändern."
-      }
-    },
-    "today": "Heute"
-  },
-  "errorBoundary": {
-    "contact": {
-      "emailSubject": "drip crash report ({{version}})",
-      "text": "drip is made by a small team and reports like yours are how these bugs get found. You can send us the details below by email or open an issue on GitLab.",
-      "title": "Tell us about it"
-    },
-    "details": {
-      "message": "Error",
-      "platform": "Platform",
-      "title": "Error details",
-      "version": "Version"
-    },
-    "intro": "Unfortunately, an unexpected error occurred.",
-    "retry": "Try again",
-    "title": "Something went wrong"
-  },
-  "labels": {
-    "bleedingPrediction": {
-      "noPrediction": "Sobald du 3 Menstruationszyklen getrackt hast, macht drip Vorhersagen für die nächsten Zyklen."
-    },
-    "home": {
-      "addDataForToday": "Daten für heute hinzufügen",
-      "cycleDay": " Tag deines Zyklus",
-      "cyclePhase": " Zyklusphase - "
-    }
-  },
-  "links": {
-    "donate": "Spenden",
-    "email": "E-Mail",
-    "website": "Website",
-    "wiki": "Unser Wiki"
-  },
-  "notifications": {
-    "period": {
-      "channelName": "Erinnerung an den Zeitraum"
-    },
-    "temperature": {
-      "channelName": "Temperaturerinnerung"
-    }
-  },
-  "password": {
-    "backupReminder": {
-      "android": "Nach dem Ändern des Passworts wird die App automatisch neu gestartet.",
-      "ios": "Nach dem Ändern des Passworts wird die App automatisch geschlossen. Bitte öffne die App danach erneut."
-    },
-    "backupReminderChangePassword": {
-      "text": "Zur Sicherheit sollten Sie Ihre Daten mit der Exportfunktion sichern, bevor Sie Ihr Passwort ändern. Längere Passwörter sind besser! Bitte achten Sie auch darauf, dass Sie Ihr Passwort nicht verlieren. Es gibt keine Möglichkeit, Ihre Daten wiederherzustellen. Wenn Sie Ihr Passwort ändern, bleiben Ihre Daten so erhalten, wie sie vorher waren",
-      "title": "Wichtig bevor du dein Passwort änderst"
-    },
-    "backupReminderDeletePassword": {
-      "text": "Wenn du dein Passwort löschst, sind deine Daten nicht mehr verschlüsselt. Speicher deine Daten daher zur Sicherheit über die Exportfunktion bevor du dein Passwort löschst. Wenn du deine Passworteinstellungen änderst, bleiben deine Daten erhalten und die App wird neu gestartet.",
-      "title": "Wichtig bevor du dein Passwort löschst"
-    },
-    "buttons": {
-      "create": "Passwort festlegen",
-      "delete": "Passwort löschen",
-      "save": "Passwort speichern",
-      "update": "Passwort ändern"
-    },
-    "changePassword": {
-      "passwordsDontMatch": "Passwort und Wiederholung stimmen nicht überein",
-      "placeholder": "Bitte gib ein neues Passwort ein",
-      "placeholderConfirmation": "Bitte bestätige dein Passwort"
-    },
-    "createPassword": {
-      "textPasswordNotSet": "Verschlüssele die Datenbank der App mit einem Passwort. Du wirst dein Passwort jedes Mal eingeben müssen, wenn die App gestartet wird.",
-      "textPasswordSet": "Passwort und Datenbankverschlüsselung sind derzeit aktiviert",
-      "title": "App Passwort"
-    },
-    "deleteDataDialog": {
-      "confirm": "Ja, ich bin mir sicher",
-      "text": "Bist du dir absolut sicher, dass du alle deine Daten endgültig löschen willst?",
-      "title": "Bist du dir sicher?"
-    },
-    "forgotPasswordDialog": {
-      "cancel": "Abbrechen",
-      "confirm": "Ja, alle meine Daten löschen",
-      "text": "Wenn Sie Ihr Passwort vergessen haben, können wir leider nichts tun, um Ihre Daten wiederherzustellen, da sie mit dem Passwort verschlüsselt sind, das nur Sie kennen. Sie können jedoch alle Ihre verschlüsselten Daten löschen und neu beginnen. Sobald alle Daten gelöscht sind, können Sie in den Einstellungen ein neues Passwort festlegen, wenn Sie möchten.",
-      "title": "Passwort vergessen?"
-    },
-    "incorrectPasswordDialog": {
-      "text": "Dieses Passwort ist falsch.",
-      "title": "Eingabefehler",
-      "tryAgain": "Erneut versuchen"
-    },
-    "unlockApp": {
-      "forgotPassword": "Hast du dein Passwort vergessen?",
-      "placeholder": "Passwort hier eingeben",
-      "title": "App entsperren"
-    }
-  },
-  "privacyPolicy": {
-    "intro": {
-      "title": "Introduction"
-    }
-  },
-  "shared": {
-    "cancel": "Abbrechen",
-    "confirmToProceed": "Bitte bestätigen",
-    "date": "Datum",
-    "day_one": "{{count}} Tag",
-    "day_other": "{{count}} Tage",
-    "error": "Fehler",
-    "ok": "OK",
-    "tryAgain": "Erneut versuchen"
-  },
-  "sideMenu": {
-    "about": {
-      "credits": {
-        "madeBy": "Erstellt von:",
-        "text": "Wir lieben \ndas Drip-Team. Danke und viel <3 an alle unsere Mitstreiter. Danke an Paula Härtel für die Symptomverfolgungssymbole. All die anderen Icons von:",
-        "title": "Dank"
-      },
-      "donate": {
-        "button": "Spenden",
-        "text": "Die drips entwickeln diese App in ihrer Freizeit. Wir sind immer dankbar für Unterstützung. Das kann bedeuten, dass du am Code mitarbeitest, Feedback gibst, Verbesserungen oder Funktionen vorschlägst, testest oder spendest. Es hilft und motiviert uns, diese App zu pflegen und neue Funktionen zu entwickeln. Vielen Dank für eure Unterstützung!",
-        "title": "Unterstütze uns"
-      },
-      "intro": {
-        "contact": "Wenn deine Frage in unserem FAQ nicht dabei ist, dann schreib uns gerne eine E-Mail. Du kannst auch beim Quellcode auf Gitlab mithelfen und unsere Website besuchen.",
-        "faq": "FAQ",
-        "text": "Bitte beachte, dass deine Daten lokal auf deinem Smartphone und nicht auf einem Server gespeichert werden. Das bedeutet, dass deine Daten nicht von anderen Personen gelesen werden können, es sei denn, diese haben Zugang zu deinem Smartphone. Wir möchten sicherstellen, dass du die Kontrolle über deine eigenen Daten hast. Wenn du dein Smartphone zurücksetzen oder das Gerät wechseln möchtest, denke bitte daran, deine Daten vorher zu exportieren. Du kannst die App anschließend neu installieren und die Daten importieren. Wenn du Fragen hast, dann schau auch gerne in unsere FAQs."
-      },
-      "philosophy": {
-        "text": "drip macht Menstruationsvorhersagen und hilft dir bei der Anwendung der symptothermalen Methode zur Fruchtbarkeitswahrnehmung. Beachte, dass die App von Menschen gemacht wird und dabei Fehler passieren können. Vergiss nicht, immer mitzudenken: \"Macht das Sinn?\" Du brauchst keine App, um deinen Zyklus zu verstehen! drip möchte dich aber unterstützen und das Zyklus-Tracking einfacher, transparenter und sicherer machen.",
-        "title": "Vergiss nicht: Du kennst deinen Körper am besten"
-      },
-      "title": "Über die App",
-      "version": {
-        "title": "Version"
-      }
-    },
-    "license": {
-      "text": "Copyright (C) {{currentYear}} Heart of Code e.V.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details:",
-      "title": "drip. Eine Open-Source-App zum Zyklus-Tracking."
-    },
-    "menuItems": {
-      "about": "Über die App",
-      "license": "Lizenz",
-      "privacyPolicy": "Datenschutzbestimmungen",
-      "settings": "Einstellungen"
-    },
-    "privacyPolicy": {
-      "dataUse": {
-        "text": "drip. respektiert und schätzt deine Privatsphäre. Wir sammeln keine Nutzungsdaten oder persönlichen Informationen. Die App enthält keine Werbung oder Spyware. drip. speichert Daten zur Menstruationsgesundheit lokal auf deinem Gerät. \n\nDazu gehören: \n- Einstellungen\n- Daten zum Tracken des Menstruationszyklus \n\nDie Daten werden zur Anzeige von Statistiken und Anwendung der Regeln zur Fruchtbarkeitswahrnehmung verwendet. Auf diese Daten können andere Apps nicht zugreifen. \n\nWenn du die App-Daten löschen möchtest, kannst du dies in den Einstellungen tun. Deine Daten werden auch entfernt, wenn du die App deinstallierst.",
-        "title": "Datennutzung"
-      },
-      "information": {
-        "text": "This Privacy Policy applies to the app \"drip period & cycle tracker\" (drip), developed and maintained by the drip team, a project of the Heart of Code e.V., a registered organization based at Mariannenplatz 2a, 10997 Berlin, Germany.",
-        "title": "App and Developer Information"
-      },
-      "intro": {
-        "text": "In der Datenschutzerklärung kannst du nachlesen, wie die App drip. deine persönlichen Daten, die du innerhalb der App generierst und speicherst, verwendet und schützt.",
-        "title": "Einleitung"
-      },
-      "lastUpdated": {
-        "text": "This policy was last updated on August 26th, 2026",
-        "title": ""
-      },
-      "permissions": {
-        "text": "Um Erinnerungen in drip zu verwenden, musst du Push-Benachrichtigungen zulassen. Wenn du die Erinnerungsfunktion nicht nutzen möchtest, dann deaktiviere die Erinnerungen in den Einstellungen der drip-App oder erlaube keine Push-Benachrichtigungen für die App.",
-        "title": "Berechtigungen"
-      },
-      "title": "Datenschutzbestimmungen",
-      "transparency": {
-        "text": "Du kannst den Quellcode von drip. anschauen, um sicherzustellen, dass die angegebenen Informationen korrekt sind. Der Quellcode ist wie ein Rezept: Er sagt dir, wie viel und welche Art von Zutaten du brauchst und wie du sie zubereitest, um ein leckeres Gericht zu kochen oder eine funky App zu programmieren. \n\nBuon appetito!",
-        "title": "Transparenz"
-      }
-    },
-    "settings": {
-      "customization": {
-        "fertilityPhases": {
-          "description": "Wenn du Menstruationsblutung, Temperatur und Zervixschleim oder Zervixdaten nach der symptothermalen Methode eingibst, berechnet drip mit den Daten die Zyklusphasen.",
-          "disabledModal": {
-            "description": "Damit die Fruchtbarkeitsphasen berechnet werden, aktiviere bitte sowohl das Tracking der Temperatur als auch von Zervixschleim oder Zervix (siehe oben).",
-            "title": "Deaktiviert"
-          },
-          "off": "Wenn du diese Funktion aktivierst, zeigt drip Informationen zur Fruchtbarkeit an.",
-          "on": "Wenn du diese Funktion deaktivierst, zeigt drip keine Informationen zur Fruchtbarkeit an.",
-          "title": "Berechnung der Fruchtbarkeitsphasen"
-        },
-        "infertileDaysInfo": {
-          "note": "drip verwendet die symptothermale Methode zur Berechnung der unfruchtbaren Tage am Beginn des Zyklus (siehe <0>{{urlText}}</0> für weitere Informationen). Allerdings wendet drip derzeit nicht die sogenannte 20-Tage-Regel an, die die unfruchtbaren Tage am Zyklusanfang aus den vergangenen Zykluslängen bestimmt, falls keine symptothermalen Informationen aus der Vergangenheit verfügbar sind.",
-          "title": "Unfruchtbare Tage zu Beginn des Zyklus"
-        },
-        "periodPrediction": {
-          "off": "Es werden keine Vorhersagen für Menstruationszyklen angezeigt. Wenn du diese Funktion aktivierst, werden im Kalender und auf der Startseite Periodenvorhersagen angezeigt.",
-          "on": "drip sagt die Anfangstage der nächsten 3 Menstruationsblutungen anhand von Statistiken vorher, wenn du zuvor mindestens 3 vollständige Zyklen eingetragen hast.",
-          "title": "Menstruationsvorhersagen"
-        },
-        "secondarySymptom": {
-          "alert": {
-            "textFertilityTrackingDisabled": "Um ein sekundäres Symptom einzugeben, aktiviere bitte zunächst das Tracking von Zervixschleim oder Zervix sowie die Temperatur- und Fruchtbarkeitsphasenberechnung oben.",
-            "textMissingSecondarySymptoms": "Um das sekundäre Symptom zu wechseln, müssen oben sowohl Zervixschleim als auch Zervix aktiviert sein.",
-            "title": "Deaktiviert"
-          },
-          "text": "Bitte wähle das von dir bevorzugte sekundäre Symptom zur Vorhersage der Fruchtbarkeit nach der symptothermalen Methode:",
-          "title": "Sekundäres Symptom"
-        },
-        "temperatureScale": {
-          "description": "Passe den angezeigten Minimal- und Maximalwert der Temperaturkurve an.",
-          "disabled": {
-            "description": "Um die Temperaturskala zu verwenden, musst du zunächst das Tracken der Temperatur aktivieren.",
-            "title": "Deaktiviert"
-          },
-          "saveError": "Einstellungen der Temperaturskala konnten nicht gespeichert werden",
-          "title": "Temperaturskala"
-        },
-        "title": "Personalisierung",
-        "titleSymptoThermalMethod": "Einstellungen der symptothermalen Methode",
-        "trackingCategories": {
-          "title": "Tracking-Kategorien"
-        }
-      },
-      "data": {
-        "delete": {
-          "dialog": {
-            "cancel": "Abbrechen",
-            "confirm": "App-Daten dauerhaft löschen",
-            "message": "Bitte beachte, dass die App-Daten unwiderruflich gelöscht werden. Wir empfehlen dir, bestehende Daten vor dem Löschen zu exportieren.",
-            "title": "Möchtest du die App-Daten von diesem Gerät löschen?"
-          },
-          "error": {
-            "delete": "Daten konnten nicht gelöscht werden",
-            "noData": "Keine Daten zum Löschen vorhanden"
-          },
-          "subTitle": "App-Daten von diesem Gerät löschen",
-          "success": {
-            "message": "App-Daten erfolgreich gelöscht"
-          },
-          "title": "App-Daten löschen"
-        },
-        "export": {
-          "button": "Daten exportieren",
-          "error": {
-            "conversionFailed": "Daten konnten nicht zu einer CSV-Datei konvertiert werden",
-            "noData": "Keine Daten zum Exportieren vorhanden",
-            "sharingFailed": "Beim Teilen der Datei mit deinen exportieren Daten ist ein Fehler aufgetreten."
-          },
-          "text": "Exportiere die Daten im CSV-Format, um sie zu sichern oder anderweitig zu verwenden",
-          "title": "Mein Datenexport von drip"
-        },
-        "import": {
-          "button": "Daten importieren",
-          "dialog": {
-            "cancel": "Abbrechen",
-            "delete": "Daten importieren und vorhandene löschen",
-            "message": "Für den Datenimport gibt es zwei Möglichkeiten:\n\n1. Vorhandene Daten behalten und neue dazufügen. Falls sich Tage überschneiden, werden die Daten aus der Importdatei genutzt.\n\n2. Alle vorhandenen Daten löschen und die neuen aus der Datei importieren.",
-            "replace": "Importieren und ersetzen",
-            "title": "Bestehende Daten behalten?"
-          },
-          "error": {
-            "couldNotOpenFile": "Datei konnte nicht geöffnet werden",
-            "futureEdit": "Tage in der Zukunft können nur eine Notiz enthalten, keine weiteren Symptome",
-            "incorrectColumns": "Die Spaltennamen der CSV-Datei sollten wie folgt lauten {{incorrectColumns}}",
-            "noDataImported": "{{message}}\n\nEs wurden keine Daten importiert oder geändert"
-          },
-          "segmentExplainer": "Daten aus CSV-Datei importieren",
-          "success": {
-            "message": "Daten erfolgreich importiert",
-            "title": "Es hat geklappt!"
-          }
-        }
-      },
-      "language": {
-        "languages": {
-          "de-DE": "Deutsch",
-          "en-US": "Englisch"
-        },
-        "title": "Sprache"
-      },
-      "menuItem": {
-        "customization": {
-          "name": "Anpassungen",
-          "text": "App personalisieren"
-        },
-        "dataManagement": {
-          "name": "Daten",
-          "text": "Daten importieren, exportieren oder löschen"
-        },
-        "info": {
-          "name": "Infos",
-          "text": "Mehr darüber erfahren, wie drip funktioniert"
-        },
-        "language": {
-          "name": "Sprache",
-          "text": "Sprache ändern"
-        },
-        "password": {
-          "name": "Passwort",
-          "text": "Passwort festlegen, bearbeiten oder löschen"
-        },
-        "reminders": {
-          "name": "Erinnerungen",
-          "text": "Erinnerungen an/aus schalten"
-        }
-      },
-      "reminders": {
-        "periodReminder": {
-          "alert": {
-            "text": "Um an die kommenden Perioden erinnert zu werden, aktiviere bitte zunächst die Periodenvorhersage in den Anpassungseinstellungen.",
-            "title": "Periodenvorhersagen deaktiviert"
-          },
-          "channel": "Periodenerinnerung",
-          "notification": "Deine nächste Periode fängt voraussichtlich in {{advanceNoticeDays}} bis {{daysToEndOfPrediction}} Tagen an.",
-          "reminderText": "Du wirst $t(shared.day) vor dem voraussichtlichen Beginn deiner nächsten Periode erinnert.",
-          "reminderTextDisabled": "Erinnerung vor dem voraussichtlichen Beginn deiner nächsten Periode aktivieren.",
-          "title": "Erinnerung vor deiner nächsten Periode"
-        },
-        "temperatureReminder": {
-          "alert": {
-            "text": "Um an die Temperaturmessung erinnert zu werden, aktiviere bitte zunächst die Kategorie Temperatur in den Anpassungseinstellungen.",
-            "title": "Temperaturerinnerung deaktiviert"
-          },
-          "channel": "Temperatur",
-          "noTimeSet": "Zeitpunkt für eine tägliche Erinnerung zum Temperaturmessen festlegen",
-          "notification": "Miss deine Basaltemperatur",
-          "timeSet": "Tägliche Erinnerung um {{time}}",
-          "title": "Erinnerung an Temperaturmessung"
-        }
-      },
-      "title": "Einstellungen"
-    }
-  },
-  "stats": {
-    "details": {
-      "bleedingDays": "Blutung",
-      "cycleLength": "Zykluslänge",
-      "cycleStart": "Start des Zyklus"
-    },
-    "footnote": "Die Standardabweichung gibt an, wie stark die Längen deiner Zyklen variieren. Null bedeutet, dass alle Zyklen genau gleich lang sind, und je höher der Wert ist, desto stärker schwanken die Zykluslängen. Daher kann bei einer kleineren Standardabweichung (< 1,5) der voraussichtliche Starttag deiner nächsten Periode genauer angegeben werden: drip zeigt dir die 3 wahrscheinlichsten Tage für den Start an. Wenn die Längen deiner Zyklen stärker variieren (Standardabweichung ≥ 1,5), dann werden stattdessen 5 mögliche Starttage angezeigt.",
-    "intro": "Grundlegende Statistiken über die Länge deiner Zyklen.",
-    "noData": "Es ist mindestens ein abgeschlossener Zyklus erforderlich, um die Statistiken anzuzeigen.",
-    "overview": {
-      "average": "Durchschnittlicher Zyklus",
-      "completedCycles": "abgeschlossene Zyklen",
-      "days": "Tage",
-      "max": "Längster",
-      "min": "Kürzester",
-      "standardDeviation": "Standardabweichung"
-    },
-    "showStats": "Details zur Menstruation anzeigen"
-  },
-  "symptoms": {
-    "bleeding": "Blutung",
-    "cervix": "Zervix",
-    "desire": "Lust",
-    "mood": "Stimmung",
-    "mucus": "Zervixschleim",
-    "note": "Notiz",
-    "pain": "Schmerzen",
-    "sex": "Sex",
-    "temperature": "Temperatur"
-  }
+  "bottomMenu.calendar": "Kalender",
+  "bottomMenu.chart": "Graph",
+  "bottomMenu.stats": "Statistik",
+  "chart.noData.buttonText": "Jetzt Daten eintragen.",
+  "chart.noData.description": "Du hast noch keine Daten eingegeben.",
+  "chart.noTemperature.description": "Du hast noch keine Temperaturdaten eingegeben.",
+  "chart.tutorial": "Du kannst den Graphen nach links wischen, um weitere Daten anzuzeigen.",
+  "cycleDay.bleeding.exclude": "Du kannst diesen Wert ausschließen, wenn es sich nicht um eine Menstruationsblutung handelt.",
+  "cycleDay.bleeding.heaviness.description": "Wie stark ist die Blutung?",
+  "cycleDay.bleeding.heaviness.symptoms.heavy": "stark",
+  "cycleDay.bleeding.heaviness.symptoms.light": "leicht",
+  "cycleDay.bleeding.heaviness.symptoms.medium": "mittel",
+  "cycleDay.bleeding.heaviness.symptoms.spotting": "Schmierblutung",
+  "cycleDay.bleeding.heaviness.title": "Stärke",
+  "cycleDay.bleedingPrediction.day_one": "Deine Menstruation beginnt wahrscheinlich heute oder morgen.",
+  "cycleDay.bleedingPrediction.day_other": "Deine Menstruation wird wahrscheinlich heute oder in den nächsten {{count}} Tagen beginnen.",
+  "cycleDay.bleedingPrediction.day_zero": "Deine Menstruation beginnt wahrscheinlich heute.",
+  "cycleDay.bleedingPrediction.future": "Deine nächste Menstruation beginnt wahrscheinlich in {{start}} bis {{end}} Tagen.",
+  "cycleDay.bleedingPrediction.past": "Basierend auf deinen eingetragenen Daten hätte deine Menstruation zwischen {{start}} und {{end}} beginnen sollen.",
+  "cycleDay.cervix.exclude": "Du kannst diesen Wert ausklammern, wenn du ihn nicht für die Fruchtbarkeitsauswertung verwenden möchtest.",
+  "cycleDay.cervix.firmness.description": "Wenn sie hart ist, kann sie sich wie die Nasenspitze anfühlen",
+  "cycleDay.cervix.firmness.symptoms.hard": "hart",
+  "cycleDay.cervix.firmness.symptoms.soft": "weich",
+  "cycleDay.cervix.firmness.title": "Härte",
+  "cycleDay.cervix.opening.description": "Ist deine Zervix offen oder geschlossen?",
+  "cycleDay.cervix.opening.symptoms.closed": "geschlossen",
+  "cycleDay.cervix.opening.symptoms.medium": "mittel",
+  "cycleDay.cervix.opening.symptoms.open": "offen",
+  "cycleDay.cervix.opening.title": "Öffnung",
+  "cycleDay.cervix.position.description": "Wie weit oben in der Vagina befindet sich die Zervix?",
+  "cycleDay.cervix.position.symptoms.high": "hoch",
+  "cycleDay.cervix.position.symptoms.low": "tief",
+  "cycleDay.cervix.position.symptoms.medium": "mittel",
+  "cycleDay.cervix.position.title": "Lage",
+  "cycleDay.desire.intensity.description": "Wie würdest du deine Lust einschätzen?",
+  "cycleDay.desire.intensity.symptoms.high": "hoch",
+  "cycleDay.desire.intensity.symptoms.low": "niedrig",
+  "cycleDay.desire.intensity.symptoms.medium": "mittel",
+  "cycleDay.desire.intensity.title": "Intensität",
+  "cycleDay.fertilityStatus.fertile": "fruchtbar",
+  "cycleDay.fertilityStatus.fertileUntilEvening": "Die fruchtbare Phase endet heute Abend",
+  "cycleDay.fertilityStatus.infertile": "unfruchtbar",
+  "cycleDay.fertilityStatus.periOvu": "Die notwendigen Veränderungen (Temperatur, Zervixschleim / Zervix) zur Annahme der Unfruchtbarkeit nach der sympothermalen Methode sind nicht gegeben.",
+  "cycleDay.fertilityStatus.periOvuUntilEvening": "Wir haben eine Temperaturverschiebung ($t(cycleDay.fertilityStatus.temperatureShift, {\"count\": {{rule}} }) Temperaturregel) sowie einen Umschwung des Zervixschleim/der Zervix nach der symptothermalen Methode festgestellt. Heute Abend kannst du von Unfruchtbarkeit ausgehen, aber denke immer daran, dich darauf nicht zu verlassen. Prüfe immer, ob dir die Daten sinnvoll erscheinen.",
+  "cycleDay.fertilityStatus.postOvu": "Wir haben eine Temperaturverschiebung ($t(cycleDay.fertilityStatus.temperatureShift, {\"count\": {{rule}} }) Temperaturregel) sowie eine Zervixschleim-/Zervixverschiebung nach der symptothermalen Methode festgestellt. Du kannst von Unfruchtbarkeit ausgehen, aber denke immer daran, dich nicht darauf zu verlassen. Prüfe immer, ob dir die Daten sinnvoll erscheinen.",
+  "cycleDay.fertilityStatus.preOvu": "Nach der symptothermalen Methode kannst du am zu Beginn deines Zyklus von 5 Tagen Unfruchtbarkeit ausgehen, solange du keinen fruchtbaren Zervixschleim (oder Zervixwerte) beobachtest.",
+  "cycleDay.fertilityStatus.temperatureShift_one": "Ausnahmeregel 1",
+  "cycleDay.fertilityStatus.temperatureShift_other": "Ausnahmeregel 2",
+  "cycleDay.fertilityStatus.temperatureShift_zero": "Grundregel",
+  "cycleDay.fertilityStatus.unknown": "Da noch keine Menstruationsdaten eingetragen sind, kann drip keine Zyklusinformationen anzeigen.",
+  "cycleDay.mood.feelings.description": "Wie hast du dich heute gefühlt?",
+  "cycleDay.mood.feelings.symptoms.angry": "wütend",
+  "cycleDay.mood.feelings.symptoms.anxious": "ängstlich",
+  "cycleDay.mood.feelings.symptoms.balanced": "ausgeglichen",
+  "cycleDay.mood.feelings.symptoms.energetic": "energiegeladen",
+  "cycleDay.mood.feelings.symptoms.fatigue": "schlapp",
+  "cycleDay.mood.feelings.symptoms.fine": "gut",
+  "cycleDay.mood.feelings.symptoms.happy": "glücklich",
+  "cycleDay.mood.feelings.symptoms.other": "anders",
+  "cycleDay.mood.feelings.symptoms.sad": "traurig",
+  "cycleDay.mood.feelings.symptoms.stressed": "gestresst",
+  "cycleDay.mucus.exclude": "Du kannst diesen Wert ausschließen, wenn du ihn nicht für die Fruchtbarkeitsauswertung verwenden möchtest.",
+  "cycleDay.mucus.feeling.description": "Wie fühlt sich dein Vaginaausgang an?",
+  "cycleDay.mucus.feeling.symptoms.dry": "trocken",
+  "cycleDay.mucus.feeling.symptoms.nothing": "nichts",
+  "cycleDay.mucus.feeling.symptoms.slippery": "glitschig",
+  "cycleDay.mucus.feeling.symptoms.wet": "feucht",
+  "cycleDay.mucus.feeling.title": "Gefühl",
+  "cycleDay.mucus.nfp.:0": "t",
+  "cycleDay.mucus.nfp.:1": "Ø",
+  "cycleDay.mucus.nfp.:2": "f",
+  "cycleDay.mucus.nfp.:3": "S",
+  "cycleDay.mucus.nfp.:4": "S+",
+  "cycleDay.mucus.texture.description": "Was beschreibt deinen Zervixschleim am besten beim Ansehen oder Anfassen?",
+  "cycleDay.mucus.texture.symptoms.creamy": "cremig",
+  "cycleDay.mucus.texture.symptoms.eggWhite": "Eiklar",
+  "cycleDay.mucus.texture.symptoms.nothing": "nichts",
+  "cycleDay.mucus.texture.title": "Konsistenz",
+  "cycleDay.note.description": "Möchtest du noch etwas für diesen Tag hinzufügen?",
+  "cycleDay.pain.feelings.description": "Wie fühlt sich dein Körper heute an?",
+  "cycleDay.pain.feelings.symptoms.backache": "Rückenschmerzen",
+  "cycleDay.pain.feelings.symptoms.cramps": "Krämpfe",
+  "cycleDay.pain.feelings.symptoms.headache": "Kopfschmerzen",
+  "cycleDay.pain.feelings.symptoms.migraine": "Migräne",
+  "cycleDay.pain.feelings.symptoms.nausea": "Übelkeit",
+  "cycleDay.pain.feelings.symptoms.other": "anderes",
+  "cycleDay.pain.feelings.symptoms.ovulationPain": "Ovulationsschmerz",
+  "cycleDay.pain.feelings.symptoms.tenderBreasts": "sensible Brüste",
+  "cycleDay.sex.activity.description": "Hattest du heute Sex?",
+  "cycleDay.sex.activity.symptoms.partner": "Partner*in",
+  "cycleDay.sex.activity.symptoms.solo": "Solo",
+  "cycleDay.sex.contraceptives.description": "Hast du verhütet?",
+  "cycleDay.sex.contraceptives.symptoms.condom": "Kondom",
+  "cycleDay.sex.contraceptives.symptoms.diaphragm": "Diaphragma",
+  "cycleDay.sex.contraceptives.symptoms.implant": "Hormonimplantat",
+  "cycleDay.sex.contraceptives.symptoms.iud": "Spirale",
+  "cycleDay.sex.contraceptives.symptoms.none": "nichts",
+  "cycleDay.sex.contraceptives.symptoms.other": "andere",
+  "cycleDay.sex.contraceptives.symptoms.patch": "Verhütungspflaster",
+  "cycleDay.sex.contraceptives.symptoms.pill": "Pille",
+  "cycleDay.sex.contraceptives.symptoms.ring": "Vaginalring",
+  "cycleDay.subTitle": "Zyklustag {{cycleDay}}",
+  "cycleDay.symptomEditModal.dataDeleted": "Daten wurden gelöscht.",
+  "cycleDay.symptomEditModal.dataSaved": "Daten wurden gespeichert.",
+  "cycleDay.symptomEditModal.enter": "Deine Notiz",
+  "cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp": "Mit dem Graphen kannst du Fruchtbarkeitszeichen verfolgen. Wenn sowohl eine ausreichende Temperaturveränderung als auch eine Veränderung des Zervixschleims oder der Zervix festgestellt wurde, wird eine orangefarbene Linie auf dem Graphen angezeigt. Diese zeigt das Ende der periovulatorischen und den Beginn der postovulatorischen Phase.",
+  "cycleDay.symptomEditModal.learnMore.generalInfo.cycleRelation": "Es kann Einflüsse von deinem Menstruationszyklus und dessen hormonellen Veränderungen geben oder sich auf diese auswirken.",
+  "cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer": "Du kannst diese Werte ausschließen, sodass sie bei einer Fruchtbarkeitsauswertung nicht berücksichtigt werden.",
+  "cycleDay.symptomEditModal.learnMore.generalInfo.nfpThinkForYourselfReminder": "Wenn du – täglich bzw. regelmäßig – Folgendes beobachtest und einträgst:\n1. deine Basaltemperatur,\n2. deinen Zervixschleim oder deinen Cervix,\n3. sowie deine Menstruationsblutung,\ndann hilft dir die App dabei, einzuordnen, in welcher Phase deines Menstruationszyklus du dich befindest.\n\ndrip macht Periodenvorhersagen für dich und unterstützt dich dabei, die sympto-thermale Methode zur Zyklusbeobachtung anzuwenden. Aber bitte denk daran: Diese App wurde von Menschen entwickelt – und Menschen können Fehler machen. Überprüfe deshalb immer selbst: „Ergibt das für mich Sinn?“ Denk daran, dass du keine App brauchst, um deinen Zyklus zu verstehen! Trotzdem möchte dich drip unterstützen und das Tracken deiner Periode einfacher, transparenter und sicherer machen.\n\nWeitere Informationen zur sympto-thermalen Methode findest du unter <0>{{urlText}}</0>.",
+  "cycleDay.symptomEditModal.learnMore.generalInfo.noNfpSymptom": "Die App erlaubt Ihnen, dieses Symptom zu Ihrer Information zu verfolgen, es wird bei keiner Berechnung berücksichtigt. Auf dem Diagramm können Sie überprüfen, wie oft Sie dieses Symptom verfolgen. Wenn Sie mehr über die sympto-thermale Methode erfahren möchten, die für die Fruchtbarkeitsverfolgung innerhalb der App verwendet wird, können Sie <0>{{urlText}}</0> besuchen.",
+  "cycleDay.symptomEditModal.learnMore.symptoms.bleeding.description": "Die Verfolgung der Menstruationsblutung ermöglicht es Ihnen, den Beginn und das Ende eines Menstruationszyklus zu kennen.\nNachdem Sie mindestens 3 Menstruationszyklen verfolgt haben, gibt Ihnen drip einen Überblick darüber, - wie lange Ihre Zyklen im Durchschnitt dauern (in der \"Statistik\"), - ob die Länge Ihrer Zyklen signifikant variiert (in der \"Statistik\" und in der Blutungsvorhersage), - ob Sie Ihre nächsten 3 Zyklen mit einer Spanne von 3 oder 5 Tagen vorhersagen können (auf dem Startbildschirm und im \"Kalender\"), wenn diese Funktion in den Anpassungseinstellungen aktiviert ist. Die App ermöglicht es Ihnen, unterschiedliche Blutungsstärken zu verfolgen. Auf dem Diagramm und im Kalender sind die Blutungswerte in verschiedenen Rottönen eingefärbt. Je dunkler, desto stärker ist die Blutung. Jeder Blutungswert, der nicht ausgeschlossen wird, wird für die Fruchtbarkeitsberechnung und die Vorhersage der Periode berücksichtigt. Das Ausschließen von Blutungswerten dient dazu, Blutungen zu verfolgen, die nicht den Beginn eines neuen Zyklus oder die Fortsetzung der Menstruationsblutung markieren, z. B. Blutungen, die durch den Eisprung oder eine Fehlgeburt verursacht werden.",
+  "cycleDay.symptomEditModal.learnMore.symptoms.cervix.description": "Der Gebärmutterhals befindet sich im Inneren des Körpers am Ende des Vaginalkanals, zwischen der Vagina und der Gebärmutter. Wenn Sie verfolgen, wie offen oder geschlossen und wie fest oder weich sich der Gebärmutterhals anfühlt, können Sie feststellen, in welcher Phase des Menstruationszyklus Sie sich befinden.\n\nStandardmäßig ist das sekundäre Symptom, das die App für die symptothermale Methode verwendet, Zervixschleim, aber Sie können es unter \"Einstellungen\" -> \"Anpassung\" in Gebärmutterhals ändern. - Wie erkennt man einen fruchtbaren Gebärmutterhals? Ein fruchtbarer Gebärmutterhals ist offen und fühlt sich weich an wie Ihre Ohrläppchen. Im Gegensatz dazu fühlt sich ein unfruchtbarer Muttermund geschlossen und hart an, wie die Spitze Ihrer Nase. Wenn sich der Gebärmutterhals anders als geschlossen und hart anfühlt, ist das für Drip ein Zeichen für Fruchtbarkeit. Auf dem Diagramm ist ein fruchtbarer Gebärmutterhals dunkelgelb und ein unfruchtbarer Gebärmutterhals hellgelb gefärbt. $t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp) $t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)",
+  "cycleDay.symptomEditModal.learnMore.symptoms.desire.description": "Mit der App kannst du deine sexuelle Lust unabhängig von sexuellen Aktivitäten verfolgen.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.cycleRelation)",
+  "cycleDay.symptomEditModal.learnMore.symptoms.mood.description": "Mit der App kannst du deine Stimmung verfolgen.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.cycleRelation)",
+  "cycleDay.symptomEditModal.learnMore.symptoms.mucus.description": "Die Beobachtung und Verfolgung des Zervixschleims kann dabei helfen, festzustellen, in welcher Phase des Menstruationszyklus Sie sich befinden. Standardmäßig ist das sekundäre Symptom, das die App für die sympto-thermale Methode verwendet, der Zervixschleim. Sie können dies in den Anpassungseinstellungen ändern. - Wie erkennt man fruchtbaren Zervixschleim? Das tägliche Aufzeichnen des Gefühls und der Beschaffenheit Ihres Zervixschleims hilft Ihnen, Veränderungen in der Qualität des Zervixschleims zu erkennen. Die Werte, die Sie für das Gefühl und die Beschaffenheit Ihres Zervixschleims eingeben, werden nach der sympto-thermalen Methode tropfenweise zu einem von fünf Werten zusammengefasst. Von der am wenigsten fruchtbaren bis zur am meisten fruchtbaren Qualität: - t = (trockenes Gefühl + keine Beschaffenheit), - ∅ = (kein Gefühl + keine Beschaffenheit), - f = (feuchtes Gefühl + keine Beschaffenheit), - S = (kein ODER feuchtes Gefühl + cremige Beschaffenheit), - S+ = (beliebiges Gefühl + Eiweißbeschaffenheit) ODER (glitschiges Gefühl + beliebige Beschaffenheit).\n\nIn der Tabelle ist der Zervixschleim blau eingefärbt: je dunkler der Blauton, desto fruchtbarer ist die Qualität Ihres Zervixschleims. Bitte beachten Sie, dass drip noch keine \"Klammerwerte\" unterstützt: Nach der sympto-thermalen Methode können Sie einen Zervixschleimwert qualifizieren, indem Sie ihn in Klammern setzen, um anzuzeigen, dass er nicht vollständig den Beschreibungen einer der fünf Kategorien entspricht, sondern dazwischen liegt. Diese Funktion wird in Zukunft unterstützt werden. $t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp) $t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)",
+  "cycleDay.symptomEditModal.learnMore.symptoms.note.description": "In der Kategorie Notiz können zusätzliche Informationen festhalten werden. Es ist die einzige Kategorie, in der Informationen für ein zukünftiges Datum gespeichert werden können. Dies kann hilfreich sein, um sich an einen Termin zu erinnern.",
+  "cycleDay.symptomEditModal.learnMore.symptoms.pain.description": "Die App ermöglicht es dir, verschiedene Arten von Schmerzen zu erfassen.\n\n$t(cycleDay.symptomEditModal.learnMore.generalInfo.cycleRelation)",
+  "cycleDay.symptomEditModal.learnMore.symptoms.sex.description": "Die App ermöglicht es Ihnen, Sex unabhängig vom sexuellen Verlangen zu verfolgen. Sie können zwischen Selbstbefriedigung und Sex mit einem Partner/Partnern unterscheiden. Hier können Sie auch Ihre Verhütungsmethode(n) verfolgen. Im Abschnitt \"Diagramm\" werden nur sexuelle Aktivitäten angezeigt, wobei helleres Lila für Solo-Sex und dunkleres Lila für Partner-Sex steht. Wussten Sie, dass ein Orgasmus helfen kann, Krämpfe zu lösen?",
+  "cycleDay.symptomEditModal.learnMore.symptoms.temperature.description": "Eines der Körperzeichen, das Sie verfolgen müssen, um Ihren Fruchtbarkeitsstatus zu kennen, ist Ihre Basaltemperatur. Die Körpertemperatur ändert sich im Laufe eines Menstruationszyklus, nach dem Eisprung steigt sie an. Standardmäßig ist das sekundäre Symptom Zervixschleim, aber Sie können es unter \"Einstellungen\" -> \"Anpassung\" in Zervix ändern. - Was ist die Basaltemperatur? Es ist Ihre Temperatur, nachdem Sie mindestens 6 Stunden lang ruhig gelegen haben. Für viele ist dies der Zeitpunkt, an dem sie morgens aufwachen, nachdem sie mindestens 6 Stunden geschlafen haben und bevor sie aufstehen. - Welches Thermometer sollte verwendet werden? Das Thermometer muss 2 Dezimalstellen anzeigen. - Wie wird gemessen? Sie können rektal, vaginal oder oral messen. Wenn Sie sich für die rektale oder vaginale Messung entscheiden, müssen Sie mindestens 3 Minuten lang messen. Wenn Sie sich für die orale Messung entscheiden, sollten Sie mindestens 5 Minuten lang messen. Entscheiden Sie sich für eine Methode und bleiben Sie dabei. $t(cycleDay.symptomEditModal.learnMore.generalInfo.chartNfp) $t(cycleDay.symptomEditModal.learnMore.generalInfo.excludeExplainer)",
+  "cycleDay.symptomEditModal.learnMore.title": "Mehr Infos",
+  "cycleDay.symptomEditModal.remove": "Löschen",
+  "cycleDay.symptomEditModal.save": "Speichern",
+  "cycleDay.temperature.description": "Miss deine Temperatur direkt nach dem Aufwachen, noch bevor du aufstehst.",
+  "cycleDay.temperature.exclude": "Du kannst diesen Wert ausklammern, wenn du ihn nicht für die Fruchtbarkeitsauswertung verwenden möchtest.",
+  "cycleDay.temperature.note": "Gibt es etwas, das diesen Wert beeinflusst haben könnte, wie z.B. schlechter Schlaf oder Alkoholkonsum?",
+  "cycleDay.temperature.time": "Zeit",
+  "cycleDay.temperature.warning.outOfChartRange": "Dieser Temperaturwert ist zu hoch oder zu niedrig, um in der Temperaturkurve angezeigt zu werden.",
+  "cycleDay.temperature.warning.outOfUserDefinedRange": "Dieser Temperaturwert liegt außerhalb des angezeigten Bereichs für die Temperatur. Du kannst den Bereich in den Einstellungen ändern.",
+  "cycleDay.today": "Heute",
+  "errorBoundary.contact.emailSubject": "drip crash report ({{version}})",
+  "errorBoundary.contact.text": "drip is made by a small team and reports like yours are how these bugs get found. You can send us the details below by email or open an issue on GitLab.",
+  "errorBoundary.contact.title": "Tell us about it",
+  "errorBoundary.details.message": "Error",
+  "errorBoundary.details.platform": "Platform",
+  "errorBoundary.details.title": "Error details",
+  "errorBoundary.details.version": "Version",
+  "errorBoundary.intro": "Unfortunately, an unexpected error occurred.",
+  "errorBoundary.retry": "Try again",
+  "errorBoundary.title": "Something went wrong",
+  "labels.bleedingPrediction.noPrediction": "Sobald du 3 Menstruationszyklen getrackt hast, macht drip Vorhersagen für die nächsten Zyklen.",
+  "labels.home.addDataForToday": "Daten für heute hinzufügen",
+  "labels.home.cycleDay": " Tag deines Zyklus",
+  "labels.home.cyclePhase": " Zyklusphase - ",
+  "links.donate": "Spenden",
+  "links.email": "E-Mail",
+  "links.website": "Website",
+  "links.wiki": "Unser Wiki",
+  "notifications.period.channelName": "Erinnerung an den Zeitraum",
+  "notifications.temperature.channelName": "Temperaturerinnerung",
+  "password.backupReminder.android": "Nach dem Ändern des Passworts wird die App automatisch neu gestartet.",
+  "password.backupReminder.ios": "Nach dem Ändern des Passworts wird die App automatisch geschlossen. Bitte öffne die App danach erneut.",
+  "password.backupReminderChangePassword.text": "Zur Sicherheit sollten Sie Ihre Daten mit der Exportfunktion sichern, bevor Sie Ihr Passwort ändern. Längere Passwörter sind besser! Bitte achten Sie auch darauf, dass Sie Ihr Passwort nicht verlieren. Es gibt keine Möglichkeit, Ihre Daten wiederherzustellen. Wenn Sie Ihr Passwort ändern, bleiben Ihre Daten so erhalten, wie sie vorher waren",
+  "password.backupReminderChangePassword.title": "Wichtig bevor du dein Passwort änderst",
+  "password.backupReminderDeletePassword.text": "Wenn du dein Passwort löschst, sind deine Daten nicht mehr verschlüsselt. Speicher deine Daten daher zur Sicherheit über die Exportfunktion bevor du dein Passwort löschst. Wenn du deine Passworteinstellungen änderst, bleiben deine Daten erhalten und die App wird neu gestartet.",
+  "password.backupReminderDeletePassword.title": "Wichtig bevor du dein Passwort löschst",
+  "password.buttons.create": "Passwort festlegen",
+  "password.buttons.delete": "Passwort löschen",
+  "password.buttons.save": "Passwort speichern",
+  "password.buttons.update": "Passwort ändern",
+  "password.changePassword.passwordsDontMatch": "Passwort und Wiederholung stimmen nicht überein",
+  "password.changePassword.placeholder": "Bitte gib ein neues Passwort ein",
+  "password.changePassword.placeholderConfirmation": "Bitte bestätige dein Passwort",
+  "password.createPassword.textPasswordNotSet": "Verschlüssele die Datenbank der App mit einem Passwort. Du wirst dein Passwort jedes Mal eingeben müssen, wenn die App gestartet wird.",
+  "password.createPassword.textPasswordSet": "Passwort und Datenbankverschlüsselung sind derzeit aktiviert",
+  "password.createPassword.title": "App Passwort",
+  "password.deleteDataDialog.confirm": "Ja, ich bin mir sicher",
+  "password.deleteDataDialog.text": "Bist du dir absolut sicher, dass du alle deine Daten endgültig löschen willst?",
+  "password.deleteDataDialog.title": "Bist du dir sicher?",
+  "password.forgotPasswordDialog.cancel": "Abbrechen",
+  "password.forgotPasswordDialog.confirm": "Ja, alle meine Daten löschen",
+  "password.forgotPasswordDialog.text": "Wenn Sie Ihr Passwort vergessen haben, können wir leider nichts tun, um Ihre Daten wiederherzustellen, da sie mit dem Passwort verschlüsselt sind, das nur Sie kennen. Sie können jedoch alle Ihre verschlüsselten Daten löschen und neu beginnen. Sobald alle Daten gelöscht sind, können Sie in den Einstellungen ein neues Passwort festlegen, wenn Sie möchten.",
+  "password.forgotPasswordDialog.title": "Passwort vergessen?",
+  "password.incorrectPasswordDialog.text": "Dieses Passwort ist falsch.",
+  "password.incorrectPasswordDialog.title": "Eingabefehler",
+  "password.incorrectPasswordDialog.tryAgain": "Erneut versuchen",
+  "password.unlockApp.forgotPassword": "Hast du dein Passwort vergessen?",
+  "password.unlockApp.placeholder": "Passwort hier eingeben",
+  "password.unlockApp.title": "App entsperren",
+  "privacyPolicy.intro.title": "Introduction",
+  "shared.cancel": "Abbrechen",
+  "shared.confirmToProceed": "Bitte bestätigen",
+  "shared.date": "Datum",
+  "shared.day_one": "{{count}} Tag",
+  "shared.day_other": "{{count}} Tage",
+  "shared.error": "Fehler",
+  "shared.ok": "OK",
+  "shared.tryAgain": "Erneut versuchen",
+  "sideMenu.about.credits.madeBy": "Erstellt von:",
+  "sideMenu.about.credits.text": "Wir lieben \ndas Drip-Team. Danke und viel <3 an alle unsere Mitstreiter. Danke an Paula Härtel für die Symptomverfolgungssymbole. All die anderen Icons von:",
+  "sideMenu.about.credits.title": "Dank",
+  "sideMenu.about.donate.button": "Spenden",
+  "sideMenu.about.donate.text": "Die drips entwickeln diese App in ihrer Freizeit. Wir sind immer dankbar für Unterstützung. Das kann bedeuten, dass du am Code mitarbeitest, Feedback gibst, Verbesserungen oder Funktionen vorschlägst, testest oder spendest. Es hilft und motiviert uns, diese App zu pflegen und neue Funktionen zu entwickeln. Vielen Dank für eure Unterstützung!",
+  "sideMenu.about.donate.title": "Unterstütze uns",
+  "sideMenu.about.intro.contact": "Wenn deine Frage in unserem FAQ nicht dabei ist, dann schreib uns gerne eine E-Mail. Du kannst auch beim Quellcode auf Gitlab mithelfen und unsere Website besuchen.",
+  "sideMenu.about.intro.faq": "FAQ",
+  "sideMenu.about.intro.text": "Bitte beachte, dass deine Daten lokal auf deinem Smartphone und nicht auf einem Server gespeichert werden. Das bedeutet, dass deine Daten nicht von anderen Personen gelesen werden können, es sei denn, diese haben Zugang zu deinem Smartphone. Wir möchten sicherstellen, dass du die Kontrolle über deine eigenen Daten hast. Wenn du dein Smartphone zurücksetzen oder das Gerät wechseln möchtest, denke bitte daran, deine Daten vorher zu exportieren. Du kannst die App anschließend neu installieren und die Daten importieren. Wenn du Fragen hast, dann schau auch gerne in unsere FAQs.",
+  "sideMenu.about.philosophy.text": "drip macht Menstruationsvorhersagen und hilft dir bei der Anwendung der symptothermalen Methode zur Fruchtbarkeitswahrnehmung. Beachte, dass die App von Menschen gemacht wird und dabei Fehler passieren können. Vergiss nicht, immer mitzudenken: \"Macht das Sinn?\" Du brauchst keine App, um deinen Zyklus zu verstehen! drip möchte dich aber unterstützen und das Zyklus-Tracking einfacher, transparenter und sicherer machen.",
+  "sideMenu.about.philosophy.title": "Vergiss nicht: Du kennst deinen Körper am besten",
+  "sideMenu.about.title": "Über die App",
+  "sideMenu.about.version.title": "Version",
+  "sideMenu.license.text": "Copyright (C) {{currentYear}} Heart of Code e.V.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details:",
+  "sideMenu.license.title": "drip. Eine Open-Source-App zum Zyklus-Tracking.",
+  "sideMenu.menuItems.about": "Über die App",
+  "sideMenu.menuItems.license": "Lizenz",
+  "sideMenu.menuItems.privacyPolicy": "Datenschutz",
+  "sideMenu.menuItems.settings": "Einstellungen",
+  "sideMenu.privacyPolicy.dataUse.text": "drip. respektiert und schätzt deine Privatsphäre. Wir sammeln keine Nutzungsdaten oder persönlichen Informationen. Die App enthält keine Werbung oder Spyware. drip. speichert Daten zur Menstruationsgesundheit lokal auf deinem Gerät. \n\nDazu gehören: \n- Einstellungen\n- Daten zum Tracken des Menstruationszyklus \n\nDie Daten werden zur Anzeige von Statistiken und Anwendung der Regeln zur Fruchtbarkeitswahrnehmung verwendet. Auf diese Daten können andere Apps nicht zugreifen. \n\nWenn du die App-Daten löschen möchtest, kannst du dies in den Einstellungen tun. Deine Daten werden auch entfernt, wenn du die App deinstallierst.",
+  "sideMenu.privacyPolicy.dataUse.title": "Datennutzung",
+  "sideMenu.privacyPolicy.information.text": "This Privacy Policy applies to the app \"drip period & cycle tracker\" (drip), developed and maintained by the drip team, a project of the Heart of Code e.V., a registered organization based at Mariannenplatz 2a, 10997 Berlin, Germany.",
+  "sideMenu.privacyPolicy.information.title": "App and Developer Information",
+  "sideMenu.privacyPolicy.intro.text": "In der Datenschutzerklärung kannst du nachlesen, wie die App drip. deine persönlichen Daten, die du innerhalb der App generierst und speicherst, verwendet und schützt.",
+  "sideMenu.privacyPolicy.intro.title": "Einleitung",
+  "sideMenu.privacyPolicy.lastUpdated.text": "This policy was last updated on August 26th, 2026",
+  "sideMenu.privacyPolicy.lastUpdated.title": "",
+  "sideMenu.privacyPolicy.permissions.text": "Um Erinnerungen in drip zu verwenden, musst du Push-Benachrichtigungen zulassen. Wenn du die Erinnerungsfunktion nicht nutzen möchtest, dann deaktiviere die Erinnerungen in den Einstellungen der drip-App oder erlaube keine Push-Benachrichtigungen für die App.",
+  "sideMenu.privacyPolicy.permissions.title": "Berechtigungen",
+  "sideMenu.privacyPolicy.title": "Datenschutzbestimmungen",
+  "sideMenu.privacyPolicy.transparency.text": "Du kannst den Quellcode von drip. anschauen, um sicherzustellen, dass die angegebenen Informationen korrekt sind. Der Quellcode ist wie ein Rezept: Er sagt dir, wie viel und welche Art von Zutaten du brauchst und wie du sie zubereitest, um ein leckeres Gericht zu kochen oder eine funky App zu programmieren. \n\nBuon appetito!",
+  "sideMenu.privacyPolicy.transparency.title": "Transparenz",
+  "sideMenu.settings.customization.fertilityPhases.description": "Wenn du Menstruationsblutung, Temperatur und Zervixschleim oder Zervixdaten nach der symptothermalen Methode eingibst, berechnet drip mit den Daten die Zyklusphasen.",
+  "sideMenu.settings.customization.fertilityPhases.disabledModal.description": "Damit die Fruchtbarkeitsphasen berechnet werden, aktiviere bitte sowohl das Tracking der Temperatur als auch von Zervixschleim oder Zervix (siehe oben).",
+  "sideMenu.settings.customization.fertilityPhases.disabledModal.title": "Deaktiviert",
+  "sideMenu.settings.customization.fertilityPhases.off": "Wenn du diese Funktion aktivierst, zeigt drip Informationen zur Fruchtbarkeit an.",
+  "sideMenu.settings.customization.fertilityPhases.on": "Wenn du diese Funktion deaktivierst, zeigt drip keine Informationen zur Fruchtbarkeit an.",
+  "sideMenu.settings.customization.fertilityPhases.title": "Berechnung der Fruchtbarkeitsphasen",
+  "sideMenu.settings.customization.infertileDaysInfo.note": "drip verwendet die symptothermale Methode zur Berechnung der unfruchtbaren Tage am Beginn des Zyklus (siehe <0>{{urlText}}</0> für weitere Informationen). Allerdings wendet drip derzeit nicht die sogenannte 20-Tage-Regel an, die die unfruchtbaren Tage am Zyklusanfang aus den vergangenen Zykluslängen bestimmt, falls keine symptothermalen Informationen aus der Vergangenheit verfügbar sind.",
+  "sideMenu.settings.customization.infertileDaysInfo.title": "Unfruchtbare Tage zu Beginn des Zyklus",
+  "sideMenu.settings.customization.periodPrediction.off": "Es werden keine Vorhersagen für Menstruationszyklen angezeigt. Wenn du diese Funktion aktivierst, werden im Kalender und auf der Startseite Periodenvorhersagen angezeigt.",
+  "sideMenu.settings.customization.periodPrediction.on": "drip sagt die Anfangstage der nächsten 3 Menstruationsblutungen anhand von Statistiken vorher, wenn du zuvor mindestens 3 vollständige Zyklen eingetragen hast.",
+  "sideMenu.settings.customization.periodPrediction.title": "Menstruationsvorhersagen",
+  "sideMenu.settings.customization.secondarySymptom.alert.textFertilityTrackingDisabled": "Um ein sekundäres Symptom einzugeben, aktiviere bitte zunächst das Tracking von Zervixschleim oder Zervix sowie die Temperatur- und Fruchtbarkeitsphasenberechnung oben.",
+  "sideMenu.settings.customization.secondarySymptom.alert.textMissingSecondarySymptoms": "Um das sekundäre Symptom zu wechseln, müssen oben sowohl Zervixschleim als auch Zervix aktiviert sein.",
+  "sideMenu.settings.customization.secondarySymptom.alert.title": "Deaktiviert",
+  "sideMenu.settings.customization.secondarySymptom.text": "Bitte wähle das von dir bevorzugte sekundäre Symptom zur Vorhersage der Fruchtbarkeit nach der symptothermalen Methode:",
+  "sideMenu.settings.customization.secondarySymptom.title": "Sekundäres Symptom",
+  "sideMenu.settings.customization.temperatureScale.description": "Passe den angezeigten Minimal- und Maximalwert der Temperaturkurve an.",
+  "sideMenu.settings.customization.temperatureScale.disabled.description": "Um die Temperaturskala zu verwenden, musst du zunächst das Tracken der Temperatur aktivieren.",
+  "sideMenu.settings.customization.temperatureScale.disabled.title": "Deaktiviert",
+  "sideMenu.settings.customization.temperatureScale.saveError": "Einstellungen der Temperaturskala konnten nicht gespeichert werden",
+  "sideMenu.settings.customization.temperatureScale.title": "Temperaturskala",
+  "sideMenu.settings.customization.title": "Personalisierung",
+  "sideMenu.settings.customization.titleSymptoThermalMethod": "Einstellungen der symptothermalen Methode",
+  "sideMenu.settings.customization.trackingCategories.title": "Tracking-Kategorien",
+  "sideMenu.settings.data.delete.dialog.cancel": "Abbrechen",
+  "sideMenu.settings.data.delete.dialog.confirm": "App-Daten dauerhaft löschen",
+  "sideMenu.settings.data.delete.dialog.message": "Bitte beachte, dass die App-Daten unwiderruflich gelöscht werden. Wir empfehlen dir, bestehende Daten vor dem Löschen zu exportieren.",
+  "sideMenu.settings.data.delete.dialog.title": "Möchtest du die App-Daten von diesem Gerät löschen?",
+  "sideMenu.settings.data.delete.error.delete": "Daten konnten nicht gelöscht werden",
+  "sideMenu.settings.data.delete.error.noData": "Keine Daten zum Löschen vorhanden",
+  "sideMenu.settings.data.delete.subTitle": "App-Daten von diesem Gerät löschen",
+  "sideMenu.settings.data.delete.success.message": "App-Daten erfolgreich gelöscht",
+  "sideMenu.settings.data.delete.title": "App-Daten löschen",
+  "sideMenu.settings.data.export.button": "Daten exportieren",
+  "sideMenu.settings.data.export.error.conversionFailed": "Daten konnten nicht zu einer CSV-Datei konvertiert werden",
+  "sideMenu.settings.data.export.error.noData": "Keine Daten zum Exportieren vorhanden",
+  "sideMenu.settings.data.export.error.sharingFailed": "Beim Teilen der Datei mit deinen exportieren Daten ist ein Fehler aufgetreten.",
+  "sideMenu.settings.data.export.text": "Exportiere die Daten im CSV-Format, um sie zu sichern oder anderweitig zu verwenden",
+  "sideMenu.settings.data.export.title": "Mein Datenexport von drip",
+  "sideMenu.settings.data.import.button": "Daten importieren",
+  "sideMenu.settings.data.import.dialog.cancel": "Abbrechen",
+  "sideMenu.settings.data.import.dialog.delete": "Daten importieren und vorhandene löschen",
+  "sideMenu.settings.data.import.dialog.message": "Für den Datenimport gibt es zwei Möglichkeiten:\n\n1. Vorhandene Daten behalten und neue dazufügen. Falls sich Tage überschneiden, werden die Daten aus der Importdatei genutzt.\n\n2. Alle vorhandenen Daten löschen und die neuen aus der Datei importieren.",
+  "sideMenu.settings.data.import.dialog.replace": "Importieren und ersetzen",
+  "sideMenu.settings.data.import.dialog.title": "Bestehende Daten behalten?",
+  "sideMenu.settings.data.import.error.couldNotOpenFile": "Datei konnte nicht geöffnet werden",
+  "sideMenu.settings.data.import.error.futureEdit": "Tage in der Zukunft können nur eine Notiz enthalten, keine weiteren Symptome",
+  "sideMenu.settings.data.import.error.incorrectColumns": "Die Spaltennamen der CSV-Datei sollten wie folgt lauten {{incorrectColumns}}",
+  "sideMenu.settings.data.import.error.noDataImported": "{{message}}\n\nEs wurden keine Daten importiert oder geändert",
+  "sideMenu.settings.data.import.segmentExplainer": "Daten aus CSV-Datei importieren",
+  "sideMenu.settings.data.import.success.message": "Daten erfolgreich importiert",
+  "sideMenu.settings.data.import.success.title": "Es hat geklappt!",
+  "sideMenu.settings.language.languages.de-DE": "Deutsch",
+  "sideMenu.settings.language.languages.en-US": "Englisch",
+  "sideMenu.settings.language.title": "Sprache",
+  "sideMenu.settings.menuItem.customization.name": "Anpassungen",
+  "sideMenu.settings.menuItem.customization.text": "App personalisieren",
+  "sideMenu.settings.menuItem.dataManagement.name": "Daten",
+  "sideMenu.settings.menuItem.dataManagement.text": "Daten importieren, exportieren oder löschen",
+  "sideMenu.settings.menuItem.info.name": "Infos",
+  "sideMenu.settings.menuItem.info.text": "Mehr darüber erfahren, wie drip funktioniert",
+  "sideMenu.settings.menuItem.language.name": "Sprache",
+  "sideMenu.settings.menuItem.language.text": "Sprache ändern",
+  "sideMenu.settings.menuItem.password.name": "Passwort",
+  "sideMenu.settings.menuItem.password.text": "Passwort festlegen, bearbeiten oder löschen",
+  "sideMenu.settings.menuItem.reminders.name": "Erinnerungen",
+  "sideMenu.settings.menuItem.reminders.text": "Erinnerungen an/aus schalten",
+  "sideMenu.settings.reminders.periodReminder.alert.text": "Um an die kommenden Perioden erinnert zu werden, aktiviere bitte zunächst die Periodenvorhersage in den Anpassungseinstellungen.",
+  "sideMenu.settings.reminders.periodReminder.alert.title": "Periodenvorhersagen deaktiviert",
+  "sideMenu.settings.reminders.periodReminder.channel": "Periodenerinnerung",
+  "sideMenu.settings.reminders.periodReminder.notification": "Deine nächste Periode fängt voraussichtlich in {{advanceNoticeDays}} bis {{daysToEndOfPrediction}} Tagen an.",
+  "sideMenu.settings.reminders.periodReminder.reminderText": "Du wirst $t(shared.day) vor dem voraussichtlichen Beginn deiner nächsten Periode erinnert.",
+  "sideMenu.settings.reminders.periodReminder.reminderTextDisabled": "Erinnerung vor dem voraussichtlichen Beginn deiner nächsten Periode aktivieren.",
+  "sideMenu.settings.reminders.periodReminder.title": "Erinnerung vor deiner nächsten Periode",
+  "sideMenu.settings.reminders.temperatureReminder.alert.text": "Um an die Temperaturmessung erinnert zu werden, aktiviere bitte zunächst die Kategorie Temperatur in den Anpassungseinstellungen.",
+  "sideMenu.settings.reminders.temperatureReminder.alert.title": "Temperaturerinnerung deaktiviert",
+  "sideMenu.settings.reminders.temperatureReminder.channel": "Temperatur",
+  "sideMenu.settings.reminders.temperatureReminder.noTimeSet": "Zeitpunkt für eine tägliche Erinnerung zum Temperaturmessen festlegen",
+  "sideMenu.settings.reminders.temperatureReminder.notification": "Miss deine Basaltemperatur",
+  "sideMenu.settings.reminders.temperatureReminder.timeSet": "Tägliche Erinnerung um {{time}}",
+  "sideMenu.settings.reminders.temperatureReminder.title": "Erinnerung an Temperaturmessung",
+  "sideMenu.settings.title": "Einstellungen",
+  "stats.details.bleedingDays": "Blutung",
+  "stats.details.cycleLength": "Zykluslänge",
+  "stats.details.cycleStart": "Start des Zyklus",
+  "stats.footnote": "Die Standardabweichung gibt an, wie stark die Längen deiner Zyklen variieren. Null bedeutet, dass alle Zyklen genau gleich lang sind, und je höher der Wert ist, desto stärker schwanken die Zykluslängen. Daher kann bei einer kleineren Standardabweichung (< 1,5) der voraussichtliche Starttag deiner nächsten Periode genauer angegeben werden: drip zeigt dir die 3 wahrscheinlichsten Tage für den Start an. Wenn die Längen deiner Zyklen stärker variieren (Standardabweichung ≥ 1,5), dann werden stattdessen 5 mögliche Starttage angezeigt.",
+  "stats.intro": "Grundlegende Statistiken über die Länge deiner Zyklen.",
+  "stats.noData": "Es ist mindestens ein abgeschlossener Zyklus erforderlich, um die Statistiken anzuzeigen.",
+  "stats.overview.average": "Durchschnittlicher Zyklus",
+  "stats.overview.completedCycles": "abgeschlossene Zyklen",
+  "stats.overview.days": "Tage",
+  "stats.overview.max": "Längster",
+  "stats.overview.min": "Kürzester",
+  "stats.overview.standardDeviation": "Standardabweichung",
+  "stats.showStats": "Details zur Menstruation anzeigen",
+  "symptoms.bleeding": "Blutung",
+  "symptoms.cervix": "Zervix",
+  "symptoms.desire": "Lust",
+  "symptoms.mood": "Stimmung",
+  "symptoms.mucus": "Zervixschleim",
+  "symptoms.note": "Notiz",
+  "symptoms.pain": "Schmerzen",
+  "symptoms.sex": "Sex",
+  "symptoms.temperature": "Temperatur"
 }

@@ -42,6 +42,7 @@ async function downloadFiles() {
     export_empty_as: 'base',
     export_sort: 'a_z',
     replace_breaks: false,
+    all_platforms: true,
     indentation: '2sp',
     json_unescaped_slashes: true,
     bundle_structure: '%LANG_ISO%.json',
