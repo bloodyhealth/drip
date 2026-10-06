@@ -1,55 +1,55 @@
-import React from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
-import PropTypes from 'prop-types'
-import moment from 'moment'
+import React from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import PropTypes from 'prop-types';
 
-import AppText from './common/app-text'
-import Asterisk from './common/asterisk'
-import Button from './common/button'
-import Footnote from './common/footnote'
+import AppText from './common/app-text';
+import Asterisk from './common/asterisk';
+import Button from './common/button';
+import Footnote from './common/footnote';
 
-import cycleModule from '../lib/cycle'
-import { getFertilityStatusForDay } from '../lib/sympto-adapter'
+import { todayToFullDate } from './helpers/format-date';
+import cycleModule from '../lib/cycle';
+import { getFertilityStatusForDay } from '../lib/sympto-adapter';
 import {
   determinePredictionText,
   formatWithOrdinalSuffix,
-} from './helpers/home'
+} from './helpers/home';
 import {
   fertilityTrackingObservable,
   periodPredictionObservable,
-} from '../local-storage'
+} from '../local-storage';
 
-import { Colors, Fonts, Sizes, Spacing } from '../styles'
-import { LocalDate } from '@js-joda/core'
-import { useTranslation } from 'react-i18next'
+import { Colors, Fonts, Sizes, Spacing } from '../styles';
+import { LocalDate } from '@js-joda/core';
+import { useTranslation } from 'react-i18next';
 
 const Home = ({ navigate, setDate }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   function navigateToCycleDayView() {
-    setDate(todayDateString)
-    navigate('CycleDay')
+    setDate(todayDateString);
+    navigate('CycleDay');
   }
 
-  const isFertilityTrackingEnabled = fertilityTrackingObservable.value
-  const todayDateString = LocalDate.now().toString()
-  const { getCycleDayNumber, getPredictedMenses } = cycleModule()
-  const cycleDayNumber = getCycleDayNumber(todayDateString)
+  const isFertilityTrackingEnabled = fertilityTrackingObservable.value;
+  const todayDateString = LocalDate.now().toString();
+  const { getCycleDayNumber, getPredictedMenses } = cycleModule();
+  const cycleDayNumber = getCycleDayNumber(todayDateString);
   const { status, phase, statusText } =
-    isFertilityTrackingEnabled && getFertilityStatusForDay(todayDateString)
-  const isPeriodPredictionEnabled = periodPredictionObservable.value
-  const prediction = determinePredictionText(getPredictedMenses(), t)
+    isFertilityTrackingEnabled && getFertilityStatusForDay(todayDateString);
+  const isPeriodPredictionEnabled = periodPredictionObservable.value;
+  const prediction = determinePredictionText(getPredictedMenses(), t);
 
   const cycleDayText = cycleDayNumber
     ? formatWithOrdinalSuffix(cycleDayNumber)
-    : ''
+    : '';
 
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      <AppText style={styles.title}>{moment().format('MMM Do YYYY')}</AppText>
+      <AppText style={styles.title}>{todayToFullDate()}</AppText>
 
       {/* display if at least 1 bleeding day has been entered */}
       {cycleDayNumber && (
@@ -87,8 +87,8 @@ const Home = ({ navigate, setDate }) => {
       </Button>
       {phase && <Footnote colorLabel="greyLight">{statusText}</Footnote>}
     </ScrollView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -123,11 +123,11 @@ const styles = StyleSheet.create({
   largePadding: {
     padding: Spacing.large,
   },
-})
+});
 
 Home.propTypes = {
   navigate: PropTypes.func,
   setDate: PropTypes.func,
-}
+};
 
-export default Home
+export default Home;
