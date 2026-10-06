@@ -81,7 +81,7 @@
       "infertile": "infertile",
       "periOvu": "We were not able to detect both a temperature shift and cervical mucus or cervix shift.",
       "periOvuUntilEvening": "We detected a temperature shift ($t(cycleDay.fertilityStatus.temperatureShift, {\"count\": {{rule}} }) temperature rule), as well as a cervical mucus/cervix shift according to the sympto-thermal method. In the evening today you may assume infertility, but always remember to double-check for yourself. Make sure the data makes sense to you.",
-      "postOvu": "We detected a temperature shift ($t(cycleDay.fertilityStatus.temperatureShift, {\"count\": {{rule}} }) temperature rule), as well as a cervical mucus/cervix shift according to the sympto-thermal method. You may assume infertility, but always remember to double-check for yourself. Make sure the data makes sense to you.",
+      "postOvu": "We detected a temperature shift ($t(cycleDay.fertilityStatus.temperatureShift, {\"count\": {{rule}} })) temperature rule), as well as a cervical mucus/cervix shift according to the sympto-thermal method. You may assume infertility, but always remember to double-check for yourself. Make sure the data makes sense to you.",
       "preOvu": "According to the sympto-thermal method, you may assume 5 days of infertility at the beginning of your cycle, provided you don't observe any fertile cervical mucus or cervix values.",
       "temperatureShift_one": "1st exception",
       "temperatureShift_other": "2nd exception",
@@ -235,20 +235,20 @@
     "today": "Today"
   },
   "errorBoundary": {
-    "title": "Something went wrong",
-    "intro": "Unfortunately, an unexpected error occurred.",
-    "retry": "Try again",
     "contact": {
-      "title": "Tell us about it",
+      "emailSubject": "drip crash report ({{version}})",
       "text": "drip is made by a small team and reports like yours are how these bugs get found. You can send us the details below by email or open an issue on GitLab.",
-      "emailSubject": "drip crash report ({{version}})"
+      "title": "Tell us about it"
     },
     "details": {
-      "title": "Error details",
-      "version": "Version",
+      "message": "Error",
       "platform": "Platform",
-      "message": "Error"
-    }
+      "title": "Error details",
+      "version": "Version"
+    },
+    "intro": "Unfortunately, an unexpected error occurred.",
+    "retry": "Try again",
+    "title": "Something went wrong"
   },
   "labels": {
     "bleedingPrediction": {
@@ -325,7 +325,11 @@
       "title": "Unlock app"
     }
   },
-
+  "privacyPolicy": {
+    "intro": {
+      "title": "Introduction"
+    }
+  },
   "shared": {
     "cancel": "Cancel",
     "confirmToProceed": "Confirm to proceed",
@@ -362,9 +366,6 @@
         "title": "Version"
       }
     },
-    "info": {
-      "title": "info"
-    },
     "license": {
       "text": "Copyright (C) {{currentYear}} Heart of Code e.V.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details:",
       "title": "drip. an open-source cycle tracking app"
@@ -376,7 +377,10 @@
       "settings": "Settings"
     },
     "privacyPolicy": {
-      "title": "Privacy Policy",
+      "dataUse": {
+        "text": "drip respects and celebrates your privacy. We do not collect, retain, or share any usage data or personal information. There are no ads, no spyware, and no tracking. All menstrual health data is stored only on your device, under your control. \n\nThis includes:\n• settings\n• menstrual cycle tracking data\n\nThe data is used to display statistics and apply fertility awareness rules. This data cannot be accessed by other apps.\n\nIf you wish to delete all your app data you can do so by navigating to Settings > Data > Delete app data. This can also be done by uninstalling the app. This can also be done by uninstalling the app. Please note that while drip only saves your data locally, depending on your device settings an automatic cloud backup might still take place. We recommend checking your general settings to prevent this from happening.",
+        "title": "Data use"
+      },
       "information": {
         "text": "This Privacy Policy applies to the app \"drip period & cycle tracker\" (drip), developed and maintained by the drip team, a project of the Heart of Code e.V., a registered organization based at Mariannenplatz 2a, 10997 Berlin, Germany.",
         "title": "App and Developer Information"
@@ -385,21 +389,18 @@
         "text": "This Privacy Policy sets out how the iOS and Android app \"drip period & cycle tracker\" uses and protects your personal data that you generate and store within the app.",
         "title": "Introduction"
       },
-      "dataUse": {
-        "text": "drip respects and celebrates your privacy. We do not collect, retain, or share any usage data or personal information. There are no ads, no spyware, and no tracking. All menstrual health data is stored only on your device, under your control. \n\nThis includes:\n• settings\n• menstrual cycle tracking data\n\nThe data is used to display statistics and apply fertility awareness rules. This data cannot be accessed by other apps.\n\nIf you wish to delete all your app data you can do so by navigating to Settings > Data > Delete app data. This can also be done by uninstalling the app. This can also be done by uninstalling the app. Please note that while drip only saves your data locally, depending on your device settings an automatic cloud backup might still take place. We recommend checking your general settings to prevent this from happening.",
-        "title": "Data use"
+      "lastUpdated": {
+        "text": "This policy was last updated on August 26th, 2026",
+        "title": ""
       },
       "permissions": {
         "text": "For using reminders in drip you need to allow push notifications. If you don't want to use this feature you simply don't allow notifications for the app.",
         "title": "Permissions"
       },
+      "title": "Privacy Policy",
       "transparency": {
         "text": "You can read through the source code of drip. to ensure the given information is correct. The source code is like a recipe: It tells you how much and what kind of ingredients you need and how you prepare them to cook a tasty meal or program a funky app.\n\nBuon appetito!",
         "title": "Transparency"
-      },
-      "lastUpdated": {
-        "title": "",
-        "text": "This policy was last updated on August 26th, 2026"
       }
     },
     "settings": {
@@ -536,6 +537,7 @@
             "text": "To use the period reminder please first enable period predictions in the customization settings.",
             "title": "Period predictions turned off"
           },
+          "channel": "Period reminder",
           "notification": "Your next period is likely to start in {{advanceNoticeDays}} to {{daysToEndOfPrediction}} days.",
           "reminderText": "Reminder set for $t(shared.day) before your next period is likely to start.",
           "reminderTextDisabled": "Set a reminder before your next period is likely to start.",
@@ -546,6 +548,7 @@
             "text": "To use the temperature reminder please first enable the temperature tracking category in the customization settings.",
             "title": "Temperature turned off"
           },
+          "channel": "Temperature",
           "noTimeSet": "Set a time for a daily reminder to take your temperature",
           "notification": "Record your morning temperature",
           "timeSet": "Daily reminder set for {{time}}",
