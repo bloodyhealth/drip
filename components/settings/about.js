@@ -1,18 +1,20 @@
-import React from 'react'
-import { Platform, Linking } from 'react-native'
+import React from 'react';
+import { Platform, Linking } from 'react-native';
 
-import AppPage from '../common/app-page'
-import AppText from '../common/app-text'
-import AppLink from '../common/app-link'
-import Segment from '../common/segment'
-import Button from '../common/button'
-import ButtonRow from '../common/button-row'
+import AppPage from '../common/app-page';
+import AppText from '../common/app-text';
+import AppLink from '../common/app-link';
+import Segment from '../common/segment';
+import Button from '../common/button';
+import ButtonRow from '../common/button-row';
 
-import links from '../../common/links'
-import { useTranslation } from 'react-i18next'
+import { getLinks } from '../../common/links';
+import { useTranslation } from 'react-i18next';
 
 const AboutSection = () => {
-  const { t } = useTranslation(null, { keyPrefix: 'sideMenu.about' })
+  const { t } = useTranslation(null, { keyPrefix: 'sideMenu.about' });
+  const { t: tRoot } = useTranslation();
+  const links = getLinks(tRoot);
 
   return (
     <AppPage title={t('title')}>
@@ -67,7 +69,7 @@ const AboutSection = () => {
         <AppText>{require('../../package.json').version}</AppText>
       </Segment>
     </AppPage>
-  )
-}
+  );
+};
 
-export default AboutSection
+export default AboutSection;

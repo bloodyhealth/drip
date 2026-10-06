@@ -1,143 +1,143 @@
-import React, { useRef, useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   Dimensions,
   Platform,
   ScrollView,
   StyleSheet,
   View,
-} from 'react-native'
+} from 'react-native';
 
-import AppModal from '../common/app-modal'
-import AppSwitch from '../common/app-switch'
-import AppText from '../common/app-text'
-import AppTextInput from '../common/app-text-input'
-import Button from '../common/button'
-import Segment from '../common/segment'
-import SelectBoxGroup from './select-box-group'
-import SelectTabGroup from './select-tab-group'
-import Temperature from './temperature'
+import AppModal from '../common/app-modal';
+import AppSwitch from '../common/app-switch';
+import AppText from '../common/app-text';
+import AppTextInput from '../common/app-text-input';
+import Button from '../common/button';
+import Segment from '../common/segment';
+import SelectBoxGroup from './select-box-group';
+import SelectTabGroup from './select-tab-group';
+import Temperature from './temperature';
 
-import { blank, save, shouldShow, symtomPage } from '../helpers/cycle-day'
-import { showToast } from '../helpers/general'
+import { blank, getSymptomPage, save, shouldShow } from '../helpers/cycle-day';
+import { showToast } from '../helpers/general';
 
-import { fertilityTrackingObservable } from '../../local-storage'
-import { Colors, Containers, Sizes, Spacing } from '../../styles'
-import { useTranslation } from 'react-i18next'
-import { LearnMore } from './learn-more'
+import { fertilityTrackingObservable } from '../../local-storage';
+import { Colors, Containers, Sizes, Spacing } from '../../styles';
+import { useTranslation } from 'react-i18next';
+import { LearnMore } from './learn-more';
 
 const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
-  const { t } = useTranslation()
-  const symptomConfig = symtomPage[symptom]
-  const [data, setData] = useState(symptomData ? symptomData : blank[symptom])
-  const [shouldShowInfo, setShouldShowInfo] = useState(false)
-  const scrollViewRef = useRef(null)
-  const shouldScrollToInfo = useRef(false)
-  const learnMoreButtonY = useRef(0)
-  const getParsedData = () => JSON.parse(JSON.stringify(data))
-  const isFertilityTrackingEnabled = fertilityTrackingObservable.value
+  const { t } = useTranslation();
+  const symptomConfig = getSymptomPage(t)[symptom];
+  const [data, setData] = useState(symptomData ? symptomData : blank[symptom]);
+  const [shouldShowInfo, setShouldShowInfo] = useState(false);
+  const scrollViewRef = useRef(null);
+  const shouldScrollToInfo = useRef(false);
+  const learnMoreButtonY = useRef(0);
+  const getParsedData = () => JSON.parse(JSON.stringify(data));
+  const isFertilityTrackingEnabled = fertilityTrackingObservable.value;
 
   const onPressLearnMore = () => {
     // only scroll when opening, not when collapsing
-    shouldScrollToInfo.current = !shouldShowInfo
-    setShouldShowInfo(!shouldShowInfo)
-  }
+    shouldScrollToInfo.current = !shouldShowInfo;
+    setShouldShowInfo(!shouldShowInfo);
+  };
 
   const onLearnMoreLayout = ({ nativeEvent }) => {
-    learnMoreButtonY.current = nativeEvent.layout.y
-  }
+    learnMoreButtonY.current = nativeEvent.layout.y;
+  };
 
   // fires once the revealed text has been laid out, so it can be scrolled to
   const onInfoLayout = () => {
-    if (!shouldScrollToInfo.current) return
+    if (!shouldScrollToInfo.current) return;
 
-    shouldScrollToInfo.current = false
+    shouldScrollToInfo.current = false;
     scrollViewRef.current?.scrollTo({
       y: learnMoreButtonY.current - Spacing.small,
       animated: true,
-    })
-  }
+    });
+  };
 
   const onEditNote = (note) => {
-    const parsedData = getParsedData()
+    const parsedData = getParsedData();
 
     if (symptom === 'note') {
-      Object.assign(parsedData, { value: note })
+      Object.assign(parsedData, { value: note });
     } else {
-      parsedData.note = note
+      parsedData.note = note;
     }
 
-    setData(parsedData)
-  }
+    setData(parsedData);
+  };
 
   const onExcludeToggle = () => {
-    const parsedData = getParsedData()
+    const parsedData = getParsedData();
 
-    Object.assign(parsedData, { exclude: !parsedData.exclude })
+    Object.assign(parsedData, { exclude: !parsedData.exclude });
 
-    setData(parsedData)
-  }
+    setData(parsedData);
+  };
 
   const onRemove = () => {
-    save[symptom](data, date, true)
-    showToast(t('cycleDay.symptomEditModal.dataDeleted'))
-    onClose()
-  }
+    save[symptom](data, date, true);
+    showToast(t('cycleDay.symptomEditModal.dataDeleted'));
+    onClose();
+  };
 
   const onSave = () => {
     const hasDataChanged = () => {
-      const initialData = symptomData ? symptomData : blank[symptom]
+      const initialData = symptomData ? symptomData : blank[symptom];
 
-      return JSON.stringify(data) !== JSON.stringify(initialData)
-    }
+      return JSON.stringify(data) !== JSON.stringify(initialData);
+    };
 
     if (hasDataChanged()) {
-      save[symptom](data, date, false)
-      showToast(t('cycleDay.symptomEditModal.dataSaved'))
+      save[symptom](data, date, false);
+      showToast(t('cycleDay.symptomEditModal.dataSaved'));
     }
 
-    onClose()
-  }
+    onClose();
+  };
 
   const onSaveTemperature = (value, field) => {
-    const parsedData = getParsedData()
+    const parsedData = getParsedData();
     const dataToSave =
-      field === 'value' ? { [field]: Number(value) } : { [field]: value }
+      field === 'value' ? { [field]: Number(value) } : { [field]: value };
 
-    Object.assign(parsedData, { ...dataToSave })
+    Object.assign(parsedData, { ...dataToSave });
 
-    setData(parsedData)
-  }
+    setData(parsedData);
+  };
 
   const onSelectBox = (key) => {
-    const parsedData = getParsedData()
+    const parsedData = getParsedData();
 
-    const newValue = data[key] === true ? null : true
-    parsedData[key] = newValue
+    const newValue = data[key] === true ? null : true;
+    parsedData[key] = newValue;
 
     if (key === 'other') {
-      parsedData.note = null
+      parsedData.note = null;
     }
 
-    setData(parsedData)
-  }
+    setData(parsedData);
+  };
 
   const onSelectBoxNote = (value) => {
-    const parsedData = getParsedData()
+    const parsedData = getParsedData();
 
-    Object.assign(parsedData, { note: value !== '' ? value : null })
+    Object.assign(parsedData, { note: value !== '' ? value : null });
 
-    setData(parsedData)
-  }
+    setData(parsedData);
+  };
 
   const onSelectTab = (group, value) => {
-    const parsedData = getParsedData()
+    const parsedData = getParsedData();
 
-    parsedData[group.key] = parsedData[group.key] !== value ? value : null
-    setData(parsedData)
-  }
-  const iconName = shouldShowInfo ? 'chevron-up' : 'chevron-down'
-  const noteText = symptom === 'note' ? data.value : data.note
+    parsedData[group.key] = parsedData[group.key] !== value ? value : null;
+    setData(parsedData);
+  };
+  const iconName = shouldShowInfo ? 'chevron-up' : 'chevron-down';
+  const noteText = symptom === 'note' ? data.value : data.note;
   const inputProps = {
     multiline: true,
     numberOfLines: Platform.OS === 'ios' ? null : 4, // only Android
@@ -147,7 +147,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
     style: symptom === 'note' ? null : styles.input, // overwrites previous 2 lines to fix note space in symptoms
     scrollEnabled: true,
     textAlignVertical: 'top',
-  }
+  };
 
   return (
     <AppModal onClose={onSave}>
@@ -164,7 +164,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
           />
         )}
         {shouldShow(symptomConfig.selectTabGroups) &&
-          symtomPage[symptom].selectTabGroups.map((group) => {
+          symptomConfig.selectTabGroups.map((group) => {
             return (
               <Segment key={group.key} style={styles.segmentBorder}>
                 <AppText style={styles.title}>{group.title}</AppText>
@@ -174,14 +174,14 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
                   onSelect={(value) => onSelectTab(group, value)}
                 />
               </Segment>
-            )
+            );
           })}
         {shouldShow(symptomConfig.selectBoxGroups) &&
-          symtomPage[symptom].selectBoxGroups.map((group) => {
+          symptomConfig.selectBoxGroups.map((group) => {
             const isOtherSelected =
               data.other !== null &&
               data.other !== false &&
-              Object.keys(group.options).includes('other')
+              Object.keys(group.options).includes('other');
 
             return (
               <Segment key={group.key} style={styles.segmentBorder}>
@@ -200,7 +200,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
                   />
                 )}
               </Segment>
-            )
+            );
           })}
         {/* show exclude AppSwitch for bleeding, mucus, cervix, temperature */}
         {/* but if fertility is off only for bleeding */}
@@ -209,14 +209,14 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             <Segment style={styles.segmentBorder}>
               <AppSwitch
                 onToggle={onExcludeToggle}
-                text={symtomPage[symptom].excludeText}
+                text={symptomConfig.excludeText}
                 value={data.exclude}
               />
             </Segment>
           )}
         {shouldShow(symptomConfig.note) && (
           <Segment style={styles.segmentBorder}>
-            <AppText>{symtomPage[symptom].note}</AppText>
+            <AppText>{symptomConfig.note}</AppText>
             <AppTextInput
               {...inputProps}
               onChangeText={onEditNote}
@@ -251,15 +251,15 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
         )}
       </ScrollView>
     </AppModal>
-  )
-}
+  );
+};
 
 SymptomEditView.propTypes = {
   date: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
   symptom: PropTypes.string.isRequired,
   symptomData: PropTypes.object,
-}
+};
 
 const styles = StyleSheet.create({
   buttonsContainer: {
@@ -280,6 +280,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: Sizes.subtitle,
   },
-})
+});
 
-export default SymptomEditView
+export default SymptomEditView;

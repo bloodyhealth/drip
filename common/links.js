@@ -1,6 +1,4 @@
-import i18n from '../i18n/i18n'
-
-export default {
+export const getLinks = (t) => ({
   gitlab: {
     url: 'https://gitlab.com/bloodyhealth/drip',
     text: 'GitLab',
@@ -11,19 +9,19 @@ export default {
   },
   email: {
     url: 'mailto:drip@mailbox.org',
-    text: i18n.t('links.email'),
+    text: t('links.email'),
   },
   wiki: {
     url: 'https://gitlab.com/bloodyhealth/drip/wikis/home',
-    text: i18n.t('links.wiki'),
+    text: t('links.wiki'),
   },
   website: {
     url: 'https://dripapp.org/',
-    text: i18n.t('links.website'),
+    text: t('links.website'),
   },
   donate: {
     url: 'https://ko-fi.com/dripapp',
-    text: i18n.t('links.donate'),
+    text: t('links.donate'),
   },
   smashicons: {
     url: 'https://smashicons.com/',
@@ -49,4 +47,4 @@ export default {
     url: 'https://dripapp.org/faq',
     text: 'FAQ',
   },
-}
+});

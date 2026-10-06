@@ -1,49 +1,49 @@
-import { ChronoUnit, LocalDate, LocalTime } from '@js-joda/core'
+import { ChronoUnit, LocalDate, LocalTime } from '@js-joda/core';
 
 import {
   getPreviousTemperatureForDate,
   saveSymptom,
   mapRealmObjToJsObj,
-} from '../../db'
-import { scaleObservable } from '../../local-storage'
+} from '../../db';
+import { scaleObservable } from '../../local-storage';
 
-import { getOptions, getOptionsNumeric, SYMPTOMS } from './labels'
-import { TEMP_MAX, TEMP_MIN } from '../../config'
-import i18n from '../../i18n/i18n'
+import { getOptions, getOptionsNumeric, SYMPTOMS } from './labels';
+import { TEMP_MAX, TEMP_MIN } from '../../config';
+import i18n from '../../i18n/i18n';
 
-import computeNfpValue from '../../lib/nfp-mucus'
+import computeNfpValue from '../../lib/nfp-mucus';
 
-const minutes = ChronoUnit.MINUTES
+const minutes = ChronoUnit.MINUTES;
 
-const isNumber = (value) => typeof value === 'number'
-export const shouldShow = (value) => value !== null
+const isNumber = (value) => typeof value === 'number';
+export const shouldShow = (value) => value !== null;
 
 export const formatTemperature = (temperature) =>
   !temperature
     ? temperature
-    : Number.parseFloat(temperature.toString()).toFixed(2)
+    : Number.parseFloat(temperature.toString()).toFixed(2);
 
 //maximum of precision digits after decimal point, but no x.0
 export const formatDecimal = (num, precision) =>
-  +parseFloat(Number.parseFloat(num).toFixed(precision))
+  +parseFloat(Number.parseFloat(num).toFixed(precision));
 
 export const getPreviousTemperature = (date) => {
-  const previousTemperature = getPreviousTemperatureForDate(date)
-  return formatTemperature(previousTemperature)
-}
+  const previousTemperature = getPreviousTemperatureForDate(date);
+  return formatTemperature(previousTemperature);
+};
 
 export const getTemperatureOutOfRangeMessage = (temperature) => {
-  if (!temperature) return null
+  if (!temperature) return null;
 
-  const value = Number(temperature)
-  const scale = scaleObservable.value
+  const value = Number(temperature);
+  const scale = scaleObservable.value;
 
   return value < TEMP_MIN || value > TEMP_MAX
     ? i18n.t('cycleDay.temperature.warning.outOfChartRange')
     : value < scale.min || value > scale.max
     ? i18n.t('cycleDay.temperature.warning.outOfUserDefinedRange')
-    : ''
-}
+    : '';
+};
 
 export const blank = {
   bleeding: {
@@ -112,40 +112,40 @@ export const blank = {
     time: LocalTime.now().truncatedTo(minutes).toString(),
     value: null,
   },
-}
+};
 
-export const symtomPage = {
+export const getSymptomPage = (t) => ({
   bleeding: {
-    excludeText: i18n.t('cycleDay.bleeding.exclude'),
+    excludeText: t('cycleDay.bleeding.exclude'),
     note: null,
     selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'value',
-        options: getOptionsNumeric('bleeding', 'heaviness'),
-        title: i18n.t('cycleDay.bleeding.heaviness.description'),
+        options: getOptionsNumeric(t, 'bleeding', 'heaviness'),
+        title: t('cycleDay.bleeding.heaviness.description'),
       },
     ],
   },
   cervix: {
-    excludeText: i18n.t('cycleDay.cervix.exclude'),
+    excludeText: t('cycleDay.cervix.exclude'),
     note: null,
     selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'opening',
-        options: getOptionsNumeric('cervix', 'opening'),
-        title: i18n.t('cycleDay.cervix.opening.description'),
+        options: getOptionsNumeric(t, 'cervix', 'opening'),
+        title: t('cycleDay.cervix.opening.description'),
       },
       {
         key: 'firmness',
-        options: getOptionsNumeric('cervix', 'firmness'),
-        title: i18n.t('cycleDay.cervix.firmness.description'),
+        options: getOptionsNumeric(t, 'cervix', 'firmness'),
+        title: t('cycleDay.cervix.firmness.description'),
       },
       {
         key: 'position',
-        options: getOptionsNumeric('cervix', 'position'),
-        title: i18n.t('cycleDay.cervix.position.description'),
+        options: getOptionsNumeric(t, 'cervix', 'position'),
+        title: t('cycleDay.cervix.position.description'),
       },
     ],
   },
@@ -156,25 +156,25 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'value',
-        options: getOptionsNumeric('desire', 'intensity'),
-        title: i18n.t('cycleDay.desire.intensity.description'),
+        options: getOptionsNumeric(t, 'desire', 'intensity'),
+        title: t('cycleDay.desire.intensity.description'),
       },
     ],
   },
   mucus: {
-    excludeText: i18n.t('cycleDay.mucus.exclude'),
+    excludeText: t('cycleDay.mucus.exclude'),
     note: null,
     selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'feeling',
-        options: getOptionsNumeric('mucus', 'feeling'),
-        title: i18n.t('cycleDay.mucus.feeling.description'),
+        options: getOptionsNumeric(t, 'mucus', 'feeling'),
+        title: t('cycleDay.mucus.feeling.description'),
       },
       {
         key: 'texture',
-        options: getOptionsNumeric('mucus', 'texture'),
-        title: i18n.t('cycleDay.mucus.texture.description'),
+        options: getOptionsNumeric(t, 'mucus', 'texture'),
+        title: t('cycleDay.mucus.texture.description'),
       },
     ],
   },
@@ -184,15 +184,15 @@ export const symtomPage = {
     selectBoxGroups: [
       {
         key: 'mood',
-        options: getOptions('mood', 'feelings'),
-        title: i18n.t('cycleDay.mood.feelings.description'),
+        options: getOptions(t, 'mood', 'feelings'),
+        title: t('cycleDay.mood.feelings.description'),
       },
     ],
     selectTabGroups: null,
   },
   note: {
     excludeText: null,
-    note: i18n.t('cycleDay.note.description'),
+    note: t('cycleDay.note.description'),
     selectBoxGroups: null,
     selectTabGroups: null,
   },
@@ -202,8 +202,8 @@ export const symtomPage = {
     selectBoxGroups: [
       {
         key: 'pain',
-        options: getOptions('pain', 'feelings'),
-        title: i18n.t('cycleDay.pain.feelings.description'),
+        options: getOptions(t, 'pain', 'feelings'),
+        title: t('cycleDay.pain.feelings.description'),
       },
     ],
     selectTabGroups: null,
@@ -214,60 +214,61 @@ export const symtomPage = {
     selectBoxGroups: [
       {
         key: 'sex',
-        options: getOptions('sex', 'activity'),
-        title: i18n.t('cycleDay.sex.activity.description'),
+        options: getOptions(t, 'sex', 'activity'),
+        title: t('cycleDay.sex.activity.description'),
       },
       {
         key: 'contraceptives',
-        options: getOptions('sex', 'contraceptives'),
-        title: i18n.t('cycleDay.sex.contraceptives.description'),
+        options: getOptions(t, 'sex', 'contraceptives'),
+        title: t('cycleDay.sex.contraceptives.description'),
       },
     ],
     selectTabGroups: null,
   },
   temperature: {
-    excludeText: i18n.t('cycleDay.temperature.exclude'),
-    note: i18n.t('cycleDay.temperature.note'),
+    excludeText: t('cycleDay.temperature.exclude'),
+    note: t('cycleDay.temperature.note'),
     selectBoxGroups: null,
     selectTabGroups: null,
   },
-}
+});
 
 export const save = {
   bleeding: (data, date, shouldDeleteData) => {
-    const { exclude, value } = data
-    const isDataEntered = isNumber(value)
+    const { exclude, value } = data;
+    const isDataEntered = isNumber(value);
     const valuesToSave =
-      shouldDeleteData || !isDataEntered ? null : { value, exclude }
+      shouldDeleteData || !isDataEntered ? null : { value, exclude };
 
-    saveSymptom('bleeding', date, valuesToSave)
+    saveSymptom('bleeding', date, valuesToSave);
   },
   cervix: (data, date, shouldDeleteData) => {
-    const { opening, firmness, position, exclude } = data
+    const { opening, firmness, position, exclude } = data;
     const isDataEntered = ['opening', 'firmness', 'position'].some((value) =>
       isNumber(data[value])
-    )
+    );
     const valuesToSave =
       shouldDeleteData || !isDataEntered
         ? null
-        : { opening, firmness, position, exclude }
+        : { opening, firmness, position, exclude };
 
-    saveSymptom('cervix', date, valuesToSave)
+    saveSymptom('cervix', date, valuesToSave);
   },
   desire: (data, date, shouldDeleteData) => {
-    const { value } = data
-    const valuesToSave = shouldDeleteData || !isNumber(value) ? null : { value }
+    const { value } = data;
+    const valuesToSave =
+      shouldDeleteData || !isNumber(value) ? null : { value };
 
-    saveSymptom('desire', date, valuesToSave)
+    saveSymptom('desire', date, valuesToSave);
   },
   mood: (data, date, shouldDeleteData) => {
-    saveBoxSymptom(data, date, shouldDeleteData, 'mood')
+    saveBoxSymptom(data, date, shouldDeleteData, 'mood');
   },
   mucus: (data, date, shouldDeleteData) => {
-    const { feeling, texture, exclude } = data
+    const { feeling, texture, exclude } = data;
     const isDataEntered = ['feeling', 'texture'].some((value) =>
       isNumber(data[value])
-    )
+    );
     const valuesToSave =
       shouldDeleteData || !isDataEntered
         ? null
@@ -276,46 +277,46 @@ export const save = {
             texture,
             value: computeNfpValue(feeling, texture),
             exclude,
-          }
+          };
 
-    saveSymptom('mucus', date, valuesToSave)
+    saveSymptom('mucus', date, valuesToSave);
   },
   note: (data, date, shouldDeleteData) => {
-    const { value } = data
-    const isValidData = value !== null && value !== ''
-    const valuesToSave = shouldDeleteData || !isValidData ? null : { value }
+    const { value } = data;
+    const isValidData = value !== null && value !== '';
+    const valuesToSave = shouldDeleteData || !isValidData ? null : { value };
 
-    saveSymptom('note', date, valuesToSave)
+    saveSymptom('note', date, valuesToSave);
   },
   pain: (data, date, shouldDeleteData) => {
-    saveBoxSymptom(data, date, shouldDeleteData, 'pain')
+    saveBoxSymptom(data, date, shouldDeleteData, 'pain');
   },
   sex: (data, date, shouldDeleteData) => {
-    saveBoxSymptom(data, date, shouldDeleteData, 'sex')
+    saveBoxSymptom(data, date, shouldDeleteData, 'sex');
   },
   temperature: (data, date, shouldDeleteData) => {
-    const { exclude, note, time, value } = data
+    const { exclude, note, time, value } = data;
     const valuesToSave = {
       exclude,
       note,
       time,
       value: Number(value),
-    }
+    };
 
     saveSymptom(
       'temperature',
       date,
       shouldDeleteData || value === null ? null : valuesToSave
-    )
+    );
   },
-}
+};
 
 const saveBoxSymptom = (data, date, shouldDeleteData, symptom) => {
-  const isDataEntered = Object.keys(data).some((key) => data[key] !== null)
-  const valuesToSave = shouldDeleteData || !isDataEntered ? null : data
+  const isDataEntered = Object.keys(data).some((key) => data[key] !== null);
+  const valuesToSave = shouldDeleteData || !isDataEntered ? null : data;
 
-  saveSymptom(symptom, date, valuesToSave)
-}
+  saveSymptom(symptom, date, valuesToSave);
+};
 
 /**
  * Function to generate labels for symptom data where users can add note
@@ -328,140 +329,140 @@ const getLabelWithNote = (symptomData, categories) => {
     ? Object.keys(symptomData).filter((symptom) =>
         Boolean(symptomData[symptom])
       )
-    : []
+    : [];
 
   const labels = relevantSymptoms.reduce((labels, symptom) => {
     if (symptom === 'note') {
-      return labels
+      return labels;
     }
     const translationKeys = categories.map(
       ([category, subCategory]) =>
         `cycleDay.${category}.${subCategory}.symptoms.${symptom}`
-    )
-    const label = i18n.t(translationKeys)
+    );
+    const label = i18n.t(translationKeys);
 
     if (symptom === 'other') {
-      const noteLabel = symptomData.note ? ` (${symptomData.note})` : ''
+      const noteLabel = symptomData.note ? ` (${symptomData.note})` : '';
 
-      return [...labels, label.concat(noteLabel)]
+      return [...labels, label.concat(noteLabel)];
     }
-    return [...labels, label]
-  }, [])
+    return [...labels, label];
+  }, []);
 
   if (labels.length === 0) {
-    return null
+    return null;
   }
 
-  return labels.join(', ')
-}
+  return labels.join(', ');
+};
 
 const label = {
   bleeding: ({ value, exclude }) => {
     if (isNumber(value)) {
-      const symptom = SYMPTOMS.bleeding.heaviness[value]
+      const symptom = SYMPTOMS.bleeding.heaviness[value];
       const bleedingLabel = i18n.t(
         `cycleDay.bleeding.heaviness.symptoms.${symptom}`
-      )
-      return exclude ? `(${bleedingLabel})` : bleedingLabel
+      );
+      return exclude ? `(${bleedingLabel})` : bleedingLabel;
     }
   },
   temperature: ({ value, time, exclude }) => {
     if (isNumber(value)) {
-      let temperatureLabel = `${value} °C`
+      let temperatureLabel = `${value} °C`;
       if (time) {
-        temperatureLabel += ` - ${time}`
+        temperatureLabel += ` - ${time}`;
       }
       if (exclude) {
-        temperatureLabel = `(${temperatureLabel})`
+        temperatureLabel = `(${temperatureLabel})`;
       }
-      return temperatureLabel
+      return temperatureLabel;
     }
   },
   mucus: (mucus) => {
     const filledCategories = ['feeling', 'texture'].filter((c) =>
       isNumber(mucus[c])
-    )
+    );
     let label = filledCategories
       .map((category) => {
-        const mucusSymptoms = SYMPTOMS.mucus[category]
-        const symptomValue = mucus[category]
-        const symptom = mucusSymptoms[symptomValue]
+        const mucusSymptoms = SYMPTOMS.mucus[category];
+        const symptomValue = mucus[category];
+        const symptom = mucusSymptoms[symptomValue];
         return (
           i18n.t(`cycleDay.mucus.${category}.title`) +
           ': ' +
           i18n.t(`cycleDay.mucus.${category}.symptoms.${symptom}`)
-        )
+        );
       })
-      .join(', ')
+      .join(', ');
 
     if (isNumber(mucus.value)) {
-      label += ` => ${i18n.t(`cycleDay.mucus.nfp.${mucus.value}`)}`
+      label += ` => ${i18n.t(`cycleDay.mucus.nfp.${mucus.value}`)}`;
     }
 
-    if (mucus.exclude) label = `(${label})`
+    if (mucus.exclude) label = `(${label})`;
 
-    return label
+    return label;
   },
   cervix: (cervix) => {
     const filledCategories = ['opening', 'firmness', 'position'].filter((c) =>
       isNumber(cervix[c])
-    )
+    );
     let label = filledCategories
       .map((category) => {
-        const cervixSymptoms = SYMPTOMS.cervix[category]
-        const symptomValue = cervix[category]
-        const symptom = cervixSymptoms[symptomValue]
+        const cervixSymptoms = SYMPTOMS.cervix[category];
+        const symptomValue = cervix[category];
+        const symptom = cervixSymptoms[symptomValue];
         return (
           i18n.t(`cycleDay.cervix.${category}.title`) +
           ': ' +
           i18n.t(`cycleDay.cervix.${category}.symptoms.${symptom}`)
-        )
+        );
       })
-      .join(', ')
+      .join(', ');
 
-    if (cervix.exclude) label = `(${label})`
+    if (cervix.exclude) label = `(${label})`;
 
-    return label
+    return label;
   },
   note: (note) => note.value,
   desire: ({ value }) => {
     if (isNumber(value)) {
-      const intensitySymptoms = SYMPTOMS.desire.intensity
-      const symptom = intensitySymptoms[value]
-      return i18n.t(`cycleDay.desire.intensity.symptoms.${symptom}`)
+      const intensitySymptoms = SYMPTOMS.desire.intensity;
+      const symptom = intensitySymptoms[value];
+      return i18n.t(`cycleDay.desire.intensity.symptoms.${symptom}`);
     }
   },
   sex: (sex) => {
-    sex = mapRealmObjToJsObj(sex)
+    sex = mapRealmObjToJsObj(sex);
 
     return getLabelWithNote(sex, [
       ['sex', 'activity'],
       ['sex', 'contraceptives'],
-    ])
+    ]);
   },
   pain: (pain) => {
-    pain = mapRealmObjToJsObj(pain)
-    return getLabelWithNote(pain, [['pain', 'feelings']])
+    pain = mapRealmObjToJsObj(pain);
+    return getLabelWithNote(pain, [['pain', 'feelings']]);
   },
   mood: (mood) => {
-    mood = mapRealmObjToJsObj(mood)
+    mood = mapRealmObjToJsObj(mood);
 
-    return getLabelWithNote(mood, [['mood', 'feelings']])
+    return getLabelWithNote(mood, [['mood', 'feelings']]);
   },
-}
+};
 
 export const getData = (symptom, symptomData) => {
-  return symptomData && label[symptom](symptomData)
-}
+  return symptomData && label[symptom](symptomData);
+};
 
 export const prevDate = (dateString) => {
-  return LocalDate.parse(dateString).minusDays(1).toString()
-}
+  return LocalDate.parse(dateString).minusDays(1).toString();
+};
 
 export const nextDate = (dateString) => {
-  return LocalDate.parse(dateString).plusDays(1).toString()
-}
+  return LocalDate.parse(dateString).plusDays(1).toString();
+};
 
 export const isDateInFuture = (dateString) => {
-  return LocalDate.now().isBefore(LocalDate.parse(dateString))
-}
+  return LocalDate.now().isBefore(LocalDate.parse(dateString));
+};
