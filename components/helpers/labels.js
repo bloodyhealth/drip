@@ -54,7 +54,7 @@ export const SYMPTOMS = {
       'other',
     ],
   },
-};
+}
 
 /**
  * Generates symptom labels and numeric values
@@ -62,12 +62,12 @@ export const SYMPTOMS = {
  * e.g. [{"label": "hard", "value": 0}, {"label": "soft", "value": 1}]
  */
 export const getOptionsNumeric = (t, category, subCategory) => {
-  const symptoms = SYMPTOMS[category][subCategory];
+  const symptoms = SYMPTOMS[category][subCategory]
   return symptoms.map((symptom, i) => ({
     label: t(`cycleDay.${category}.${subCategory}.symptoms.${symptom}`),
     value: i,
-  }));
-};
+  }))
+}
 
 /**
  * Generates symptom labels and string values
@@ -75,12 +75,12 @@ export const getOptionsNumeric = (t, category, subCategory) => {
  * e.g. {"partner": "Partner", "solo": "Solo"}
  */
 export const getOptions = (t, category, subCategory) => {
-  const symptoms = SYMPTOMS[category][subCategory];
+  const symptoms = SYMPTOMS[category][subCategory]
 
   const labels = symptoms.map((symptom) => [
     symptom,
     t(`cycleDay.${category}.${subCategory}.symptoms.${symptom}`),
-  ]);
+  ])
 
-  return Object.fromEntries(labels);
-};
+  return Object.fromEntries(labels)
+}

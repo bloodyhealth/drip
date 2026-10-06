@@ -1,21 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { LocalDate } from '@js-joda/core';
-import { StyleSheet, View } from 'react-native';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { LocalDate } from '@js-joda/core'
+import { StyleSheet, View } from 'react-native'
 
-import AppText from '../common/app-text';
+import AppText from '../common/app-text'
 
-import { dateToShortMonth } from '../helpers/format-date';
-import cycleModule from '../../lib/cycle';
-import { getOrdinalSuffix } from '../helpers/home';
-import { Typography, Sizes } from '../../styles';
+import { dateToShortMonth } from '../helpers/format-date'
+import cycleModule from '../../lib/cycle'
+import { getOrdinalSuffix } from '../helpers/home'
+import { Typography, Sizes } from '../../styles'
 
 const CycleDayLabel = ({ height, date }) => {
-  const cycleDayNumber = cycleModule().getCycleDayNumber(date);
-  const cycleDayLabel = cycleDayNumber ? cycleDayNumber : ' ';
+  const cycleDayNumber = cycleModule().getCycleDayNumber(date)
+  const cycleDayLabel = cycleDayNumber ? cycleDayNumber : ' '
 
-  const dayOfMonth = LocalDate.parse(date).dayOfMonth();
-  const isFirstDayOfMonth = dayOfMonth === 1;
+  const dayOfMonth = LocalDate.parse(date).dayOfMonth()
+  const isFirstDayOfMonth = dayOfMonth === 1
 
   return (
     <View style={[styles.container, { height }]}>
@@ -40,13 +40,13 @@ const CycleDayLabel = ({ height, date }) => {
         )}
       </View>
     </View>
-  );
-};
+  )
+}
 
 CycleDayLabel.propTypes = {
   height: PropTypes.number,
   date: PropTypes.string,
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -73,6 +73,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
   },
-});
+})
 
-export default CycleDayLabel;
+export default CycleDayLabel

@@ -1,19 +1,19 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import AppIcon from '../../../common/app-icon';
-import { Colors, Spacing, Typography } from '../../../../styles';
-import AppText from '../../../common/app-text';
-import Segment from '../../../common/segment';
-import { Trans, useTranslation } from 'react-i18next';
-import { getLinks } from '../../../../common/links';
-import AppLink from '../../../common/app-link';
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+import AppIcon from '../../../common/app-icon'
+import { Colors, Spacing, Typography } from '../../../../styles'
+import AppText from '../../../common/app-text'
+import Segment from '../../../common/segment'
+import { Trans, useTranslation } from 'react-i18next'
+import { getLinks } from '../../../../common/links'
+import AppLink from '../../../common/app-link'
 
 export const InfertileDaysInfo = () => {
   const { t } = useTranslation(null, {
     keyPrefix: 'sideMenu.settings.customization.infertileDaysInfo',
-  });
-  const { t: tRoot } = useTranslation();
-  const links = getLinks(tRoot);
+  })
+  const { t: tRoot } = useTranslation()
+  const links = getLinks(tRoot)
   return (
     <Segment last>
       <View style={styles.line}>
@@ -33,8 +33,8 @@ export const InfertileDaysInfo = () => {
         />
       </AppText>
     </Segment>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   icon: {
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
   title: {
     ...Typography.subtitle,
   },
-});
+})
