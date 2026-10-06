@@ -26,6 +26,7 @@ test_async:
     - pnpm install
     - pnpm test
     - pnpm lint
+    - pnpm typecheck
 
 # Upload translations to Lokalise when PR is merged to main
 upload_translations:
