@@ -15,7 +15,7 @@ module.exports = () => {
       const updatedPlist = plist.build(plistObj)
       fs.writeFileSync(plistPath, updatedPlist)
 
-      console.log(`Updated Info.plist: Version=${version}`)
+      console.log(`💚 Updated Info.plist: Version=${version}`)
       resolve()
     } catch (error) {
       console.error('Error updating Info.plist:', error)
