@@ -20,7 +20,7 @@ function getNotificationConfig(
   return {
     id: 'period',
     title: i18n.t('sideMenu.settings.reminders.periodReminder.title'),
-    body: i18n.t('notification', {
+    body: i18n.t('sideMenu.settings.reminders.periodReminder.notification', {
       advanceNoticeDays,
       daysToEndOfPrediction,
     }),
