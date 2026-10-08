@@ -82,8 +82,8 @@ android {
         applicationId "com.drip"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-         versionCode 50
-         versionName "1.2608.23"
+         versionCode 54
+         versionName "1.2610.8"
     }
     signingConfigs {
         debug {
@@ -112,6 +112,7 @@ android {
             signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+
         }
     }
 }
