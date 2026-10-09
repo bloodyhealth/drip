@@ -1,37 +1,38 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import React, { PropsWithChildren } from 'react'
+import {
+  ScrollView,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from 'react-native'
 
 import AppText from '../common/app-text'
 
 import { Colors, Containers, Typography } from '../../styles'
 
+type Props = PropsWithChildren<{
+  contentContainerStyle?: StyleProp<ViewStyle>
+  scrollViewStyle?: StyleProp<ViewStyle>
+  title?: string
+}>
 const AppPage = ({
   children,
   contentContainerStyle,
   scrollViewStyle,
   title,
-  ...props
-}) => {
+}: Props) => {
   return (
     <View style={styles.container}>
       <ScrollView
         contentContainerStyle={[styles.scrollView, contentContainerStyle]}
         style={scrollViewStyle}
-        {...props}
       >
-        {title && <AppText style={styles.title}>{title}</AppText>}
+        {Boolean(title) && <AppText style={styles.title}>{title}</AppText>}
         {children}
       </ScrollView>
     </View>
   )
-}
-
-AppPage.propTypes = {
-  children: PropTypes.node,
-  contentContainerStyle: PropTypes.object,
-  scrollViewStyle: PropTypes.object,
-  title: PropTypes.string,
 }
 
 const styles = StyleSheet.create({

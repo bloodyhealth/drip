@@ -3,7 +3,7 @@ import i18n from '../../i18n/i18n'
 import { AndroidImportance, RepeatFrequency } from '@notifee/react-native'
 import NotificationService from './notification-service'
 import moment from 'moment'
-import { NotificationConfig, Reminder } from './types.ts'
+import { NotificationConfig, TemperatureReminder } from './types.ts'
 
 let isSetup: boolean = false
 
@@ -26,7 +26,7 @@ export async function setupTemperatureNotifications() {
     return
   }
   isSetup = true
-  tempReminderObservable(async (reminder: Reminder) => {
+  tempReminderObservable(async (reminder: TemperatureReminder) => {
     await NotificationService.cancelNotification('temperature')
 
     if (!reminder.enabled) return

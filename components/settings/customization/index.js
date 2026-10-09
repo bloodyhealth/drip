@@ -17,15 +17,8 @@ import {
   mucusTrackingCategoryObservable,
   noteTrackingCategoryObservable,
   painTrackingCategoryObservable,
-  saveCervixTrackingCategory,
-  saveDesireTrackingCategory,
   saveFertilityTrackingEnabled,
-  saveMoodTrackingCategory,
-  saveMucusTrackingCategory,
-  saveNoteTrackingCategory,
-  savePainTrackingCategory,
-  saveSexTrackingCategory,
-  saveTemperatureTrackingCategory,
+  saveTrackingCategory,
   saveUseCervixAsSecondarySymptom,
   sexTrackingCategoryObservable,
   temperatureTrackingCategoryObservable,
@@ -83,7 +76,7 @@ const Settings = () => {
 
   const temperatureTrackingCategoryToggle = (value) => {
     setTemperatureTrackingCategory(value)
-    saveTemperatureTrackingCategory(value)
+    saveTrackingCategory('temperature', value)
     if (!value) {
       setFertilityTrackingEnabled(false)
       saveFertilityTrackingEnabled(false)
@@ -97,23 +90,23 @@ const Settings = () => {
   }
   const sexTrackingCategoryToggle = (value) => {
     setSexTrackingCategory(value)
-    saveSexTrackingCategory(value)
+    saveTrackingCategory('sex', value)
   }
   const desireTrackingCategoryToggle = (value) => {
     setDesireTrackingCategory(value)
-    saveDesireTrackingCategory(value)
+    saveTrackingCategory('desire', value)
   }
   const painTrackingCategoryToggle = (value) => {
     setPainTrackingCategory(value)
-    savePainTrackingCategory(value)
+    saveTrackingCategory('pain', value)
   }
   const moodTrackingCategoryToggle = (value) => {
     setMoodTrackingCategory(value)
-    saveMoodTrackingCategory(value)
+    saveTrackingCategory('mood', value)
   }
   const noteTrackingCategoryToggle = (value) => {
     setNoteTrackingCategory(value)
-    saveNoteTrackingCategory(value)
+    saveTrackingCategory('note', value)
   }
 
   const fertilityTrackingText = t(
@@ -162,9 +155,9 @@ const Settings = () => {
       saveFertilityTrackingEnabled(false)
     }
     setMucusTrackingCategory(mucus)
-    saveMucusTrackingCategory(mucus)
+    saveTrackingCategory('mucus', mucus)
     setCervixTrackingCategory(cervix)
-    saveCervixTrackingCategory(cervix)
+    saveTrackingCategory('cervix', cervix)
   }
 
   const secondarySymptomDisabledPrompt = () => {
