@@ -80,8 +80,8 @@ export async function savePeriodPrediction(
   )
   periodPredictionObservable.set(periodPrediction)
 
-  if (!periodPredictionObservable.value) {
-    periodReminderObservable.set(false)
+  if (!periodPrediction) {
+    await savePeriodReminder({ enabled: false })
   }
 }
 
@@ -89,10 +89,16 @@ export const advanceNoticeDaysObservable = Observable()
 setObvWithInitValue(
   'advanceNoticeDays',
   advanceNoticeDaysObservable,
-  ADVANCE_PERIOD_NOTICE_DAYS_INIT_VALUE
+  ADVANCE_PERIOD_NOTICE_DAYS_INIT_VALUE,
+  toAdvanceNoticeDays
 )
 
-export async function saveAdvanceNoticeDays(days: number[]): Promise<void> {
+export function toAdvanceNoticeDays(value: unknown): number {
+  const days = Array.isArray(value) ? value[0] : value
+  return typeof days === 'number' ? days : ADVANCE_PERIOD_NOTICE_DAYS_INIT_VALUE
+}
+
+export async function saveAdvanceNoticeDays(days: number): Promise<void> {
   await AsyncStorage.setItem('advanceNoticeDays', JSON.stringify(days))
   advanceNoticeDaysObservable.set(days)
 }
@@ -187,9 +193,8 @@ export async function saveTrackingCategory(
 }
 
 async function disableTempReminder(): Promise<void> {
-  const tempReminderResult = await AsyncStorage.getItem('tempReminder')
-  if (tempReminderResult && JSON.parse(tempReminderResult).enabled) {
-    tempReminderObservable.set(false)
+  if (tempReminderObservable.value?.enabled) {
+    await saveTempReminder({ enabled: false })
   }
 }
 
@@ -206,11 +211,12 @@ export async function saveFertilityTrackingEnabled(
 async function setObvWithInitValue<T>(
   key: string,
   obv: { set(value: T): void },
-  defaultValue: T
+  defaultValue: T,
+  parse?: (value: unknown) => T
 ): Promise<void> {
   const result = await AsyncStorage.getItem(key)
   const value = result ? JSON.parse(result) : defaultValue
-  obv.set(value)
+  obv.set(parse ? parse(value) : value)
 }
 
 export async function getLanguage(): Promise<Language> {

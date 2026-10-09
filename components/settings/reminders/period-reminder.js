@@ -32,7 +32,7 @@ const PeriodReminder = () => {
     savePeriodReminder({ enabled: isEnabled })
   }
 
-  const handleAdvanceNoticeDaysChange = (days) => {
+  const handleAdvanceNoticeDaysChange = ([days]) => {
     setAdvanceNoticeDays(days)
     saveAdvanceNoticeDays(days)
   }
@@ -53,7 +53,7 @@ const PeriodReminder = () => {
       />
       {isReminderEnabled && (
         <AdvanceNoticeDaysSlider
-          advanceNoticeDays={parseInt(advanceNoticeDays, 10)}
+          advanceNoticeDays={advanceNoticeDays}
           onAdvanceNoticeDaysChange={handleAdvanceNoticeDaysChange}
         />
       )}
