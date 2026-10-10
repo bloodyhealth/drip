@@ -4,7 +4,7 @@ import notifee, {
   NotificationSettings,
   RepeatFrequency,
   TriggerType,
-} from '@notifee/react-native'
+} from 'react-native-notify-kit'
 import { Colors } from '../../../styles'
 import {
   cancelReminder,

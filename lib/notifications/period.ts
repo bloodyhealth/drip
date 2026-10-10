@@ -1,4 +1,4 @@
-import { AndroidImportance } from '@notifee/react-native'
+import { AndroidImportance } from 'react-native-notify-kit'
 import moment from 'moment'
 import i18n from '../../i18n/i18n'
 import {
