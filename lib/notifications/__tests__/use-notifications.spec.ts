@@ -1,5 +1,10 @@
 import { act, renderHook } from '@testing-library/react-native'
-import notifee, { Event, EventType } from 'react-native-notify-kit'
+import notifee, {
+  AuthorizationStatus,
+  Event,
+  EventType,
+  NotificationSettings,
+} from 'react-native-notify-kit'
 import { useNotifications } from '../use-notifications'
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -18,7 +23,18 @@ jest.mock('../../../db', () => ({
   getBleedingDaysSortedByDate: () => mockGetBleedingDaysSortedByDate(),
 }))
 
+// prediction is computed from the db
+jest.mock('../../cycle', () => () => ({
+  getPredictedMenses: () => [],
+}))
+
 const mockedNotifee = notifee as jest.Mocked<typeof notifee>
+
+const withAuthorization = (authorizationStatus: AuthorizationStatus): void => {
+  mockedNotifee.getNotificationSettings.mockResolvedValue({
+    authorizationStatus,
+  } as NotificationSettings)
+}
 
 const createActions = () => ({
   setDate: jest.fn(),
@@ -31,6 +47,29 @@ const flushPromises = () =>
 describe('useNotifications', () => {
   beforeEach(() => {
     jest.clearAllMocks()
+    withAuthorization(AuthorizationStatus.AUTHORIZED)
+  })
+
+  it('reschedules reminders when notifications are allowed', async () => {
+    // Act
+    renderHook(() => useNotifications(createActions()))
+    await flushPromises()
+
+    // Assert
+    expect(notifee.cancelNotification).toHaveBeenCalledWith('period')
+    expect(notifee.cancelNotification).toHaveBeenCalledWith('temperature')
+  })
+
+  it('does not reschedule reminders when notifications are not allowed', async () => {
+    // Arrange
+    withAuthorization(AuthorizationStatus.DENIED)
+
+    // Act
+    renderHook(() => useNotifications(createActions()))
+    await flushPromises()
+
+    // Assert
+    expect(notifee.cancelNotification).not.toHaveBeenCalled()
   })
 
   it('sets up reminders on mount', async () => {

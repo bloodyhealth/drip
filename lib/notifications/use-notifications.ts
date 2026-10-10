@@ -2,8 +2,9 @@ import { LocalDate } from '@js-joda/core'
 import notifee, { EventType, type Notification } from 'react-native-notify-kit'
 import { useEffect } from 'react'
 import { Platform } from 'react-native'
-import { setupReminders } from './setup-reminders'
+import { refreshReminders, setupReminders } from './setup-reminders'
 import { NavigationActions, ReminderId } from './types'
+import { useNotificationPermission } from './use-notification-permission'
 
 const openReminderScreen = (
   { id }: Notification,
@@ -32,7 +33,13 @@ export const useNotifications = ({
   setDate,
   setCurrentPage,
 }: NavigationActions): void => {
+  const { isGranted } = useNotificationPermission()
+
   useEffect(() => setupReminders(), [])
+
+  useEffect(() => {
+    if (isGranted) refreshReminders()
+  }, [isGranted])
 
   useEffect(() => {
     const actions = { setDate, setCurrentPage }

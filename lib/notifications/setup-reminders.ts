@@ -25,6 +25,11 @@ const onBleedingDaysChange = (_: unknown, changes: unknown): void => {
   if (!nothingChanged(changes)) onPeriodInputChange()
 }
 
+export const refreshReminders = (): void => {
+  onPeriodInputChange()
+  onTemperatureReminderChange(tempReminderObservable.value)
+}
+
 export const setupReminders = (): (() => void) => {
   const bleedingDays = getBleedingDaysSortedByDate()
   bleedingDays.addListener(onBleedingDaysChange)
