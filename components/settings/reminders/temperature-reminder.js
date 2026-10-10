@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { Platform } from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 
@@ -10,11 +11,10 @@ import {
   temperatureTrackingCategoryObservable,
 } from '../../../local-storage'
 import padWithZeros from '../../helpers/pad-time-with-zeros'
-import { requestPermission } from '../../../lib/notifications/notifications'
 
 import { useTranslation } from 'react-i18next'
 
-const TemperatureReminder = () => {
+const TemperatureReminder = ({ requestPermission }) => {
   const { t } = useTranslation(null, {
     keyPrefix: 'sideMenu.settings.reminders.temperatureReminder',
   })
@@ -66,6 +66,10 @@ const TemperatureReminder = () => {
       />
     </>
   )
+}
+
+TemperatureReminder.propTypes = {
+  requestPermission: PropTypes.func.isRequired,
 }
 
 export default TemperatureReminder

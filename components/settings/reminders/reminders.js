@@ -12,11 +12,13 @@ import {
 } from '../../../local-storage'
 
 import { Alert, Pressable } from 'react-native'
+import { usePermissionDialog } from './use-permission-dialog'
 
 const Reminders = () => {
   const { t } = useTranslation(null, {
     keyPrefix: 'sideMenu.settings.reminders',
   })
+  const requestPermission = usePermissionDialog()
 
   const periodReminderDisabledPrompt = () => {
     if (!periodPredictionObservable.value) {
@@ -40,12 +42,12 @@ const Reminders = () => {
     <AppPage>
       <Pressable onPress={periodReminderDisabledPrompt}>
         <Segment title={t('periodReminder.title')}>
-          <PeriodReminder />
+          <PeriodReminder requestPermission={requestPermission} />
         </Segment>
       </Pressable>
       <Pressable onPress={tempReminderDisabledPrompt}>
         <Segment title={t('temperatureReminder.title')} last>
-          <TemperatureReminder />
+          <TemperatureReminder requestPermission={requestPermission} />
         </Segment>
       </Pressable>
     </AppPage>

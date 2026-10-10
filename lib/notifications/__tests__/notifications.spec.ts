@@ -5,9 +5,11 @@ import notifee, {
   RepeatFrequency,
   TriggerType,
 } from 'react-native-notify-kit'
+import { Linking, Platform } from 'react-native'
 import { Colors } from '../../../styles'
 import {
   cancelReminder,
+  openNotificationSettings,
   ReminderContent,
   requestPermission,
   scheduleReminder,
@@ -128,6 +130,38 @@ describe('notifications', () => {
 
       // Assert
       expect(notifee.cancelNotification).toHaveBeenCalledWith('temperature')
+    })
+  })
+
+  describe('openNotificationSettings', () => {
+    afterEach(() => {
+      jest.restoreAllMocks()
+    })
+
+    it('opens the notification settings on Android', async () => {
+      // Arrange
+      jest.replaceProperty(Platform, 'OS', 'android')
+
+      // Act
+      await openNotificationSettings()
+
+      // Assert
+      expect(notifee.openNotificationSettings).toHaveBeenCalledTimes(1)
+    })
+
+    it('opens the app settings on iOS', async () => {
+      // Arrange
+      jest.replaceProperty(Platform, 'OS', 'ios')
+      const openSettings = jest
+        .spyOn(Linking, 'openSettings')
+        .mockResolvedValue(undefined)
+
+      // Act
+      await openNotificationSettings()
+
+      // Assert
+      expect(openSettings).toHaveBeenCalledTimes(1)
+      expect(notifee.openNotificationSettings).not.toHaveBeenCalled()
     })
   })
 })

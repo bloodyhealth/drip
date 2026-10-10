@@ -4,6 +4,7 @@ import notifee, {
   RepeatFrequency,
   TriggerType,
 } from 'react-native-notify-kit'
+import { Linking, Platform } from 'react-native'
 import { Colors } from '../../styles'
 import { ReminderId } from './types'
 
@@ -14,7 +15,7 @@ export interface ReminderContent {
   importance: AndroidImportance
 }
 
-const isAuthorized = async (): Promise<boolean> => {
+export const isAuthorized = async (): Promise<boolean> => {
   const { authorizationStatus } = await notifee.getNotificationSettings()
   return authorizationStatus >= AuthorizationStatus.AUTHORIZED
 }
@@ -63,3 +64,8 @@ export const scheduleReminder = async (
 
 export const cancelReminder = (id: ReminderId): Promise<void> =>
   notifee.cancelNotification(id)
+
+export const openNotificationSettings = (): Promise<void> =>
+  Platform.OS === 'android'
+    ? notifee.openNotificationSettings()
+    : Linking.openSettings()

@@ -4,7 +4,7 @@ import {
   periodReminderObservable,
   tempReminderObservable,
 } from '../../../local-storage'
-import { setupReminders } from '../setup-reminders'
+import { refreshReminders, setupReminders } from '../setup-reminders'
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   getItem: jest.fn(),
@@ -106,5 +106,25 @@ describe('setupReminders', () => {
     // Assert
     expect(mockRemoveListener).toHaveBeenCalledTimes(1)
     expect(notifee.cancelNotification).not.toHaveBeenCalled()
+  })
+})
+
+describe('refreshReminders', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
+  it('updates both reminders with their current settings', async () => {
+    // Arrange
+    periodReminderObservable.set({ enabled: true })
+    tempReminderObservable.set({ enabled: false })
+
+    // Act
+    refreshReminders()
+    await flushPromises()
+
+    // Assert
+    expect(notifee.cancelNotification).toHaveBeenCalledWith('period')
+    expect(notifee.cancelNotification).toHaveBeenCalledWith('temperature')
   })
 })
