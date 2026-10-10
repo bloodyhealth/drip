@@ -1,5 +1,5 @@
 import { LocalDate } from '@js-joda/core'
-import notifee, { EventType, type Notification } from '@notifee/react-native'
+import notifee, { EventType, type Notification } from 'react-native-notify-kit'
 import { useEffect } from 'react'
 import { Platform } from 'react-native'
 import { setupReminders } from './setup-reminders'
@@ -28,11 +28,11 @@ const openInitialNotification = async (
     openReminderScreen(initial.notification, actions)
 }
 
-export const useNotifications = (
-  { setDate, setCurrentPage }: NavigationActions,
-  dbSession: number
-): void => {
-  useEffect(() => setupReminders(), [dbSession])
+export const useNotifications = ({
+  setDate,
+  setCurrentPage,
+}: NavigationActions): void => {
+  useEffect(() => setupReminders(), [])
 
   useEffect(() => {
     const actions = { setDate, setCurrentPage }

@@ -1,4 +1,4 @@
-import notifee from '@notifee/react-native'
+import notifee from 'react-native-notify-kit'
 import {
   advanceNoticeDaysObservable,
   periodReminderObservable,

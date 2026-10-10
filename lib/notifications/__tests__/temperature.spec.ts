@@ -1,4 +1,4 @@
-import notifee, { RepeatFrequency } from '@notifee/react-native'
+import notifee, { RepeatFrequency } from 'react-native-notify-kit'
 import i18n from '../../../i18n/i18n'
 import { updateTemperatureReminder } from '../temperature'
 

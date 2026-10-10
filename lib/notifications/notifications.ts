@@ -3,7 +3,7 @@ import notifee, {
   AuthorizationStatus,
   RepeatFrequency,
   TriggerType,
-} from '@notifee/react-native'
+} from 'react-native-notify-kit'
 import { Colors } from '../../styles'
 import { ReminderId } from './types'
 

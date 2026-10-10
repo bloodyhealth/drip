@@ -1,5 +1,5 @@
-import notifee, { Event, EventType } from '@notifee/react-native'
 import { act, renderHook } from '@testing-library/react-native'
+import notifee, { Event, EventType } from 'react-native-notify-kit'
 import { useNotifications } from '../use-notifications'
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -35,35 +35,29 @@ describe('useNotifications', () => {
 
   it('sets up reminders on mount', async () => {
     // Act
-    renderHook(() => useNotifications(createActions(), 1))
+    renderHook(() => useNotifications(createActions()))
     await flushPromises()
 
     // Assert
     expect(mockGetBleedingDaysSortedByDate).toHaveBeenCalledTimes(1)
   })
 
-  it('sets up reminders again when the db is reopened', async () => {
+  it('stops listening for reminder changes when unmounted', async () => {
     // Arrange
-    const actions = createActions()
-    const { rerender } = renderHook(
-      ({ dbSession }) => useNotifications(actions, dbSession),
-      { initialProps: { dbSession: 1 } }
-    )
+    const { unmount } = renderHook(() => useNotifications(createActions()))
     await flushPromises()
 
     // Act
-    rerender({ dbSession: 2 })
-    await flushPromises()
+    unmount()
 
     // Assert
-    expect(mockGetBleedingDaysSortedByDate).toHaveBeenCalledTimes(2)
-    const [firstBleedingDays] = mockGetBleedingDaysSortedByDate.mock.results
-    expect(firstBleedingDays.value.removeListener).toHaveBeenCalledTimes(1)
+    const [bleedingDays] = mockGetBleedingDaysSortedByDate.mock.results
+    expect(bleedingDays.value.removeListener).toHaveBeenCalledTimes(1)
   })
 
   it('does not request notification permission on mount', async () => {
     // Act
-    renderHook(() => useNotifications(createActions(), 1))
+    renderHook(() => useNotifications(createActions()))
     await flushPromises()
 
     // Assert
@@ -74,7 +68,7 @@ describe('useNotifications', () => {
     // Arrange
     const unsubscribe = jest.fn()
     mockedNotifee.onForegroundEvent.mockReturnValue(unsubscribe)
-    const { unmount } = renderHook(() => useNotifications(createActions(), 1))
+    const { unmount } = renderHook(() => useNotifications(createActions()))
 
     // Act
     unmount()
@@ -97,7 +91,7 @@ describe('useNotifications', () => {
 
     beforeEach(() => {
       actions = createActions()
-      renderHook(() => useNotifications(actions, 1))
+      renderHook(() => useNotifications(actions))
     })
 
     it('opens the temperature edit view for the temperature reminder', () => {
