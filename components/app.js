@@ -10,7 +10,7 @@ import { pages } from './pages'
 
 import { useNotifications } from '../lib/notifications/use-notifications'
 
-const App = ({ restartApp }) => {
+const App = ({ restartApp, dbSession }) => {
   const [date, setDate] = useState(LocalDate.now().toString())
   const [currentPage, setCurrentPage] = useState('Home')
   const goBack = () => {
@@ -33,7 +33,7 @@ const App = ({ restartApp }) => {
     return () => backHandler.remove()
   })
 
-  useNotifications({ setCurrentPage, setDate })
+  useNotifications({ setCurrentPage, setDate }, dbSession)
 
   const Page = viewsList[currentPage]
   const isTemperatureEditView = currentPage === 'TemperatureEditView'
@@ -56,6 +56,7 @@ const App = ({ restartApp }) => {
 
 App.propTypes = {
   restartApp: PropTypes.func,
+  dbSession: PropTypes.number,
 }
 
 const styles = StyleSheet.create({
