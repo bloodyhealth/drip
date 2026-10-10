@@ -21,6 +21,7 @@ export default function AppWrapper() {
   const [isLoading, setIsLoading] = useState(true)
   const [isLicenseAccepted, setIsLicenseAccepted] = useState(false)
   const [isDbEncrypted, setIsDbEncrypted] = useState(false)
+  const [dbSession, setDbSession] = useState(0)
 
   const checkIsLicenseAccepted = async () => {
     const isLicenseFlagSet = await getLicenseFlag()
@@ -37,6 +38,7 @@ export default function AppWrapper() {
   const checkIsDbEncrypted = async () => {
     const isEncrypted = !(await openDb())
     if (isEncrypted) setIsDbEncrypted(true)
+    else setDbSession((session) => session + 1)
     await saveEncryptionFlag(isEncrypted)
   }
 
@@ -64,7 +66,7 @@ export default function AppWrapper() {
       return <PasswordPrompt enableShowApp={() => setIsDbEncrypted(false)} />
     }
 
-    return <App restartApp={checkIsDbEncrypted} />
+    return <App restartApp={checkIsDbEncrypted} dbSession={dbSession} />
   }
 
   const showStatusBar = !isLoading && isLicenseAccepted

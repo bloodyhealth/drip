@@ -11,6 +11,7 @@ import {
   saveAdvanceNoticeDays,
   advanceNoticeDaysObservable,
 } from '../../../local-storage'
+import { requestPermission } from '../../../lib/notifications/notifications'
 
 const PeriodReminder = () => {
   const { t } = useTranslation(null, {
@@ -27,7 +28,9 @@ const PeriodReminder = () => {
     advanceNoticeDaysObservable.value
   )
 
-  const periodReminderToggle = (isEnabled) => {
+  const periodReminderToggle = async (isEnabled) => {
+    if (isEnabled && !(await requestPermission())) return
+
     setIsPeriodReminderEnabled(isEnabled)
     savePeriodReminder({ enabled: isEnabled })
   }

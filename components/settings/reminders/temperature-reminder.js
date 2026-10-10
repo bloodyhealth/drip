@@ -10,6 +10,7 @@ import {
   temperatureTrackingCategoryObservable,
 } from '../../../local-storage'
 import padWithZeros from '../../helpers/pad-time-with-zeros'
+import { requestPermission } from '../../../lib/notifications/notifications'
 
 import { useTranslation } from 'react-i18next'
 
@@ -23,8 +24,9 @@ const TemperatureReminder = () => {
   const [isTimePickerVisible, setIsTimePickerVisible] = useState(false)
   const [time, setTime] = useState(tempReminderObservable.value.time)
 
-  const temperatureReminderToggle = (value) => {
+  const temperatureReminderToggle = async (value) => {
     if (value) {
+      if (!(await requestPermission())) return
       setIsTimePickerVisible(true)
     } else {
       saveTempReminder({ enabled: false })

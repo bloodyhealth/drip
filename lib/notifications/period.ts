@@ -1,115 +1,53 @@
+import { AndroidImportance } from '@notifee/react-native'
+import moment from 'moment'
+import i18n from '../../i18n/i18n'
 import {
   advanceNoticeDaysObservable,
   periodPredictionObservable,
   periodReminderObservable,
 } from '../../local-storage'
 import cycleModule from '../cycle'
-import i18n from '../../i18n/i18n'
-import NotificationService from './notification-service'
-import { getBleedingDaysSortedByDate } from '../../db'
-import nothingChanged from '../../db/db-unchanged'
-import moment from 'moment'
-import { NotificationConfig } from './types.ts'
-import { AndroidImportance } from '@notifee/react-native'
+import {
+  cancelReminder,
+  ReminderContent,
+  scheduleReminder,
+} from './notifications'
 
-let isSetup: boolean = false
+const REMINDER_HOUR = 6
 
-function getNotificationConfig(
+const getContent = (
   advanceNoticeDays: number,
-  daysToEndOfPrediction: number
-): NotificationConfig {
-  return {
-    id: 'period',
-    title: i18n.t('sideMenu.settings.reminders.periodReminder.title'),
-    body: i18n.t('notification', {
-      advanceNoticeDays,
-      daysToEndOfPrediction,
-    }),
-    channel: {
-      id: 'period',
-      name: i18n.t('notifications.period.channelName'),
-      importance: AndroidImportance.DEFAULT,
-    },
-    data: {
-      screen: 'Home',
-    },
-  }
-}
-
-export async function setupPeriodNotifications() {
-  if (isSetup) return
-  isSetup = true
-  periodReminderObservable(setupNotification, false)
-  advanceNoticeDaysObservable(setupNotification, false)
-  getBleedingDaysSortedByDate().addListener((_: unknown, changes: any[]) => {
-    // the listener fires on setup, so we check if there were actually any changes
-    if (nothingChanged(changes)) {
-      return
-    }
-
-    setupNotification()
-  })
-}
-
-async function setupNotification() {
-  await NotificationService.cancelNotification('period')
-
-  if (
-    !periodPredictionObservable.value ||
-    !periodReminderObservable.value.enabled
-  )
-    return
-
-  const bleedingPrediction = cycleModule().getPredictedMenses()
-
-  if (!bleedingPrediction.length) {
-    return
-  }
-  const nextPrediction = bleedingPrediction[0]
-
-  await scheduleNotificationForPrediction(nextPrediction)
-}
-
-/**
- * Schedules a notification for a predicted bleeding period.
- *
- * @param {string[]} bleedingPrediction - An array of date strings in 'YYYY-MM-DD' format
- *   Example: ["2025-11-01", "2025-11-02", "2025-11-03"]
- *   The first date (bleedingPrediction[0]) is used as the predicted start date.
- *   The array length is used to calculate the total duration of the predicted period.
- */
-async function scheduleNotificationForPrediction(bleedingPrediction: any) {
-  const predictedBleedingStart = moment(
-    bleedingPrediction[0],
-    'YYYY-MM-DD'
-  ).startOf('day')
-
-  const advanceNoticeDays = advanceNoticeDaysObservable.value
-
-  // ${advanceNoticeDays} days before and at 6 am
-  const reminderDate = predictedBleedingStart
-    .subtract(advanceNoticeDays, 'days')
-    .hours(6)
-    .minutes(0)
-    .seconds(0)
-
-  const isInFuture = reminderDate.isAfter()
-
-  if (!isInFuture) {
-    return false
-  }
-
-  const daysToEndOfPrediction =
-    advanceNoticeDays + bleedingPrediction.length - 1
-
-  const notificationConfig = getNotificationConfig(
+  predictedDays: number
+): ReminderContent => ({
+  title: i18n.t('sideMenu.settings.reminders.periodReminder.title'),
+  body: i18n.t('sideMenu.settings.reminders.periodReminder.notification', {
     advanceNoticeDays,
-    daysToEndOfPrediction
+    daysToEndOfPrediction: advanceNoticeDays + predictedDays - 1,
+  }),
+  channelName: i18n.t('notifications.period.channelName'),
+  importance: AndroidImportance.DEFAULT,
+})
+
+const isReminderEnabled = (): boolean =>
+  periodPredictionObservable.value && periodReminderObservable.value.enabled
+
+export const updatePeriodReminder = async (): Promise<void> => {
+  await cancelReminder('period')
+  if (!isReminderEnabled()) return
+
+  const predictions: string[][] = cycleModule().getPredictedMenses()
+  const [nextPrediction] = predictions
+  if (!nextPrediction) return
+
+  const advanceNoticeDays: number = advanceNoticeDaysObservable.value
+  const reminderDate = moment(nextPrediction[0], 'YYYY-MM-DD')
+    .subtract(advanceNoticeDays, 'days')
+    .hours(REMINDER_HOUR)
+  if (!reminderDate.isAfter()) return
+
+  await scheduleReminder(
+    'period',
+    getContent(advanceNoticeDays, nextPrediction.length),
+    reminderDate.valueOf()
   )
-
-  const timestamp = reminderDate.toDate().getTime()
-
-  await NotificationService.scheduleNotification(notificationConfig, timestamp)
-
-  return true
 }
