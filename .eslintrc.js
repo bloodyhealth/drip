@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   extends: '@react-native',
+  ignorePatterns: ['/*', '!/src'],
   rules: {
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-var': 'error',
@@ -22,4 +23,4 @@ module.exports = {
       },
     ],
   },
-};
+}
