@@ -19,7 +19,7 @@
     "log": "react-native log-android",
     "test": "TZ=\"Europe/Berlin\" jest test",
     "test:watch": "TZ=\"Europe/Berlin\" jest --watch test",
-    "lint": "eslint components common lib test styles db",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "devtool": "adb shell input keyevent 82",
     "translations:import": "node scripts/translations-import.mjs",
@@ -84,6 +84,7 @@
     "@testing-library/react-native": "^12.9.0",
     "@types/jest": "^30.0.0",
     "adm-zip": "^0.5.16",
+    "babel-plugin-module-resolver": "^5.0.3",
     "dotenv": "^18.0.9",
     "eslint": "^8.19.0",
     "husky": "^9.1.7",
@@ -98,10 +99,6 @@
   },
   "description": "A menstrual cycle tracking app that's open-source and leaves your data on your phone. Use it to track your menstrual cycle or for fertility awareness!",
   "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.com/bloodyhealth/drip.git"

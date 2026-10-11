@@ -226,11 +226,11 @@ Learn more about how drip calculates fertility status and bleeding predictions i
 
 1. Use [fontello](http://fontello.com/) to generate icon fonts. Upload the full set of tracking icons (bleeding, cervical mucus, etc.), including the new icon you want to add, all as SVGs.
 2. Download the webfont from fontello.
-3. Copy `config.json` and `font.tff` into `assets/fonts`, replacing the current `config-drip-icon-font.json` and `drip-icon-font.tff`.
+3. Copy `font.ttf` into `assets/fonts`, replacing the current `drip-icon-font.ttf`, and `config.json` into `src/assets/icons`, replacing the current `config-drip-icon-font.json`.
 4. Run:
 
    ```bash
-   react-native link
+   npx react-native-asset
    ```
 
 5. The new icon should now be available in drip (for example, in the Cycle Day overview and the chart).

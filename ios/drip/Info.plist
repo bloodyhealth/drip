@@ -38,14 +38,8 @@
     <key>UIAppFonts</key>
     <array>
       <string>Entypo.ttf</string>
-      <string>Glyphter.ttf</string>
-      <string>fontello.ttf</string>
       <string>drip-icon-font.ttf</string>
-      <string>drip-home-icons.ttf</string>
       <string>Menu.ttf</string>
-      <string>OpenSans-Light.ttf</string>
-      <string>OpenSans-SemiBold.ttf</string>
-      <string>OpenSans-LightItalic.ttf</string>
       <string>Jost-400-Book.otf</string>
       <string>Jost-700-Bold.otf</string>
     </array>
