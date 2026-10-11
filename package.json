@@ -116,5 +116,8 @@
   "homepage": "https://gitlab.com/bloodyhealth/drip#README",
   "reactNativeVectorIcons": {
     "fontDir": "assets/icon-fonts"
+  },
+  "engines": {
+    "node": ">=20.20.2"
   }
 }
