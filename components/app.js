@@ -8,7 +8,6 @@ import Menu from './menu'
 import { viewsList } from './views'
 import { pages } from './pages'
 
-import { closeDb } from '../db'
 import { useNotifications } from '../lib/notifications/use-notifications'
 
 const App = ({ restartApp }) => {
@@ -16,7 +15,6 @@ const App = ({ restartApp }) => {
   const [currentPage, setCurrentPage] = useState('Home')
   const goBack = () => {
     if (currentPage === 'Home') {
-      closeDb()
       BackHandler.exitApp()
     } else {
       const { parent } = pages.find((p) => p.component === currentPage)

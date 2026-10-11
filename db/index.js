@@ -63,10 +63,6 @@ export async function openDb(hash) {
   return true
 }
 
-export function closeDb() {
-  db.close()
-}
-
 export function mapRealmObjToJsObj(realmObj) {
   return realmObj ? JSON.parse(JSON.stringify(realmObj)) : realmObj
 }
