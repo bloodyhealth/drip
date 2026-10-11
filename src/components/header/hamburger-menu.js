@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import PropTypes from 'prop-types'
 import AppText from '../common/app-text'
 
 import AppIcon from '../common/app-icon'
@@ -15,6 +14,7 @@ import CloseIcon from '../common/close-icon'
 import { Colors, Sizes, Typography } from '../../styles'
 import { HIT_SLOP } from '../../config'
 import { useTranslation } from 'react-i18next'
+import { useNavigation } from '@react-navigation/native'
 
 const settingsMenuItems = [
   { labelKey: 'settings', componentName: 'SettingsMenu' },
@@ -23,7 +23,8 @@ const settingsMenuItems = [
   { labelKey: 'privacyPolicy', componentName: 'PrivacyPolicy' },
 ]
 
-const HamburgerMenu = ({ navigate }) => {
+const HamburgerMenu = () => {
+  const { navigate } = useNavigation()
   const [isOpen, setIsOpen] = useState(false)
   const closeMenu = () => setIsOpen(false)
 
@@ -38,7 +39,7 @@ const HamburgerMenu = ({ navigate }) => {
 
   function onPress(componentName) {
     closeMenu()
-    navigate(componentName)
+    navigate(componentName, undefined, { pop: true })
   }
 
   return (
@@ -62,10 +63,6 @@ const HamburgerMenu = ({ navigate }) => {
 }
 
 export default HamburgerMenu
-
-HamburgerMenu.propTypes = {
-  navigate: PropTypes.func,
-}
 
 const styles = StyleSheet.create({
   blackBackground: {

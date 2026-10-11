@@ -1,5 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
 import { Dimensions, PixelRatio, StyleSheet, View } from 'react-native'
 
 import AppPage from '../common/app-page'
@@ -24,18 +23,20 @@ import {
   temperatureTrackingCategoryObservable,
   mucusTrackingCategoryObservable,
   cervixTrackingCategoryObservable,
-} from '../../local-storage'
+} from '@/local-storage'
 import { makeColumnInfo } from '../helpers/chart'
+import { useRefreshOnFocus } from '@/context/navigation/use-refresh-on-focus'
 
 import {
   CHART_COLUMN_WIDTH,
   CHART_GRID_LINE_HORIZONTAL_WIDTH,
   CHART_SYMPTOM_HEIGHT_RATIO,
   CHART_XAXIS_HEIGHT_RATIO,
-} from '../../config'
+} from '@/config'
 import { Spacing } from '../../styles'
 
-const CycleChart = ({ navigate, setDate }) => {
+const CycleChart = () => {
+  useRefreshOnFocus()
   const [shouldShowHint, setShouldShowHint] = useState(false)
 
   useEffect(() => {
@@ -60,7 +61,7 @@ const CycleChart = ({ navigate, setDate }) => {
     setChartFlag()
   }
 
-  const chartSymptoms = useMemo(() => getSymptomsWithData(), [])
+  const chartSymptoms = getSymptomsWithData()
 
   const symptomRowSymptoms = chartSymptoms.filter(
     (symptom) => symptom !== 'temperature'
@@ -115,9 +116,7 @@ const CycleChart = ({ navigate, setDate }) => {
   const renderColumn = ({ item }) => {
     return (
       <DayColumn
-        setDate={setDate}
         dateString={item}
-        navigate={navigate}
         symptomHeight={symptomHeight}
         columnHeight={columnHeight}
         symptomRowSymptoms={symptomRowEnabledSymptoms}
@@ -131,7 +130,7 @@ const CycleChart = ({ navigate, setDate }) => {
   const hasDataToDisplay = chartSymptoms.length > 0
 
   if (!hasDataToDisplay) {
-    return <NoData navigate={navigate} />
+    return <NoData />
   }
 
   return (
@@ -163,11 +162,6 @@ const CycleChart = ({ navigate, setDate }) => {
       </View>
     </AppPage>
   )
-}
-
-CycleChart.propTypes = {
-  navigate: PropTypes.func,
-  setDate: PropTypes.func,
 }
 
 const styles = StyleSheet.create({

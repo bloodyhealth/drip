@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
-import PropTypes from 'prop-types'
 
 import AppPage from '../common/app-page'
 import SymptomBox from './symptom-box'
@@ -21,20 +20,32 @@ import {
 } from '../../local-storage'
 import { Spacing } from '../../styles'
 import { SYMPTOMS } from '../../config'
+import { useNavigation, useRoute } from '@react-navigation/native'
+import { useRefreshOnFocus } from '@/context/navigation/use-refresh-on-focus'
 
-const CycleDayOverView = ({ date, setDate, isTemperatureEditView }) => {
+const CycleDayOverView = () => {
+  const { setParams } = useNavigation()
+  const { params } = useRoute()
+  const { date, isTemperatureEditView } = params
+  useRefreshOnFocus()
   const cycleDay = getCycleDay(date)
 
   const [editedSymptom, setEditedSymptom] = useState(
     isTemperatureEditView ? 'temperature' : ''
   )
 
+  // the screen stays mounted when it is opened again with new params,
+  // e.g. by the temperature reminder while a cycle day is already shown
+  useEffect(() => {
+    if (isTemperatureEditView) setEditedSymptom('temperature')
+  }, [params, isTemperatureEditView])
+
   const showNextCycleDay = () => {
-    setDate(nextDate(date))
+    setParams({ date: nextDate(date), isTemperatureEditView: false })
   }
 
   const showPrevCycleDay = () => {
-    setDate(prevDate(date))
+    setParams({ date: prevDate(date), isTemperatureEditView: false })
   }
 
   const allEnabledSymptoms = SYMPTOMS.map((symptom) => {
@@ -87,13 +98,6 @@ const CycleDayOverView = ({ date, setDate, isTemperatureEditView }) => {
       </View>
     </AppPage>
   )
-}
-
-CycleDayOverView.propTypes = {
-  cycleDay: PropTypes.object,
-  date: PropTypes.string,
-  setDate: PropTypes.func,
-  isTemperatureEditView: PropTypes.bool,
 }
 
 const styles = StyleSheet.create({

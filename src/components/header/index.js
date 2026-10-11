@@ -6,31 +6,36 @@ import Logo from './logo'
 import HamburgerMenu from './hamburger-menu'
 
 import { Colors, Containers, Sizes } from '../../styles'
+import { useNavigation } from '@react-navigation/native'
 
-const Header = ({ isStatic, navigate }) => {
+const HeaderBar = ({ children }) => (
+  <View style={styles.header}>{children}</View>
+)
+
+HeaderBar.propTypes = {
+  children: PropTypes.node,
+}
+
+/** Header without navigation, for screens shown before the app is unlocked. */
+export const StaticHeader = () => (
+  <HeaderBar>
+    <Logo />
+  </HeaderBar>
+)
+
+const Header = () => {
+  const { navigate } = useNavigation()
+
   return (
-    <View style={styles.header}>
-      {isStatic ? (
+    <HeaderBar>
+      <TouchableOpacity
+        onPress={() => navigate('Home', undefined, { pop: true })}
+      >
         <Logo />
-      ) : (
-        <>
-          <TouchableOpacity onPress={() => navigate('Home')}>
-            <Logo />
-          </TouchableOpacity>
-          <HamburgerMenu navigate={navigate} />
-        </>
-      )}
-    </View>
+      </TouchableOpacity>
+      <HamburgerMenu />
+    </HeaderBar>
   )
-}
-
-Header.propTypes = {
-  isStatic: PropTypes.bool,
-  navigate: PropTypes.func,
-}
-
-Header.defaultProps = {
-  isStatic: false,
 }
 
 const styles = StyleSheet.create({

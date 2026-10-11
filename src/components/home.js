@@ -1,6 +1,5 @@
 import React from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
-import PropTypes from 'prop-types'
 
 import AppText from './common/app-text'
 import Asterisk from './common/asterisk'
@@ -22,13 +21,16 @@ import {
 import { Colors, Fonts, Sizes, Spacing } from '../styles'
 import { LocalDate } from '@js-joda/core'
 import { useTranslation } from 'react-i18next'
+import { useNavigation } from '@react-navigation/native'
+import { useRefreshOnFocus } from '@/context/navigation/use-refresh-on-focus'
 
-const Home = ({ navigate, setDate }) => {
+const Home = () => {
   const { t } = useTranslation()
+  const { navigate } = useNavigation()
+  useRefreshOnFocus()
 
   function navigateToCycleDayView() {
-    setDate(todayDateString)
-    navigate('CycleDay')
+    navigate('CycleDay', { date: todayDateString })
   }
 
   const isFertilityTrackingEnabled = fertilityTrackingObservable.value
@@ -124,10 +126,5 @@ const styles = StyleSheet.create({
     padding: Spacing.large,
   },
 })
-
-Home.propTypes = {
-  navigate: PropTypes.func,
-  setDate: PropTypes.func,
-}
 
 export default Home

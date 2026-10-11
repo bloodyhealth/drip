@@ -8,8 +8,10 @@ import Segment from '../common/segment'
 
 import { Colors, Containers, Sizes } from '../../styles'
 import { useTranslation } from 'react-i18next'
+import { useNavigation } from '@react-navigation/native'
 
-const MenuItem = ({ item, last, navigate }) => {
+const MenuItem = ({ item, last }) => {
+  const { navigate } = useNavigation()
   const { t } = useTranslation(null, {
     keyPrefix: 'sideMenu.settings.menuItem',
   })
@@ -37,7 +39,6 @@ const MenuItem = ({ item, last, navigate }) => {
 MenuItem.propTypes = {
   item: PropTypes.object.isRequired,
   last: PropTypes.bool.isRequired,
-  navigate: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({

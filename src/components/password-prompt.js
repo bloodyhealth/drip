@@ -6,7 +6,7 @@ import { SHA512 } from 'jshashes'
 import AppPage from './common/app-page'
 import AppTextInput from './common/app-text-input'
 import Button from './common/button'
-import Header from './header'
+import { StaticHeader } from './header'
 
 import { saveEncryptionFlag } from '../local-storage'
 import { deleteDbAndOpenNew, openDb } from '../db'
@@ -77,7 +77,7 @@ const PasswordPrompt = ({ enableShowApp }) => {
 
   return (
     <>
-      <Header isStatic />
+      <StaticHeader />
       <AppPage contentContainerStyle={styles.contentContainer}>
         <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={150}>
           <AppTextInput

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 
 import { changeDbEncryption } from '../../../db'
 
@@ -13,8 +12,10 @@ import DeletePassword from './delete'
 
 import { hasEncryptionObservable } from '../../../local-storage'
 import { useTranslation } from 'react-i18next'
+import { useAppControl } from '@/context/app-control-context'
 
-const PasswordSetting = ({ restartApp, navigate }) => {
+const PasswordSetting = () => {
+  const { restartApp } = useAppControl()
   const { t } = useTranslation(null, { keyPrefix: 'password.createPassword' })
 
   const isPasswordSet = hasEncryptionObservable.value
@@ -23,8 +24,8 @@ const PasswordSetting = ({ restartApp, navigate }) => {
 
   const changeEncryptionAndRestart = async (hash) => {
     await changeDbEncryption(hash)
+    // starts the app anew on Home, or shows the password prompt
     await restartApp()
-    navigate('Home')
   }
 
   return (
@@ -58,11 +59,6 @@ const PasswordSetting = ({ restartApp, navigate }) => {
       </Segment>
     </AppPage>
   )
-}
-
-PasswordSetting.propTypes = {
-  navigate: PropTypes.func,
-  restartApp: PropTypes.func,
 }
 
 export default PasswordSetting

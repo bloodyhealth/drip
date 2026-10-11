@@ -1,0 +1,134 @@
+diff --git a/lib/parsers/flow/components/commands.js b/lib/parsers/flow/components/commands.js
+index ce95fd671006f8510478e481b43fd8ce313efaa6..c64db47fea0bac3688c024c73177a8f481aff15b 100644
+--- a/lib/parsers/flow/components/commands.js
++++ b/lib/parsers/flow/components/commands.js
+@@ -12,6 +12,10 @@
+ 
+ const {getValueFromTypes} = require('../utils.js');
+ 
++// React 19 renamed React.ElementRef to React.ComponentRef; both denote the
++// same type, so Codegen accepts either. See react-native#54272.
++const VALID_COMMAND_REF_TYPES = ['ElementRef', 'ComponentRef'];
++
+ // $FlowFixMe[unclear-type] there's no flowtype for ASTs
+ 
+ function buildCommandSchema(property, types, parser) {
+@@ -24,11 +28,11 @@ function buildCommandSchema(property, types, parser) {
+       firstParam.id != null &&
+       firstParam.id.type === 'QualifiedTypeIdentifier' &&
+       firstParam.id.qualification.name === 'React' &&
+-      firstParam.id.id.name === 'ElementRef'
++      VALID_COMMAND_REF_TYPES.includes(firstParam.id.id.name)
+     )
+   ) {
+     throw new Error(
+-      `The first argument of method ${name} must be of type React.ElementRef<>`,
++      `The first argument of method ${name} must be of type React.ElementRef<> or React.ComponentRef<>`,
+     );
+   }
+   const params = value.params.slice(1).map(param => {
+diff --git a/lib/parsers/flow/components/commands.js.flow b/lib/parsers/flow/components/commands.js.flow
+index d6a680fd5bdf0ee4385b37ecad5ae2ae9f63cceb..bdce1b7ec1327ce1f84ef52ce35ee9df21648876 100644
+--- a/lib/parsers/flow/components/commands.js.flow
++++ b/lib/parsers/flow/components/commands.js.flow
+@@ -21,6 +21,10 @@ import type {TypeDeclarationMap} from '../../utils';
+ 
+ const {getValueFromTypes} = require('../utils.js');
+ 
++// React 19 renamed React.ElementRef to React.ComponentRef; both denote the
++// same type, so Codegen accepts either. See react-native#54272.
++const VALID_COMMAND_REF_TYPES = ['ElementRef', 'ComponentRef'];
++
+ // $FlowFixMe[unclear-type] there's no flowtype for ASTs
+ type EventTypeAST = Object;
+ 
+@@ -54,11 +58,11 @@ function buildCommandSchema(
+       firstParam.id != null &&
+       firstParam.id.type === 'QualifiedTypeIdentifier' &&
+       firstParam.id.qualification.name === 'React' &&
+-      firstParam.id.id.name === 'ElementRef'
++      VALID_COMMAND_REF_TYPES.includes(firstParam.id.id.name)
+     )
+   ) {
+     throw new Error(
+-      `The first argument of method ${name} must be of type React.ElementRef<>`,
++      `The first argument of method ${name} must be of type React.ElementRef<> or React.ComponentRef<>`,
+     );
+   }
+ 
+diff --git a/lib/parsers/typescript/components/commands.js b/lib/parsers/typescript/components/commands.js
+index 8b818566835f88bc66b6c2dce8666f9355e21183..756643b993b72e0409956ae9278428f225a1c86b 100644
+--- a/lib/parsers/typescript/components/commands.js
++++ b/lib/parsers/typescript/components/commands.js
+@@ -13,27 +13,28 @@
+ const {parseTopLevelType} = require('../parseTopLevelType');
+ const {getPrimitiveTypeAnnotation} = require('./componentsUtils');
+ 
++// React 19 renamed React.ElementRef to React.ComponentRef; both denote the
++// same type, so Codegen accepts either. See react-native#54272.
++const VALID_COMMAND_REF_TYPES = ['ElementRef', 'ComponentRef'];
++
+ // $FlowFixMe[unclear-type] there's no flowtype for ASTs
+ 
+ function buildCommandSchemaInternal(name, optional, parameters, types, parser) {
+-  var _firstParam$typeAnnot, _firstParam$typeAnnot2;
+   const firstParam = parameters[0].typeAnnotation;
++  const typeName =
++    firstParam.typeAnnotation != null &&
++    firstParam.typeAnnotation.type === 'TSTypeReference'
++      ? firstParam.typeAnnotation.typeName
++      : null;
+   if (
+     !(
+-      firstParam.typeAnnotation != null &&
+-      firstParam.typeAnnotation.type === 'TSTypeReference' &&
+-      ((_firstParam$typeAnnot = firstParam.typeAnnotation.typeName.left) ===
+-        null || _firstParam$typeAnnot === void 0
+-        ? void 0
+-        : _firstParam$typeAnnot.name) === 'React' &&
+-      ((_firstParam$typeAnnot2 = firstParam.typeAnnotation.typeName.right) ===
+-        null || _firstParam$typeAnnot2 === void 0
+-        ? void 0
+-        : _firstParam$typeAnnot2.name) === 'ElementRef'
++      typeName != null &&
++      typeName.left?.name === 'React' &&
++      VALID_COMMAND_REF_TYPES.includes(typeName.right?.name)
+     )
+   ) {
+     throw new Error(
+-      `The first argument of method ${name} must be of type React.ElementRef<>`,
++      `The first argument of method ${name} must be of type React.ElementRef<> or React.ComponentRef<>`,
+     );
+   }
+   const params = parameters.slice(1).map(param => {
+diff --git a/lib/parsers/typescript/components/commands.js.flow b/lib/parsers/typescript/components/commands.js.flow
+index 272eeb3be2c1e0d67630b0ce7259de02539b7f90..d8641522aa51ac7026b596d3f0baae68efb6b36e 100644
+--- a/lib/parsers/typescript/components/commands.js.flow
++++ b/lib/parsers/typescript/components/commands.js.flow
+@@ -22,6 +22,10 @@ import type {TypeDeclarationMap} from '../../utils';
+ const {parseTopLevelType} = require('../parseTopLevelType');
+ const {getPrimitiveTypeAnnotation} = require('./componentsUtils');
+ 
++// React 19 renamed React.ElementRef to React.ComponentRef; both denote the
++// same type, so Codegen accepts either. See react-native#54272.
++const VALID_COMMAND_REF_TYPES = ['ElementRef', 'ComponentRef'];
++
+ // $FlowFixMe[unclear-type] there's no flowtype for ASTs
+ type EventTypeAST = Object;
+ 
+@@ -38,11 +42,13 @@ function buildCommandSchemaInternal(
+       firstParam.typeAnnotation != null &&
+       firstParam.typeAnnotation.type === 'TSTypeReference' &&
+       firstParam.typeAnnotation.typeName.left?.name === 'React' &&
+-      firstParam.typeAnnotation.typeName.right?.name === 'ElementRef'
++      VALID_COMMAND_REF_TYPES.includes(
++        firstParam.typeAnnotation.typeName.right?.name,
++      )
+     )
+   ) {
+     throw new Error(
+-      `The first argument of method ${name} must be of type React.ElementRef<>`,
++      `The first argument of method ${name} must be of type React.ElementRef<> or React.ComponentRef<>`,
+     );
+   }
+ 
