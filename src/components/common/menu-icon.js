@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { createIconSetFromIcoMoon } from 'react-native-vector-icons'
+import createIconSet from '@react-native-vector-icons/icomoon'
 import iconConfig from '../../assets/icons/selection.json'
 
 import { Colors, Sizes } from '../../styles'
 
-const Icon = createIconSetFromIcoMoon(iconConfig, '', 'Menu')
+const Icon = createIconSet(iconConfig, { fontFileName: 'Menu.ttf' })
 
 const MenuIcon = ({ isActive, name }) => {
   const color = isActive ? Colors.greyDark : Colors.grey
