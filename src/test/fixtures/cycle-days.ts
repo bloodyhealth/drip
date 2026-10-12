@@ -18,8 +18,13 @@ export const LOW_TEMPERATURE = 36.4
 export const HIGH_TEMPERATURE = 36.9
 export const FIRST_HIGH_CYCLE_DAY = 14
 
-function mucusFor(cycleDayNumber: number): FixtureCycleDay['mucus'] {
-  const isPeak = cycleDayNumber >= 10 && cycleDayNumber <= 12
+function mucusFor(
+  cycleDayNumber: number,
+  firstHighCycleDay: number
+): FixtureCycleDay['mucus'] {
+  const isPeak =
+    cycleDayNumber >= firstHighCycleDay - 4 &&
+    cycleDayNumber <= firstHighCycleDay - 2
   const value = isPeak ? 4 : 0
   return {
     value,
@@ -31,9 +36,10 @@ function mucusFor(cycleDayNumber: number): FixtureCycleDay['mucus'] {
 
 export function makeCycleDay(
   date: string,
-  cycleDayNumber: number
+  cycleDayNumber: number,
+  firstHighCycleDay = FIRST_HIGH_CYCLE_DAY
 ): FixtureCycleDay {
-  const isHigh = cycleDayNumber >= FIRST_HIGH_CYCLE_DAY
+  const isHigh = cycleDayNumber >= firstHighCycleDay
   const day: FixtureCycleDay = {
     date,
     isCycleStart: cycleDayNumber === 1,
@@ -41,7 +47,7 @@ export function makeCycleDay(
       value: isHigh ? HIGH_TEMPERATURE : LOW_TEMPERATURE,
       exclude: false,
     },
-    mucus: mucusFor(cycleDayNumber),
+    mucus: mucusFor(cycleDayNumber, firstHighCycleDay),
   }
   if (cycleDayNumber <= 5) day.bleeding = { value: 2, exclude: false }
   return day
@@ -49,11 +55,12 @@ export function makeCycleDay(
 
 export function makeCycle(
   startDate: string,
-  length: number
+  length: number,
+  firstHighCycleDay = FIRST_HIGH_CYCLE_DAY
 ): FixtureCycleDay[] {
   const start = LocalDate.parse(startDate)
   return Array.from({ length }, (_, i) =>
-    makeCycleDay(start.plusDays(i).toString(), i + 1)
+    makeCycleDay(start.plusDays(i).toString(), i + 1, firstHighCycleDay)
   )
 }
 

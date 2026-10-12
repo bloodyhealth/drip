@@ -1,4 +1,4 @@
-import cycleModule from '../lib/cycle'
+import { makeCycleModule } from './fixtures/make-cycle-module'
 
 describe('getCycleForDay', () => {
   const cycleDaysSortedByDate = [
@@ -41,7 +41,7 @@ describe('getCycleForDay', () => {
   ]
   const cycleStarts = ['2018-07-05', '2018-06-05', '2018-05-03', '2018-04-02']
 
-  const { getCycleForDay } = cycleModule({
+  const { getCycleForDay } = makeCycleModule({
     cycleDaysSortedByDate,
     cycleStartsSortedByDate: cycleDaysSortedByDate.filter((d) => {
       return cycleStarts.includes(d.date)
@@ -84,7 +84,7 @@ describe('getCycleForDay', () => {
   })
 
   test('returns null if the cycle is longer than the max', () => {
-    const { getCycleForDay } = cycleModule({
+    const { getCycleForDay } = makeCycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate: cycleDaysSortedByDate.filter((d) => {
         return cycleStarts.includes(d.date)

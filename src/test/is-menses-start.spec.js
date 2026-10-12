@@ -1,4 +1,4 @@
-import cycleModule from '../lib/cycle'
+import { makeCycleModule } from './fixtures/make-cycle-module'
 
 describe('isMensesStart', () => {
   test('works for simple menses start', () => {
@@ -23,7 +23,7 @@ describe('isMensesStart', () => {
       },
     ]
 
-    const { isMensesStart } = cycleModule({
+    const { isMensesStart } = makeCycleModule({
       cycleDaysSortedByDate,
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
@@ -51,7 +51,7 @@ describe('isMensesStart', () => {
       },
     ]
 
-    const { isMensesStart } = cycleModule({
+    const { isMensesStart } = makeCycleModule({
       cycleDaysSortedByDate,
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
@@ -75,7 +75,7 @@ describe('isMensesStart', () => {
       },
     ]
 
-    const { isMensesStart } = cycleModule({
+    const { isMensesStart } = makeCycleModule({
       cycleDaysSortedByDate,
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
@@ -104,7 +104,7 @@ describe('isMensesStart', () => {
       },
     ]
 
-    const { isMensesStart } = cycleModule({
+    const { isMensesStart } = makeCycleModule({
       cycleDaysSortedByDate,
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
@@ -133,7 +133,7 @@ describe('isMensesStart', () => {
       },
     ]
 
-    const { isMensesStart } = cycleModule({
+    const { isMensesStart } = makeCycleModule({
       cycleDaysSortedByDate,
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
@@ -160,7 +160,7 @@ describe('isMensesStart', () => {
         },
       ]
 
-      const isMensesStart = cycleModule({
+      const isMensesStart = makeCycleModule({
         bleedingDaysSortedByDate: bleedingDays,
         maxBreakInBleeding,
       }).isMensesStart
@@ -184,7 +184,7 @@ describe('isMensesStart', () => {
         },
       ]
 
-      const isMensesStart = cycleModule({
+      const isMensesStart = makeCycleModule({
         bleedingDaysSortedByDate: bleedingDays,
         maxBreakInBleeding,
       }).isMensesStart

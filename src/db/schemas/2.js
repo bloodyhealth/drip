@@ -1,4 +1,5 @@
-import cycleModule from '../../lib/cycle'
+import { createCycleModule } from '../../lib/cycle'
+import { createRealmCycleDayRepository } from '../realm-cycle-day-repository'
 
 const TemperatureSchema = {
   name: 'Temperature',
@@ -160,9 +161,9 @@ export default {
       .filtered('bleeding != null')
       .sorted('date', true)
 
-    const { isMensesStart } = cycleModule({
-      bleedingDaysSortedByDate: oldBleedingDays,
-    })
+    const { isMensesStart } = createCycleModule(
+      createRealmCycleDayRepository(oldRealm)
+    )
 
     const newBleedingDays = newRealm
       .objects('CycleDay')

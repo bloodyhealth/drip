@@ -16,8 +16,10 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 
 // prediction is computed from the db
 const mockGetPredictedMenses = jest.fn()
-jest.mock('@/lib/cycle', () => () => ({
-  getPredictedMenses: mockGetPredictedMenses,
+jest.mock('@/db', () => ({
+  getCycleModule: () => ({
+    getPredictedMenses: mockGetPredictedMenses,
+  }),
 }))
 
 const mockedNotifee = notifee as jest.Mocked<typeof notifee>

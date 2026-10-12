@@ -1,5 +1,5 @@
 import getFertilityStatus from 'sympto'
-import cycleModule from './cycle'
+import { getCycleModule } from '../db'
 import {
   fertilityTrackingObservable,
   useCervixAsSecondarySymptomObservable,
@@ -50,7 +50,7 @@ export function getCycleStatusForDay(dateString, opts = {}) {
     return
   }
 
-  const { getCycleForDay, getCyclesBefore, getPreviousCycle } = cycleModule()
+  const { getCycleForDay, getCyclesBefore, getPreviousCycle } = getCycleModule()
 
   const cycle = getCycleForDay(dateString)
   if (!cycle) return null

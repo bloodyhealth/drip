@@ -5,9 +5,8 @@ import {
   scaleObservable,
   unitObservable,
 } from '../../local-storage'
-import cycleModule from '../../lib/cycle'
 import { getCycleStatusForDay } from '../../lib/sympto-adapter'
-import { getCycleDay, getAmountOfCycleDays } from '../../db'
+import { getAmountOfCycleDays, getCycleDay, getCycleModule } from '../../db'
 
 //YAxis helpers
 
@@ -219,7 +218,7 @@ function getTodayAndPreviousDays(n) {
 }
 
 export function nfpLines() {
-  const { getLastMensesStartForDay } = cycleModule()
+  const { getLastMensesStartForDay } = getCycleModule()
   const statusByCycleStartDate = new Map()
 
   function getStatusForDay(dateString) {

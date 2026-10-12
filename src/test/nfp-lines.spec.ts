@@ -17,16 +17,14 @@ const mockFixtureDb = makeFixtureDb([
   makeCycle('2024-03-25', 17),
 ])
 
-jest.mock('sympto', () => jest.fn(jest.requireActual('sympto')))
+jest.mock('sympto', () =>
+  jest.fn(jest.requireActual<typeof import('sympto')['default']>('sympto'))
+)
 jest.mock('../local-storage', () =>
   require('./fixtures/local-storage-mock').makeLocalStorageMock()
 )
 jest.mock('../db', () => ({
-  getCycleDaysSortedByDate: () => mockFixtureDb.cycleDaysSortedByDate,
-  getBleedingDaysSortedByDate: () => mockFixtureDb.bleedingDaysSortedByDate,
-  getCycleStartsSortedByDate: () => mockFixtureDb.cycleStartsSortedByDate,
-  getCycleDay: (date: string) =>
-    mockFixtureDb.cycleDaysSortedByDate.find((d) => d.date === date),
+  ...require('./fixtures/db-mock').makeDbMock(() => mockFixtureDb),
 }))
 
 import { nfpLines, normalizeToScale } from '../components/helpers/chart'

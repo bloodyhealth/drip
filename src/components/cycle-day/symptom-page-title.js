@@ -5,7 +5,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import AppIcon from '../common/app-icon'
 import AppText from '../common/app-text'
 
-import cycleModule from '../../lib/cycle'
+import { getCycleModule } from '../../db'
 import { dateToTitle } from '../helpers/format-date'
 
 import { Colors, Containers, Spacing, Typography } from '../../styles'
@@ -16,7 +16,7 @@ const SymptomPageTitle = ({ date, onNextCycleDay, onPrevCycleDay }) => {
   const { t } = useTranslation()
   const title = dateToTitle(date)
 
-  const { getCycleDayNumber } = cycleModule()
+  const { getCycleDayNumber } = getCycleModule()
   const cycleDayNumber = getCycleDayNumber(date)
   const subtitle =
     cycleDayNumber && t('cycleDay.subTitle', { cycleDay: cycleDayNumber })

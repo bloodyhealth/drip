@@ -7,7 +7,7 @@ import Button from './common/button'
 import Footnote from './common/footnote'
 
 import { todayToFullDate } from './helpers/format-date'
-import cycleModule from '../lib/cycle'
+import { getCycleModule } from '../db'
 import { getFertilityStatusForDay } from '../lib/sympto-adapter'
 import {
   determinePredictionText,
@@ -35,7 +35,7 @@ const Home = () => {
 
   const isFertilityTrackingEnabled = fertilityTrackingObservable.value
   const todayDateString = LocalDate.now().toString()
-  const { getCycleDayNumber, getPredictedMenses } = cycleModule()
+  const { getCycleDayNumber, getPredictedMenses } = getCycleModule()
   const cycleDayNumber = getCycleDayNumber(todayDateString)
   const { status, phase, statusText } =
     isFertilityTrackingEnabled && getFertilityStatusForDay(todayDateString)

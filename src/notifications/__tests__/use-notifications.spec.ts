@@ -19,19 +19,18 @@ const mockGetBleedingDaysSortedByDate = jest.fn(() => ({
   addListener: jest.fn(),
   removeListener: jest.fn(),
 }))
+// prediction is computed from the db
 jest.mock('@/db', () => ({
   getBleedingDaysSortedByDate: () => mockGetBleedingDaysSortedByDate(),
+  getCycleModule: () => ({
+    getPredictedMenses: () => [],
+  }),
 }))
 
 const mockNavigate = jest.fn()
 jest.mock('@/context/navigation/navigation-ref', () => ({
   navigateWhenReady: (navigation: () => void) => navigation(),
   navigationRef: { navigate: (...args: unknown[]) => mockNavigate(...args) },
-}))
-
-// prediction is computed from the db
-jest.mock('@/lib/cycle', () => () => ({
-  getPredictedMenses: () => [],
 }))
 
 const mockedNotifee = notifee as jest.Mocked<typeof notifee>

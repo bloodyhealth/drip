@@ -17,16 +17,14 @@ jest.mock('@react-navigation/native', () => ({
   useIsFocused: () => true,
   useNavigation: () => ({ navigate: jest.fn() }),
 }))
-jest.mock('sympto', () => jest.fn(jest.requireActual('sympto')))
+jest.mock('sympto', () =>
+  jest.fn(jest.requireActual<typeof import('sympto')['default']>('sympto'))
+)
 jest.mock('../local-storage', () =>
   require('./fixtures/local-storage-mock').makeLocalStorageMock()
 )
 jest.mock('../db', () => ({
-  getCycleDaysSortedByDate: () => mockFixtureDb.cycleDaysSortedByDate,
-  getBleedingDaysSortedByDate: () => mockFixtureDb.bleedingDaysSortedByDate,
-  getCycleStartsSortedByDate: () => mockFixtureDb.cycleStartsSortedByDate,
-  getCycleDay: (date: string) =>
-    mockFixtureDb.cycleDaysSortedByDate.find((d) => d.date === date),
+  ...require('./fixtures/db-mock').makeDbMock(() => mockFixtureDb),
   getSymptomsWithData: () => ['bleeding', 'temperature', 'mucus'],
   getAmountOfCycleDays: () => 100,
 }))

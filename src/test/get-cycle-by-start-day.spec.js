@@ -1,4 +1,4 @@
-import cycleModule from '../lib/cycle'
+import { makeCycleModule } from './fixtures/make-cycle-module'
 
 const cycleStartDay = { date: '2018-05-03' }
 
@@ -23,7 +23,7 @@ const cycleStartsSortedByDate = [
 
 describe('getCycleByStartDay', () => {
   test('gets cycle by cycle start day', () => {
-    const { getCycleByStartDay } = cycleModule({
+    const { getCycleByStartDay } = makeCycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate,
     })

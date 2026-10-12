@@ -19,16 +19,15 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 
 const mockAddListener = jest.fn()
 const mockRemoveListener = jest.fn()
+// prediction is computed from the db
 jest.mock('@/db', () => ({
   getBleedingDaysSortedByDate: () => ({
     addListener: mockAddListener,
     removeListener: mockRemoveListener,
   }),
-}))
-
-// prediction is computed from the db
-jest.mock('@/lib/cycle', () => () => ({
-  getPredictedMenses: () => [],
+  getCycleModule: () => ({
+    getPredictedMenses: () => [],
+  }),
 }))
 
 const flushPromises = () => new Promise<void>((r) => setTimeout(r, 0))

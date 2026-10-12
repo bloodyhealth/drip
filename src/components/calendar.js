@@ -2,8 +2,7 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { CalendarList } from 'react-native-calendars'
 
-import { getBleedingDaysSortedByDate } from '../db'
-import cycleModule from '../lib/cycle'
+import { getBleedingDaysSortedByDate, getCycleModule } from '../db'
 import {
   calendarTheme,
   predictionToCalFormat,
@@ -18,7 +17,7 @@ const CalendarView = () => {
   const { navigate } = useNavigation()
   useRefreshOnFocus()
   const bleedingDays = getBleedingDaysSortedByDate()
-  const predictedMenses = cycleModule().getPredictedMenses()
+  const predictedMenses = getCycleModule().getPredictedMenses()
 
   const passDateToDayView = ({ dateString }) => {
     navigate('CycleDay', { date: dateString })

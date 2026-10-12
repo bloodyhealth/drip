@@ -6,12 +6,12 @@ import { StyleSheet, View } from 'react-native'
 import AppText from '../common/app-text'
 
 import { dateToShortMonth } from '../helpers/format-date'
-import cycleModule from '../../lib/cycle'
 import { getOrdinalSuffix } from '../helpers/home'
 import { Typography, Sizes } from '../../styles'
+import { getCycleModule } from '../../db'
 
 const CycleDayLabel = ({ height, date }) => {
-  const cycleDayNumber = cycleModule().getCycleDayNumber(date)
+  const cycleDayNumber = getCycleModule().getCycleDayNumber(date)
   const cycleDayLabel = cycleDayNumber ? cycleDayNumber : ' '
 
   const dayOfMonth = LocalDate.parse(date).dayOfMonth()

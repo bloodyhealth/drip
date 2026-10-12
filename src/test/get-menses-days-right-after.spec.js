@@ -1,4 +1,4 @@
-import cycleModule from '../lib/cycle'
+import { makeCycleModule } from './fixtures/make-cycle-module'
 
 describe('getMensesDaysRightAfter', () => {
   test('works for simple menses start', () => {
@@ -23,7 +23,7 @@ describe('getMensesDaysRightAfter', () => {
       },
     ]
 
-    const { getMensesDaysRightAfter } = cycleModule({
+    const { getMensesDaysRightAfter } = makeCycleModule({
       cycleDaysSortedByDate,
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
@@ -63,7 +63,7 @@ describe('getMensesDaysRightAfter', () => {
       },
     ]
 
-    const { getMensesDaysRightAfter } = cycleModule({
+    const { getMensesDaysRightAfter } = makeCycleModule({
       cycleDaysSortedByDate,
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
@@ -106,7 +106,7 @@ describe('getMensesDaysRightAfter', () => {
       },
     ]
 
-    const { getMensesDaysRightAfter } = cycleModule({
+    const { getMensesDaysRightAfter } = makeCycleModule({
       cycleDaysSortedByDate,
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
@@ -139,7 +139,7 @@ describe('getMensesDaysRightAfter', () => {
       },
     ]
 
-    const { getMensesDaysRightAfter } = cycleModule({
+    const { getMensesDaysRightAfter } = makeCycleModule({
       cycleDaysSortedByDate,
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
@@ -168,7 +168,7 @@ describe('getMensesDaysRightAfter', () => {
       },
     ]
 
-    const { getMensesDaysRightAfter } = cycleModule({
+    const { getMensesDaysRightAfter } = makeCycleModule({
       cycleDaysSortedByDate,
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
@@ -198,7 +198,7 @@ describe('getMensesDaysRightAfter', () => {
       },
     ]
 
-    const { getMensesDaysRightAfter } = cycleModule({
+    const { getMensesDaysRightAfter } = makeCycleModule({
       cycleDaysSortedByDate,
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
@@ -234,7 +234,7 @@ describe('getMensesDaysRightAfter', () => {
         },
       ]
 
-      const getMensesDaysRightAfter = cycleModule({
+      const getMensesDaysRightAfter = makeCycleModule({
         bleedingDaysSortedByDate: bleedingDays,
         maxBreakInBleeding,
       }).getMensesDaysRightAfter
@@ -258,7 +258,7 @@ describe('getMensesDaysRightAfter', () => {
         },
       ]
 
-      const getMensesDaysRightAfter = cycleModule({
+      const getMensesDaysRightAfter = makeCycleModule({
         bleedingDaysSortedByDate: bleedingDays,
         maxBreakInBleeding,
       }).getMensesDaysRightAfter

@@ -1,4 +1,4 @@
-import cycleModule from '../lib/cycle'
+import { makeCycleModule } from './fixtures/make-cycle-module'
 
 const mayCycle = [
   { date: '2018-05-05' },
@@ -25,7 +25,7 @@ const cycleStartsSortedByDate = [
 
 describe('getPreviousCycle', () => {
   test('gets previous cycle', () => {
-    const { getPreviousCycle } = cycleModule({
+    const { getPreviousCycle } = makeCycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate,
     })
@@ -34,7 +34,7 @@ describe('getPreviousCycle', () => {
   })
 
   test('returns null when target day is not in a cyle', () => {
-    const { getPreviousCycle } = cycleModule({
+    const { getPreviousCycle } = makeCycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate: [],
     })
@@ -43,7 +43,7 @@ describe('getPreviousCycle', () => {
   })
 
   test('returns null when there is no previous cycle', () => {
-    const { getPreviousCycle } = cycleModule({
+    const { getPreviousCycle } = makeCycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate,
     })
@@ -52,7 +52,7 @@ describe('getPreviousCycle', () => {
   })
 
   test('returns null when the previous cycle > maxcyclelength', () => {
-    const { getPreviousCycle } = cycleModule({
+    const { getPreviousCycle } = makeCycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate,
       maxCycleLength: 2,

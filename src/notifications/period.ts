@@ -6,7 +6,7 @@ import {
   periodPredictionObservable,
   periodReminderObservable,
 } from '@/local-storage'
-import cycleModule from '@/lib/cycle'
+import { getCycleModule } from '@/db'
 import {
   cancelReminder,
   ReminderContent,
@@ -35,7 +35,7 @@ export const updatePeriodReminder = async (): Promise<void> => {
   await cancelReminder('period')
   if (!isReminderEnabled()) return
 
-  const predictions: string[][] = cycleModule().getPredictedMenses()
+  const predictions: string[][] = getCycleModule().getPredictedMenses()
   const [nextPrediction] = predictions
   if (!nextPrediction) return
 

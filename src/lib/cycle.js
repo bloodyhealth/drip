@@ -4,37 +4,20 @@ import { getCycleLengthStats } from './cycle-length'
 const LocalDate = joda.LocalDate
 const DAYS = joda.ChronoUnit.DAYS
 
-export default function config(opts) {
-  let bleedingDaysSortedByDate
-  let cycleStartsSortedByDate
-  let cycleDaysSortedByDate
-  let maxBreakInBleeding
-  let maxCycleLength
-  let minCyclesForPrediction
+const DEFAULT_OPTIONS = {
+  maxBreakInBleeding: 1,
+  maxCycleLength: 99,
+  minCyclesForPrediction: 3,
+}
 
-  if (!opts) {
-    // we only want to require (and run) the db module
-    // when not running the tests
-    bleedingDaysSortedByDate = require('../db').getBleedingDaysSortedByDate()
-    cycleStartsSortedByDate = require('../db').getCycleStartsSortedByDate()
-    cycleDaysSortedByDate = require('../db').getCycleDaysSortedByDate()
-
-    maxBreakInBleeding = 1
-    maxCycleLength = 99
-    minCyclesForPrediction = 3
-  } else {
-    bleedingDaysSortedByDate = opts.bleedingDaysSortedByDate || []
-    cycleStartsSortedByDate = opts.cycleStartsSortedByDate || []
-    cycleDaysSortedByDate = opts.cycleDaysSortedByDate || []
-    maxBreakInBleeding = opts.maxBreakInBleeding || 1
-    maxCycleLength = opts.maxCycleLength || 99
-    minCyclesForPrediction = opts.minCyclesForPrediction || 3
+export function createCycleModule(repository, options = {}) {
+  const { maxBreakInBleeding, maxCycleLength, minCyclesForPrediction } = {
+    ...DEFAULT_OPTIONS,
+    ...options,
   }
 
   function getLastMensesStartForDay(targetDateString) {
-    return cycleStartsSortedByDate.find(
-      (start) => start.date <= targetDateString
-    )
+    return repository.getLastCycleStartOnOrBefore(targetDateString)
   }
 
   function getCycleDayNumber(targetDateString) {
@@ -52,33 +35,24 @@ export default function config(opts) {
   function getPreviousCycle(dateString) {
     const cycleStart = getLastMensesStartForDay(dateString)
     if (!cycleStart) return null
-    const i = cycleStartsSortedByDate.indexOf(cycleStart)
-    const earlierCycleStart = cycleStartsSortedByDate[i + 1]
+    const earlierCycleStart = repository.getLastCycleStartBefore(
+      cycleStart.date
+    )
     if (!earlierCycleStart) return null
     return getCycleByStartDay(earlierCycleStart)
   }
 
   function getCyclesBefore(targetCycleStartDay) {
-    const startFromHere = cycleStartsSortedByDate.findIndex((start) => {
-      return start.date < targetCycleStartDay.date
-    })
-    if (startFromHere < 0) return null
+    const earlierCycleStarts = repository.getCycleStartsBefore(
+      targetCycleStartDay.date
+    )
+    if (!earlierCycleStarts.length) return null
     return (
-      cycleStartsSortedByDate
-        .slice(startFromHere)
+      earlierCycleStarts
         .map((start) => getCycleByStartDay(start))
         // filter the ones exceeding maxCycleLength, those are null
         .filter((cycle) => cycle)
     )
-  }
-
-  function findIndexOfDay(day, daysSortedByDate) {
-    return daysSortedByDate.findIndex((d) => d.date === day.date)
-  }
-
-  function getNextCycleStartDay(startDay, cycleStartsSortedByDate) {
-    const cycleStartIndex = findIndexOfDay(startDay, cycleStartsSortedByDate)
-    return cycleStartsSortedByDate[cycleStartIndex - 1]
   }
 
   function getTodayDate() {
@@ -95,25 +69,12 @@ export default function config(opts) {
 
   function getCycleByStartDay(startDay, todayDate) {
     let cycleEndDate = todayDate || getTodayDate()
-    let cycleEndIndex = 0
 
-    const nextCycleStart = getNextCycleStartDay(
-      startDay,
-      cycleStartsSortedByDate
-    )
-
-    if (nextCycleStart) {
-      const nextCycleIndex = findIndexOfDay(
-        nextCycleStart,
-        cycleDaysSortedByDate
-      )
-      cycleEndIndex = nextCycleIndex + 1
-      cycleEndDate = nextCycleStart.date
-    }
+    const nextCycleStart = repository.getFirstCycleStartAfter(startDay.date)
+    if (nextCycleStart) cycleEndDate = nextCycleStart.date
 
     if (isValidCycle(startDay.date, cycleEndDate)) {
-      const cycleStartIndex = findIndexOfDay(startDay, cycleDaysSortedByDate)
-      return cycleDaysSortedByDate.slice(cycleEndIndex, cycleStartIndex + 1)
+      return repository.getCycleDaysFrom(startDay.date, nextCycleStart?.date)
     }
 
     return null
@@ -137,12 +98,7 @@ export default function config(opts) {
     function noBleedingDayWithinThresholdBefore(cycleDay) {
       const localDate = LocalDate.parse(cycleDay.date)
       const threshold = localDate.minusDays(maxBreakInBleeding + 1).toString()
-      const bleedingDays = bleedingDaysSortedByDate
-      const index = bleedingDays.findIndex((day) => day.date === cycleDay.date)
-      const candidates = bleedingDays.slice(index + 1)
-      return !candidates.some((day) => {
-        return day.date >= threshold && !day.bleeding.exclude
-      })
+      return !repository.hasIncludedBleedingDayBetween(threshold, cycleDay.date)
     }
   }
 
@@ -150,13 +106,8 @@ export default function config(opts) {
   // the cycle day. used to set or clear new cycle starts when the target day
   // changes
   function getMensesDaysRightAfter(cycleDay) {
-    const bleedingDays = bleedingDaysSortedByDate
-      .filter((d) => !d.bleeding.exclude)
-      .reverse()
-    const firstFollowingBleedingDayIndex = bleedingDays.findIndex((day) => {
-      return day.date > cycleDay.date
-    })
-    return recurse(cycleDay, firstFollowingBleedingDayIndex, [])
+    const bleedingDays = repository.getIncludedBleedingDaysAfter(cycleDay.date)
+    return recurse(cycleDay, 0, [])
 
     // we look at the current bleeding day as well as the next, and decide
     // whether they belong to one menses. if they do, we collect them, once
@@ -178,6 +129,7 @@ export default function config(opts) {
   }
 
   function getAllCycleLengths() {
+    const cycleStartsSortedByDate = repository.getCycleStarts()
     return cycleStartsSortedByDate
       .map((day) => LocalDate.parse(day.date))
       .map((cycleStart, i, startsAsLocalDates) => {
@@ -208,7 +160,7 @@ export default function config(opts) {
       // otherwise predictions overlap
       return []
     }
-    const allMensesStarts = cycleStartsSortedByDate
+    const allMensesStarts = repository.getCycleStarts()
     let lastStart = LocalDate.parse(allMensesStarts[0].date)
     const predictedMenses = []
     for (let i = 0; i < 3; i++) {
@@ -224,8 +176,9 @@ export default function config(opts) {
     return predictedMenses
   }
 
-  const getStats = () =>
-    cycleStartsSortedByDate.map((day, i) => {
+  const getStats = () => {
+    const cycleStartsSortedByDate = repository.getCycleStarts()
+    return cycleStartsSortedByDate.map((day, i) => {
       let cycleLength
       if (i === 0) {
         // in the most recent cycle, its length equals the number of the current day within the cycle
@@ -245,6 +198,7 @@ export default function config(opts) {
         bleedingLength: ++getMensesDaysRightAfter(day).length,
       }
     })
+  }
 
   return {
     getLastMensesStartForDay,

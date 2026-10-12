@@ -3,13 +3,13 @@ import { LocalDate, ChronoUnit } from '@js-joda/core'
 import * as fs from '@dr.pogodin/react-native-fs'
 
 import schemas from './schemas'
-import cycleModule from '../lib/cycle'
+import { createCycleModule } from '../lib/cycle'
 import maybeSetNewCycleStart from '../lib/set-new-cycle-start'
+import { createRealmCycleDayRepository } from './realm-cycle-day-repository'
 import { SYMPTOMS } from '../config'
 
 let db
-let checkIsMensesStart
-let getMensesDaysRightAfter
+let cycleModule
 
 export async function openDb(hash) {
   const realmConfig = {}
@@ -57,14 +57,16 @@ export async function openDb(hash) {
   const connection = await Realm.open(latestSchemaConfig)
 
   db = connection
-  const cycle = cycleModule()
-  checkIsMensesStart = cycle.isMensesStart
-  getMensesDaysRightAfter = cycle.getMensesDaysRightAfter
+  cycleModule = createCycleModule(createRealmCycleDayRepository(connection))
   return true
 }
 
 export function closeDb() {
   db.close()
+}
+
+export function getCycleModule() {
+  return cycleModule
 }
 
 export function mapRealmObjToJsObj(realmObj) {
@@ -103,24 +105,18 @@ export function getCycleDaysSortedByDate() {
   return cycleDays
 }
 
-export function getCycleStartsSortedByDate() {
-  return db
-    .objects('CycleDay')
-    .filtered('isCycleStart = true')
-    .sorted('date', true)
-}
 export function saveSymptom(symptom, date, val) {
   let cycleDay = getCycleDay(date)
   if (!cycleDay) cycleDay = createCycleDay(date)
 
   db.write(() => {
     if (symptom === 'bleeding') {
-      const mensesDaysAfter = getMensesDaysRightAfter(cycleDay)
+      const mensesDaysAfter = cycleModule.getMensesDaysRightAfter(cycleDay)
       maybeSetNewCycleStart({
         val,
         cycleDay,
         mensesDaysAfter,
-        checkIsMensesStart,
+        checkIsMensesStart: cycleModule.isMensesStart,
       })
     } else {
       cycleDay[symptom] = val
@@ -131,7 +127,7 @@ export function saveSymptom(symptom, date, val) {
 export function updateCycleStartsForAllCycleDays() {
   db.write(() => {
     getBleedingDaysSortedByDate().forEach((day) => {
-      if (checkIsMensesStart(day)) {
+      if (cycleModule.isMensesStart(day)) {
         day.isCycleStart = true
       }
     })

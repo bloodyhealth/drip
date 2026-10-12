@@ -1,4 +1,4 @@
-import cycleModule from '../lib/cycle'
+import { makeCycleModule } from './fixtures/make-cycle-module'
 
 const julyCycle = [{ date: '2018-07-05' }]
 const juneCycle = [{ date: '2018-06-05' }]
@@ -30,7 +30,7 @@ const cycleStartsSortedByDate = [
 
 describe('getCyclesBefore', () => {
   test('gets previous cycles', () => {
-    const { getCyclesBefore } = cycleModule({
+    const { getCyclesBefore } = makeCycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate,
     })
@@ -41,7 +41,7 @@ describe('getCyclesBefore', () => {
   })
 
   test('skips cycles that are longer than max', () => {
-    const { getCyclesBefore } = cycleModule({
+    const { getCyclesBefore } = makeCycleModule({
       cycleDaysSortedByDate,
       cycleStartsSortedByDate,
       maxCycleLength: 30,

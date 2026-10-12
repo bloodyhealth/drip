@@ -1,4 +1,4 @@
-import cycleModule from '../lib/cycle'
+import { makeCycleModule } from './fixtures/make-cycle-module'
 
 describe('getPredictedMenses', () => {
   describe('cannot predict next menses', () => {
@@ -6,7 +6,7 @@ describe('getPredictedMenses', () => {
       const cycleDaysSortedByDate = [{}]
       const cycleStarts = []
 
-      const { getPredictedMenses } = cycleModule({
+      const { getPredictedMenses } = makeCycleModule({
         cycleDaysSortedByDate,
         bleedingDaysSortedByDate: cycleDaysSortedByDate.filter(
           (d) => d.bleeding
@@ -30,7 +30,7 @@ describe('getPredictedMenses', () => {
       ]
       const cycleStarts = ['2018-06-02']
 
-      const { getPredictedMenses } = cycleModule({
+      const { getPredictedMenses } = makeCycleModule({
         cycleDaysSortedByDate,
         bleedingDaysSortedByDate: cycleDaysSortedByDate.filter(
           (d) => d.bleeding
@@ -62,7 +62,7 @@ describe('getPredictedMenses', () => {
       ]
       const cycleStarts = ['2018-06-01', '2018-05-01']
 
-      const { getPredictedMenses } = cycleModule({
+      const { getPredictedMenses } = makeCycleModule({
         cycleDaysSortedByDate,
         bleedingDaysSortedByDate: cycleDaysSortedByDate.filter(
           (d) => d.bleeding
@@ -104,7 +104,7 @@ describe('getPredictedMenses', () => {
       ]
       const cycleStarts = ['2018-06-01', '2018-05-01', '2018-04-01']
 
-      const { getPredictedMenses } = cycleModule({
+      const { getPredictedMenses } = makeCycleModule({
         cycleDaysSortedByDate,
         bleedingDaysSortedByDate: cycleDaysSortedByDate.filter(
           (d) => d.bleeding
@@ -132,7 +132,7 @@ describe('getPredictedMenses', () => {
         },
       ]
       const cycleStarts = ['2018-07-15', '2018-07-01']
-      const { getPredictedMenses } = cycleModule({
+      const { getPredictedMenses } = makeCycleModule({
         cycleDaysSortedByDate,
         cycleStartsSortedByDate: cycleDaysSortedByDate.filter((d) => {
           return cycleStarts.includes(d.date)
@@ -168,7 +168,7 @@ describe('getPredictedMenses', () => {
         },
       ]
 
-      const { getPredictedMenses } = cycleModule({
+      const { getPredictedMenses } = makeCycleModule({
         cycleDaysSortedByDate,
         cycleStartsSortedByDate: cycleDaysSortedByDate,
         minCyclesForPrediction: 1,
@@ -202,7 +202,7 @@ describe('getPredictedMenses', () => {
         },
       ]
 
-      const { getPredictedMenses } = cycleModule({
+      const { getPredictedMenses } = makeCycleModule({
         cycleDaysSortedByDate,
         cycleStartsSortedByDate: cycleDaysSortedByDate,
       })
@@ -235,7 +235,7 @@ describe('getPredictedMenses', () => {
         },
       ]
 
-      const { getPredictedMenses } = cycleModule({
+      const { getPredictedMenses } = makeCycleModule({
         cycleDaysSortedByDate,
         cycleStartsSortedByDate: cycleDaysSortedByDate,
       })
@@ -272,7 +272,7 @@ describe('getPredictedMenses', () => {
         },
       ]
 
-      const { getPredictedMenses } = cycleModule({
+      const { getPredictedMenses } = makeCycleModule({
         cycleDaysSortedByDate,
         cycleStartsSortedByDate: cycleDaysSortedByDate,
         maxCycleLength: 50,

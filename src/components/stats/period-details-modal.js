@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next'
 import AppModal from '../common/app-modal'
 import AppText from '../common/app-text'
 
-import cycleModule from '../../lib/cycle'
 import { Spacing, Typography, Colors } from '../../styles'
 import { humanizeDate } from '../helpers/format-date'
+import { getCycleModule } from '../../db'
 
 const Item = ({ data }) => {
   const { t } = useTranslation()
@@ -38,7 +38,7 @@ Item.propTypes = {
 
 const PeriodDetailsModal = ({ onClose }) => {
   const renderItem = ({ item }) => <Item data={item} />
-  const data = cycleModule().getStats()
+  const data = getCycleModule().getStats()
 
   if (!data || data.length === 0) return false
 

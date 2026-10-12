@@ -8,7 +8,7 @@ import Footnote from '../common/footnote'
 import StatsOverview from './stats-overview'
 import PeriodDetailsModal from './period-details-modal'
 
-import cycleModule from '../../lib/cycle'
+import { getCycleModule } from '../../db'
 import { getCycleLengthStats as getCycleInfo } from '../../lib/cycle-length'
 import { formatDecimal } from '../helpers/cycle-day'
 
@@ -25,7 +25,7 @@ const Stats = () => {
 
   const { t } = useTranslation(null, { keyPrefix: 'stats' })
 
-  const cycleLengths = cycleModule().getAllCycleLengths()
+  const cycleLengths = getCycleModule().getAllCycleLengths()
   const numberOfCycles = cycleLengths.length
   const cycleData =
     numberOfCycles > 0
