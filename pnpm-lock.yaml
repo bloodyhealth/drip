@@ -8,6 +8,9 @@ patchedDependencies:
   '@react-native/codegen@0.83.2':
     hash: 22f0dfe56ac403bde38ad369cc802b516161673a9bb7735718251f2499707a68
     path: patches/@react-native__codegen@0.83.2.patch
+  sympto@3.0.2:
+    hash: 6540104d9cb9e3219feb8fdfa70f5e122b9a908e911d438e015978df0a164301
+    path: patches/sympto@3.0.2.patch
 
 importers:
 
@@ -114,7 +117,7 @@ importers:
         version: 20.2.0(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))
       sympto:
         specifier: 3.0.2
-        version: 3.0.2
+        version: 3.0.2(patch_hash=6540104d9cb9e3219feb8fdfa70f5e122b9a908e911d438e015978df0a164301)
     devDependencies:
       '@babel/core':
         specifier: ^7.28.6
@@ -9875,7 +9878,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  sympto@3.0.2:
+  sympto@3.0.2(patch_hash=6540104d9cb9e3219feb8fdfa70f5e122b9a908e911d438e015978df0a164301):
     dependencies:
       assert: 2.1.0
       js-joda: 1.11.0

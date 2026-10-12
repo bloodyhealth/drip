@@ -8,8 +8,7 @@ const monthStart = (i: number) => FIRST_START.plusMonths(i)
 // 15 cycles, each starting on the 1st of a month. The oldest has its first
 // high temperature on cycle day 14, all later ones on cycle day 15. The
 // minus-8-day rule uses the earliest first high temperature of all previous
-// cycles (once there are >= 12). Cycles stay within one month because sympto
-// miscounts cycle days across month boundaries (js-joda compareTo).
+// cycles (once there are >= 12).
 const mockFixtureDb = makeFixtureDb(
   Array.from({ length: 15 }, (_, i) =>
     makeCycle(

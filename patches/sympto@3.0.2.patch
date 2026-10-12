@@ -1,0 +1,19 @@
+diff --git a/minus-8-day-rule.js b/minus-8-day-rule.js
+index cdf6ce2cbc536d98899d5acd9eff7198d8b72fad..3422546a718b6532485b80be6e9bdc677e871653 100644
+--- a/minus-8-day-rule.js
++++ b/minus-8-day-rule.js
+@@ -1,4 +1,4 @@
+-const { LocalDate } = require('js-joda')
++const { ChronoUnit, LocalDate } = require('js-joda')
+ const getNfpStatus = require('./index.js')
+ 
+ module.exports = function (previousCycles, secondarySymptom) {
+@@ -13,7 +13,7 @@ module.exports = function (previousCycles, secondarySymptom) {
+         const day = status.temperatureShift.firstHighMeasurementDay
+         const firstCycleDayDate = LocalDate.parse(cycle[0].date)
+         const fhmDate = LocalDate.parse(day.date)
+-        return fhmDate.compareTo(firstCycleDayDate) + 1
++        return firstCycleDayDate.until(fhmDate, ChronoUnit.DAYS) + 1
+       }
+       return null
+     })
