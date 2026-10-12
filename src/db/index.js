@@ -103,13 +103,6 @@ export function getSymptomsWithData() {
   })
 }
 
-export function getTemperatureDaysSortedByDate() {
-  return db
-    .objects('CycleDay')
-    .filtered('temperature != null')
-    .sorted('date', true)
-}
-
 export function getCycleDaysSortedByDate() {
   const cycleDays = db.objects('CycleDay').sorted('date', true)
   return cycleDays
@@ -160,12 +153,12 @@ export function getCycleDay(dateString) {
 }
 
 export function getPreviousTemperatureForDate(date) {
-  const targetDate = LocalDate.parse(date)
-  const winner = getTemperatureDaysSortedByDate().find((candidate) => {
-    return LocalDate.parse(candidate.date).isBefore(targetDate)
-  })
-  if (!winner) return null
-  return winner.temperature.value
+  const previousTemperatureDay = db
+    .objects('CycleDay')
+    .filtered('temperature != null AND date < $0', date)
+    .sorted('date', true)[0]
+  if (!previousTemperatureDay) return null
+  return previousTemperatureDay.temperature.value
 }
 
 function tryToCreateCycleDayFromImport(day, i) {
