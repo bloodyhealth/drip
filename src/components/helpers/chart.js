@@ -5,6 +5,7 @@ import {
   scaleObservable,
   unitObservable,
 } from '../../local-storage'
+import cycleModule from '../../lib/cycle'
 import { getCycleStatusForDay } from '../../lib/sympto-adapter'
 import { getCycleDay, getAmountOfCycleDays } from '../../db'
 
@@ -218,51 +219,47 @@ function getTodayAndPreviousDays(n) {
 }
 
 export function nfpLines() {
-  const cycle = {
-    status: null,
-  }
+  const { getLastMensesStartForDay } = cycleModule()
+  const statusByCycleStartDate = new Map()
 
-  function updateCurrentCycle(dateString) {
-    // for the NFP lines, we don't care about potentially extending the
-    // preOvu phase, so we don't include all earlier cycles, as that is
-    // an expensive db operation at the moment
-    cycle.status = getCycleStatusForDay(dateString, {
-      excludeEarlierCycles: true,
-    })
-    if (!cycle.status) {
-      cycle.noMoreCycles = true
-      return
+  function getStatusForDay(dateString) {
+    const cycleStart = getLastMensesStartForDay(dateString)
+    if (!cycleStart) return null
+    if (!statusByCycleStartDate.has(cycleStart.date)) {
+      // for the NFP lines, we don't care about potentially extending the
+      // preOvu phase, so we don't include all earlier cycles, as that is
+      // an expensive db operation at the moment
+      const status = getCycleStatusForDay(cycleStart.date, {
+        excludeEarlierCycles: true,
+      })
+      statusByCycleStartDate.set(cycleStart.date, status)
     }
-    if (cycle.status.phases.preOvulatory) {
-      cycle.startDate = cycle.status.phases.preOvulatory.start.date
-    } else {
-      cycle.startDate = cycle.status.phases.periOvulatory.start.date
-    }
+    return statusByCycleStartDate.get(cycleStart.date)
   }
 
-  function dateIsInPeriOrPostPhase(dateString) {
-    return dateString >= cycle.status.phases.periOvulatory.start.date
+  function dateIsInPeriOrPostPhase(status, dateString) {
+    return dateString >= status.phases.periOvulatory.start.date
   }
 
-  function precededByAnotherTempValue(dateString) {
+  function precededByAnotherTempValue(status, dateString) {
     return (
       // we are only interested in days that have a preceding
       // temp
-      Object.keys(cycle.status.phases).some((phaseName) => {
-        return cycle.status.phases[phaseName].cycleDays.some((day) => {
+      Object.keys(status.phases).some((phaseName) => {
+        return status.phases[phaseName].cycleDays.some((day) => {
           return day.temperature && day.date < dateString
         })
       }) &&
       // and also a following temp, so we don't draw the line
       // longer than necessary
-      cycle.status.phases.postOvulatory.cycleDays.some((day) => {
+      status.phases.postOvulatory.cycleDays.some((day) => {
         return day.temperature && day.date > dateString
       })
     )
   }
 
-  function isInTempMeasuringPhase(temperature, dateString) {
-    return temperature || precededByAnotherTempValue(dateString)
+  function isInTempMeasuringPhase(status, temperature, dateString) {
+    return temperature || precededByAnotherTempValue(status, dateString)
   }
 
   return function (dateString, temperature, columnHeight) {
@@ -270,14 +267,11 @@ export function nfpLines() {
       drawLtlAt: null,
       drawFhmLine: false,
     }
-    if (!cycle.status && !cycle.noMoreCycles) updateCurrentCycle(dateString)
-    if (cycle.noMoreCycles) return ret
-
-    if (dateString < cycle.startDate) updateCurrentCycle(dateString)
-    if (cycle.noMoreCycles) return ret
+    const status = getStatusForDay(dateString)
+    if (!status) return ret
 
     const tempShift =
-      fertilityTrackingObservable.value && cycle.status.temperatureShift
+      fertilityTrackingObservable.value && status.temperatureShift
 
     if (tempShift) {
       if (tempShift.firstHighMeasurementDay.date === dateString) {
@@ -285,8 +279,8 @@ export function nfpLines() {
       }
 
       if (
-        dateIsInPeriOrPostPhase(dateString) &&
-        isInTempMeasuringPhase(temperature, dateString)
+        dateIsInPeriOrPostPhase(status, dateString) &&
+        isInTempMeasuringPhase(status, temperature, dateString)
       ) {
         ret.drawLtlAt = normalizeToScale(tempShift.ltl, columnHeight)
       }

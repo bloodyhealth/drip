@@ -247,6 +247,7 @@ export default function config(opts) {
     })
 
   return {
+    getLastMensesStartForDay,
     getCycleDayNumber,
     getCycleForDay,
     getPreviousCycle,

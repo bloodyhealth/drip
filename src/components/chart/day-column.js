@@ -14,7 +14,6 @@ import {
   symptomColorMethods,
   getTemperatureProps,
   isSymptomDataComplete,
-  nfpLines,
 } from '../helpers/chart'
 
 const DayColumn = ({
@@ -25,6 +24,7 @@ const DayColumn = ({
   symptomHeight,
   symptomRowSymptoms,
   xAxisHeight,
+  getNfpLines,
 }) => {
   const { navigate } = useNavigation()
   const momentDate = moment(dateString)
@@ -57,7 +57,7 @@ const DayColumn = ({
     }, data)
   }
 
-  const fhmAndLtl = nfpLines()(
+  const fhmAndLtl = getNfpLines(
     dateString,
     data.temperature ? data.temperature.value : null,
     columnHeight
@@ -112,6 +112,7 @@ DayColumn.propTypes = {
   symptomHeight: PropTypes.number.isRequired,
   symptomRowSymptoms: PropTypes.array,
   xAxisHeight: PropTypes.number,
+  getNfpLines: PropTypes.func.isRequired,
 }
 
 export default DayColumn

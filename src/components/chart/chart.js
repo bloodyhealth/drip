@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Dimensions, PixelRatio, StyleSheet, View } from 'react-native'
 
 import AppPage from '../common/app-page'
@@ -24,7 +24,7 @@ import {
   mucusTrackingCategoryObservable,
   cervixTrackingCategoryObservable,
 } from '@/local-storage'
-import { makeColumnInfo } from '../helpers/chart'
+import { makeColumnInfo, nfpLines } from '../helpers/chart'
 import { useRefreshOnFocus } from '@/context/navigation/use-refresh-on-focus'
 
 import {
@@ -36,7 +36,7 @@ import {
 import { Spacing } from '../../styles'
 
 const CycleChart = () => {
-  useRefreshOnFocus()
+  const isFocused = useRefreshOnFocus()
   const [shouldShowHint, setShouldShowHint] = useState(false)
 
   useEffect(() => {
@@ -62,6 +62,7 @@ const CycleChart = () => {
   }
 
   const chartSymptoms = getSymptomsWithData()
+  const getNfpLines = useMemo(() => nfpLines(), [isFocused])
 
   const symptomRowSymptoms = chartSymptoms.filter(
     (symptom) => symptom !== 'temperature'
@@ -123,6 +124,7 @@ const CycleChart = () => {
         chartSymptoms={chartSymptoms}
         shouldShowTemperatureColumn={shouldShowTemperatureColumn}
         xAxisHeight={xAxisHeight}
+        getNfpLines={getNfpLines}
       />
     )
   }
