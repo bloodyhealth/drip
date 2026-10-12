@@ -115,4 +115,4 @@ DayColumn.propTypes = {
   getNfpLines: PropTypes.func.isRequired,
 }
 
-export default DayColumn
+export default React.memo(DayColumn)

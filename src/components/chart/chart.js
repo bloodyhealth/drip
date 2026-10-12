@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Dimensions, PixelRatio, StyleSheet, View } from 'react-native'
 
 import AppPage from '../common/app-page'
@@ -25,7 +25,10 @@ import {
   cervixTrackingCategoryObservable,
 } from '@/local-storage'
 import { makeColumnInfo, nfpLines } from '../helpers/chart'
-import { useRefreshOnFocus } from '@/context/navigation/use-refresh-on-focus'
+import {
+  useMemoOnFocus,
+  useRefreshOnFocus,
+} from '@/context/navigation/use-refresh-on-focus'
 
 import {
   CHART_COLUMN_WIDTH,
@@ -35,8 +38,34 @@ import {
 } from '@/config'
 import { Spacing } from '../../styles'
 
+const getEnabledSymptomRowSymptoms = (chartSymptoms) => {
+  const symptomRowSymptoms = chartSymptoms.filter(
+    (symptom) => symptom !== 'temperature'
+  )
+
+  return symptomRowSymptoms.filter((symptom) => {
+    if (symptom === 'sex') {
+      return sexTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'mucus') {
+      return mucusTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'cervix') {
+      return cervixTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'desire') {
+      return desireTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'pain') {
+      return painTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'mood') {
+      return moodTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'note') {
+      return noteTrackingCategoryObservable.value ? symptom : null
+    } else {
+      return symptom
+    }
+  })
+}
+
 const CycleChart = () => {
-  const isFocused = useRefreshOnFocus()
+  useRefreshOnFocus()
   const [shouldShowHint, setShouldShowHint] = useState(false)
 
   useEffect(() => {
@@ -61,32 +90,11 @@ const CycleChart = () => {
     setChartFlag()
   }
 
-  const chartSymptoms = getSymptomsWithData()
-  const getNfpLines = useMemo(() => nfpLines(), [isFocused])
-
-  const symptomRowSymptoms = chartSymptoms.filter(
-    (symptom) => symptom !== 'temperature'
+  const chartSymptoms = useMemoOnFocus(getSymptomsWithData)
+  const getNfpLines = useMemoOnFocus(nfpLines)
+  const symptomRowEnabledSymptoms = useMemoOnFocus(() =>
+    getEnabledSymptomRowSymptoms(chartSymptoms)
   )
-
-  const symptomRowEnabledSymptoms = symptomRowSymptoms.filter((symptom) => {
-    if (symptom === 'sex') {
-      return sexTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'mucus') {
-      return mucusTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'cervix') {
-      return cervixTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'desire') {
-      return desireTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'pain') {
-      return painTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'mood') {
-      return moodTrackingCategoryObservable.value ? symptom : null
-    } else if (symptom === 'note') {
-      return noteTrackingCategoryObservable.value ? symptom : null
-    } else {
-      return symptom
-    }
-  })
 
   const isTemperatureEnabled = temperatureTrackingCategoryObservable.value
   const shouldShowTemperatureColumn =
@@ -114,20 +122,31 @@ const CycleChart = () => {
 
   const columns = makeColumnInfo()
 
-  const renderColumn = ({ item }) => {
-    return (
-      <DayColumn
-        dateString={item}
-        symptomHeight={symptomHeight}
-        columnHeight={columnHeight}
-        symptomRowSymptoms={symptomRowEnabledSymptoms}
-        chartSymptoms={chartSymptoms}
-        shouldShowTemperatureColumn={shouldShowTemperatureColumn}
-        xAxisHeight={xAxisHeight}
-        getNfpLines={getNfpLines}
-      />
-    )
-  }
+  const renderColumn = useCallback(
+    ({ item }) => {
+      return (
+        <DayColumn
+          dateString={item}
+          symptomHeight={symptomHeight}
+          columnHeight={columnHeight}
+          symptomRowSymptoms={symptomRowEnabledSymptoms}
+          chartSymptoms={chartSymptoms}
+          shouldShowTemperatureColumn={shouldShowTemperatureColumn}
+          xAxisHeight={xAxisHeight}
+          getNfpLines={getNfpLines}
+        />
+      )
+    },
+    [
+      symptomHeight,
+      columnHeight,
+      symptomRowEnabledSymptoms,
+      chartSymptoms,
+      shouldShowTemperatureColumn,
+      xAxisHeight,
+      getNfpLines,
+    ]
+  )
 
   const hasDataToDisplay = chartSymptoms.length > 0
 

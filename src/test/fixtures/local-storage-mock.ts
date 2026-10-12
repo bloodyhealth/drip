@@ -10,6 +10,7 @@ export function makeLocalStorageMock(): Record<string, unknown> {
   return {
     fertilityTrackingObservable: stub(true),
     useCervixAsSecondarySymptomObservable: stub(false),
+    periodPredictionObservable: stub(true),
     scaleObservable: stub({ min: 35.5, max: 37.5 }),
     unitObservable: stub(0.1),
     temperatureTrackingCategoryObservable: stub(true),

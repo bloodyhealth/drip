@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { useIsFocused } from '@react-navigation/native'
 
 /**
@@ -8,6 +9,13 @@ import { useIsFocused } from '@react-navigation/native'
  * editors, ...).
  *
  * Read db data while rendering, not memoized once, so the re-render picks it
- * up. The returned value can serve as dependency where memoizing is needed.
+ * up. Where memoizing is needed, use `useMemoOnFocus`.
  */
 export const useRefreshOnFocus = (): boolean => useIsFocused()
+
+/** Like `useMemo`, but recomputes whenever the screen is shown or left. */
+export const useMemoOnFocus = <T>(create: () => T): T => {
+  const isFocused = useRefreshOnFocus()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  return useMemo(create, [isFocused])
+}

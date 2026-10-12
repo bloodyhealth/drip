@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { render } from '@testing-library/react-native'
+import { FlatList } from 'react-native'
+import { act, render, screen } from '@testing-library/react-native'
 import getFertilityStatus from 'sympto'
 
 import { makeCycle, makeFixtureDb } from './fixtures/cycle-days'
@@ -24,13 +25,21 @@ jest.mock('sympto', () =>
 jest.mock('../local-storage', () =>
   require('./fixtures/local-storage-mock').makeLocalStorageMock()
 )
-jest.mock('../db', () => ({
-  ...require('./fixtures/db-mock').makeDbMock(() => mockFixtureDb),
-  getSymptomsWithData: () => ['bleeding', 'temperature', 'mucus'],
-  getAmountOfCycleDays: () => 100,
-}))
+jest.mock('../db', () => {
+  const dbMock = require('./fixtures/db-mock').makeDbMock(() => mockFixtureDb)
+  return {
+    ...dbMock,
+    getCycleModule: jest.fn(dbMock.getCycleModule),
+    getSymptomsWithData: () => ['bleeding', 'temperature', 'mucus'],
+    getAmountOfCycleDays: () => 100,
+  }
+})
 
 import CycleChart from '../components/chart/chart'
+import { CHART_COLUMN_WIDTH } from '../config'
+import { getCycleModule } from '../db'
+import i18n from '../i18n/i18n'
+import { getChartFlag } from '../local-storage'
 
 describe('CycleChart', () => {
   beforeEach(() => {
@@ -55,5 +64,38 @@ describe('CycleChart', () => {
     const calls = countSymptoCallsFromApp()
     expect(calls).toBeGreaterThan(0)
     expect(calls).toBeLessThanOrEqual(numberOfCycles)
+  })
+
+  test('does not re-render day columns when the chart re-renders without data changes', async () => {
+    // Arrange
+    jest.mocked(getChartFlag).mockResolvedValue('true')
+    render(<CycleChart />)
+    const dbReadsAfterFirstRender =
+      jest.mocked(getCycleModule).mock.calls.length
+
+    // Act
+    await act(async () => {})
+
+    // Assert
+    expect(screen.getByText(i18n.t('chart.tutorial'))).toBeTruthy()
+    expect(jest.mocked(getCycleModule).mock.calls.length).toBe(
+      dbReadsAfterFirstRender
+    )
+  })
+
+  test('lays out day columns with a fixed width', () => {
+    // Arrange
+    render(<CycleChart />)
+    const list = screen.UNSAFE_getByType(FlatList)
+
+    // Act
+    const layout = list.props.getItemLayout?.(undefined, 3)
+
+    // Assert
+    expect(layout).toEqual({
+      length: CHART_COLUMN_WIDTH,
+      offset: 3 * CHART_COLUMN_WIDTH,
+      index: 3,
+    })
   })
 })
