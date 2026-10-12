@@ -6,13 +6,13 @@ import {
 } from '../local-storage'
 import i18n from '../i18n/i18n'
 
-const isFertilityTrackingEnabled = fertilityTrackingObservable.value
+const isFertilityTrackingEnabled = () => fertilityTrackingObservable.value
 
 let statusCache = new Map()
 let statusCacheValidFor = null
 
 export function getFertilityStatusForDay(dateString) {
-  if (!isFertilityTrackingEnabled) {
+  if (!isFertilityTrackingEnabled()) {
     return
   }
 
@@ -49,7 +49,7 @@ export function getFertilityStatusForDay(dateString) {
 }
 
 export function getCycleStatusForDay(dateString, opts = {}) {
-  if (!isFertilityTrackingEnabled) {
+  if (!isFertilityTrackingEnabled()) {
     return
   }
 
