@@ -7,9 +7,7 @@ import { Navigation } from '@/context/navigation/navigation'
 import { navigationRef } from '@/context/navigation/navigation-ref'
 import { PageName } from '@/context/navigation/types'
 import { useRefreshOnFocus } from '@/context/navigation/use-refresh-on-focus'
-import { closeDb } from '@/db'
 
-jest.mock('@/db', () => ({ closeDb: jest.fn() }))
 // the real pages are replaced by the `screens` prop below
 jest.mock('@/context/navigation/views', () => ({ viewsList: {} }))
 
@@ -137,12 +135,11 @@ describe('Navigation', () => {
     expect(screen.getByText('presses 1')).toBeTruthy()
   })
 
-  it('closes the db and exits the app when going back from home', () => {
+  it('exits the app when going back from home', () => {
     // Act
     pressBack()
 
     // Assert
-    expect(closeDb).toHaveBeenCalledTimes(1)
     expect(BackHandler.exitApp).toHaveBeenCalledTimes(1)
   })
 
@@ -154,7 +151,7 @@ describe('Navigation', () => {
     pressBack()
 
     // Assert
-    expect(closeDb).not.toHaveBeenCalled()
+    expect(BackHandler.exitApp).not.toHaveBeenCalled()
     expect(getRouteNames()).toEqual(['Home'])
   })
 })

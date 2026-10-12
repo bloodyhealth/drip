@@ -5,7 +5,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import Header from '@/components/header'
 import Menu from '@/components/menu'
-import { closeDb } from '@/db'
 
 import { flushPendingNavigation, navigationRef } from './navigation-ref'
 import {
@@ -47,7 +46,6 @@ const useExitOnBackFromHome = (): void => {
       () => {
         if (navigationRef.canGoBack()) return false
 
-        closeDb()
         BackHandler.exitApp()
         return true
       }

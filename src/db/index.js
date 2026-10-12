@@ -61,10 +61,6 @@ export async function openDb(hash) {
   return true
 }
 
-export function closeDb() {
-  db.close()
-}
-
 export function getCycleModule() {
   return cycleModule
 }
