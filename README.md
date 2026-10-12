@@ -213,6 +213,17 @@ pnpm test
 
 For manual QA of core functionality, see the [test protocol](https://gitlab.com/bloodyhealth/drip/-/snippets/2283405).
 
+### Test data
+
+Generate a CSV with realistic cycle data (e.g. to test performance with lots of data):
+
+```bash
+pnpm generate-test-data              # 10 years → drip-test-data-10y.csv
+pnpm generate-test-data 2 out.csv    # 2 years → out.csv
+```
+
+Copy the file to your device and import it via Settings → Data → Import. The data always ends yesterday.
+
 ---
 
 ## NFP rules
