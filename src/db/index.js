@@ -10,6 +10,7 @@ import { SYMPTOMS } from '../config'
 
 let db
 let cycleModule
+let dataVersion = 0
 
 export async function openDb(hash) {
   const realmConfig = {}
@@ -58,11 +59,24 @@ export async function openDb(hash) {
 
   db = connection
   cycleModule = createCycleModule(createRealmCycleDayRepository(connection))
+  dataVersion++
   return true
 }
 
 export function getCycleModule() {
   return cycleModule
+}
+
+export function getDataVersion() {
+  return dataVersion
+}
+
+function writeToDb(callback) {
+  try {
+    db.write(callback)
+  } finally {
+    dataVersion++
+  }
 }
 
 export function mapRealmObjToJsObj(realmObj) {
@@ -105,7 +119,7 @@ export function saveSymptom(symptom, date, val) {
   let cycleDay = getCycleDay(date)
   if (!cycleDay) cycleDay = createCycleDay(date)
 
-  db.write(() => {
+  writeToDb(() => {
     if (symptom === 'bleeding') {
       const mensesDaysAfter = cycleModule.getMensesDaysRightAfter(cycleDay)
       maybeSetNewCycleStart({
@@ -121,7 +135,7 @@ export function saveSymptom(symptom, date, val) {
 }
 
 export function updateCycleStartsForAllCycleDays() {
-  db.write(() => {
+  writeToDb(() => {
     getBleedingDaysSortedByDate().forEach((day) => {
       if (cycleModule.isMensesStart(day)) {
         day.isCycleStart = true
@@ -132,7 +146,7 @@ export function updateCycleStartsForAllCycleDays() {
 
 export function createCycleDay(dateString) {
   let result
-  db.write(() => {
+  writeToDb(() => {
     result = db.create('CycleDay', {
       date: dateString,
       isCycleStart: false,
@@ -187,14 +201,14 @@ export function getSchema() {
 }
 
 export function tryToImportWithDelete(cycleDays) {
-  db.write(() => {
+  writeToDb(() => {
     db.delete(db.objects('CycleDay'))
     cycleDays.forEach(tryToCreateCycleDayFromImport)
   })
 }
 
 export function tryToImportWithoutDelete(cycleDays) {
-  db.write(() => {
+  writeToDb(() => {
     cycleDays.forEach((day, i) => {
       const existing = getCycleDay(day.date)
       if (existing) db.delete(existing)
@@ -233,7 +247,7 @@ export async function deleteDbAndOpenNew() {
 }
 
 export function clearDb() {
-  db.write(() => {
+  writeToDb(() => {
     db.deleteAll()
   })
 }

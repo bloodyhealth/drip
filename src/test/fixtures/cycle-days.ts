@@ -5,7 +5,20 @@ export interface FixtureCycleDay {
   isCycleStart: boolean
   bleeding?: { value: number; exclude: boolean }
   temperature?: { value: number; exclude: boolean }
-  mucus?: { value: number; feeling: number; texture: number; exclude: boolean }
+  mucus?: {
+    value: number | null
+    feeling: number | null
+    texture: number | null
+    exclude: boolean
+  }
+  cervix?: {
+    opening: number | null
+    firmness: number | null
+    position: number | null
+    exclude: boolean
+  }
+  note?: { value: string }
+  pain?: { cramps?: boolean; headache?: boolean }
 }
 
 export interface FixtureDb {

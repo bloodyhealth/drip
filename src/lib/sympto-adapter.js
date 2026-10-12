@@ -1,5 +1,5 @@
 import getFertilityStatus from 'sympto'
-import { getCycleModule } from '../db'
+import { getCycleModule, getDataVersion } from '../db'
 import {
   fertilityTrackingObservable,
   useCervixAsSecondarySymptomObservable,
@@ -7,6 +7,9 @@ import {
 import i18n from '../i18n/i18n'
 
 const isFertilityTrackingEnabled = fertilityTrackingObservable.value
+
+let statusCache = new Map()
+let statusCacheValidFor = null
 
 export function getFertilityStatusForDay(dateString) {
   if (!isFertilityTrackingEnabled) {
@@ -50,28 +53,64 @@ export function getCycleStatusForDay(dateString, opts = {}) {
     return
   }
 
+  const cycleStart = getCycleModule().getLastMensesStartForDay(dateString)
+  if (!cycleStart) return null
+
+  const secondarySymptom = useCervixAsSecondarySymptomObservable.value
+    ? 'cervix'
+    : 'mucus'
+  const excludeEarlierCycles = Boolean(opts.excludeEarlierCycles)
+  const key = [cycleStart.date, secondarySymptom, excludeEarlierCycles].join()
+  const cache = getStatusCache()
+  if (!cache.has(key)) {
+    cache.set(
+      key,
+      computeCycleStatus(
+        cycleStart.date,
+        secondarySymptom,
+        excludeEarlierCycles
+      )
+    )
+  }
+  return cache.get(key)
+}
+
+function getStatusCache() {
+  const validFor = [getDataVersion(), getTodayDate()].join()
+  if (validFor !== statusCacheValidFor) {
+    statusCache = new Map()
+    statusCacheValidFor = validFor
+  }
+  return statusCache
+}
+
+function getTodayDate() {
+  return new Date().toISOString().slice(0, 10)
+}
+
+function computeCycleStatus(
+  cycleStartDate,
+  secondarySymptom,
+  excludeEarlierCycles
+) {
   const { getCycleForDay, getCyclesBefore, getPreviousCycle } = getCycleModule()
 
-  const cycle = getCycleForDay(dateString)
+  const cycle = getCycleForDay(cycleStartDate)
   if (!cycle) return null
 
-  const cycleInfo = { cycle: formatCycleForSympto(cycle) }
+  const cycleInfo = { cycle: formatCycleForSympto(cycle), secondarySymptom }
 
-  const previousCycle = getPreviousCycle(dateString)
+  const previousCycle = getPreviousCycle(cycleStartDate)
 
   if (previousCycle) {
     cycleInfo.previousCycle = formatCycleForSympto(previousCycle)
   }
-  if (previousCycle && !opts.excludeEarlierCycles) {
+  if (previousCycle && !excludeEarlierCycles) {
     const earlierCycles = getCyclesBefore(previousCycle[0])
     if (earlierCycles) {
       cycleInfo.earlierCycles = earlierCycles.map(formatCycleForSympto)
     }
   }
-
-  cycleInfo.secondarySymptom = useCervixAsSecondarySymptomObservable.value
-    ? 'cervix'
-    : 'mucus'
 
   return getFertilityStatus(cycleInfo)
 }
@@ -119,43 +158,29 @@ function formatStatus(phaseNameForDay, dateString, status) {
 }
 
 function formatCycleForSympto(cycle) {
-  const formatted = cycle.reduce((acc, oldDay) => {
-    // deep clone
-    const day = JSON.parse(JSON.stringify(oldDay))
-    // remove excluded symptoms
-    const excludedSymptoms = ['bleeding', 'temperature', 'mucus', 'cervix']
-    excludedSymptoms.forEach((symptomName) => {
-      if (day[symptomName] && day[symptomName].exclude) {
-        delete day[symptomName]
-      }
-    })
-    // remove days with incomplete cervix values
-    if (hasIncompleteCervixValue(day)) {
-      delete day.cervix
-    }
-    // remove days with incomplete mucus value (because nfp-mucus returns null when that's the case)
-    if (day.mucus && day.mucus.value === null) {
-      delete day.mucus
-    }
-    // change format
-    const symptomsToFormat = ['bleeding', 'temperature', 'mucus']
-    symptomsToFormat.forEach((symptomName) => {
-      if (day[symptomName]) {
-        day[symptomName] = day[symptomName].value
-      }
-    })
-    acc.push(day)
-    return acc
-  }, [])
   // we get earliest last, but sympto wants earliest first
-  formatted.reverse()
+  return cycle.map(formatDayForSympto).reverse()
+}
+
+function formatDayForSympto(day) {
+  const { date, bleeding, temperature, mucus, cervix } = day
+  const formatted = { date }
+  if (isIncluded(bleeding)) formatted.bleeding = bleeding.value
+  if (isIncluded(temperature)) formatted.temperature = temperature.value
+  // nfp-mucus returns null for incomplete mucus values
+  if (isIncluded(mucus) && mucus.value !== null) formatted.mucus = mucus.value
+  if (isIncluded(cervix) && isCompleteCervixValue(cervix)) {
+    formatted.cervix = { opening: cervix.opening, firmness: cervix.firmness }
+  }
   return formatted
 }
 
-function hasIncompleteCervixValue(day) {
+function isIncluded(symptom) {
+  return Boolean(symptom) && !symptom.exclude
+}
+
+function isCompleteCervixValue(cervix) {
   return (
-    day.cervix &&
-    (typeof day.cervix.opening !== 'number' ||
-      typeof day.cervix.firmness !== 'number')
+    typeof cervix.opening === 'number' && typeof cervix.firmness === 'number'
   )
 }

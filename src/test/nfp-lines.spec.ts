@@ -8,6 +8,7 @@ import {
   makeDateRange,
   makeFixtureDb,
 } from './fixtures/cycle-days'
+import { simulateDbWrite } from './fixtures/db-mock'
 import { countSymptoCallsFromApp } from './fixtures/sympto-calls'
 
 const mockFixtureDb = makeFixtureDb([
@@ -71,6 +72,7 @@ describe('nfpLines', () => {
   beforeEach(() => {
     // Arrange
     jest.useFakeTimers({ now: new Date('2024-04-10T12:00:00Z') })
+    simulateDbWrite()
     jest.mocked(getFertilityStatus).mockClear()
   })
 

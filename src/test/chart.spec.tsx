@@ -3,6 +3,7 @@ import { render } from '@testing-library/react-native'
 import getFertilityStatus from 'sympto'
 
 import { makeCycle, makeFixtureDb } from './fixtures/cycle-days'
+import { simulateDbWrite } from './fixtures/db-mock'
 import { countSymptoCallsFromApp } from './fixtures/sympto-calls'
 
 const mockFixtureDb = makeFixtureDb([
@@ -35,6 +36,7 @@ describe('CycleChart', () => {
   beforeEach(() => {
     // Arrange
     jest.useFakeTimers({ now: new Date('2024-04-10T12:00:00Z') })
+    simulateDbWrite()
     jest.mocked(getFertilityStatus).mockClear()
   })
 
