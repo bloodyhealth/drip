@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import {
+  Alert,
   Dimensions,
   Platform,
   ScrollView,
@@ -84,13 +85,33 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
     onClose()
   }
 
+  const hasDataChanged = () => {
+    const initialData = symptomData ? symptomData : blank[symptom]
+
+    return JSON.stringify(data) !== JSON.stringify(initialData)
+  }
+
+  const onRequestClose = () => {
+    if (!hasDataChanged()) return onClose()
+
+    Alert.alert(
+      t('cycleDay.symptomEditModal.discardDialog.title'),
+      t('cycleDay.symptomEditModal.discardDialog.text'),
+      [
+        {
+          text: t('cycleDay.symptomEditModal.discardDialog.keepEditing'),
+          style: 'cancel',
+        },
+        {
+          text: t('cycleDay.symptomEditModal.discardDialog.discard'),
+          style: 'destructive',
+          onPress: onClose,
+        },
+      ]
+    )
+  }
+
   const onSave = () => {
-    const hasDataChanged = () => {
-      const initialData = symptomData ? symptomData : blank[symptom]
-
-      return JSON.stringify(data) !== JSON.stringify(initialData)
-    }
-
     if (hasDataChanged()) {
       save[symptom](data, date, false)
       showToast(t('cycleDay.symptomEditModal.dataSaved'))
@@ -102,7 +123,9 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const onSaveTemperature = (value, field) => {
     const parsedData = getParsedData()
     const dataToSave =
-      field === 'value' ? { [field]: Number(value) } : { [field]: value }
+      field === 'value'
+        ? { [field]: value === '' ? null : Number(value) }
+        : { [field]: value }
 
     Object.assign(parsedData, { ...dataToSave })
 
@@ -150,15 +173,15 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   }
 
   return (
-    <AppModal onClose={onSave}>
+    <AppModal onClose={onRequestClose}>
       <ScrollView
         contentContainerStyle={styles.modalContainer}
         keyboardDismissMode="on-drag"
         ref={scrollViewRef}
+        style={styles.scrollView}
       >
         {symptom === 'temperature' && (
           <Temperature
-            date={date}
             data={data}
             save={(value, field) => onSaveTemperature(value, field)}
           />
@@ -226,14 +249,6 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             />
           </Segment>
         )}
-        <View style={styles.buttonsContainer}>
-          <Button isSmall onPress={onRemove}>
-            {t('cycleDay.symptomEditModal.remove')}
-          </Button>
-          <Button isCTA isSmall onPress={onSave}>
-            {t('cycleDay.symptomEditModal.save')}
-          </Button>
-        </View>
         <Button
           iconName={iconName}
           isSmall
@@ -250,6 +265,16 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
           </View>
         )}
       </ScrollView>
+      <View style={styles.modalContainer}>
+        <View style={styles.buttonsContainer}>
+          <Button isSmall onPress={onRemove}>
+            {t('cycleDay.symptomEditModal.remove')}
+          </Button>
+          <Button isCTA isSmall onPress={onSave}>
+            {t('cycleDay.symptomEditModal.save')}
+          </Button>
+        </View>
+      </View>
     </AppModal>
   )
 }
@@ -273,6 +298,9 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     paddingHorizontal: Spacing.base,
+  },
+  scrollView: {
+    flexShrink: 1,
   },
   segmentBorder: {
     borderBottomColor: Colors.greyLight,

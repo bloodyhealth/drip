@@ -1,10 +1,6 @@
 import { ChronoUnit, LocalDate, LocalTime } from '@js-joda/core'
 
-import {
-  getPreviousTemperatureForDate,
-  saveSymptom,
-  mapRealmObjToJsObj,
-} from '../../db'
+import { saveSymptom, mapRealmObjToJsObj } from '../../db'
 import { scaleObservable } from '../../local-storage'
 
 import { getOptions, getOptionsNumeric, SYMPTOMS } from './labels'
@@ -26,18 +22,6 @@ export const formatTemperature = (temperature) =>
 //maximum of precision digits after decimal point, but no x.0
 export const formatDecimal = (num, precision) =>
   +parseFloat(Number.parseFloat(num).toFixed(precision))
-
-export const getPreviousTemperature = (date) => {
-  const start = performance.now()
-  const previousTemperature = getPreviousTemperatureForDate(date)
-  const result = formatTemperature(previousTemperature)
-  console.log(
-    `[perf] getPreviousTemperature(${date}): ${(
-      performance.now() - start
-    ).toFixed(1)} ms`
-  )
-  return result
-}
 
 export const getTemperatureOutOfRangeMessage = (temperature) => {
   if (!temperature) return null

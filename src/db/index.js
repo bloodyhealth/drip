@@ -146,15 +146,6 @@ export function getCycleDay(dateString) {
   return db.objectForPrimaryKey('CycleDay', dateString)
 }
 
-export function getPreviousTemperatureForDate(date) {
-  const previousTemperatureDay = db
-    .objects('CycleDay')
-    .filtered('temperature != null AND date < $0', date)
-    .sorted('date', true)[0]
-  if (!previousTemperatureDay) return null
-  return previousTemperatureDay.temperature.value
-}
-
 function tryToCreateCycleDayFromImport(day, i) {
   try {
     // we cannot know this yet, gets detected afterwards
