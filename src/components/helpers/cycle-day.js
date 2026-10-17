@@ -28,8 +28,15 @@ export const formatDecimal = (num, precision) =>
   +parseFloat(Number.parseFloat(num).toFixed(precision))
 
 export const getPreviousTemperature = (date) => {
+  const start = performance.now()
   const previousTemperature = getPreviousTemperatureForDate(date)
-  return formatTemperature(previousTemperature)
+  const result = formatTemperature(previousTemperature)
+  console.log(
+    `[perf] getPreviousTemperature(${date}): ${(
+      performance.now() - start
+    ).toFixed(1)} ms`
+  )
+  return result
 }
 
 export const getTemperatureOutOfRangeMessage = (temperature) => {
