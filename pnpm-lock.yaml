@@ -101,8 +101,8 @@ importers:
         specifier: ^4.28.0
         version: 4.29.0(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
       react-native-share:
-        specifier: ^12.3.1
-        version: 12.3.1
+        specifier: ^12.2.0
+        version: 12.2.0
       react-native-simple-toast:
         specifier: ^3.3.2
         version: 3.3.2(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
@@ -3913,8 +3913,8 @@ packages:
       react: '*'
       react-native: '*'
 
-  react-native-share@12.3.1:
-    resolution: {integrity: sha512-mRVRie0qKbtj+jWqJ2POPkeSd8SxnMp6aazFZVmq8ZbkUGtQLENR/L58ky8zH4VUEF/WYRmdBiBHWHVtzOewtQ==}
+  react-native-share@12.2.0:
+    resolution: {integrity: sha512-f6MB9BsKa9xVvu0DKbxq5jw4IyYHqQeqUlCNkD8eAFoJx6SD31ObPAn7SQ6NG9AOuhCy6aYuSJYJvx25DaoMZQ==}
     engines: {node: '>=16'}
 
   react-native-simple-toast@3.3.2:
@@ -9340,7 +9340,7 @@ snapshots:
       react-native: 0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0)
       warn-once: 0.1.1
 
-  react-native-share@12.3.1: {}
+  react-native-share@12.2.0: {}
 
   react-native-simple-toast@3.3.2(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0):
     dependencies:
