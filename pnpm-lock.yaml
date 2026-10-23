@@ -94,6 +94,9 @@ importers:
       react-native-permissions:
         specifier: ^5.4.4
         version: 5.4.4(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
+      react-native-restart:
+        specifier: ^0.0.29
+        version: 0.0.29(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
       react-native-safe-area-context:
         specifier: ^5.6.2
         version: 5.7.0(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
@@ -3897,6 +3900,16 @@ packages:
       react: '>=18.1.0'
       react-native: '>=0.70.0'
       react-native-windows: '>=0.70.0'
+    peerDependenciesMeta:
+      react-native-windows:
+        optional: true
+
+  react-native-restart@0.0.29:
+    resolution: {integrity: sha512-AJDAww9cW7F6d4g9TABhuFR1E0j00p5ktv0Rls0BA6Ymz/8J+HwMxeR6KPZmHfkMtAguH4H2kw2xhqXjjSiUlg==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
+      react-native-windows: '*'
     peerDependenciesMeta:
       react-native-windows:
         optional: true
@@ -9324,6 +9337,11 @@ snapshots:
       - typescript
 
   react-native-permissions@5.4.4(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0):
+    dependencies:
+      react: 19.2.0
+      react-native: 0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0)
+
+  react-native-restart@0.0.29(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0):
     dependencies:
       react: 19.2.0
       react-native: 0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0)

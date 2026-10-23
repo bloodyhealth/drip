@@ -136,6 +136,7 @@
   "errorBoundary.details.title": "Error details",
   "errorBoundary.details.version": "Version",
   "errorBoundary.intro": "Unfortunately, an unexpected error occurred.",
+  "errorBoundary.restart": "Restart app",
   "errorBoundary.retry": "Try again",
   "errorBoundary.title": "Something went wrong",
   "labels.bleedingPrediction.noPrediction": "As soon as you have tracked 3 menstrual cycles, drip will make predictions for the next ones.",

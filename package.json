@@ -62,6 +62,7 @@
     "react-native-modal-datetime-picker": "18.0.0",
     "react-native-notify-kit": "^10.8.0",
     "react-native-permissions": "^5.4.4",
+    "react-native-restart": "^0.0.29",
     "react-native-safe-area-context": "^5.6.2",
     "react-native-screens": "^4.28.0",
     "react-native-share": "^12.2.0",

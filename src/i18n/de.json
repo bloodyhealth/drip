@@ -136,6 +136,7 @@
   "errorBoundary.details.title": "Fehlerdetails",
   "errorBoundary.details.version": "Version",
   "errorBoundary.intro": "Leider ist ein unerwarteter Fehler aufgetreten.",
+  "errorBoundary.restart": "App neu starten",
   "errorBoundary.retry": "Neu laden",
   "errorBoundary.title": "Etwas ist schiefgelaufen.",
   "labels.bleedingPrediction.noPrediction": "Sobald du 3 Menstruationszyklen getrackt hast, macht drip Vorhersagen für die nächsten Zyklen.",
