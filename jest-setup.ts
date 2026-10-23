@@ -3,3 +3,4 @@ require('@testing-library/jest-native/extend-expect')
 jest.mock('react-native-notify-kit', () =>
   require('react-native-notify-kit/jest-mock')
 )
+jest.mock('react-native-restart', () => ({ restart: jest.fn() }))

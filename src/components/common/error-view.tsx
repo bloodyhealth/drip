@@ -28,10 +28,11 @@ const osNames: Record<string, string> = {
 
 type Props = {
   error?: Error | null
+  onRestart: () => void
   onRetry: () => void
 }
 
-export const ErrorView = ({ error, onRetry }: Props) => {
+export const ErrorView = ({ error, onRestart, onRetry }: Props) => {
   const { t } = useTranslation()
   const links = getLinks(t)
 
@@ -58,7 +59,14 @@ export const ErrorView = ({ error, onRetry }: Props) => {
     <AppPage title={t('errorBoundary.title')}>
       <Segment>
         <AppText>{t('errorBoundary.intro')}</AppText>
-        <Button onPress={onRetry}>{t('errorBoundary.retry')}</Button>
+        <ButtonRow>
+          <Button onPress={onRetry}>
+            {t('errorBoundary.retry')}
+          </Button>
+          <Button variant='secondary' onPress={onRestart}>
+            {t('errorBoundary.restart')}
+          </Button>
+        </ButtonRow>
       </Segment>
       <Segment title={t('errorBoundary.contact.title')}>
         <AppText>{t('errorBoundary.contact.text')}</AppText>
