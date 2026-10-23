@@ -60,10 +60,8 @@ export const ErrorView = ({ error, onRestart, onRetry }: Props) => {
       <Segment>
         <AppText>{t('errorBoundary.intro')}</AppText>
         <ButtonRow>
-          <Button onPress={onRetry}>
-            {t('errorBoundary.retry')}
-          </Button>
-          <Button variant='secondary' onPress={onRestart}>
+          <Button onPress={onRetry}>{t('errorBoundary.retry')}</Button>
+          <Button variant="secondary" onPress={onRestart}>
             {t('errorBoundary.restart')}
           </Button>
         </ButtonRow>

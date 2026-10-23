@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import AppPage from '../common/app-page'
+import Button from '../common/button'
 import MenuItem from './menu-item'
 
 import { useTranslation } from 'react-i18next'
@@ -14,6 +15,14 @@ const menuItems = [
   { label: 'language', componentName: 'Language' },
 ]
 
+const ThrowTestErrorButton = () => {
+  const [shouldThrow, setShouldThrow] = useState(false)
+
+  if (shouldThrow) throw new Error('Test error from settings')
+
+  return <Button onPress={() => setShouldThrow(true)}>Throw test error</Button>
+}
+
 const SettingsMenu = ({ navigate }) => {
   const { t } = useTranslation()
   return (
@@ -25,6 +34,7 @@ const SettingsMenu = ({ navigate }) => {
           <MenuItem item={menuItem} key={i} last={last} navigate={navigate} />
         )
       })}
+      {__DEV__ && <ThrowTestErrorButton />}
     </AppPage>
   )
 }
