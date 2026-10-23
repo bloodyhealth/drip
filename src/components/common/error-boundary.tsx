@@ -1,4 +1,5 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react'
+import RNRestart from 'react-native-restart'
 
 import { ErrorView } from './error-view'
 
@@ -26,12 +27,21 @@ export class ErrorBoundary extends Component<Props, State> {
     console.error(error, errorInfo.componentStack)
   }
 
+  onRestart = () => RNRestart.restart()
+
   onRetry = () => this.setState({ error: null })
 
   render() {
     const { error } = this.state
 
-    if (error) return <ErrorView error={error} onRetry={this.onRetry} />
+    if (error)
+      return (
+        <ErrorView
+          error={error}
+          onRestart={this.onRestart}
+          onRetry={this.onRetry}
+        />
+      )
 
     return this.props.children
   }
