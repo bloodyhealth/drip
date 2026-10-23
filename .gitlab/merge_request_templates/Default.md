@@ -1,30 +1,27 @@
-## Why this change?
+## Why
 
-## Description
+<!-- The problem or motivation behind this change. Link the issue if there is one. -->
 
-I have tested this MR:
+## What
 
-- [ ] tested this PR on iOS simulator/physical device,
-- [ ] tested this PR on Android simulator/physical device,
-- [ ] ran e2e tests.
+<!-- A few sentences on what changed and how. -->
 
-A few sentences describing the overall goals of the pull request's commits.
+## How to test
 
-## Steps to Test or Reproduce
+<!-- Steps to test or reproduce. -->
 
-Outline the steps to test or reproduce the MR here.
+1.
 
-## Reviewing
+## Testing
 
-Here's what I am looking for feedback on in particular:
+- [ ] Tested on iOS (simulator or device)
+- [ ] Tested on Android (simulator or device)
+- [ ] Ran tests
 
-- additional testing on specific type of the devices,
-- feedback on specific part of the code,
-- etc.
+## Review focus
 
-## In addition:
+<!-- Optional: specific code, devices or edge cases you want feedback on. Delete if not needed. -->
 
-- Screenshots
-- Links to the additional info
-- Migrations
-- Follow-up tickets
+## Additional info
+
+<!-- Optional: screenshots, links, migrations, follow-up tickets. Delete if not needed. -->
