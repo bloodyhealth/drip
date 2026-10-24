@@ -24,7 +24,7 @@ else
     key="$1"
 
     case $key in
-      pnpm)
+      npm)
         libraries="y"
         shift
         ;;
