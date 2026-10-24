@@ -31,13 +31,17 @@ const Stats = () => {
       : { minimum: '—', maximum: '—', stdDeviation: '—' }
 
   const standardDeviation = cycleData.stdDeviation
-    ? cycleData.stdDeviation
+    ? formatDecimal(cycleData.stdDeviation, 1)
     : '—'
   const statsData = [
-    [cycleData.minimum, t('overview.min')],
-    [cycleData.maximum, t('overview.max')],
-    [standardDeviation, t('overview.standardDeviation')],
-    [numberOfCycles, t('overview.completedCycles')],
+    { value: cycleData.minimum, label: t('overview.min') },
+    { value: cycleData.maximum, label: t('overview.max') },
+    {
+      value: standardDeviation,
+      label: t('overview.standardDeviation'),
+      hasAsterisk: true,
+    },
+    { value: numberOfCycles, label: t('overview.completedCycles') },
   ]
 
   if (cycleData.mean) {

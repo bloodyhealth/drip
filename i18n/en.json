@@ -312,7 +312,7 @@
   "stats.intro": "Basic statistics about the length of your cycles.",
   "stats.noData": "At least one completed cycle is needed to display stats.",
   "stats.overview.average": "Average cycle",
-  "stats.overview.completedCycles": "completed\ncycles",
+  "stats.overview.completedCycles": "All cycles",
   "stats.overview.days": "days",
   "stats.overview.max": "Longest",
   "stats.overview.min": "Shortest",
