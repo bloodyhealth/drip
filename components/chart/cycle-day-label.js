@@ -50,9 +50,8 @@ CycleDayLabel.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'flex-end',
-    left: 4,
   },
   textSmall: {
     ...Typography.label,

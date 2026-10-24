@@ -1,6 +1,11 @@
 import { getOrdinalSuffix } from '../components/helpers/home'
+import i18n from '../i18n/i18n'
 
 describe('Home helper: getOrdinalSuffix', () => {
+  afterEach(async () => {
+    await i18n.changeLanguage('en-US')
+  })
+
   test("For 1, it returns suffix 'st'", () => {
     expect(getOrdinalSuffix(1)).toEqual('st')
   })
@@ -19,5 +24,11 @@ describe('Home helper: getOrdinalSuffix', () => {
 
   test("For 23, it returns suffix 'rd'", () => {
     expect(getOrdinalSuffix(23)).toEqual('rd')
+  })
+
+  test('if language is German, it returns no suffix', async () => {
+    await i18n.changeLanguage('de-DE')
+
+    expect(getOrdinalSuffix(15)).toEqual('')
   })
 })
