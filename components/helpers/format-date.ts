@@ -30,6 +30,13 @@ function formatLocalDate(
   options: Intl.DateTimeFormatOptions
 ): string {
   const jsDate = new Date(date.year(), date.monthValue() - 1, date.dayOfMonth())
+  return formatJsDate(jsDate, options)
+}
+
+function formatJsDate(
+  jsDate: Date,
+  options: Intl.DateTimeFormatOptions
+): string {
   return new Intl.DateTimeFormat(i18n.language, options)
     .formatToParts(jsDate)
     .map(removeMonthDot)
@@ -38,6 +45,19 @@ function formatLocalDate(
 
 function removeMonthDot({ type, value }: Intl.DateTimeFormatPart): string {
   return type === 'month' ? value.replace(/\.$/, '') : value
+}
+
+export function getMonthNames(format: 'long' | 'short'): string[] {
+  return Array.from({ length: 12 }, (_, month) =>
+    formatJsDate(new Date(2000, month, 1), { month: format })
+  )
+}
+
+export function getWeekdayNames(format: 'long' | 'short'): string[] {
+  const firstSunday = 2
+  return Array.from({ length: 7 }, (_, day) =>
+    formatJsDate(new Date(2000, 0, firstSunday + day), { weekday: format })
+  )
 }
 
 export function formatDateForShortText(date: LocalDate): string {

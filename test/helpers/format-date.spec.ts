@@ -3,6 +3,8 @@ import { LocalDate } from '@js-joda/core'
 import {
   dateToShortMonth,
   dateToTitle,
+  getMonthNames,
+  getWeekdayNames,
   humanizeDate,
 } from '../../components/helpers/format-date'
 import i18n from '../../i18n/i18n'
@@ -90,5 +92,51 @@ describe('dateToShortMonth', () => {
     const result = dateToShortMonth('2022-10-01')
 
     expect(result).toEqual('Okt')
+  })
+})
+
+describe('getMonthNames', () => {
+  afterEach(async () => {
+    await i18n.changeLanguage('en-US')
+  })
+
+  test('returns 12 long month names starting with January', () => {
+    const result = getMonthNames('long')
+
+    expect(result).toHaveLength(12)
+    expect(result[0]).toEqual('January')
+    expect(result[11]).toEqual('December')
+  })
+
+  test('if language is German, returns German month names', async () => {
+    await i18n.changeLanguage('de-DE')
+
+    const result = getMonthNames('long')
+
+    expect(result[2]).toEqual('März')
+    expect(result[9]).toEqual('Oktober')
+  })
+})
+
+describe('getWeekdayNames', () => {
+  afterEach(async () => {
+    await i18n.changeLanguage('en-US')
+  })
+
+  test('returns 7 weekday names starting with Sunday', () => {
+    const result = getWeekdayNames('long')
+
+    expect(result).toHaveLength(7)
+    expect(result[0]).toEqual('Sunday')
+    expect(result[6]).toEqual('Saturday')
+  })
+
+  test('if language is German, returns German weekday names', async () => {
+    await i18n.changeLanguage('de-DE')
+
+    const result = getWeekdayNames('long')
+
+    expect(result[0]).toEqual('Sonntag')
+    expect(result[1]).toEqual('Montag')
   })
 })
