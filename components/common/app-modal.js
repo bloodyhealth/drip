@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import AppText from './app-text'
 import CloseIcon from './close-icon'
 
-import { Spacing } from '../../styles'
+import { Fonts, Spacing, Typography } from '../../styles'
 
 const AppModal = ({ children, onClose, title }) => {
   const { top } = useSafeAreaInsets()
@@ -16,9 +16,9 @@ const AppModal = ({ children, onClose, title }) => {
       <View style={[styles.backdrop, { paddingTop: top + Spacing.base }]}>
         <View style={styles.modalWindow}>
           <View style={styles.headerContainer}>
+            {title && <AppText style={styles.title}>{title}</AppText>}
             <CloseIcon onClose={onClose} />
           </View>
-          {title && <AppText style={styles.title}>{title}</AppText>}
           {children}
         </View>
         <Pressable onPress={onClose} style={styles.outsideArea} />
@@ -54,15 +54,12 @@ const styles = StyleSheet.create({
   outsideArea: {
     flex: 1,
   },
-  modalWindowWithTitle: {
-    paddingTop: Spacing.base,
-  },
   title: {
     ...Typography.subtitle,
+    flex: 1,
     fontFamily: Fonts.bold,
-    marginHorizontal: Spacing.base,
+    marginRight: Spacing.base,
     marginTop: 0,
-    marginBottom: Spacing.small,
   },
 })
 
