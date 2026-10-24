@@ -10,7 +10,7 @@ cache:
 
 variables:
   PNPM_HOME: .pnpm-store
-  DEPENDABOT_IMAGE: docker.io/andrcuns/dependabot-gitlab:latest
+  DEPENDABOT_IMAGE: docker.io/andrcuns/dependabot-gitlab-npm:latest
 
 test_async:
   script:
