@@ -46,7 +46,7 @@ module.exports = () => {
     }
 
     rl.question(
-      'Next version name will be `' + nextVersionName + '`, okay? y/n ',
+      '🔢 Next version name will be `' + nextVersionName + '`, okay? y/n ',
       async (yn) => {
         if (yn !== 'y' && yn !== 'Y') {
           reject('Release cancelled.\n')

@@ -5,7 +5,11 @@ import PropTypes from 'prop-types'
 import { Colors, Spacing, Typography } from '../../styles'
 
 const AppTextInput = ({ style, ...props }) => (
-  <TextInput style={[styles.input, style]} {...props} />
+  <TextInput
+    placeholderTextColor={Colors.grey}
+    style={[styles.input, style]}
+    {...props}
+  />
 )
 
 AppTextInput.propTypes = {

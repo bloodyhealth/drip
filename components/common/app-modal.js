@@ -1,37 +1,31 @@
 import React from 'react'
-import {
-  Dimensions,
-  Modal,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { Modal, Pressable, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import AppText from './app-text'
 import CloseIcon from './close-icon'
 
-import { Fonts, Sizes, Spacing, Typography } from '../../styles'
+import { Spacing } from '../../styles'
 
-const AppModal = ({ children, onClose, title }) => (
-  <Modal
-    animationType="fade"
-    onRequestClose={onClose}
-    transparent={true}
-    visible={true}
-  >
-    <TouchableOpacity onPress={onClose} style={styles.blackBackground} />
-    <View
-      style={[styles.modalWindow, title ? styles.modalWindowWithTitle : null]}
-    >
-      <View style={styles.headerContainer}>
-        <CloseIcon onClose={onClose} />
+const AppModal = ({ children, onClose, title }) => {
+  const { top } = useSafeAreaInsets()
+
+  return (
+    <Modal onRequestClose={onClose} transparent={true} visible={true}>
+      <View style={[styles.backdrop, { paddingTop: top + Spacing.base }]}>
+        <View style={styles.modalWindow}>
+          <View style={styles.headerContainer}>
+            <CloseIcon onClose={onClose} />
+          </View>
+          {title && <AppText style={styles.title}>{title}</AppText>}
+          {children}
+        </View>
+        <Pressable onPress={onClose} style={styles.outsideArea} />
       </View>
-      {title && <AppText style={styles.title}>{title}</AppText>}
-      {children}
-    </View>
-  </Modal>
-)
+    </Modal>
+  )
+}
 
 AppModal.propTypes = {
   children: PropTypes.node,
@@ -40,32 +34,25 @@ AppModal.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  blackBackground: {
-    backgroundColor: 'black',
+  backdrop: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     flex: 1,
-    opacity: 0.5,
   },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     paddingTop: Spacing.base,
     paddingHorizontal: Spacing.base,
-    position: 'absolute',
-    width: '100%',
-    zIndex: 3, // works on ios
-    elevation: 3, // works on android
   },
   modalWindow: {
-    alignSelf: 'center',
     backgroundColor: 'white',
     borderRadius: 10,
-    marginTop: Sizes.huge * 2,
-    paddingVertical: Spacing.large * 2,
-    position: 'absolute',
-    maxHeight: Dimensions.get('window').height * 0.7,
-    zIndex: 2, // works on ios
-    elevation: 2, // works on android
-    minWidth: '80%',
+    marginHorizontal: Spacing.base,
+    maxHeight: '70%',
+    paddingBottom: Spacing.large,
+  },
+  outsideArea: {
+    flex: 1,
   },
   modalWindowWithTitle: {
     paddingTop: Spacing.base,

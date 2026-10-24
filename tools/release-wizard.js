@@ -9,9 +9,10 @@ process.on('unhandledRejection', (err) => {
 })
 
 async function leadThroughRelease() {
-  console.log(
-    "Yay, a release! Let's do this. First, let's update the version everywhere and create a new git tag."
-  )
+  console.log(`
+🦋🪸🌼 Yay, a release! Let's do this. 
+First, the version number ➕ will be updated everywhere and a new git tag 🏷️ will be created...
+  `)
 
   await updateVersion()
   await updatePlistVersion()
@@ -24,13 +25,16 @@ async function leadThroughRelease() {
 
   await makeCommitRelease()
 
-  console.log(`Groovy. We've created a commit for this release that includes the version, as well as a git tag for the release.
+  console.log(`
+🩸🪻🏵️ Super cool: We've created a COMMIT for this release that includes the app version number, as well as a 🏷️  git tag 💕 for the release.
 Please review it, make any necessary changes, and if it's all good, push the commit and the tag up to 'your-branch' by running:
-git push origin 'your-branch'
-git push origin ${require('../package.json').version}
+➡️  git push origin 'your-branch'
+➡️  git push origin ${require('../package.json').version}
 
-Don't forget to also run 'npm run build-android-release' to package the apk and upload it to the app stores!
-`)
+📝 Don't forget to also 
+run 'pnpm build-android-aab-release' to package the aab for Google Play and
+run 'pnpm build-android-apk-release' to package the apk and upload it to dripapp.org!
+  `)
 
   process.exit(0)
 }
