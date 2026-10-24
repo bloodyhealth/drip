@@ -1,6 +1,10 @@
 import { LocalDate } from '@js-joda/core'
 
-import { dateToTitle, humanizeDate } from '../../components/helpers/format-date'
+import {
+  dateToShortMonth,
+  dateToTitle,
+  humanizeDate,
+} from '../../components/helpers/format-date'
 import i18n from '../../i18n/i18n'
 
 describe('humanizeDate', () => {
@@ -37,7 +41,7 @@ describe('humanizeDate', () => {
 
     const result = humanizeDate('2022-01-07')
 
-    expect(result).toEqual('07. Jan. 22')
+    expect(result).toEqual('07. Jan 22')
   })
 })
 
@@ -65,6 +69,26 @@ describe('dateToTitle', () => {
 
     const result = dateToTitle('2022-01-07')
 
-    expect(result).toEqual('Fr., 07. Jan. 22')
+    expect(result).toEqual('Fr., 07. Jan 22')
+  })
+})
+
+describe('dateToShortMonth', () => {
+  afterEach(async () => {
+    await i18n.changeLanguage('en-US')
+  })
+
+  test('returns the short month name', () => {
+    const result = dateToShortMonth('2022-10-01')
+
+    expect(result).toEqual('Oct')
+  })
+
+  test('if language is German, returns the short month name without dot', async () => {
+    await i18n.changeLanguage('de-DE')
+
+    const result = dateToShortMonth('2022-10-01')
+
+    expect(result).toEqual('Okt')
   })
 })

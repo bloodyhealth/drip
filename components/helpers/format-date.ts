@@ -30,7 +30,14 @@ function formatLocalDate(
   options: Intl.DateTimeFormatOptions
 ): string {
   const jsDate = new Date(date.year(), date.monthValue() - 1, date.dayOfMonth())
-  return new Intl.DateTimeFormat(i18n.language, options).format(jsDate)
+  return new Intl.DateTimeFormat(i18n.language, options)
+    .formatToParts(jsDate)
+    .map(removeMonthDot)
+    .join('')
+}
+
+function removeMonthDot({ type, value }: Intl.DateTimeFormatPart): string {
+  return type === 'month' ? value.replace(/\.$/, '') : value
 }
 
 export function formatDateForShortText(date: LocalDate): string {
