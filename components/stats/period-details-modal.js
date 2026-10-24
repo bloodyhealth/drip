@@ -44,18 +44,16 @@ const PeriodDetailsModal = ({ onClose }) => {
 
   return (
     <AppModal onClose={onClose}>
-      <View>
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.date}
-          ItemSeparatorComponent={ItemDivider}
-          ListHeaderComponent={FlatListHeader}
-          ListHeaderComponentStyle={styles.headerDivider}
-          stickyHeaderIndices={[0]}
-          contentContainerStyle={styles.container}
-        />
-      </View>
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.date}
+        ItemSeparatorComponent={ItemDivider}
+        ListHeaderComponent={FlatListHeader}
+        ListHeaderComponentStyle={styles.headerDivider}
+        stickyHeaderIndices={[0]}
+        contentContainerStyle={styles.container}
+      />
     </AppModal>
   )
 }
@@ -109,8 +107,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   container: {
-    minHeight: '40%',
-    minWidth: '95%',
     paddingHorizontal: Spacing.base,
   },
 })

@@ -36,6 +36,7 @@ test_async:
   cache:
     - key: dependabot
       policy: pull-push
+      when: always
       paths:
         - $CI_PROJECT_DIR/.dependabot/cache
 
