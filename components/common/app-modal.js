@@ -8,11 +8,12 @@ import {
 } from 'react-native'
 import PropTypes from 'prop-types'
 
+import AppText from './app-text'
 import CloseIcon from './close-icon'
 
-import { Sizes, Spacing } from '../../styles'
+import { Fonts, Sizes, Spacing, Typography } from '../../styles'
 
-const AppModal = ({ children, onClose }) => (
+const AppModal = ({ children, onClose, title }) => (
   <Modal
     animationType="fade"
     onRequestClose={onClose}
@@ -20,10 +21,13 @@ const AppModal = ({ children, onClose }) => (
     visible={true}
   >
     <TouchableOpacity onPress={onClose} style={styles.blackBackground} />
-    <View style={styles.modalWindow}>
+    <View
+      style={[styles.modalWindow, title ? styles.modalWindowWithTitle : null]}
+    >
       <View style={styles.headerContainer}>
         <CloseIcon onClose={onClose} />
       </View>
+      {title && <AppText style={styles.title}>{title}</AppText>}
       {children}
     </View>
   </Modal>
@@ -32,6 +36,7 @@ const AppModal = ({ children, onClose }) => (
 AppModal.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func,
+  title: PropTypes.string,
 }
 
 const styles = StyleSheet.create({
@@ -61,6 +66,16 @@ const styles = StyleSheet.create({
     zIndex: 2, // works on ios
     elevation: 2, // works on android
     minWidth: '80%',
+  },
+  modalWindowWithTitle: {
+    paddingTop: Spacing.base,
+  },
+  title: {
+    ...Typography.subtitle,
+    fontFamily: Fonts.bold,
+    marginHorizontal: Spacing.base,
+    marginTop: 0,
+    marginBottom: Spacing.small,
   },
 })
 

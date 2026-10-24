@@ -78,8 +78,8 @@ const Stats = () => {
                 <StatsOverview data={statsData} />
               </View>
             </View>
-            <Button isCTA onPress={() => setIsStatsVisible(true)}>
-              {t('showStats')}
+            <Button isCTA isSmall onPress={() => setIsStatsVisible(true)}>
+              {t('showStats.button')}
             </Button>
             {isStatsVisible && (
               <PeriodDetailsModal onClose={() => setIsStatsVisible(false)} />
