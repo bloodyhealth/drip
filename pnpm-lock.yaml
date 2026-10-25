@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@dr.pogodin/react-native-fs':
-        specifier: ^2.37.0
-        version: 2.37.0(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
+        specifier: ^2.41.0
+        version: 2.41.0(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
       '@js-joda/core':
         specifier: ^5.6.5
         version: 5.7.0
@@ -847,8 +847,8 @@ packages:
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
-  '@dr.pogodin/react-native-fs@2.37.0':
-    resolution: {integrity: sha512-0LtRxZ+yJm3z4eiNmwkYvdMvglq74MZcqQBBJwaUwILqfSBNYAkO3jJZOvJdIR2+e06FJBoxuQ1P34mSDj8T8w==}
+  '@dr.pogodin/react-native-fs@2.41.0':
+    resolution: {integrity: sha512-85eU5N7bk9dWwm1DF14iPSbzdZvhidxOKoAzzE7kHsCVpQ2+f1JWGuJMPTc6z7SV2cZJzTbAyGzBvEJmXHvkIw==}
     peerDependencies:
       react: '*'
       react-native: '*'
@@ -3582,8 +3582,8 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
-  react-is@19.2.8:
-    resolution: {integrity: sha512-s5un28nYxKJw5gvUHyW5PCC28CvBqLu9r3cWgzHT4Vo/5fqqkFcdRYsGcKf50WMPpjjFZS5d76fn3YCo2njKwQ==}
+  react-is@19.3.1:
+    resolution: {integrity: sha512-RRieF6IyxQBkcK6pP8xOHprLTPW6QjRkbGdImtqNme+/hYVwCZkLQLdlZGOhUqXwkS9IEynaGvPJtv6XB/cz0Q==}
 
   react-native-calendars@1.1314.0:
     resolution: {integrity: sha512-4DLAVto8Qo9L3ggL2vsY9Gk8FFpJWtne8F/3wN8yUb7Xha9/SKS4B+vs7xlhWjKeqZUHws/Vi/q/6IZ8s60kcQ==}
@@ -3591,6 +3591,7 @@ packages:
 
   react-native-edge-to-edge@1.8.1:
     resolution: {integrity: sha512-bhvsKqeX9PGkY9wBUk9vni/tJNJdKtLPbs/j3e/3CdV4JmUWfTXYYoL+4Hc8Wmej+5eJxkc8KOFa454ruFWBCA==}
+    deprecated: This package is deprecated. Set edgeToEdgeEnabled=true in android/gradle.properties instead.
     peerDependencies:
       react: '*'
       react-native: '*'
@@ -5188,7 +5189,7 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
-  '@dr.pogodin/react-native-fs@2.37.0(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)':
+  '@dr.pogodin/react-native-fs@2.41.0(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)':
     dependencies:
       buffer: 6.0.3
       http-status-codes: 2.3.0
@@ -8686,7 +8687,7 @@ snapshots:
 
   react-is@18.3.1: {}
 
-  react-is@19.2.8: {}
+  react-is@19.3.1: {}
 
   react-native-calendars@1.1314.0(react-native@0.83.2(@babel/core@7.29.0)(@react-native-community/cli@20.1.2(typescript@5.9.3))(@react-native/metro-config@0.83.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.0))(react@19.2.0):
     dependencies:
@@ -8815,7 +8816,7 @@ snapshots:
   react-test-renderer@19.1.1(react@19.2.0):
     dependencies:
       react: 19.2.0
-      react-is: 19.2.8
+      react-is: 19.3.1
       scheduler: 0.26.0
 
   react@19.2.0: {}
