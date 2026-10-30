@@ -6,16 +6,12 @@ import Asterisk from './asterisk'
 
 import { Colors, Spacing } from '../../styles'
 
-type ColorLabel = {
-  [K in keyof typeof Colors]: (typeof Colors)[K] extends string ? K : never
-}[keyof typeof Colors]
-
 interface FootnoteProps {
   children?: ReactNode
-  colorLabel?: ColorLabel
+  color?: 'dark' | 'light'
 }
 
-const Footnote = ({ children, colorLabel = 'greyDark' }: FootnoteProps) => {
+const Footnote = ({ children, color = 'dark' }: FootnoteProps) => {
   if (!children) return false
 
   return (
@@ -23,7 +19,7 @@ const Footnote = ({ children, colorLabel = 'greyDark' }: FootnoteProps) => {
       <Asterisk />
       <AppText
         linkStyle={styles.link}
-        style={{ ...styles.text, color: Colors[colorLabel] }}
+        style={[styles.text, color === 'light' && styles.textLight]}
       >
         {children}
       </AppText>
@@ -42,7 +38,11 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   text: {
+    color: Colors.greyDark,
     paddingLeft: Spacing.small,
+  },
+  textLight: {
+    color: Colors.greyLight,
   },
 })
 

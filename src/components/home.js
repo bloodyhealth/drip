@@ -85,7 +85,7 @@ const Home = ({ navigate, setDate }) => {
       <Button size="large" onPress={navigateToCycleDayView}>
         {t('labels.home.addDataForToday')}
       </Button>
-      {phase && <Footnote colorLabel="greyLight">{statusText}</Footnote>}
+      {phase && <Footnote color="light">{statusText}</Footnote>}
     </ScrollView>
   )
 }

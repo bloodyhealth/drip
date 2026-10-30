@@ -9,7 +9,7 @@ import {
 } from '../../config'
 
 interface ChartLineProps {
-  path?: string
+  path: string
   isNfpLine?: boolean
 }
 
