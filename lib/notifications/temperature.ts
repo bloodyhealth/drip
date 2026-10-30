@@ -25,10 +25,10 @@ const getNextTimestamp = (time: string): number => {
 }
 
 export const updateTemperatureReminder = async (
-  reminder: TemperatureReminder
+  reminder: TemperatureReminder | undefined
 ): Promise<void> => {
   await cancelReminder('temperature')
-  if (!reminder.enabled) return
+  if (!reminder?.enabled) return
 
   await scheduleReminder(
     'temperature',

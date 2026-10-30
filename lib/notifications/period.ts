@@ -29,7 +29,7 @@ const getContent = (
 })
 
 const isReminderEnabled = (): boolean =>
-  periodPredictionObservable.value && periodReminderObservable.value.enabled
+  periodPredictionObservable.value && periodReminderObservable.value?.enabled
 
 export const updatePeriodReminder = async (): Promise<void> => {
   await cancelReminder('period')

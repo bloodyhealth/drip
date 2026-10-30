@@ -3,14 +3,14 @@ import notifee, { EventType, type Notification } from 'react-native-notify-kit'
 import { useEffect } from 'react'
 import { Platform } from 'react-native'
 import { refreshReminders, setupReminders } from './setup-reminders'
-import { NavigationActions, ReminderId } from './types'
+import { NavigationActions } from './types'
 import { useNotificationPermission } from './use-notification-permission'
 
 const openReminderScreen = (
   { id }: Notification,
   { setDate, setCurrentPage }: NavigationActions
 ): void => {
-  if ((id as ReminderId) === 'temperature') {
+  if (id === 'temperature') {
     setDate(LocalDate.now().toString())
     setCurrentPage('TemperatureEditView')
   } else {

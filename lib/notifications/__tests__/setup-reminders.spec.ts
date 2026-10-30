@@ -143,4 +143,23 @@ describe('refreshReminders', () => {
     expect(notifee.cancelNotification).toHaveBeenCalledWith('period')
     expect(notifee.cancelNotification).toHaveBeenCalledWith('temperature')
   })
+
+  it('only cancels reminders whose settings are not loaded yet', async () => {
+    // Arrange
+    const consoleError = jest.spyOn(console, 'error').mockImplementation()
+    periodReminderObservable.set(undefined)
+    tempReminderObservable.set(undefined)
+
+    // Act
+    refreshReminders()
+    await flushPromises()
+
+    // Assert
+    expect(consoleError).not.toHaveBeenCalled()
+    expect(notifee.cancelNotification).toHaveBeenCalledWith('period')
+    expect(notifee.cancelNotification).toHaveBeenCalledWith('temperature')
+    expect(notifee.createTriggerNotification).not.toHaveBeenCalled()
+
+    consoleError.mockRestore()
+  })
 })
