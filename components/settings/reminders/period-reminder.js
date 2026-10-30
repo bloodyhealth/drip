@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 
 import AppSwitch from '../../common/app-switch'
@@ -12,7 +13,7 @@ import {
   advanceNoticeDaysObservable,
 } from '../../../local-storage'
 
-const PeriodReminder = () => {
+const PeriodReminder = ({ requestPermission }) => {
   const { t } = useTranslation(null, {
     keyPrefix: 'sideMenu.settings.reminders.periodReminder',
   })
@@ -27,7 +28,9 @@ const PeriodReminder = () => {
     advanceNoticeDaysObservable.value
   )
 
-  const periodReminderToggle = (isEnabled) => {
+  const periodReminderToggle = async (isEnabled) => {
+    if (isEnabled && !(await requestPermission())) return
+
     setIsPeriodReminderEnabled(isEnabled)
     savePeriodReminder({ enabled: isEnabled })
   }
@@ -59,6 +62,10 @@ const PeriodReminder = () => {
       )}
     </>
   )
+}
+
+PeriodReminder.propTypes = {
+  requestPermission: PropTypes.func.isRequired,
 }
 
 export default PeriodReminder
