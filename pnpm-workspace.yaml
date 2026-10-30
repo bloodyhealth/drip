@@ -1,0 +1,2 @@
+patchedDependencies:
+  '@react-native/codegen@0.83.2': patches/@react-native__codegen@0.83.2.patch
