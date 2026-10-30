@@ -1,29 +1,22 @@
-import React, { ComponentType, ReactNode } from 'react'
+import React, { ComponentProps, ReactNode } from 'react'
 import {
   Pressable,
   PressableProps,
   StyleProp,
   StyleSheet,
-  TextStyle,
   ViewStyle,
 } from 'react-native'
 
-import AppIconJs from './app-icon'
+import AppIcon from './app-icon'
 import AppText from './app-text'
 
 import { Colors, Fonts, Sizes } from '../../styles'
 import { moderateScale, scale } from '../../common/scale-utils'
 
-const AppIcon = AppIconJs as ComponentType<{
-  color?: string
-  name: string
-  style?: StyleProp<TextStyle>
-}>
-
 interface ButtonProps extends Omit<PressableProps, 'children' | 'style'> {
   children?: ReactNode
   disabled?: boolean
-  iconName?: string
+  iconName?: ComponentProps<typeof AppIcon>['name']
   size?: 'medium' | 'large'
   variant?: 'primary' | 'secondary'
   style?: StyleProp<ViewStyle>

@@ -1,5 +1,4 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import AppText from '../common/app-text'
@@ -7,7 +6,16 @@ import Asterisk from './asterisk'
 
 import { Colors, Spacing } from '../../styles'
 
-const Footnote = ({ children, colorLabel }) => {
+type ColorLabel = {
+  [K in keyof typeof Colors]: (typeof Colors)[K] extends string ? K : never
+}[keyof typeof Colors]
+
+interface FootnoteProps {
+  children?: ReactNode
+  colorLabel?: ColorLabel
+}
+
+const Footnote = ({ children, colorLabel = 'greyDark' }: FootnoteProps) => {
   if (!children) return false
 
   return (
@@ -21,15 +29,6 @@ const Footnote = ({ children, colorLabel }) => {
       </AppText>
     </View>
   )
-}
-
-Footnote.propTypes = {
-  children: PropTypes.node,
-  colorLabel: PropTypes.string,
-}
-
-Footnote.defaultProps = {
-  colorLabel: 'greyDark',
 }
 
 const styles = StyleSheet.create({

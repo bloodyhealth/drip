@@ -1,13 +1,24 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import PropTypes from 'prop-types'
 
 import Logo from './logo'
 import HamburgerMenu from './hamburger-menu'
 
 import { Colors, Containers, Sizes } from '../../styles'
 
-const Header = ({ isStatic, navigate }) => {
+interface StaticHeaderProps {
+  isStatic: true
+  navigate?: never
+}
+
+interface NavigableHeaderProps {
+  isStatic?: false
+  navigate: (page: string) => void
+}
+
+type HeaderProps = StaticHeaderProps | NavigableHeaderProps
+
+const Header = ({ isStatic, navigate }: HeaderProps) => {
   return (
     <View style={styles.header}>
       {isStatic ? (
@@ -22,15 +33,6 @@ const Header = ({ isStatic, navigate }) => {
       )}
     </View>
   )
-}
-
-Header.propTypes = {
-  isStatic: PropTypes.bool,
-  navigate: PropTypes.func,
-}
-
-Header.defaultProps = {
-  isStatic: false,
 }
 
 const styles = StyleSheet.create({
