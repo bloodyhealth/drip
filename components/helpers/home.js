@@ -36,7 +36,7 @@ export function determinePredictionText(bleedingPrediction, t) {
 
 export function getOrdinalSuffix(num) {
   if (i18n.language === 'de-DE') {
-    return ''
+    return '.'
   }
 
   const j = num % 10
