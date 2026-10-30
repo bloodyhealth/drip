@@ -6,11 +6,7 @@ import { Colors } from '../../styles'
 
 const AppStatusBar = () => (
   <View style={styles.statusBar}>
-    <SystemBars
-      backgroundColor={Colors.purple}
-      barStyle="light-content"
-      translucent
-    />
+    <SystemBars style="light" />
   </View>
 )
 

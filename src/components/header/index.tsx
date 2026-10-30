@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import Logo from './logo'
 import HamburgerMenu from './hamburger-menu'
@@ -19,8 +20,10 @@ interface NavigableHeaderProps {
 type HeaderProps = StaticHeaderProps | NavigableHeaderProps
 
 const Header = ({ isStatic, navigate }: HeaderProps) => {
+  const { top } = useSafeAreaInsets()
+
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, { paddingTop: Sizes.base + top }]}>
       {isStatic ? (
         <Logo />
       ) : (

@@ -14,7 +14,6 @@ import { formatDecimal } from '../helpers/cycle-day'
 
 import { Containers, Sizes, Spacing, Typography } from '../../styles'
 import { scale } from '../../common/scale-utils'
-import { SafeAreaView } from 'react-native-safe-area-context'
 
 const image = require('../../assets/images/cycle-icon.png')
 
@@ -49,7 +48,7 @@ const Stats = () => {
   }
 
   return (
-    <SafeAreaView style={styles.pageContainer}>
+    <View style={styles.pageContainer}>
       <ScrollView contentContainerStyle={styles.overviewContainer}>
         <AppText>{t('intro')}</AppText>
         {numberOfCycles === 0 ? (
@@ -92,7 +91,7 @@ const Stats = () => {
           </>
         )}
       </ScrollView>
-    </SafeAreaView>
+    </View>
   )
 }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import PropTypes from 'prop-types'
 
 import MenuItem from './menu-item'
@@ -12,9 +13,10 @@ const Menu = ({ currentPage, navigate }) => {
   const menuItems = pages.filter((page) => page.isInMenu)
 
   const { t } = useTranslation(null, { keyPrefix: 'bottomMenu' })
+  const { bottom } = useSafeAreaInsets()
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingBottom: bottom }]}>
       {menuItems.map(({ icon, labelKey, component }) => {
         return (
           <MenuItem
