@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
     paddingTop: Sizes.tiny,
     color: Colors.purple,
     fontSize: Sizes.base,
-    lineHeight: Sizes.base,
   },
   symptomNameDisabled: {
     color: Colors.grey,

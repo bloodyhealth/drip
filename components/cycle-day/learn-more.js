@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import links from '../../common/links'
+import { getLinks } from '../../common/links'
 import { Trans, useTranslation } from 'react-i18next'
 import AppText from '../common/app-text'
 import AppLink from '../common/app-link'
 
 export const LearnMore = ({ symptom }) => {
   const { t } = useTranslation()
+  const links = getLinks(t)
   const nfpKey = ['bleeding', 'temperature', 'mucus', 'cervix'].includes(
     symptom
   )

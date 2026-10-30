@@ -18,7 +18,7 @@ import SelectBoxGroup from './select-box-group'
 import SelectTabGroup from './select-tab-group'
 import Temperature from './temperature'
 
-import { blank, save, shouldShow, symtomPage } from '../helpers/cycle-day'
+import { blank, getSymptomPage, save, shouldShow } from '../helpers/cycle-day'
 import { showToast } from '../helpers/general'
 
 import { fertilityTrackingObservable } from '../../local-storage'
@@ -28,7 +28,7 @@ import { LearnMore } from './learn-more'
 
 const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const { t } = useTranslation()
-  const symptomConfig = symtomPage[symptom]
+  const symptomConfig = getSymptomPage(t)[symptom]
   const [data, setData] = useState(symptomData ? symptomData : blank[symptom])
   const [shouldShowInfo, setShouldShowInfo] = useState(false)
   const scrollViewRef = useRef(null)
@@ -164,7 +164,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
           />
         )}
         {shouldShow(symptomConfig.selectTabGroups) &&
-          symtomPage[symptom].selectTabGroups.map((group) => {
+          symptomConfig.selectTabGroups.map((group) => {
             return (
               <Segment key={group.key} style={styles.segmentBorder}>
                 <AppText style={styles.title}>{group.title}</AppText>
@@ -177,7 +177,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             )
           })}
         {shouldShow(symptomConfig.selectBoxGroups) &&
-          symtomPage[symptom].selectBoxGroups.map((group) => {
+          symptomConfig.selectBoxGroups.map((group) => {
             const isOtherSelected =
               data.other !== null &&
               data.other !== false &&
@@ -209,14 +209,14 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             <Segment style={styles.segmentBorder}>
               <AppSwitch
                 onToggle={onExcludeToggle}
-                text={symtomPage[symptom].excludeText}
+                text={symptomConfig.excludeText}
                 value={data.exclude}
               />
             </Segment>
           )}
         {shouldShow(symptomConfig.note) && (
           <Segment style={styles.segmentBorder}>
-            <AppText>{symtomPage[symptom].note}</AppText>
+            <AppText>{symptomConfig.note}</AppText>
             <AppTextInput
               {...inputProps}
               onChangeText={onEditNote}

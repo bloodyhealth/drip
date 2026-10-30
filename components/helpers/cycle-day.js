@@ -114,38 +114,38 @@ export const blank = {
   },
 }
 
-export const symtomPage = {
+export const getSymptomPage = (t) => ({
   bleeding: {
-    excludeText: i18n.t('cycleDay.bleeding.exclude'),
+    excludeText: t('cycleDay.bleeding.exclude'),
     note: null,
     selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'value',
-        options: getOptionsNumeric('bleeding', 'heaviness'),
-        title: i18n.t('cycleDay.bleeding.heaviness.description'),
+        options: getOptionsNumeric(t, 'bleeding', 'heaviness'),
+        title: t('cycleDay.bleeding.heaviness.description'),
       },
     ],
   },
   cervix: {
-    excludeText: i18n.t('cycleDay.cervix.exclude'),
+    excludeText: t('cycleDay.cervix.exclude'),
     note: null,
     selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'opening',
-        options: getOptionsNumeric('cervix', 'opening'),
-        title: i18n.t('cycleDay.cervix.opening.description'),
+        options: getOptionsNumeric(t, 'cervix', 'opening'),
+        title: t('cycleDay.cervix.opening.description'),
       },
       {
         key: 'firmness',
-        options: getOptionsNumeric('cervix', 'firmness'),
-        title: i18n.t('cycleDay.cervix.firmness.description'),
+        options: getOptionsNumeric(t, 'cervix', 'firmness'),
+        title: t('cycleDay.cervix.firmness.description'),
       },
       {
         key: 'position',
-        options: getOptionsNumeric('cervix', 'position'),
-        title: i18n.t('cycleDay.cervix.position.description'),
+        options: getOptionsNumeric(t, 'cervix', 'position'),
+        title: t('cycleDay.cervix.position.description'),
       },
     ],
   },
@@ -156,25 +156,25 @@ export const symtomPage = {
     selectTabGroups: [
       {
         key: 'value',
-        options: getOptionsNumeric('desire', 'intensity'),
-        title: i18n.t('cycleDay.desire.intensity.description'),
+        options: getOptionsNumeric(t, 'desire', 'intensity'),
+        title: t('cycleDay.desire.intensity.description'),
       },
     ],
   },
   mucus: {
-    excludeText: i18n.t('cycleDay.mucus.exclude'),
+    excludeText: t('cycleDay.mucus.exclude'),
     note: null,
     selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'feeling',
-        options: getOptionsNumeric('mucus', 'feeling'),
-        title: i18n.t('cycleDay.mucus.feeling.description'),
+        options: getOptionsNumeric(t, 'mucus', 'feeling'),
+        title: t('cycleDay.mucus.feeling.description'),
       },
       {
         key: 'texture',
-        options: getOptionsNumeric('mucus', 'texture'),
-        title: i18n.t('cycleDay.mucus.texture.description'),
+        options: getOptionsNumeric(t, 'mucus', 'texture'),
+        title: t('cycleDay.mucus.texture.description'),
       },
     ],
   },
@@ -184,15 +184,15 @@ export const symtomPage = {
     selectBoxGroups: [
       {
         key: 'mood',
-        options: getOptions('mood', 'feelings'),
-        title: i18n.t('cycleDay.mood.feelings.description'),
+        options: getOptions(t, 'mood', 'feelings'),
+        title: t('cycleDay.mood.feelings.description'),
       },
     ],
     selectTabGroups: null,
   },
   note: {
     excludeText: null,
-    note: i18n.t('cycleDay.note.description'),
+    note: t('cycleDay.note.description'),
     selectBoxGroups: null,
     selectTabGroups: null,
   },
@@ -202,8 +202,8 @@ export const symtomPage = {
     selectBoxGroups: [
       {
         key: 'pain',
-        options: getOptions('pain', 'feelings'),
-        title: i18n.t('cycleDay.pain.feelings.description'),
+        options: getOptions(t, 'pain', 'feelings'),
+        title: t('cycleDay.pain.feelings.description'),
       },
     ],
     selectTabGroups: null,
@@ -214,24 +214,24 @@ export const symtomPage = {
     selectBoxGroups: [
       {
         key: 'sex',
-        options: getOptions('sex', 'activity'),
-        title: i18n.t('cycleDay.sex.activity.description'),
+        options: getOptions(t, 'sex', 'activity'),
+        title: t('cycleDay.sex.activity.description'),
       },
       {
         key: 'contraceptives',
-        options: getOptions('sex', 'contraceptives'),
-        title: i18n.t('cycleDay.sex.contraceptives.description'),
+        options: getOptions(t, 'sex', 'contraceptives'),
+        title: t('cycleDay.sex.contraceptives.description'),
       },
     ],
     selectTabGroups: null,
   },
   temperature: {
-    excludeText: i18n.t('cycleDay.temperature.exclude'),
-    note: i18n.t('cycleDay.temperature.note'),
+    excludeText: t('cycleDay.temperature.exclude'),
+    note: t('cycleDay.temperature.note'),
     selectBoxGroups: null,
     selectTabGroups: null,
   },
-}
+})
 
 export const save = {
   bleeding: (data, date, shouldDeleteData) => {

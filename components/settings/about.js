@@ -8,11 +8,13 @@ import Segment from '../common/segment'
 import Button from '../common/button'
 import ButtonRow from '../common/button-row'
 
-import links from '../../common/links'
+import { getLinks } from '../../common/links'
 import { useTranslation } from 'react-i18next'
 
 const AboutSection = () => {
   const { t } = useTranslation(null, { keyPrefix: 'sideMenu.about' })
+  const { t: tRoot } = useTranslation()
+  const links = getLinks(tRoot)
 
   return (
     <AppPage title={t('title')}>

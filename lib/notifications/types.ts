@@ -5,9 +5,12 @@ export type NavigationActions = {
   setCurrentPage: (page: string) => void
 }
 
-export type Reminder = {
+export type TemperatureReminder =
+  | { enabled: true; time: string }
+  | { enabled: false; time?: string }
+
+export type PeriodReminder = {
   enabled: boolean
-  time: string
 }
 
 export type NotificationConfig = {

@@ -1,6 +1,7 @@
 import { ChronoUnit, LocalDate } from '@js-joda/core'
 
 import { formatDateForShortText } from './format-date'
+import i18n from '../../i18n/i18n'
 
 function getTimes(prediction) {
   const todayDate = LocalDate.now()
@@ -34,6 +35,10 @@ export function determinePredictionText(bleedingPrediction, t) {
 }
 
 export function getOrdinalSuffix(num) {
+  if (i18n.language === 'de-DE') {
+    return '.'
+  }
+
   const j = num % 10
   const k = num % 100
 

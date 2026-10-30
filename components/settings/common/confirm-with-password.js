@@ -19,7 +19,7 @@ const ConfirmWithPassword = ({ onSuccess, onCancel }) => {
     try {
       await openDb(hash)
       onSuccess()
-    } catch (err) {
+    } catch {
       onIncorrectPassword()
     }
   }

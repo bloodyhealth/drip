@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, View } from 'react-native'
 import { CalendarList } from 'react-native-calendars'
+import { useTranslation } from 'react-i18next'
 
 import { getBleedingDaysSortedByDate } from '../db'
 import cycleModule from '../lib/cycle'
@@ -14,6 +15,7 @@ import {
 import { mergeDeep } from '../common/object'
 
 const CalendarView = ({ setDate, navigate }) => {
+  const { i18n } = useTranslation()
   const bleedingDays = getBleedingDaysSortedByDate()
   const predictedMenses = cycleModule().getPredictedMenses()
 
@@ -33,6 +35,7 @@ const CalendarView = ({ setDate, navigate }) => {
   return (
     <View style={styles.container}>
       <CalendarList
+        key={i18n.language}
         // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
         firstDay={1}
         onDayPress={passDateToDayView}

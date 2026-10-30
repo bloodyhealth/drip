@@ -7,7 +7,7 @@ import AppModal from '../common/app-modal'
 import AppText from '../common/app-text'
 
 import cycleModule from '../../lib/cycle'
-import { Spacing, Typography, Colors } from '../../styles'
+import { Colors, Spacing, Typography } from '../../styles'
 import { humanizeDate } from '../helpers/format-date'
 
 const Item = ({ data }) => {
@@ -37,13 +37,14 @@ Item.propTypes = {
 }
 
 const PeriodDetailsModal = ({ onClose }) => {
+  const { t } = useTranslation()
   const renderItem = ({ item }) => <Item data={item} />
   const data = cycleModule().getStats()
 
   if (!data || data.length === 0) return false
 
   return (
-    <AppModal onClose={onClose}>
+    <AppModal onClose={onClose} title={t('stats.details.title')}>
       <FlatList
         data={data}
         renderItem={renderItem}
@@ -64,19 +65,27 @@ PeriodDetailsModal.propTypes = {
 
 const ItemDivider = () => <View style={styles.divider} />
 
-const FlatListHeader = () => (
-  <View style={styles.row}>
-    <View style={styles.accentCell}>
-      <AppText style={styles.header}>{'Cycle Start'}</AppText>
+const FlatListHeader = () => {
+  const { t } = useTranslation()
+
+  return (
+    <View style={styles.row}>
+      <View style={styles.accentCell}>
+        <AppText style={styles.header}>{t('stats.details.cycleStart')}</AppText>
+      </View>
+      <View style={styles.cell}>
+        <AppText style={styles.header}>
+          {t('stats.details.cycleLength')}
+        </AppText>
+      </View>
+      <View style={styles.cell}>
+        <AppText style={styles.header}>
+          {t('stats.details.bleedingDays')}
+        </AppText>
+      </View>
     </View>
-    <View style={styles.cell}>
-      <AppText style={styles.header}>{'Cycle Length'}</AppText>
-    </View>
-    <View style={styles.cell}>
-      <AppText style={styles.header}>{'Bleeding'}</AppText>
-    </View>
-  </View>
-)
+  )
+}
 
 const styles = StyleSheet.create({
   divider: {

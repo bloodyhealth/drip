@@ -5,13 +5,15 @@ import { Colors, Spacing, Typography } from '../../../../styles'
 import AppText from '../../../common/app-text'
 import Segment from '../../../common/segment'
 import { Trans, useTranslation } from 'react-i18next'
-import links from '../../../../common/links'
+import { getLinks } from '../../../../common/links'
 import AppLink from '../../../common/app-link'
 
 export const InfertileDaysInfo = () => {
   const { t } = useTranslation(null, {
     keyPrefix: 'sideMenu.settings.customization.infertileDaysInfo',
   })
+  const { t: tRoot } = useTranslation()
+  const links = getLinks(tRoot)
   return (
     <Segment last>
       <View style={styles.line}>

@@ -11,8 +11,7 @@ const menuItems = [
   { label: 'reminders', componentName: 'Reminders' },
   { label: 'dataManagement', componentName: 'DataManagement' },
   { label: 'password', componentName: 'Password' },
-  // this language switch will be released later and is therefore commented out
-  // { label: 'language', componentName: 'Language' },
+  { label: 'language', componentName: 'Language' },
 ]
 
 const SettingsMenu = ({ navigate }) => {

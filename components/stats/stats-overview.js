@@ -3,32 +3,27 @@ import { StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 
 import AppText from '../common/app-text'
-import { formatDecimal } from '../helpers/cycle-day'
 import { Sizes, Spacing, Typography } from '../../styles'
 
 const StatsOverview = ({ data }) => {
-  return data.map((rowContent, i) => <Row key={i} rowContent={rowContent} />)
+  return data.map((row, i) => <Row key={i} {...row} />)
 }
 
 StatsOverview.propTypes = {
   data: PropTypes.array.isRequired,
 }
 
-const Row = ({ rowContent }) => {
-  const isStandardDeviation = rowContent[1].includes('deviation')
-  if (isStandardDeviation && rowContent[0] !== '—') {
-    rowContent[0] = formatDecimal(rowContent[0], 1)
-  }
-  return (
-    <View style={styles.row}>
-      <Cell content={rowContent[0]} isLeft />
-      <Cell content={rowContent[1]} hasAsterisk={isStandardDeviation} />
-    </View>
-  )
-}
+const Row = ({ value, label, hasAsterisk }) => (
+  <View style={styles.row}>
+    <Cell content={value} isLeft />
+    <Cell content={label} hasAsterisk={hasAsterisk} />
+  </View>
+)
 
 Row.propTypes = {
-  rowContent: PropTypes.array.isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  label: PropTypes.string.isRequired,
+  hasAsterisk: PropTypes.bool,
 }
 
 const Cell = ({ content, isLeft, hasAsterisk }) => {

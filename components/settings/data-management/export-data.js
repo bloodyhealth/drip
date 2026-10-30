@@ -50,7 +50,7 @@ export default function ExportData({
   function convertDataToCsv(cycleDaysByDate) {
     try {
       return getDataAsCsvDataUri(cycleDaysByDate)
-    } catch (err) {
+    } catch {
       throw new Error(t('error.conversionFailed'))
     }
   }

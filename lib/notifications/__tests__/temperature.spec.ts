@@ -3,6 +3,8 @@ import { setupTemperatureNotifications } from '../temperature'
 import { RepeatFrequency } from '@notifee/react-native'
 import { NotificationType } from '../types.ts'
 import { NotificationService } from '../notification-service.ts'
+import i18n from '../../../i18n/i18n'
+import de from '../../../i18n/de.json'
 
 const mockCancelNotification = jest.fn((_: NotificationType) =>
   Promise.resolve()
@@ -101,6 +103,33 @@ describe('Test temperature notifications', () => {
       )
 
       jest.useRealTimers()
+    })
+
+    it('uses the current app language for the notification text', async () => {
+      // Arrange
+      mockScheduleNotification.mockClear()
+      await i18n.changeLanguage('de-DE')
+
+      // Act
+      tempReminderObservable.set({ enabled: true, time: '09:00' })
+      await new Promise<void>((resolve) => setTimeout(resolve, 200))
+
+      // Assert
+      expect(mockScheduleNotification).toHaveBeenCalledWith(
+        expect.objectContaining({
+          title: de['sideMenu.settings.reminders.temperatureReminder.title'],
+          body: de[
+            'sideMenu.settings.reminders.temperatureReminder.notification'
+          ],
+          channel: expect.objectContaining({
+            name: de['notifications.temperature.channelName'],
+          }),
+        }),
+        expect.any(Number),
+        RepeatFrequency.DAILY
+      )
+
+      await i18n.changeLanguage('en-US')
     })
   })
 })

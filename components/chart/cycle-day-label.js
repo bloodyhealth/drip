@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { LocalDate } from '@js-joda/core'
 import { StyleSheet, View } from 'react-native'
-import moment from 'moment'
 
 import AppText from '../common/app-text'
 
+import { dateToShortMonth } from '../helpers/format-date'
 import cycleModule from '../../lib/cycle'
 import { getOrdinalSuffix } from '../helpers/home'
 import { Typography, Sizes } from '../../styles'
@@ -13,8 +14,7 @@ const CycleDayLabel = ({ height, date }) => {
   const cycleDayNumber = cycleModule().getCycleDayNumber(date)
   const cycleDayLabel = cycleDayNumber ? cycleDayNumber : ' '
 
-  const momentDate = moment(date)
-  const dayOfMonth = momentDate.date()
+  const dayOfMonth = LocalDate.parse(date).dayOfMonth()
   const isFirstDayOfMonth = dayOfMonth === 1
 
   return (
@@ -26,7 +26,7 @@ const CycleDayLabel = ({ height, date }) => {
       <View style={{ ...styles.labelRow, height: height / 2 }}>
         {isFirstDayOfMonth && (
           <AppText style={styles.textFootnote}>
-            {momentDate.format('MMM')}
+            {dateToShortMonth(date)}
           </AppText>
         )}
 
@@ -50,9 +50,8 @@ CycleDayLabel.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'flex-end',
-    left: 4,
   },
   textSmall: {
     ...Typography.label,

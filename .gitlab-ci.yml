@@ -1,5 +1,7 @@
 image: node:20-alpine
 
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
   key:
     files:
@@ -18,6 +20,7 @@ test_async:
     - pnpm install
     - pnpm test
     - pnpm lint
+    - pnpm typecheck
 
 .dependabot-gitlab:
   image:

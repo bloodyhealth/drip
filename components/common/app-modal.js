@@ -3,11 +3,12 @@ import { Modal, Pressable, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
+import AppText from './app-text'
 import CloseIcon from './close-icon'
 
-import { Spacing } from '../../styles'
+import { Fonts, Spacing, Typography } from '../../styles'
 
-const AppModal = ({ children, onClose }) => {
+const AppModal = ({ children, onClose, title }) => {
   const { top } = useSafeAreaInsets()
 
   return (
@@ -15,6 +16,7 @@ const AppModal = ({ children, onClose }) => {
       <View style={[styles.backdrop, { paddingTop: top + Spacing.base }]}>
         <View style={styles.modalWindow}>
           <View style={styles.headerContainer}>
+            {title && <AppText style={styles.title}>{title}</AppText>}
             <CloseIcon onClose={onClose} />
           </View>
           {children}
@@ -28,6 +30,7 @@ const AppModal = ({ children, onClose }) => {
 AppModal.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func,
+  title: PropTypes.string,
 }
 
 const styles = StyleSheet.create({
@@ -50,6 +53,13 @@ const styles = StyleSheet.create({
   },
   outsideArea: {
     flex: 1,
+  },
+  title: {
+    ...Typography.subtitle,
+    flex: 1,
+    fontFamily: Fonts.bold,
+    marginRight: Spacing.base,
+    marginTop: 0,
   },
 })
 

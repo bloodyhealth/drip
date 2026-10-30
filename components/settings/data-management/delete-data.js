@@ -68,7 +68,7 @@ const DeleteData = ({
       }
       await deleteExportedFile()
       showToast(t('success.message'))
-    } catch (err) {
+    } catch {
       alertError(t('error.delete'))
     } finally {
       closePasswordConfirmation()

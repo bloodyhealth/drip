@@ -1,5 +1,6 @@
 import {
   advanceNoticeDaysObservable,
+  periodPredictionObservable,
   periodReminderObservable,
 } from '../../local-storage'
 import cycleModule from '../cycle'
@@ -53,7 +54,11 @@ export async function setupPeriodNotifications() {
 async function setupNotification() {
   await NotificationService.cancelNotification('period')
 
-  if (!periodReminderObservable.value.enabled) return
+  if (
+    !periodPredictionObservable.value ||
+    !periodReminderObservable.value.enabled
+  )
+    return
 
   const bleedingPrediction = cycleModule().getPredictedMenses()
 
@@ -79,7 +84,7 @@ async function scheduleNotificationForPrediction(bleedingPrediction: any) {
     'YYYY-MM-DD'
   ).startOf('day')
 
-  const advanceNoticeDays = parseInt(advanceNoticeDaysObservable.value, 10)
+  const advanceNoticeDays = advanceNoticeDaysObservable.value
 
   // ${advanceNoticeDays} days before and at 6 am
   const reminderDate = predictedBleedingStart

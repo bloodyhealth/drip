@@ -15,7 +15,7 @@ import ButtonJs from './button'
 import ButtonRowJs from './button-row'
 import SegmentJs from './segment'
 
-import links from '../../common/links'
+import { getLinks } from '../../common/links'
 import { version } from '../../package.json'
 import { Colors, Sizes } from '../../styles'
 
@@ -57,17 +57,18 @@ type Props = {
 }
 
 export const ErrorView = ({ error, onRetry }: Props) => {
-  const { t } = useTranslation(undefined, { keyPrefix: 'errorBoundary' })
+  const { t } = useTranslation()
+  const links = getLinks(t)
 
   const platform = `${osNames[Platform.OS] ?? Platform.OS} ${Platform.Version}`
   const message = error ? String(error.message || error) : ''
 
   const onPressEmail = () => {
-    const subject = t('contact.emailSubject', { version })
+    const subject = t('errorBoundary.contact.emailSubject', { version })
     const body = [
-      `${t('details.version')}: ${version}`,
-      `${t('details.platform')}: ${platform}`,
-      `${t('details.message')}: ${message}`,
+      `${t('errorBoundary.details.version')}: ${version}`,
+      `${t('errorBoundary.details.platform')}: ${platform}`,
+      `${t('errorBoundary.details.message')}: ${message}`,
       '',
     ].join('\n')
 
@@ -79,15 +80,15 @@ export const ErrorView = ({ error, onRetry }: Props) => {
   }
 
   return (
-    <AppPage title={t('title')}>
+    <AppPage title={t('errorBoundary.title')}>
       <Segment>
-        <AppText>{t('intro')}</AppText>
+        <AppText>{t('errorBoundary.intro')}</AppText>
         <Button isCTA isSmall onPress={onRetry}>
-          {t('retry')}
+          {t('errorBoundary.retry')}
         </Button>
       </Segment>
-      <Segment title={t('contact.title')}>
-        <AppText>{t('contact.text')}</AppText>
+      <Segment title={t('errorBoundary.contact.title')}>
+        <AppText>{t('errorBoundary.contact.text')}</AppText>
         <ButtonRow>
           <Button isCTA isSmall onPress={onPressEmail}>
             {links.email.text}
@@ -101,15 +102,15 @@ export const ErrorView = ({ error, onRetry }: Props) => {
           </Button>
         </ButtonRow>
       </Segment>
-      <Segment title={t('details.title')} last>
+      <Segment title={t('errorBoundary.details.title')} last>
         <AppText style={styles.detail}>
-          {t('details.version')}: {version}
+          {t('errorBoundary.details.version')}: {version}
         </AppText>
         <AppText style={styles.detail}>
-          {t('details.platform')}: {platform}
+          {t('errorBoundary.details.platform')}: {platform}
         </AppText>
         <AppText style={styles.detail}>
-          {t('details.message')}: {message}
+          {t('errorBoundary.details.message')}: {message}
         </AppText>
       </Segment>
     </AppPage>

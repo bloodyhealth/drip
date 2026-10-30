@@ -9,6 +9,7 @@ import {
   getLanguage,
 } from '../local-storage'
 import { openDb } from '../db'
+import { syncCalendarLocaleWithLanguage } from './helpers/calendar'
 
 import App from './app'
 import AppLoadingView from './common/app-loading'
@@ -50,7 +51,9 @@ export default function AppWrapper() {
   }
 
   useEffect(() => {
+    const unsubscribeCalendarLocale = syncCalendarLocaleWithLanguage()
     prepareApp()
+    return unsubscribeCalendarLocale
   }, [])
 
   const renderContent = () => {

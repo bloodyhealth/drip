@@ -9,5 +9,17 @@ module.exports = {
     'no-extra-semi': 'off',
     'no-shadow': 'warn',
     'react-hooks/exhaustive-deps': 'warn',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        args: 'all',
+        argsIgnorePattern: '^_',
+        caughtErrors: 'all',
+        caughtErrorsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        ignoreRestSiblings: true,
+      },
+    ],
   },
-}
+};

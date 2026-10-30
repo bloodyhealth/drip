@@ -1,6 +1,7 @@
 import {
   periodReminderObservable,
   advanceNoticeDaysObservable,
+  periodPredictionObservable,
 } from '../../../local-storage'
 import { setupPeriodNotifications } from '../period'
 import { NotificationType } from '../types.ts'
@@ -68,6 +69,7 @@ describe('Test period notifications', () => {
     // Reset observables to ensure callbacks fire when we change them
     advanceNoticeDaysObservable.set(3)
     periodReminderObservable.set({ enabled: false })
+    periodPredictionObservable.set(true)
     mockGetPredictedMenses.mockReturnValue([])
 
     // Clear any calls from the setup
@@ -97,6 +99,22 @@ describe('Test period notifications', () => {
 
       expect(mockScheduleNotification).not.toHaveBeenCalled()
       expect(mockCancelNotification).toHaveBeenCalledWith('period')
+    })
+  })
+
+  describe('when period prediction is disabled', () => {
+    it('does not schedule notification even if the reminder is still stored as enabled', async () => {
+      // Arrange
+      periodPredictionObservable.set(false)
+      mockGetPredictedMenses.mockReturnValue([['2025-01-10']])
+
+      // Act
+      periodReminderObservable.set({ enabled: true })
+      await sleep(200)
+
+      // Assert
+      expect(mockCancelNotification).toHaveBeenCalledWith('period')
+      expect(mockScheduleNotification).not.toHaveBeenCalled()
     })
   })
 

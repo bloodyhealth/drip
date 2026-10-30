@@ -23,7 +23,7 @@ const TemperatureSlider = ({ disabled }) => {
     setMaxTemperature(max)
     try {
       saveTempScale({ min, max })
-    } catch (err) {
+    } catch {
       alertError(t('saveError'))
     }
   }

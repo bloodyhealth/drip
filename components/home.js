@@ -1,13 +1,13 @@
 import React from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
-import moment from 'moment'
 
 import AppText from './common/app-text'
 import Asterisk from './common/asterisk'
 import Button from './common/button'
 import Footnote from './common/footnote'
 
+import { todayToFullDate } from './helpers/format-date'
 import cycleModule from '../lib/cycle'
 import { getFertilityStatusForDay } from '../lib/sympto-adapter'
 import {
@@ -49,7 +49,7 @@ const Home = ({ navigate, setDate }) => {
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      <AppText style={styles.title}>{moment().format('MMM Do YYYY')}</AppText>
+      <AppText style={styles.title}>{todayToFullDate()}</AppText>
 
       {/* display if at least 1 bleeding day has been entered */}
       {cycleDayNumber && (
