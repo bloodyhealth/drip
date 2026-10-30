@@ -32,7 +32,6 @@
     "tag-release": "node ./tools/bin/tag-release.js",
     "release": "node ./tools/release-wizard.js",
     "clear": ". scripts/clear.sh",
-    "postinstall": "npx jetify",
     "prepare": "husky"
   },
   "dependencies": {
