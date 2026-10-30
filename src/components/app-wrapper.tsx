@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 import { StyleSheet } from 'react-native'
 import i18n from '../i18n/i18n'
@@ -7,8 +7,8 @@ import {
   getLicenseFlag,
   saveEncryptionFlag,
   getLanguage,
-} from '../local-storage'
-import { openDb } from '../db'
+} from '@/local-storage'
+import { openDb } from '@/db'
 import { syncCalendarLocaleWithLanguage } from './helpers/calendar'
 
 import App from './app'
@@ -17,6 +17,7 @@ import AppStatusBar from './common/app-status-bar'
 import { ErrorBoundary } from './common/error-boundary'
 import AcceptLicense from './accept-license'
 import PasswordPrompt from './password-prompt'
+import { AppControl, AppControlContext } from '@/context/app-control-context'
 
 export default function AppWrapper() {
   const [isLoading, setIsLoading] = useState(true)
@@ -26,7 +27,7 @@ export default function AppWrapper() {
 
   const checkIsLicenseAccepted = async () => {
     const isLicenseFlagSet = await getLicenseFlag()
-    setIsLicenseAccepted(isLicenseFlagSet)
+    setIsLicenseAccepted(Boolean(isLicenseFlagSet))
   }
 
   const loadLanguage = async () => {
@@ -36,12 +37,17 @@ export default function AppWrapper() {
     }
   }
 
-  const checkIsDbEncrypted = async () => {
+  const checkIsDbEncrypted = useCallback(async () => {
     const isEncrypted = !(await openDb())
     if (isEncrypted) setIsDbEncrypted(true)
     else setDbSession((session) => session + 1)
     await saveEncryptionFlag(isEncrypted)
-  }
+  }, [])
+
+  const appControl = useMemo<AppControl>(
+    () => ({ restartApp: checkIsDbEncrypted }),
+    [checkIsDbEncrypted]
+  )
 
   const prepareApp = async () => {
     await Promise.all([
@@ -69,7 +75,13 @@ export default function AppWrapper() {
       return <PasswordPrompt enableShowApp={() => setIsDbEncrypted(false)} />
     }
 
-    return <App key={dbSession} restartApp={checkIsDbEncrypted} />
+    return (
+      <AppControlContext.Provider value={appControl}>
+        {/* a new db session starts a fresh app and navigation, so no screen
+            or reminder listener keeps references into the closed realm */}
+        <App key={dbSession} />
+      </AppControlContext.Provider>
+    )
   }
 
   const showStatusBar = !isLoading && isLicenseAccepted
@@ -79,8 +91,8 @@ export default function AppWrapper() {
     <SafeAreaProvider>
       <SafeAreaView
         edges={[
-          ...(showStatusBar ? [] : ['top']),
-          ...(isMenuShown ? [] : ['bottom']),
+          ...(showStatusBar ? [] : ['top' as const]),
+          ...(isMenuShown ? [] : ['bottom' as const]),
           'left',
           'right',
         ]}

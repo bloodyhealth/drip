@@ -1,40 +1,41 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import Logo from './logo'
 import HamburgerMenu from './hamburger-menu'
 
 import { Colors, Containers, Sizes } from '../../styles'
+import { useNavigation } from '@react-navigation/native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-interface StaticHeaderProps {
-  isStatic: true
-  navigate?: never
-}
-
-interface NavigableHeaderProps {
-  isStatic?: false
-  navigate: (page: string) => void
-}
-
-type HeaderProps = StaticHeaderProps | NavigableHeaderProps
-
-const Header = ({ isStatic, navigate }: HeaderProps) => {
+const HeaderBar = ({ children }: { children: ReactNode }) => {
   const { top } = useSafeAreaInsets()
-
   return (
     <View style={[styles.header, { paddingTop: Sizes.base + top }]}>
-      {isStatic ? (
-        <Logo />
-      ) : (
-        <>
-          <TouchableOpacity onPress={() => navigate('Home')}>
-            <Logo />
-          </TouchableOpacity>
-          <HamburgerMenu navigate={navigate} />
-        </>
-      )}
+      {children}
     </View>
+  )
+}
+
+/** Header without navigation, for screens shown before the app is unlocked. */
+export const StaticHeader = () => (
+  <HeaderBar>
+    <Logo />
+  </HeaderBar>
+)
+
+export const Header = () => {
+  const { navigate } = useNavigation()
+
+  return (
+    <HeaderBar>
+      <TouchableOpacity
+        onPress={() => navigate('Home', undefined, { pop: true })}
+      >
+        <Logo />
+      </TouchableOpacity>
+      <HamburgerMenu />
+    </HeaderBar>
   )
 }
 
@@ -45,5 +46,3 @@ const styles = StyleSheet.create({
     ...Containers.rowContainer,
   },
 })
-
-export default Header

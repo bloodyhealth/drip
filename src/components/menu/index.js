@@ -6,22 +6,28 @@ import PropTypes from 'prop-types'
 import MenuItem from './menu-item'
 
 import { Containers } from '../../styles'
-import { pages } from '../pages'
 import { useTranslation } from 'react-i18next'
+import { useNavigation } from '@react-navigation/native'
 
-const Menu = ({ currentPage, navigate }) => {
-  const menuItems = pages.filter((page) => page.isInMenu)
+const MENU_ITEMS = [
+  { name: 'Calendar', icon: 'calendar', labelKey: 'calendar' },
+  { name: 'Chart', icon: 'chart', labelKey: 'chart' },
+  { name: 'Stats', icon: 'statistics', labelKey: 'stats' },
+]
+
+const Menu = ({ currentPage }) => {
+  const { navigate } = useNavigation()
 
   const { t } = useTranslation(null, { keyPrefix: 'bottomMenu' })
   const { bottom } = useSafeAreaInsets()
 
   return (
     <View style={[styles.container, { paddingBottom: bottom }]}>
-      {menuItems.map(({ icon, labelKey, component }) => {
+      {MENU_ITEMS.map(({ icon, labelKey, name }) => {
         return (
           <MenuItem
-            isActive={component === currentPage}
-            onPress={() => navigate(component)}
+            isActive={name === currentPage}
+            onPress={() => navigate(name, undefined, { pop: true })}
             icon={icon}
             key={labelKey}
             label={t(labelKey)}
@@ -33,8 +39,7 @@ const Menu = ({ currentPage, navigate }) => {
 }
 
 Menu.propTypes = {
-  currentPage: PropTypes.string,
-  navigate: PropTypes.func,
+  currentPage: PropTypes.string.isRequired,
 }
 
 const styles = StyleSheet.create({

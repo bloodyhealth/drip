@@ -23,6 +23,12 @@ jest.mock('@/db', () => ({
   getBleedingDaysSortedByDate: () => mockGetBleedingDaysSortedByDate(),
 }))
 
+const mockNavigate = jest.fn()
+jest.mock('@/navigation/navigation-ref', () => ({
+  navigateWhenReady: (navigation: () => void) => navigation(),
+  navigationRef: { navigate: (...args: unknown[]) => mockNavigate(...args) },
+}))
+
 // prediction is computed from the db
 jest.mock('@/lib/cycle', () => () => ({
   getPredictedMenses: () => [],
@@ -36,11 +42,6 @@ const withAuthorization = (authorizationStatus: AuthorizationStatus): void => {
   } as NotificationSettings)
 }
 
-const createActions = () => ({
-  setDate: jest.fn(),
-  setCurrentPage: jest.fn(),
-})
-
 const flushPromises = () =>
   act(() => new Promise<void>((r) => setTimeout(r, 0)))
 
@@ -52,7 +53,7 @@ describe('useNotifications', () => {
 
   it('reschedules reminders when notifications are allowed', async () => {
     // Act
-    renderHook(() => useNotifications(createActions()))
+    renderHook(() => useNotifications())
     await flushPromises()
 
     // Assert
@@ -65,7 +66,7 @@ describe('useNotifications', () => {
     withAuthorization(AuthorizationStatus.DENIED)
 
     // Act
-    renderHook(() => useNotifications(createActions()))
+    renderHook(() => useNotifications())
     await flushPromises()
 
     // Assert
@@ -74,7 +75,7 @@ describe('useNotifications', () => {
 
   it('sets up reminders on mount', async () => {
     // Act
-    renderHook(() => useNotifications(createActions()))
+    renderHook(() => useNotifications())
     await flushPromises()
 
     // Assert
@@ -83,7 +84,7 @@ describe('useNotifications', () => {
 
   it('stops listening for reminder changes when unmounted', async () => {
     // Arrange
-    const { unmount } = renderHook(() => useNotifications(createActions()))
+    const { unmount } = renderHook(() => useNotifications())
     await flushPromises()
 
     // Act
@@ -96,7 +97,7 @@ describe('useNotifications', () => {
 
   it('does not request notification permission on mount', async () => {
     // Act
-    renderHook(() => useNotifications(createActions()))
+    renderHook(() => useNotifications())
     await flushPromises()
 
     // Assert
@@ -107,7 +108,7 @@ describe('useNotifications', () => {
     // Arrange
     const unsubscribe = jest.fn()
     mockedNotifee.onForegroundEvent.mockReturnValue(unsubscribe)
-    const { unmount } = renderHook(() => useNotifications(createActions()))
+    const { unmount } = renderHook(() => useNotifications())
 
     // Act
     unmount()
@@ -118,8 +119,6 @@ describe('useNotifications', () => {
   })
 
   describe('when a reminder is pressed', () => {
-    let actions: ReturnType<typeof createActions>
-
     const pressReminder = (id: string): void => {
       const [[listener]] = mockedNotifee.onForegroundEvent.mock.calls
       listener({
@@ -129,8 +128,7 @@ describe('useNotifications', () => {
     }
 
     beforeEach(() => {
-      actions = createActions()
-      renderHook(() => useNotifications(actions))
+      renderHook(() => useNotifications())
     })
 
     it('opens the temperature edit view for the temperature reminder', () => {
@@ -138,8 +136,11 @@ describe('useNotifications', () => {
       pressReminder('temperature')
 
       // Assert
-      expect(actions.setDate).toHaveBeenCalledTimes(1)
-      expect(actions.setCurrentPage).toHaveBeenCalledWith('TemperatureEditView')
+      expect(mockNavigate).toHaveBeenCalledWith(
+        'CycleDay',
+        { date: expect.any(String), isTemperatureEditView: true },
+        { pop: true }
+      )
     })
 
     it('opens home for the period reminder', () => {
@@ -147,8 +148,9 @@ describe('useNotifications', () => {
       pressReminder('period')
 
       // Assert
-      expect(actions.setDate).not.toHaveBeenCalled()
-      expect(actions.setCurrentPage).toHaveBeenCalledWith('Home')
+      expect(mockNavigate).toHaveBeenCalledWith('Home', undefined, {
+        pop: true,
+      })
     })
   })
 })

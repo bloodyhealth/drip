@@ -9,6 +9,7 @@ import AppLink from '../common/app-link'
 import Segment from '../common/segment'
 import { Spacing } from '../../styles'
 
+/** @param {{ children?: React.ReactNode }} props */
 const License = ({ children }) => {
   const { t } = useTranslation(null, { keyPrefix: 'sideMenu.license' })
   const currentYear = new Date().getFullYear()

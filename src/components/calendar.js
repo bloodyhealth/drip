@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { StyleSheet, View } from 'react-native'
 import { CalendarList } from 'react-native-calendars'
 import { useTranslation } from 'react-i18next'
@@ -13,15 +12,18 @@ import {
   todayToCalFormat,
 } from './helpers/calendar'
 import { mergeDeep } from '../common/object'
+import { useNavigation } from '@react-navigation/native'
+import { useRefreshOnFocus } from '@/navigation/use-refresh-on-focus'
 
-const CalendarView = ({ setDate, navigate }) => {
+const CalendarView = () => {
+  const { navigate } = useNavigation()
+  useRefreshOnFocus()
   const { i18n } = useTranslation()
   const bleedingDays = getBleedingDaysSortedByDate()
   const predictedMenses = cycleModule().getPredictedMenses()
 
   const passDateToDayView = ({ dateString }) => {
-    setDate(dateString)
-    navigate('CycleDay')
+    navigate('CycleDay', { date: dateString })
   }
 
   const markedDates = mergeDeep(
@@ -52,10 +54,5 @@ const CalendarView = ({ setDate, navigate }) => {
 const styles = StyleSheet.create({
   container: { flex: 1 },
 })
-
-CalendarView.propTypes = {
-  setDate: PropTypes.func.isRequired,
-  navigate: PropTypes.func.isRequired,
-}
 
 export default CalendarView

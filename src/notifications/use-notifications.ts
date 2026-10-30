@@ -3,36 +3,10 @@ import notifee, { EventType, type Notification } from 'react-native-notify-kit'
 import { useEffect } from 'react'
 import { Platform } from 'react-native'
 import { refreshReminders, setupReminders } from './setup-reminders'
-import { NavigationActions } from './types'
 import { useNotificationPermission } from './use-notification-permission'
+import { navigateWhenReady, navigationRef } from '@/navigation/navigation-ref'
 
-const openReminderScreen = (
-  { id }: Notification,
-  { setDate, setCurrentPage }: NavigationActions
-): void => {
-  if (id === 'temperature') {
-    setDate(LocalDate.now().toString())
-    setCurrentPage('TemperatureEditView')
-  } else {
-    setCurrentPage('Home')
-  }
-}
-
-const openInitialNotification = async (
-  actions: NavigationActions
-): Promise<void> => {
-  // iOS fires an onForegroundEvent instead
-  if (Platform.OS === 'ios') return
-
-  const initial = await notifee.getInitialNotification()
-  if (initial?.pressAction !== undefined)
-    openReminderScreen(initial.notification, actions)
-}
-
-export const useNotifications = ({
-  setDate,
-  setCurrentPage,
-}: NavigationActions): void => {
+export const useNotifications = (): void => {
   const { isGranted } = useNotificationPermission()
 
   useEffect(() => setupReminders(), [])
@@ -42,15 +16,39 @@ export const useNotifications = ({
   }, [isGranted])
 
   useEffect(() => {
-    const actions = { setDate, setCurrentPage }
     const unsubscribe = notifee.onForegroundEvent(({ type, detail }) => {
       if (type === EventType.PRESS && detail.notification) {
-        openReminderScreen(detail.notification, actions)
+        openReminderScreen(detail.notification)
       }
     })
 
-    openInitialNotification(actions).catch(console.error)
+    openInitialNotification().catch(console.error)
 
     return unsubscribe
-  }, [setDate, setCurrentPage])
+  }, [])
+}
+
+const openReminderScreen = ({ id }: Notification): void => {
+  navigateWhenReady(() => {
+    if (id === 'temperature') {
+      const date = LocalDate.now().toString()
+      // goes back to a cycle day already in the stack instead of adding one
+      navigationRef.navigate(
+        'CycleDay',
+        { date, isTemperatureEditView: true },
+        { pop: true }
+      )
+    } else {
+      navigationRef.navigate('Home', undefined, { pop: true })
+    }
+  })
+}
+
+const openInitialNotification = async (): Promise<void> => {
+  // iOS fires an onForegroundEvent instead
+  if (Platform.OS === 'ios') return
+
+  const initial = await notifee.getInitialNotification()
+  if (initial?.pressAction !== undefined)
+    openReminderScreen(initial.notification)
 }

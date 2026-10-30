@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native'
 import moment from 'moment'
 
 import { getCycleDay } from '../../db'
+import { useNavigation } from '@react-navigation/native'
 
 import SymptomCell from './symptom-cell'
 import TemperatureColumn from './temperature-column'
@@ -20,13 +21,12 @@ const DayColumn = ({
   dateString,
   chartSymptoms,
   columnHeight,
-  setDate,
-  navigate,
   shouldShowTemperatureColumn,
   symptomHeight,
   symptomRowSymptoms,
   xAxisHeight,
 }) => {
+  const { navigate } = useNavigation()
   const momentDate = moment(dateString)
   const isWeekend = momentDate.day() === 0 || momentDate.day() === 6
   const cycleDayData = getCycleDay(dateString)
@@ -64,8 +64,7 @@ const DayColumn = ({
   )
 
   const onDaySelect = (date) => {
-    setDate(date)
-    navigate('CycleDay')
+    navigate('CycleDay', { date })
   }
 
   return (
@@ -109,8 +108,6 @@ DayColumn.propTypes = {
   dateString: PropTypes.string.isRequired,
   chartSymptoms: PropTypes.array,
   columnHeight: PropTypes.number.isRequired,
-  navigate: PropTypes.func.isRequired,
-  setDate: PropTypes.func.isRequired,
   shouldShowTemperatureColumn: PropTypes.bool,
   symptomHeight: PropTypes.number.isRequired,
   symptomRowSymptoms: PropTypes.array,

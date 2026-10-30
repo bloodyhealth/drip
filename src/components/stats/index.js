@@ -14,10 +14,12 @@ import { formatDecimal } from '../helpers/cycle-day'
 
 import { Containers, Sizes, Spacing, Typography } from '../../styles'
 import { scale } from '../../common/scale-utils'
+import { useRefreshOnFocus } from '@/navigation/use-refresh-on-focus'
 
 const image = require('../../assets/images/cycle-icon.png')
 
 const Stats = () => {
+  useRefreshOnFocus()
   const [isStatsVisible, setIsStatsVisible] = useState(false)
 
   const { t } = useTranslation(null, { keyPrefix: 'stats' })
