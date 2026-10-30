@@ -73,17 +73,13 @@ export const ErrorView = ({ error, onRetry }: Props) => {
     <AppPage title={t('errorBoundary.title')}>
       <Segment>
         <AppText>{t('errorBoundary.intro')}</AppText>
-        <Button isCTA onPress={onRetry}>
-          {t('errorBoundary.retry')}
-        </Button>
+        <Button onPress={onRetry}>{t('errorBoundary.retry')}</Button>
       </Segment>
       <Segment title={t('errorBoundary.contact.title')}>
         <AppText>{t('errorBoundary.contact.text')}</AppText>
         <ButtonRow>
-          <Button isCTA onPress={onPressEmail}>
-            {links.email.text}
-          </Button>
-          <Button isCTA onPress={() => Linking.openURL(links.gitlabIssues.url)}>
+          <Button onPress={onPressEmail}>{links.email.text}</Button>
+          <Button onPress={() => Linking.openURL(links.gitlabIssues.url)}>
             {links.gitlabIssues.text}
           </Button>
         </ButtonRow>

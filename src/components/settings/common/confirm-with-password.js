@@ -52,12 +52,10 @@ const ConfirmWithPassword = ({ onSuccess, onCancel }) => {
         secureTextEntry
       />
       <View style={styles.container}>
-        <Button onPress={onCancel}>{t('shared.cancel')}</Button>
-        <Button
-          disabled={!isPassword}
-          isCTA={isPassword}
-          onPress={checkPassword}
-        >
+        <Button variant="secondary" onPress={onCancel}>
+          {t('shared.cancel')}
+        </Button>
+        <Button disabled={!isPassword} onPress={checkPassword}>
           {t('shared.confirmToProceed')}
         </Button>
       </View>

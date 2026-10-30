@@ -85,9 +85,7 @@ const DeleteData = ({
           onCancel={closePasswordConfirmation}
         />
       ) : (
-        <Button isCTA onPress={alertBeforeDeletion}>
-          {t('title')}
-        </Button>
+        <Button onPress={alertBeforeDeletion}>{t('title')}</Button>
       )}
     </Segment>
   )

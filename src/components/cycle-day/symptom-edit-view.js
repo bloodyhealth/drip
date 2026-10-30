@@ -227,16 +227,16 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
           </Segment>
         )}
         <View style={styles.buttonsContainer}>
-          <Button onPress={onRemove}>
+          <Button variant="secondary" onPress={onRemove}>
             {t('cycleDay.symptomEditModal.remove')}
           </Button>
-          <Button isCTA onPress={onSave}>
+          <Button onPress={onSave}>
             {t('cycleDay.symptomEditModal.save')}
           </Button>
         </View>
         <Button
+          variant="secondary"
           iconName={iconName}
-          isSmall
           onLayout={onLearnMoreLayout}
           onPress={onPressLearnMore}
         >

@@ -21,10 +21,14 @@ export default function AcceptLicense({ setLicense }) {
   return (
     <License>
       <View style={styles.container}>
-        <Button onPress={BackHandler.exitApp} testID="licenseCancelButton">
+        <Button
+          variant="secondary"
+          onPress={BackHandler.exitApp}
+          testID="licenseCancelButton"
+        >
           {t('shared.cancel')}
         </Button>
-        <Button isCTA onPress={onAcceptLicense} testID="licenseOkButton">
+        <Button onPress={onAcceptLicense} testID="licenseOkButton">
           {t('shared.ok')}
         </Button>
       </View>

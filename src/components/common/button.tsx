@@ -22,31 +22,38 @@ const AppIcon = AppIconJs as ComponentType<{
 
 interface ButtonProps extends Omit<PressableProps, 'children' | 'style'> {
   children?: ReactNode
+  disabled?: boolean
   iconName?: string
-  isCTA?: boolean
-  isSmall?: boolean
+  size?: 'medium' | 'large'
+  variant?: 'primary' | 'secondary'
   style?: StyleProp<ViewStyle>
 }
 
 const Button = ({
   children,
+  disabled,
   iconName,
-  isCTA,
-  isSmall = true,
+  size = 'medium',
+  variant = 'primary',
   onPress,
   testID,
   style,
   ...props
 }: ButtonProps) => {
+  const isLarge = size === 'large'
+  const isPrimary = variant === 'primary'
+
   return (
     <Pressable
+      disabled={disabled}
       onPress={onPress}
       testID={testID}
       style={({ pressed }) => [
         styles.button,
-        isCTA ? styles.cta : styles.regular,
-        isSmall ? styles.buttonSmall : styles.buttonLarge,
+        isPrimary ? styles.primary : styles.secondary,
+        isLarge ? styles.buttonLarge : styles.buttonMedium,
         pressed && styles.pressed,
+        disabled && styles.disabled,
         style,
       ]}
       {...props}
@@ -56,8 +63,8 @@ const Button = ({
           <AppText
             style={[
               styles.buttonText,
-              isCTA ? styles.buttonTextBold : styles.buttonTextRegular,
-              isSmall ? styles.buttonTextSmall : styles.buttonTextLarge,
+              isPrimary ? styles.buttonTextPrimary : styles.buttonTextSecondary,
+              isLarge ? styles.buttonTextLarge : styles.buttonTextMedium,
               pressed && styles.pressedText,
             ]}
           >
@@ -78,7 +85,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: scale(12),
   },
-  buttonSmall: {
+  buttonMedium: {
     borderRadius: moderateScale(20),
     paddingHorizontal: scale(20),
     paddingVertical: scale(8),
@@ -88,27 +95,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: scale(28),
     paddingVertical: scale(12),
   },
-  regular: {},
-  cta: {
+  secondary: {},
+  primary: {
     backgroundColor: Colors.orange,
   },
   pressed: {
     opacity: 0.75,
   },
+  disabled: {
+    opacity: 0.4,
+  },
   buttonText: {
     textTransform: 'uppercase',
   },
-  buttonTextSmall: {
+  buttonTextMedium: {
     fontSize: Sizes.small,
   },
   buttonTextLarge: {
     fontSize: Sizes.base,
   },
-  buttonTextBold: {
+  buttonTextPrimary: {
     color: 'white',
     ...Fonts.bold,
   },
-  buttonTextRegular: {
+  buttonTextSecondary: {
     color: Colors.greyDark,
     ...Fonts.main,
   },
