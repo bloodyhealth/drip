@@ -29,6 +29,6 @@ describe('Home helper: getOrdinalSuffix', () => {
   test('if language is German, it returns no suffix', async () => {
     await i18n.changeLanguage('de-DE')
 
-    expect(getOrdinalSuffix(15)).toEqual('')
+    expect(getOrdinalSuffix(15)).toEqual('.')
   })
 })

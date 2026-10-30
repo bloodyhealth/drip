@@ -4,10 +4,11 @@ import { LocaleConfig } from 'react-native-calendars'
 import { Colors, Fonts, Sizes } from '../../styles'
 import { getMonthNames, getWeekdayNames } from './format-date'
 import { periodPredictionObservable } from '../../local-storage'
+import i18n from '../../i18n/i18n'
 
 const { shades } = Colors.iconColors.bleeding
 
-export const setCalendarLocale = (language, t) => {
+const setCalendarLocale = (language, t) => {
   LocaleConfig.locales[language] = {
     monthNames: getMonthNames('long'),
     monthNamesShort: getMonthNames('short'),
@@ -16,6 +17,12 @@ export const setCalendarLocale = (language, t) => {
     today: t('cycleDay.today'),
   }
   LocaleConfig.defaultLocale = language
+}
+
+export const syncCalendarLocaleWithLanguage = () => {
+  const onLanguageChanged = (language) => setCalendarLocale(language, i18n.t)
+  i18n.on('languageChanged', onLanguageChanged)
+  return () => i18n.off('languageChanged', onLanguageChanged)
 }
 
 export const toCalFormat = (bleedingDaysSortedByDate) => {

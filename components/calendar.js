@@ -9,14 +9,13 @@ import cycleModule from '../lib/cycle'
 import {
   calendarTheme,
   predictionToCalFormat,
-  setCalendarLocale,
   toCalFormat,
   todayToCalFormat,
 } from './helpers/calendar'
 import { mergeDeep } from '../common/object'
 
 const CalendarView = ({ setDate, navigate }) => {
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
   const bleedingDays = getBleedingDaysSortedByDate()
   const predictedMenses = cycleModule().getPredictedMenses()
 
@@ -32,8 +31,6 @@ const CalendarView = ({ setDate, navigate }) => {
     },
     predictionToCalFormat(predictedMenses)
   )
-
-  setCalendarLocale(i18n.language, t)
 
   return (
     <View style={styles.container}>
