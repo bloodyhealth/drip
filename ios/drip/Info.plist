@@ -40,8 +40,8 @@
       <string>Entypo.ttf</string>
       <string>drip-icon-font.ttf</string>
       <string>Menu.ttf</string>
-      <string>Jost-400-Book.otf</string>
-      <string>Jost-700-Bold.otf</string>
+      <string>Jost-Regular.ttf</string>
+      <string>Jost-Bold.ttf</string>
     </array>
     <key>RCTNewArchEnabled</key>
     <true/>

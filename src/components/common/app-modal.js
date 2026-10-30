@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   title: {
     ...Typography.subtitle,
     flex: 1,
-    fontFamily: Fonts.bold,
+    ...Fonts.bold,
     marginRight: Spacing.base,
     marginTop: 0,
   },

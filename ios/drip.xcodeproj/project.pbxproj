@@ -10,8 +10,8 @@
 		0C80B921A6F3F58F76C31292 /* libPods-drip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-drip.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		42D1FB282F53157600B1C8DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D1FB272F53157600B1C8DF /* AppDelegate.swift */; };
-		5472A45025BB7807005E81DE /* Jost-400-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44425BB7806005E81DE /* Jost-400-Book.otf */; };
-		5472A45225BB7807005E81DE /* Jost-700-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44525BB7806005E81DE /* Jost-700-Bold.otf */; };
+		5472A45025BB7807005E81DE /* Jost-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44425BB7806005E81DE /* Jost-Regular.ttf */; };
+		5472A45225BB7807005E81DE /* Jost-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5472A44525BB7806005E81DE /* Jost-Bold.ttf */; };
 		62F2A4645AC84CDC9506FF27 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEBF0735214455AAEDF56D5 /* libc++.tbd */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		C1B60E3D1CB982C1DC3D3649 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1232D2C7A761C56D1B96A689 /* PrivacyInfo.xcprivacy */; };
@@ -37,8 +37,8 @@
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-drip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-drip.debug.xcconfig"; path = "Target Support Files/Pods-drip/Pods-drip.debug.xcconfig"; sourceTree = "<group>"; };
 		42D1FB272F53157600B1C8DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = drip/AppDelegate.swift; sourceTree = "<group>"; };
-		5472A44425BB7806005E81DE /* Jost-400-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jost-400-Book.otf"; path = "../assets/fonts/Jost-400-Book.otf"; sourceTree = "<group>"; };
-		5472A44525BB7806005E81DE /* Jost-700-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jost-700-Bold.otf"; path = "../assets/fonts/Jost-700-Bold.otf"; sourceTree = "<group>"; };
+		5472A44425BB7806005E81DE /* Jost-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jost-Regular.ttf"; path = "../assets/fonts/Jost-Regular.ttf"; sourceTree = "<group>"; };
+		5472A44525BB7806005E81DE /* Jost-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jost-Bold.ttf"; path = "../assets/fonts/Jost-Bold.ttf"; sourceTree = "<group>"; };
 		548C3D3A2898FB0600013449 /* drip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "drip-Bridging-Header.h"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-drip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-drip.release.xcconfig"; path = "Target Support Files/Pods-drip/Pods-drip.release.xcconfig"; sourceTree = "<group>"; };
 		5C649EDC281151BC005FED46 /* dripRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = dripRelease.entitlements; path = drip/dripRelease.entitlements; sourceTree = "<group>"; };
@@ -73,8 +73,8 @@
 		006C39A0B9774387BC5ACA43 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5472A44425BB7806005E81DE /* Jost-400-Book.otf */,
-				5472A44525BB7806005E81DE /* Jost-700-Bold.otf */,
+				5472A44425BB7806005E81DE /* Jost-Regular.ttf */,
+				5472A44525BB7806005E81DE /* Jost-Bold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -247,9 +247,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				5472A45025BB7807005E81DE /* Jost-400-Book.otf in Resources */,
+				5472A45025BB7807005E81DE /* Jost-Regular.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				5472A45225BB7807005E81DE /* Jost-700-Bold.otf in Resources */,
+				5472A45225BB7807005E81DE /* Jost-Bold.ttf in Resources */,
 				C1B60E3D1CB982C1DC3D3649 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

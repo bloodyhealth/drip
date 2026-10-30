@@ -28,7 +28,7 @@ MenuItem.propTypes = {
 }
 
 const text = {
-  fontFamily: Fonts.bold,
+  ...Fonts.bold,
   fontSize: Sizes.small,
   textTransform: 'uppercase',
 }

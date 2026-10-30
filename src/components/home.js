@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: Colors.purpleLight,
-    fontFamily: Fonts.bold,
+    ...Fonts.bold,
     fontSize: Sizes.huge,
     marginVertical: Spacing.small,
   },
