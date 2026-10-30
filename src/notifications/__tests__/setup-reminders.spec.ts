@@ -1,5 +1,5 @@
 import notifee from 'react-native-notify-kit'
-import i18n from '../../../i18n/i18n'
+import i18n from '@/i18n/i18n'
 import {
   advanceNoticeDaysObservable,
   periodReminderObservable,
