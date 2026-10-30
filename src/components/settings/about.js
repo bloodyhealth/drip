@@ -20,7 +20,7 @@ const AboutSection = () => {
     <AppPage title={t('title')}>
       <Segment>
         <AppText>{t('intro.text')}</AppText>
-        <Button isCTA isSmall onPress={() => Linking.openURL(links.faq.url)}>
+        <Button isCTA onPress={() => Linking.openURL(links.faq.url)}>
           {t('intro.faq')}
         </Button>
         <AppText>{t('intro.contact')}</AppText>
@@ -29,7 +29,6 @@ const AboutSection = () => {
             <Button
               key={link.url}
               isCTA
-              isSmall
               onPress={() => Linking.openURL(link.url)}
             >
               {link.text}
@@ -56,11 +55,7 @@ const AboutSection = () => {
       <Segment title={t('donate.title')}>
         <AppText>{t('donate.text')}</AppText>
         {Platform.OS !== 'ios' && (
-          <Button
-            isCTA
-            isSmall
-            onPress={() => Linking.openURL(links.donate.url)}
-          >
+          <Button isCTA onPress={() => Linking.openURL(links.donate.url)}>
             {t('donate.button')}
           </Button>
         )}

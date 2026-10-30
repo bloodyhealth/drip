@@ -82,7 +82,7 @@ const Stats = () => {
                 <StatsOverview data={statsData} />
               </View>
             </View>
-            <Button isCTA isSmall onPress={() => setIsStatsVisible(true)}>
+            <Button isCTA onPress={() => setIsStatsVisible(true)}>
               {t('showStats.button')}
             </Button>
             {isStatsVisible && (

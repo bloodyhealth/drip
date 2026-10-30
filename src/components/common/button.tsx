@@ -1,23 +1,43 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { StyleSheet, Pressable } from 'react-native'
+import React, { ComponentType, ReactNode } from 'react'
+import {
+  Pressable,
+  PressableProps,
+  StyleProp,
+  StyleSheet,
+  TextStyle,
+  ViewStyle,
+} from 'react-native'
 
-import AppIcon from './app-icon'
+import AppIconJs from './app-icon'
 import AppText from './app-text'
 
 import { Colors, Fonts, Sizes } from '../../styles'
 import { moderateScale, scale } from '../../common/scale-utils'
 
+const AppIcon = AppIconJs as ComponentType<{
+  color?: string
+  name: string
+  style?: StyleProp<TextStyle>
+}>
+
+interface ButtonProps extends Omit<PressableProps, 'children' | 'style'> {
+  children?: ReactNode
+  iconName?: string
+  isCTA?: boolean
+  isSmall?: boolean
+  style?: StyleProp<ViewStyle>
+}
+
 const Button = ({
   children,
   iconName,
   isCTA,
-  isSmall,
+  isSmall = true,
   onPress,
   testID,
   style,
   ...props
-}) => {
+}: ButtonProps) => {
   return (
     <Pressable
       onPress={onPress}
@@ -48,20 +68,6 @@ const Button = ({
       )}
     </Pressable>
   )
-}
-
-Button.propTypes = {
-  children: PropTypes.node,
-  iconName: PropTypes.string,
-  isCTA: PropTypes.bool,
-  isSmall: PropTypes.bool,
-  onPress: PropTypes.func,
-  style: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  testID: PropTypes.string,
-}
-
-Button.defaultProps = {
-  isSmall: true,
 }
 
 const styles = StyleSheet.create({
