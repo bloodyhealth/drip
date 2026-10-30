@@ -79,9 +79,7 @@ export default function ExportData({
   return (
     <Segment title={t('button')}>
       <AppText>{t('text')}</AppText>
-      <Button isCTA onPress={startExport}>
-        {t('button')}
-      </Button>
+      <Button onPress={startExport}>{t('button')}</Button>
     </Segment>
   )
 }

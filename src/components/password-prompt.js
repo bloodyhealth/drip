@@ -86,14 +86,14 @@ const PasswordPrompt = ({ enableShowApp }) => {
             placeholder={t('unlockApp.placeholder')}
           />
           <View style={styles.containerButtons}>
-            <Button
-              disabled={!isPasswordEntered}
-              isCTA={isPasswordEntered}
-              onPress={unlockApp}
-            >
+            <Button disabled={!isPasswordEntered} onPress={unlockApp}>
               {t('unlockApp.title')}
             </Button>
-            <Button style={styles.forgotButton} onPress={onConfirmDeletion}>
+            <Button
+              variant="secondary"
+              style={styles.forgotButton}
+              onPress={onConfirmDeletion}
+            >
               {t('unlockApp.forgotPassword')}
             </Button>
           </View>

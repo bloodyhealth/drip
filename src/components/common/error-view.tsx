@@ -5,13 +5,12 @@ import {
   StyleProp,
   StyleSheet,
   TextStyle,
-  ViewStyle,
 } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
 import AppPageJs from './app-page'
 import AppTextJs from './app-text'
-import ButtonJs from './button'
+import Button from './button'
 import ButtonRowJs from './button-row'
 import SegmentJs from './segment'
 
@@ -29,15 +28,6 @@ const AppPage = AppPageJs as ComponentType<{
 const AppText = AppTextJs as ComponentType<{
   children?: ReactNode
   style?: StyleProp<TextStyle>
-}>
-const Button = ButtonJs as ComponentType<{
-  children?: ReactNode
-  iconName?: string
-  isCTA?: boolean
-  isSmall?: boolean
-  onPress?: () => void
-  testID?: string
-  style?: StyleProp<ViewStyle>
 }>
 const ButtonRow = ButtonRowJs as ComponentType<{ children: ReactNode }>
 const Segment = SegmentJs as ComponentType<{
@@ -83,21 +73,13 @@ export const ErrorView = ({ error, onRetry }: Props) => {
     <AppPage title={t('errorBoundary.title')}>
       <Segment>
         <AppText>{t('errorBoundary.intro')}</AppText>
-        <Button isCTA isSmall onPress={onRetry}>
-          {t('errorBoundary.retry')}
-        </Button>
+        <Button onPress={onRetry}>{t('errorBoundary.retry')}</Button>
       </Segment>
       <Segment title={t('errorBoundary.contact.title')}>
         <AppText>{t('errorBoundary.contact.text')}</AppText>
         <ButtonRow>
-          <Button isCTA isSmall onPress={onPressEmail}>
-            {links.email.text}
-          </Button>
-          <Button
-            isCTA
-            isSmall
-            onPress={() => Linking.openURL(links.gitlabIssues.url)}
-          >
+          <Button onPress={onPressEmail}>{links.email.text}</Button>
+          <Button onPress={() => Linking.openURL(links.gitlabIssues.url)}>
             {links.gitlabIssues.text}
           </Button>
         </ButtonRow>

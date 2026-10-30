@@ -33,7 +33,7 @@ const DeletePassword = ({
   }
 
   return (
-    <Button isCTA onPress={startConfirmWithPassword}>
+    <Button onPress={startConfirmWithPassword}>
       {t('password.buttons.delete')}
     </Button>
   )

@@ -1,3 +1,5 @@
+import { ViewStyle } from 'react-native'
+
 import Colors from './colors'
 import Spacing from './spacing'
 
@@ -38,4 +40,4 @@ export default {
     marginHorizontal: Spacing.base,
     marginBottom: Spacing.base,
   },
-}
+} satisfies Record<string, ViewStyle>

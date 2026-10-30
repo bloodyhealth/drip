@@ -1,5 +1,4 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import AppText from '../common/app-text'
@@ -7,7 +6,12 @@ import Asterisk from './asterisk'
 
 import { Colors, Spacing } from '../../styles'
 
-const Footnote = ({ children, colorLabel }) => {
+interface FootnoteProps {
+  children?: ReactNode
+  color?: 'dark' | 'light'
+}
+
+const Footnote = ({ children, color = 'dark' }: FootnoteProps) => {
   if (!children) return false
 
   return (
@@ -15,21 +19,12 @@ const Footnote = ({ children, colorLabel }) => {
       <Asterisk />
       <AppText
         linkStyle={styles.link}
-        style={{ ...styles.text, color: Colors[colorLabel] }}
+        style={[styles.text, color === 'light' && styles.textLight]}
       >
         {children}
       </AppText>
     </View>
   )
-}
-
-Footnote.propTypes = {
-  children: PropTypes.node,
-  colorLabel: PropTypes.string,
-}
-
-Footnote.defaultProps = {
-  colorLabel: 'greyDark',
 }
 
 const styles = StyleSheet.create({
@@ -43,7 +38,11 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   text: {
+    color: Colors.greyDark,
     paddingLeft: Spacing.small,
+  },
+  textLight: {
+    color: Colors.greyLight,
   },
 })
 

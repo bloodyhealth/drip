@@ -14,7 +14,6 @@ const NoData = ({ navigate }) => {
     <View style={styles.container}>
       <AppText>{t('chart.noData.description')}</AppText>
       <Button
-        isCTA
         onPress={() => {
           navigate('CycleDay')
         }}

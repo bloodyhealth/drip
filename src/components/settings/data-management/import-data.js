@@ -105,9 +105,7 @@ export default function ImportData({
   return (
     <Segment title={t('button')}>
       <AppText>{t('segmentExplainer')}</AppText>
-      <Button isCTA onPress={openImportDialog}>
-        {t('button')}
-      </Button>
+      <Button onPress={openImportDialog}>{t('button')}</Button>
     </Segment>
   )
 }

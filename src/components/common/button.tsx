@@ -1,6 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { StyleSheet, Pressable } from 'react-native'
+import React, { ComponentProps, ReactNode } from 'react'
+import {
+  Pressable,
+  PressableProps,
+  StyleProp,
+  StyleSheet,
+  ViewStyle,
+} from 'react-native'
 
 import AppIcon from './app-icon'
 import AppText from './app-text'
@@ -8,25 +13,40 @@ import AppText from './app-text'
 import { Colors, Fonts, Sizes } from '../../styles'
 import { moderateScale, scale } from '../../common/scale-utils'
 
+interface ButtonProps extends Omit<PressableProps, 'children' | 'style'> {
+  children?: ReactNode
+  disabled?: boolean
+  iconName?: ComponentProps<typeof AppIcon>['name']
+  size?: 'medium' | 'large'
+  variant?: 'primary' | 'secondary'
+  style?: StyleProp<ViewStyle>
+}
+
 const Button = ({
   children,
+  disabled,
   iconName,
-  isCTA,
-  isSmall,
+  size = 'medium',
+  variant = 'primary',
   onPress,
   testID,
   style,
   ...props
-}) => {
+}: ButtonProps) => {
+  const isLarge = size === 'large'
+  const isPrimary = variant === 'primary'
+
   return (
     <Pressable
+      disabled={disabled}
       onPress={onPress}
       testID={testID}
       style={({ pressed }) => [
         styles.button,
-        isCTA ? styles.cta : styles.regular,
-        isSmall ? styles.buttonSmall : styles.buttonLarge,
+        isPrimary ? styles.primary : styles.secondary,
+        isLarge ? styles.buttonLarge : styles.buttonMedium,
         pressed && styles.pressed,
+        disabled && styles.disabled,
         style,
       ]}
       {...props}
@@ -36,8 +56,8 @@ const Button = ({
           <AppText
             style={[
               styles.buttonText,
-              isCTA ? styles.buttonTextBold : styles.buttonTextRegular,
-              isSmall ? styles.buttonTextSmall : styles.buttonTextLarge,
+              isPrimary ? styles.buttonTextPrimary : styles.buttonTextSecondary,
+              isLarge ? styles.buttonTextLarge : styles.buttonTextMedium,
               pressed && styles.pressedText,
             ]}
           >
@@ -50,20 +70,6 @@ const Button = ({
   )
 }
 
-Button.propTypes = {
-  children: PropTypes.node,
-  iconName: PropTypes.string,
-  isCTA: PropTypes.bool,
-  isSmall: PropTypes.bool,
-  onPress: PropTypes.func,
-  style: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  testID: PropTypes.string,
-}
-
-Button.defaultProps = {
-  isSmall: true,
-}
-
 const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
@@ -72,7 +78,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: scale(12),
   },
-  buttonSmall: {
+  buttonMedium: {
     borderRadius: moderateScale(20),
     paddingHorizontal: scale(20),
     paddingVertical: scale(8),
@@ -82,27 +88,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: scale(28),
     paddingVertical: scale(12),
   },
-  regular: {},
-  cta: {
+  secondary: {},
+  primary: {
     backgroundColor: Colors.orange,
   },
   pressed: {
     opacity: 0.75,
   },
+  disabled: {
+    opacity: 0.4,
+  },
   buttonText: {
     textTransform: 'uppercase',
   },
-  buttonTextSmall: {
+  buttonTextMedium: {
     fontSize: Sizes.small,
   },
   buttonTextLarge: {
     fontSize: Sizes.base,
   },
-  buttonTextBold: {
+  buttonTextPrimary: {
     color: 'white',
     ...Fonts.bold,
   },
-  buttonTextRegular: {
+  buttonTextSecondary: {
     color: Colors.greyDark,
     ...Fonts.main,
   },

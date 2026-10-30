@@ -82,10 +82,10 @@ const Home = ({ navigate, setDate }) => {
       )}
 
       {!isFertilityTrackingEnabled && <View style={styles.largePadding} />}
-      <Button isCTA isSmall={false} onPress={navigateToCycleDayView}>
+      <Button size="large" onPress={navigateToCycleDayView}>
         {t('labels.home.addDataForToday')}
       </Button>
-      {phase && <Footnote colorLabel="greyLight">{statusText}</Footnote>}
+      {phase && <Footnote color="light">{statusText}</Footnote>}
     </ScrollView>
   )
 }

@@ -49,11 +49,7 @@ const EnterNewPassword = ({ changeEncryptionAndRestart }) => {
           {t('password.changePassword.passwordsDontMatch')}
         </AppText>
       )}
-      <Button
-        isCTA={isButtonActive}
-        disabled={!isButtonActive}
-        onPress={savePassword}
-      >
+      <Button disabled={!isButtonActive} onPress={savePassword}>
         {t('password.buttons.save')}
       </Button>
     </KeyboardAvoidingView>

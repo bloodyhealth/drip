@@ -73,11 +73,17 @@ export default function AppWrapper() {
   }
 
   const showStatusBar = !isLoading && isLicenseAccepted
+  const isMenuShown = showStatusBar && !isDbEncrypted
 
   return (
     <SafeAreaProvider>
       <SafeAreaView
-        edges={['top', 'bottom', 'left', 'right']}
+        edges={[
+          ...(showStatusBar ? [] : ['top']),
+          ...(isMenuShown ? [] : ['bottom']),
+          'left',
+          'right',
+        ]}
         style={styles.container}
       >
         {showStatusBar && <AppStatusBar />}
