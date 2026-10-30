@@ -100,11 +100,11 @@ const styles = StyleSheet.create({
   },
   buttonTextBold: {
     color: 'white',
-    fontFamily: Fonts.bold,
+    ...Fonts.bold,
   },
   buttonTextRegular: {
     color: Colors.greyDark,
-    fontFamily: Fonts.main,
+    ...Fonts.main,
   },
   pressedText: {
     opacity: 0.75,

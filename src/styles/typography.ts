@@ -1,13 +1,15 @@
-import { Platform, TextStyle } from 'react-native'
+import { TextStyle } from 'react-native'
 
 import Colors from './colors'
 import Spacing from './spacing'
 import { scale } from '../common/scale-utils'
 
+const FONT_FAMILY = 'Jost'
+
 export const fonts = {
-  main: Platform.OS === 'ios' ? 'Jost-Book' : 'Jost-400-Book',
-  bold: Platform.OS === 'ios' ? 'Jost-Bold' : 'Jost-700-Bold',
-} as const
+  main: { fontFamily: FONT_FAMILY, fontWeight: '400' },
+  bold: { fontFamily: FONT_FAMILY, fontWeight: '700' },
+} as const satisfies Record<string, TextStyle>
 
 export const sizes = {
   tiny: scale(7),
@@ -21,7 +23,7 @@ export const sizes = {
 } as const
 
 const accentText = {
-  fontFamily: fonts.bold,
+  ...fonts.bold,
   textAlignVertical: 'center',
   textTransform: 'uppercase',
 } satisfies TextStyle
@@ -74,7 +76,7 @@ export default {
     color: Colors.purple,
   },
   mainText: {
-    fontFamily: fonts.main,
+    ...fonts.main,
     fontSize: sizes.base,
   },
   label: {
@@ -95,8 +97,7 @@ export default {
   },
   title: {
     alignSelf: 'center',
-    fontFamily: fonts.bold,
-    fontWeight: '700',
+    ...fonts.bold,
     fontSize: sizes.title,
     marginHorizontal: Spacing.base,
     ...title,
@@ -104,8 +105,7 @@ export default {
   titleWithoutMargin: {
     alignSelf: 'center',
     color: Colors.purple,
-    fontFamily: fonts.bold,
-    fontWeight: '700',
+    ...fonts.bold,
     fontSize: sizes.title,
   },
 } satisfies Record<string, TextStyle>

@@ -45,7 +45,7 @@ SliderLabel.propTypes = {
 
 const styles = StyleSheet.create({
   label: {
-    fontFamily: Fonts.bold,
+    ...Fonts.bold,
     position: 'absolute',
     marginTop: -1 * Sizes.base,
   },
