@@ -20,12 +20,15 @@ import {
 } from '../../local-storage'
 import { Spacing } from '../../styles'
 import { SYMPTOMS } from '../../config'
-import { useNavigation, useRoute } from '@react-navigation/native'
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { useRefreshOnFocus } from '@/navigation/use-refresh-on-focus'
+import { PageParams } from '@/navigation/types'
 
 const CycleDayOverView = () => {
-  const { setParams } = useNavigation()
-  const { params } = useRoute()
+  const { setParams } =
+    useNavigation<NativeStackNavigationProp<PageParams, 'CycleDay'>>()
+  const { params } = useRoute<RouteProp<PageParams, 'CycleDay'>>()
   const { date, isTemperatureEditView } = params
   useRefreshOnFocus()
   const cycleDay = getCycleDay(date)
@@ -69,7 +72,9 @@ const CycleDayOverView = () => {
       return symptom
     }
   })
-  const cleanSymptoms = allEnabledSymptoms.filter(Boolean)
+  const cleanSymptoms = allEnabledSymptoms.filter(
+    (symptom): symptom is string => symptom !== null
+  )
 
   return (
     <AppPage>
