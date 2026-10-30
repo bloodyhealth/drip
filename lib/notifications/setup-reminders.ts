@@ -1,5 +1,6 @@
 import { getBleedingDaysSortedByDate } from '../../db'
 import nothingChanged from '../../db/db-unchanged'
+import i18n from '../../i18n/i18n'
 import {
   advanceNoticeDaysObservable,
   periodReminderObservable,
@@ -33,6 +34,7 @@ export const refreshReminders = (): void => {
 export const setupReminders = (): (() => void) => {
   const bleedingDays = getBleedingDaysSortedByDate()
   bleedingDays.addListener(onBleedingDaysChange)
+  i18n.on('languageChanged', refreshReminders)
 
   const unsubscribers: (() => void)[] = [
     periodReminderObservable(onPeriodInputChange, false),
@@ -42,6 +44,7 @@ export const setupReminders = (): (() => void) => {
 
   return () => {
     bleedingDays.removeListener(onBleedingDaysChange)
+    i18n.off('languageChanged', refreshReminders)
     unsubscribers.forEach((unsubscribe) => unsubscribe())
   }
 }

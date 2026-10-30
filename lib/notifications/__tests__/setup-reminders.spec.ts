@@ -1,4 +1,5 @@
 import notifee from 'react-native-notify-kit'
+import i18n from '../../../i18n/i18n'
 import {
   advanceNoticeDaysObservable,
   periodReminderObservable,
@@ -96,16 +97,31 @@ describe('setupReminders', () => {
     expect(notifee.cancelNotification).toHaveBeenCalledWith('temperature')
   })
 
+  it('refreshes both reminders when the app language changes', async () => {
+    // Act
+    await i18n.changeLanguage('de-DE')
+    await flushPromises()
+
+    // Assert
+    expect(notifee.cancelNotification).toHaveBeenCalledWith('period')
+    expect(notifee.cancelNotification).toHaveBeenCalledWith('temperature')
+
+    await i18n.changeLanguage('en-US')
+  })
+
   it('stops listening after teardown', async () => {
     // Act
     teardown()
     periodReminderObservable.set({ enabled: false })
     tempReminderObservable.set({ enabled: false })
+    await i18n.changeLanguage('de-DE')
     await flushPromises()
 
     // Assert
     expect(mockRemoveListener).toHaveBeenCalledTimes(1)
     expect(notifee.cancelNotification).not.toHaveBeenCalled()
+
+    await i18n.changeLanguage('en-US')
   })
 })
 
