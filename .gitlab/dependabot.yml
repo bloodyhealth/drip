@@ -4,11 +4,48 @@ updates:
     directory: /
     schedule:
       interval: weekly
+      day: monday
     open-pull-requests-limit: 3
     ignore:
-      - dependency-name: '*'
-        update-types: ['version-update:semver-patch']
       - dependency-name: 'realm'
       - dependency-name: 'react'
-      - dependency-name: 'react-native'
       - dependency-name: '@babel/core'
+      - dependency-name: 'react-native'
+        update-types:
+          ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: '@react-native/*'
+        update-types:
+          ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: '@react-native-community/cli*'
+        update-types:
+          ['version-update:semver-major', 'version-update:semver-minor']
+    groups:
+      react-native-core:
+        patterns:
+          - 'react-native'
+          - '@react-native/*'
+          - '@react-native-community/cli*'
+        update-types: ['patch']
+      react-native-libs:
+        patterns:
+          - 'react-native-*'
+          - '@react-native-*/*'
+          - '*/react-native-*'
+        exclude-patterns:
+          - 'react-native-version'
+        update-types: ['minor', 'patch']
+      i18n:
+        patterns: ['i18next', 'react-i18next']
+        update-types: ['minor', 'patch']
+      testing:
+        patterns:
+          ['jest', 'jest-*', '@jest/*', '@testing-library/*', '@types/jest']
+      linting:
+        patterns: ['eslint', 'eslint-*', 'prettier', 'pretty-quick', 'husky']
+        update-types: ['minor', 'patch']
+      build-tools:
+        patterns: ['@babel/*', 'babel-*', 'typescript', '@types/*']
+        update-types: ['minor', 'patch']
+      misc:
+        patterns: ['*']
+        update-types: ['minor', 'patch']
