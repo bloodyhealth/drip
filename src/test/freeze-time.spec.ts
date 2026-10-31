@@ -1,5 +1,4 @@
 import { LocalDateTime } from '@js-joda/core'
-import moment from 'moment'
 import { freezeTime, unfreezeTime } from './freeze-time'
 
 describe('freezeTime', () => {
@@ -7,7 +6,7 @@ describe('freezeTime', () => {
     unfreezeTime()
   })
 
-  it('controls the current time of moment and js-joda', () => {
+  it('controls the current time of Date and js-joda', () => {
     // Arrange
     const frozen = '2025-01-15T09:00:00+01:00'
 
@@ -15,7 +14,7 @@ describe('freezeTime', () => {
     freezeTime(frozen)
 
     // Assert
-    expect(moment().valueOf()).toBe(new Date(frozen).getTime())
+    expect(Date.now()).toBe(new Date(frozen).getTime())
     expect(LocalDateTime.now().toString()).toBe('2025-01-15T09:00')
   })
 })

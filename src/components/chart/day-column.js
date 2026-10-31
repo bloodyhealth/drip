@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { TouchableOpacity } from 'react-native'
-import moment from 'moment'
+import { DayOfWeek, LocalDate } from '@js-joda/core'
 
-import { getCycleDay } from '../../db'
+import { getCycleDay } from '@/db'
 
 import SymptomCell from './symptom-cell'
 import TemperatureColumn from './temperature-column'
@@ -27,8 +27,9 @@ const DayColumn = ({
   symptomRowSymptoms,
   xAxisHeight,
 }) => {
-  const momentDate = moment(dateString)
-  const isWeekend = momentDate.day() === 0 || momentDate.day() === 6
+  const dayOfWeek = LocalDate.parse(dateString).dayOfWeek()
+  const isWeekend =
+    dayOfWeek === DayOfWeek.SATURDAY || dayOfWeek === DayOfWeek.SUNDAY
   const cycleDayData = getCycleDay(dateString)
   let data = {}
 

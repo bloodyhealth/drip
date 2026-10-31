@@ -47,9 +47,6 @@ importers:
       jshashes:
         specifier: ^1.0.8
         version: 1.0.8
-      moment:
-        specifier: ^2.29.4
-        version: 2.30.1
       object-path:
         specifier: ^0.11.4
         version: 0.11.8
@@ -8724,7 +8721,8 @@ snapshots:
 
   mkdirp@1.0.4: {}
 
-  moment@2.30.1: {}
+  moment@2.30.1:
+    optional: true
 
   mri@1.2.0: {}
 

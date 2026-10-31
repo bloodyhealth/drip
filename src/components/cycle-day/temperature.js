@@ -3,7 +3,7 @@ import { Platform, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { Keyboard } from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker'
-import moment from 'moment'
+import { DateTimeFormatter, LocalTime } from '@js-joda/core'
 
 import AppText from '../common/app-text'
 import AppTextInput from '../common/app-text-input'
@@ -45,7 +45,9 @@ const Temperature = ({ data, date, save }) => {
   }
 
   function setTime(jsDate) {
-    const time = moment(jsDate).format('HH:mm')
+    const time = LocalTime.of(jsDate.getHours(), jsDate.getMinutes()).format(
+      DateTimeFormatter.ofPattern('HH:mm')
+    )
 
     save(time, 'time')
     setIsTimePickerVisible(false)

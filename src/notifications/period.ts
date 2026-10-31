@@ -1,5 +1,5 @@
+import { LocalDate, ZonedDateTime, ZoneId } from '@js-joda/core'
 import { AndroidImportance } from 'react-native-notify-kit'
-import moment from 'moment'
 import i18n from '@/i18n/i18n'
 import {
   advanceNoticeDaysObservable,
@@ -40,14 +40,15 @@ export const updatePeriodReminder = async (): Promise<void> => {
   if (!nextPrediction) return
 
   const advanceNoticeDays: number = advanceNoticeDaysObservable.value
-  const reminderDate = moment(nextPrediction[0], 'YYYY-MM-DD')
-    .subtract(advanceNoticeDays, 'days')
-    .hours(REMINDER_HOUR)
-  if (!reminderDate.isAfter()) return
+  const reminderDate = LocalDate.parse(nextPrediction[0])
+    .minusDays(advanceNoticeDays)
+    .atTime(REMINDER_HOUR, 0)
+    .atZone(ZoneId.systemDefault())
+  if (!reminderDate.isAfter(ZonedDateTime.now())) return
 
   await scheduleReminder(
     'period',
     getContent(advanceNoticeDays, nextPrediction.length),
-    reminderDate.valueOf()
+    reminderDate.toInstant().toEpochMilli()
   )
 }
