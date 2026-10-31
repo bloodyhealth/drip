@@ -5,6 +5,7 @@ import {
   periodReminderObservable,
 } from '@/local-storage'
 import { updatePeriodReminder } from '@/notifications/period'
+import { freezeTime, unfreezeTime } from '@/test/freeze-time'
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   getItem: jest.fn(),
@@ -24,13 +25,13 @@ const mockedNotifee = notifee as jest.Mocked<typeof notifee>
 
 const scheduledCalls = () => mockedNotifee.createTriggerNotification.mock.calls
 
+const toTimestamp = (isoDateTime: string): number =>
+  new Date(isoDateTime).getTime()
+
 describe('updatePeriodReminder', () => {
   beforeEach(() => {
     jest.clearAllMocks()
-    // 2025-01-01 09:00 Europe/Berlin
-    jest
-      .spyOn(Date, 'now')
-      .mockReturnValue(new Date('2025-01-01T08:00:00.000Z').getTime())
+    freezeTime('2025-01-01T09:00:00+01:00')
 
     advanceNoticeDaysObservable.set(3)
     periodReminderObservable.set({ enabled: true })
@@ -39,7 +40,7 @@ describe('updatePeriodReminder', () => {
   })
 
   afterEach(() => {
-    jest.restoreAllMocks()
+    unfreezeTime()
   })
 
   it('cancels the existing reminder before scheduling a new one', async () => {
@@ -124,6 +125,72 @@ describe('updatePeriodReminder', () => {
     // Assert
     const [, trigger] = scheduledCalls()[0]
     expect(trigger).toMatchObject({ timestamp: 1736485200000 }) // 2025-01-10 06:00 Europe/Berlin
+  })
+
+  it.each([
+    {
+      now: '2025-01-07T05:59:59.999+01:00',
+      shouldSchedule: true,
+      expected: 'schedules when the reminder is one millisecond ahead',
+    },
+    {
+      now: '2025-01-07T06:00:00+01:00',
+      shouldSchedule: false,
+      expected: 'does not schedule when the reminder is exactly now',
+    },
+  ])('$expected', async ({ now, shouldSchedule }) => {
+    // Arrange
+    freezeTime(now)
+    mockGetPredictedMenses.mockReturnValue([['2025-01-10']])
+
+    // Act
+    await updatePeriodReminder()
+
+    // Assert
+    expect(scheduledCalls()).toHaveLength(shouldSchedule ? 1 : 0)
+  })
+
+  it.each([
+    {
+      predictedStart: '2025-03-02',
+      expectedDateTime: '2025-02-27T06:00:00+01:00',
+      expected: 'goes back across a month boundary',
+    },
+    {
+      predictedStart: '2028-03-02',
+      expectedDateTime: '2028-02-28T06:00:00+01:00',
+      expected: 'goes back across a leap day',
+    },
+    {
+      predictedStart: '2026-01-02',
+      expectedDateTime: '2025-12-30T06:00:00+01:00',
+      expected: 'goes back across a year boundary',
+    },
+    {
+      predictedStart: '2025-04-02',
+      expectedDateTime: '2025-03-30T06:00:00+02:00',
+      expected: 'uses 6 am local time on the day summer time starts',
+    },
+    {
+      predictedStart: '2025-10-29',
+      expectedDateTime: '2025-10-26T06:00:00+01:00',
+      expected: 'uses 6 am local time on the day summer time ends',
+    },
+    {
+      predictedStart: '2025-04-05',
+      expectedDateTime: '2025-04-02T06:00:00+02:00',
+      expected: 'uses the summer offset when scheduled from winter time',
+    },
+  ])('$expected', async ({ predictedStart, expectedDateTime }) => {
+    // Arrange
+    mockGetPredictedMenses.mockReturnValue([[predictedStart]])
+
+    // Act
+    await updatePeriodReminder()
+
+    // Assert
+    const [, trigger] = scheduledCalls()[0]
+    expect(trigger).toMatchObject({ timestamp: toTimestamp(expectedDateTime) })
   })
 
   it('uses translated texts for body and channel name', async () => {
