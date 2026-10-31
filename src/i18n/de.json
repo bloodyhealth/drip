@@ -299,7 +299,7 @@
   "sideMenu.settings.reminders.temperatureReminder.channel": "Temperatur",
   "sideMenu.settings.reminders.temperatureReminder.noTimeSet": "Zeitpunkt für eine tägliche Erinnerung zum Temperaturmessen festlegen.",
   "sideMenu.settings.reminders.temperatureReminder.notification": "Miss deine Basaltemperatur",
-  "sideMenu.settings.reminders.temperatureReminder.timeSet": "Tägliche Erinnerung um {{time}}",
+  "sideMenu.settings.reminders.temperatureReminder.timeSet": "Tägliche Erinnerung um {{time}} Uhr.",
   "sideMenu.settings.reminders.temperatureReminder.title": "Erinnerung an Temperaturmessung",
   "sideMenu.settings.title": "Einstellungen",
   "stats.details.bleedingDays": "Blutung",
