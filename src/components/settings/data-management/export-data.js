@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
+import { LocalDate } from '@js-joda/core'
 import { getCycleDaysSortedByDate, mapRealmObjToJsObj } from '../../../db'
 import getDataAsCsvDataUri from '../../../lib/import-export/export-to-csv'
 import alertError from '../common/alert-error'
@@ -57,7 +57,7 @@ export default function ExportData({
 
   async function shareData(data) {
     try {
-      const dateString = moment().format('YYYY-MM-DD')
+      const dateString = LocalDate.now().toString()
       const fileName = `${EXPORT_FILE_NAME}-${dateString}.csv`
       const path = `${fs.TemporaryDirectoryPath}/${fileName}`
 

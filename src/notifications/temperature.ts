@@ -1,5 +1,5 @@
+import { LocalDate, ZonedDateTime, ZoneId } from '@js-joda/core'
 import { AndroidImportance, RepeatFrequency } from 'react-native-notify-kit'
-import moment from 'moment'
 import i18n from '@/i18n/i18n'
 import {
   cancelReminder,
@@ -17,11 +17,13 @@ const getContent = (): ReminderContent => ({
 
 const getNextTimestamp = (time: string): number => {
   const [hours, minutes] = time.split(':').map(Number)
-  const reminderDate = moment().hours(hours).minutes(minutes).seconds(0)
-
-  if (reminderDate.isBefore(moment())) reminderDate.add(1, 'd')
-
-  return reminderDate.valueOf()
+  const today = LocalDate.now()
+    .atTime(hours, minutes)
+    .atZone(ZoneId.systemDefault())
+  const reminderDate = today.isBefore(ZonedDateTime.now())
+    ? today.plusDays(1)
+    : today
+  return reminderDate.toInstant().toEpochMilli()
 }
 
 export const updateTemperatureReminder = async (
