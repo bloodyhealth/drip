@@ -1,4 +1,4 @@
-import { PixelRatio } from 'react-native'
+import { Insets, PixelRatio } from 'react-native'
 import { scale } from './common/scale-utils'
 
 export const SYMPTOMS = [
@@ -11,7 +11,9 @@ export const SYMPTOMS = [
   'pain',
   'mood',
   'note',
-]
+] as const
+
+export type Symptom = (typeof SYMPTOMS)[number]
 
 export const CHART_COLUMN_WIDTH = 32
 export const CHART_COLUMN_MIDDLE = CHART_COLUMN_WIDTH / 2
@@ -22,7 +24,7 @@ export const CHART_GRID_LINE_HORIZONTAL_WIDTH =
 export const CHART_ICON_SIZE = scale(20)
 export const CHART_STROKE_WIDTH = scale(1.5)
 export const CHART_SYMPTOM_HEIGHT_RATIO = 0.06
-export const CHART_XAXIS_HEIGHT_RATIO = 0.1
+export const CHART_X_AXIS_HEIGHT_RATIO = 0.1
 export const CHART_YAXIS_WIDTH = scale(32)
 export const CHART_TICK_WIDTH = scale(44)
 
@@ -37,7 +39,7 @@ export const ADVANCE_PERIOD_NOTICE_DAYS_MIN = 1
 export const ADVANCE_PERIOD_NOTICE_DAYS_MAX = 7
 export const ADVANCE_PERIOD_NOTICE_DAYS_INIT_VALUE = 3
 
-export const HIT_SLOP = {
+export const HIT_SLOP: Insets = {
   top: scale(20),
   bottom: scale(20),
   left: scale(20),

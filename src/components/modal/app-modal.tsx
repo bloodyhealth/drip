@@ -4,48 +4,67 @@ import {
   Pressable,
   StyleProp,
   StyleSheet,
-  TextStyle,
   View,
   ViewStyle,
 } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useTranslation } from 'react-i18next'
 
-import AppTextJs from './app-text'
-import CloseIconJs from './close-icon'
+import { AppText } from '@/components/common/app-text'
+import CloseIconJs from '@/components/common/close-icon'
+import { IconButton } from '@/components/button/icon-button'
 
+import { HIT_SLOP } from '@/config'
 import { Sizes, Spacing, Typography } from '../../styles'
 
 const TITLE_LINE_HEIGHT = Math.round(Sizes.subtitle * 1.3)
 
 interface AppModalProps {
   children?: ReactNode
-  headerLeft?: ReactNode
   onClose: () => void
-  onRequestClose?: () => void
+  onBack?: () => void
+  onHardwareBackPress?: () => void
+  onInfo?: () => void
   title?: string
-  titleAccessory?: ReactNode
 }
 
 export const AppModal = ({
   children,
-  headerLeft,
+  onBack,
   onClose,
-  onRequestClose = onClose,
+  onHardwareBackPress = onClose,
+  onInfo,
   title,
-  titleAccessory,
 }: AppModalProps) => {
+  const { t } = useTranslation()
   const { top } = useSafeAreaInsets()
 
   return (
-    <Modal onRequestClose={onRequestClose} transparent={true} visible={true}>
+    <Modal onRequestClose={onHardwareBackPress} transparent visible>
       <View style={[styles.backdrop, { paddingTop: top + Spacing.base }]}>
         <View style={styles.modalWindow}>
           <View style={styles.headerContainer}>
-            {headerLeft && <View style={styles.headerLeft}>{headerLeft}</View>}
+            {onBack && (
+              <View style={styles.backButton}>
+                <IconButton
+                  accessibilityLabel={t('modalWithInfo.back')}
+                  name="chevron-left"
+                  onPress={onBack}
+                />
+              </View>
+            )}
             <View style={styles.titleRow}>
               {title && <AppText style={styles.title}>{title}</AppText>}
-              {titleAccessory && (
-                <View style={styles.titleAccessory}>{titleAccessory}</View>
+              {onInfo && (
+                <View style={styles.infoButton}>
+                  <IconButton
+                    accessibilityLabel={t('modalWithInfo.showInfo')}
+                    hitSlop={{ ...HIT_SLOP, right: 0 }}
+                    name="info"
+                    onPress={onInfo}
+                    variant="outlined"
+                  />
+                </View>
               )}
             </View>
             <CloseIcon onClose={onClose} style={styles.closeIcon} />
@@ -58,16 +77,18 @@ export const AppModal = ({
   )
 }
 
-const AppText = AppTextJs as ComponentType<{
-  children?: ReactNode
-  style?: StyleProp<TextStyle>
-}>
 const CloseIcon = CloseIconJs as ComponentType<{
   onClose: () => void
   style?: StyleProp<ViewStyle>
 }>
 
 const styles = StyleSheet.create({
+  backButton: {
+    height: TITLE_LINE_HEIGHT,
+    justifyContent: 'center',
+    marginRight: 'auto',
+    paddingRight: Spacing.base,
+  },
   backdrop: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     flex: 1,
@@ -85,11 +106,10 @@ const styles = StyleSheet.create({
     paddingTop: Spacing.base,
     paddingHorizontal: Spacing.base,
   },
-  headerLeft: {
+  infoButton: {
     height: TITLE_LINE_HEIGHT,
     justifyContent: 'center',
-    marginRight: 'auto',
-    paddingRight: Spacing.base,
+    marginLeft: Spacing.small,
   },
   modalWindow: {
     backgroundColor: 'white',
@@ -106,11 +126,6 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     lineHeight: TITLE_LINE_HEIGHT,
     marginVertical: 0,
-  },
-  titleAccessory: {
-    height: TITLE_LINE_HEIGHT,
-    justifyContent: 'center',
-    marginLeft: Spacing.small,
   },
   titleRow: {
     alignItems: 'flex-start',

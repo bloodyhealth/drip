@@ -1,38 +1,72 @@
 import { ChronoUnit, LocalDate, LocalTime } from '@js-joda/core'
+import { TFunction } from 'i18next'
 
-import {
-  getPreviousTemperatureForDate,
-  saveSymptom,
-  mapRealmObjToJsObj,
-} from '../../db'
-import { scaleObservable } from '../../local-storage'
+import { saveSymptom, mapRealmObjToJsObj } from '@/db'
+import { scaleObservable } from '@/local-storage'
 
 import { getOptions, getOptionsNumeric, SYMPTOMS } from './labels'
-import { TEMP_MAX, TEMP_MIN } from '../../config'
+import { Symptom, TEMP_MAX, TEMP_MIN } from '@/config'
 import i18n from '../../i18n/i18n'
 
 import computeNfpValue from '../../lib/nfp-mucus'
 
+export interface SymptomData {
+  exclude?: boolean
+  note?: string | null
+  other?: boolean | null
+  value?: unknown
+  [key: string]: unknown
+}
+
+export interface TabOption {
+  label: string
+  value: number
+}
+
+export interface TabGroup {
+  key: string
+  options: TabOption[]
+  title: string
+}
+
+export interface BoxGroup {
+  key: string
+  options: Record<string, string>
+  title: string
+}
+
+export interface SymptomConfig {
+  excludeText: string | null
+  note: string | null
+  selectBoxGroups: BoxGroup[] | null
+  selectTabGroups: TabGroup[] | null
+}
+
+type SaveSymptomData = (
+  data: SymptomData,
+  date: string,
+  shouldDeleteData: boolean
+) => void
+
+type GetSymptomLabel = (data: SymptomData) => string | null | undefined
+
 const minutes = ChronoUnit.MINUTES
 
-const isNumber = (value) => typeof value === 'number'
-export const shouldShow = (value) => value !== null
+const isNumber = (value: unknown): value is number => typeof value === 'number'
+export const shouldShow = (value: unknown) => value !== null
 
-export const formatTemperature = (temperature) =>
+export const formatTemperature = (temperature: number | null | undefined) =>
   !temperature
     ? temperature
     : Number.parseFloat(temperature.toString()).toFixed(2)
 
 //maximum of precision digits after decimal point, but no x.0
-export const formatDecimal = (num, precision) =>
-  +parseFloat(Number.parseFloat(num).toFixed(precision))
+export const formatDecimal = (num: number | string, precision: number) =>
+  +parseFloat(Number.parseFloat(String(num)).toFixed(precision))
 
-export const getPreviousTemperature = (date) => {
-  const previousTemperature = getPreviousTemperatureForDate(date)
-  return formatTemperature(previousTemperature)
-}
-
-export const getTemperatureOutOfRangeMessage = (temperature) => {
+export const getTemperatureOutOfRangeMessage = (
+  temperature: string | null | undefined
+) => {
   if (!temperature) return null
 
   const value = Number(temperature)
@@ -45,7 +79,7 @@ export const getTemperatureOutOfRangeMessage = (temperature) => {
     : ''
 }
 
-export const blank = {
+export const blank: Record<Symptom, SymptomData> = {
   bleeding: {
     exclude: false,
     value: null,
@@ -114,7 +148,9 @@ export const blank = {
   },
 }
 
-export const getSymptomPage = (t) => ({
+export const getSymptomPage = (
+  t: TFunction
+): Record<Symptom, SymptomConfig> => ({
   bleeding: {
     excludeText: t('cycleDay.bleeding.exclude'),
     note: null,
@@ -233,7 +269,7 @@ export const getSymptomPage = (t) => ({
   },
 })
 
-export const save = {
+export const save: Record<Symptom, SaveSymptomData> = {
   bleeding: (data, date, shouldDeleteData) => {
     const { exclude, value } = data
     const isDataEntered = isNumber(value)
@@ -310,7 +346,12 @@ export const save = {
   },
 }
 
-const saveBoxSymptom = (data, date, shouldDeleteData, symptom) => {
+const saveBoxSymptom = (
+  data: SymptomData,
+  date: string,
+  shouldDeleteData: boolean,
+  symptom: Symptom
+) => {
   const isDataEntered = Object.keys(data).some((key) => data[key] !== null)
   const valuesToSave = shouldDeleteData || !isDataEntered ? null : data
 
@@ -323,14 +364,17 @@ const saveBoxSymptom = (data, date, shouldDeleteData, symptom) => {
  * @param {*} categories Allow to to look for translations in different categories, e.g. `sex.activity` and `sex.contraceptives`
  * @returns Comma-separated labels
  */
-const getLabelWithNote = (symptomData, categories) => {
+const getLabelWithNote = (
+  symptomData: SymptomData | null,
+  categories: [string, string][]
+) => {
   const relevantSymptoms = symptomData
     ? Object.keys(symptomData).filter((symptom) =>
         Boolean(symptomData[symptom])
       )
     : []
 
-  const labels = relevantSymptoms.reduce((labels, symptom) => {
+  const labels = relevantSymptoms.reduce<string[]>((labels, symptom) => {
     if (symptom === 'note') {
       return labels
     }
@@ -341,7 +385,7 @@ const getLabelWithNote = (symptomData, categories) => {
     const label = i18n.t(translationKeys)
 
     if (symptom === 'other') {
-      const noteLabel = symptomData.note ? ` (${symptomData.note})` : ''
+      const noteLabel = symptomData?.note ? ` (${symptomData.note})` : ''
 
       return [...labels, label.concat(noteLabel)]
     }
@@ -355,7 +399,7 @@ const getLabelWithNote = (symptomData, categories) => {
   return labels.join(', ')
 }
 
-const label = {
+const label: Record<Symptom, GetSymptomLabel> = {
   bleeding: ({ value, exclude }) => {
     if (isNumber(value)) {
       const symptom = SYMPTOMS.bleeding.heaviness[value]
@@ -378,13 +422,13 @@ const label = {
     }
   },
   mucus: (mucus) => {
-    const filledCategories = ['feeling', 'texture'].filter((c) =>
+    const filledCategories = (['feeling', 'texture'] as const).filter((c) =>
       isNumber(mucus[c])
     )
     let label = filledCategories
       .map((category) => {
         const mucusSymptoms = SYMPTOMS.mucus[category]
-        const symptomValue = mucus[category]
+        const symptomValue = mucus[category] as number
         const symptom = mucusSymptoms[symptomValue]
         return (
           i18n.t(`cycleDay.mucus.${category}.title`) +
@@ -403,13 +447,13 @@ const label = {
     return label
   },
   cervix: (cervix) => {
-    const filledCategories = ['opening', 'firmness', 'position'].filter((c) =>
-      isNumber(cervix[c])
-    )
+    const filledCategories = (
+      ['opening', 'firmness', 'position'] as const
+    ).filter((c) => isNumber(cervix[c]))
     let label = filledCategories
       .map((category) => {
         const cervixSymptoms = SYMPTOMS.cervix[category]
-        const symptomValue = cervix[category]
+        const symptomValue = cervix[category] as number
         const symptom = cervixSymptoms[symptomValue]
         return (
           i18n.t(`cycleDay.cervix.${category}.title`) +
@@ -423,7 +467,7 @@ const label = {
 
     return label
   },
-  note: (note) => note.value,
+  note: (note) => note.value as string | null,
   desire: ({ value }) => {
     if (isNumber(value)) {
       const intensitySymptoms = SYMPTOMS.desire.intensity
@@ -450,18 +494,18 @@ const label = {
   },
 }
 
-export const getData = (symptom, symptomData) => {
+export const getData = (symptom: Symptom, symptomData: SymptomData | null) => {
   return symptomData && label[symptom](symptomData)
 }
 
-export const prevDate = (dateString) => {
+export const prevDate = (dateString: string) => {
   return LocalDate.parse(dateString).minusDays(1).toString()
 }
 
-export const nextDate = (dateString) => {
+export const nextDate = (dateString: string) => {
   return LocalDate.parse(dateString).plusDays(1).toString()
 }
 
-export const isDateInFuture = (dateString) => {
+export const isDateInFuture = (dateString: string) => {
   return LocalDate.now().isBefore(LocalDate.parse(dateString))
 }
