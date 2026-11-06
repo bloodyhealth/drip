@@ -10,8 +10,8 @@ import {
 import AppIcon from './app-icon'
 import { AppText } from './app-text'
 
-import { Colors, Fonts, Sizes } from '../../styles'
-import { moderateScale, scale } from '../../common/scale-utils'
+import { Colors, Fonts, Sizes } from '@/styles'
+import { moderateScale, scale } from '@/common/scale-utils'
 
 interface ButtonProps extends Omit<PressableProps, 'children' | 'style'> {
   children?: ReactNode
@@ -33,20 +33,21 @@ const Button = ({
   style,
   ...props
 }: ButtonProps) => {
-  const isLarge = size === 'large'
-  const isPrimary = variant === 'primary'
+  const stylesForVariant = stylesByVariant[variant]
+  const stylesForSize = stylesBySize[size]
 
   return (
     <Pressable
+      accessibilityRole="button"
       disabled={disabled}
       onPress={onPress}
       testID={testID}
       style={({ pressed }) => [
-        styles.button,
-        isPrimary ? styles.primary : styles.secondary,
-        isLarge ? styles.buttonLarge : styles.buttonMedium,
-        pressed && styles.pressed,
-        disabled && styles.disabled,
+        baseStyles.button,
+        stylesForVariant.button,
+        stylesForSize.button,
+        pressed && baseStyles.buttonPressed,
+        disabled && stylesForVariant.buttonDisabled,
         style,
       ]}
       {...props}
@@ -55,10 +56,10 @@ const Button = ({
         <>
           <AppText
             style={[
-              styles.buttonText,
-              isPrimary ? styles.buttonTextPrimary : styles.buttonTextSecondary,
-              isLarge ? styles.buttonTextLarge : styles.buttonTextMedium,
-              pressed && styles.pressedText,
+              stylesForVariant.label,
+              stylesForSize.label,
+              pressed && baseStyles.labelPressed,
+              disabled && stylesForVariant.labelDisabled,
             ]}
           >
             {children}
@@ -70,7 +71,7 @@ const Button = ({
   )
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   button: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -78,46 +79,69 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: scale(12),
   },
-  buttonMedium: {
-    borderRadius: moderateScale(20),
-    paddingHorizontal: scale(20),
-    paddingVertical: scale(8),
-  },
-  buttonLarge: {
-    borderRadius: moderateScale(25),
-    paddingHorizontal: scale(28),
-    paddingVertical: scale(12),
-  },
-  secondary: {},
-  primary: {
-    backgroundColor: Colors.orange,
-  },
-  pressed: {
+  buttonPressed: {
     opacity: 0.75,
   },
-  disabled: {
-    opacity: 0.4,
-  },
-  buttonText: {
-    textTransform: 'uppercase',
-  },
-  buttonTextMedium: {
-    fontSize: Sizes.small,
-  },
-  buttonTextLarge: {
-    fontSize: Sizes.base,
-  },
-  buttonTextPrimary: {
-    color: 'white',
-    ...Fonts.bold,
-  },
-  buttonTextSecondary: {
-    color: Colors.greyDark,
-    ...Fonts.main,
-  },
-  pressedText: {
+  labelPressed: {
     opacity: 0.75,
   },
 })
+
+const stylesByVariant = {
+  primary: StyleSheet.create({
+    button: {
+      backgroundColor: Colors.orange,
+    },
+    buttonDisabled: {
+      backgroundColor: Colors.greyLight,
+    },
+    label: {
+      color: Colors.white,
+      ...Fonts.bold,
+    },
+    labelDisabled: {
+      color: Colors.greyDark,
+    },
+  }),
+  secondary: StyleSheet.create({
+    button: {
+      borderColor: Colors.orange,
+      borderWidth: 1,
+    },
+    buttonDisabled: {
+      borderColor: Colors.greyLight,
+    },
+    label: {
+      color: Colors.orange,
+      ...Fonts.main,
+    },
+    labelDisabled: {
+      color: Colors.grey,
+    },
+  }),
+}
+
+const stylesBySize = {
+  medium: StyleSheet.create({
+    button: {
+      borderRadius: moderateScale(20),
+      paddingHorizontal: scale(20),
+      paddingVertical: scale(8),
+    },
+    label: {
+      fontSize: Sizes.small,
+    },
+  }),
+  large: StyleSheet.create({
+    button: {
+      borderRadius: moderateScale(25),
+      paddingHorizontal: scale(28),
+      paddingVertical: scale(12),
+    },
+    label: {
+      fontSize: Sizes.base,
+    },
+  }),
+}
 
 export default Button

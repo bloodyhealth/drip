@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import { Alert, KeyboardAvoidingView, StyleSheet, View } from 'react-native'
 import { SHA512 } from 'jshashes'
 
-import AppPage from './common/app-page'
-import AppTextInput from './common/app-text-input'
+import AppPage from '@/components/common/app-page'
+import AppTextInput from '@/components/common/app-text-input'
 import Button from './common/button'
 import Header from './header'
 
-import { saveEncryptionFlag } from '../local-storage'
+import { saveEncryptionFlag } from '@/local-storage'
 import { deleteDbAndOpenNew, openDb } from '../db'
-import { Spacing } from '../styles'
+import { Spacing } from '@/styles'
 import { useTranslation } from 'react-i18next'
 
 const PasswordPrompt = ({ enableShowApp }) => {
@@ -86,15 +86,15 @@ const PasswordPrompt = ({ enableShowApp }) => {
             placeholder={t('unlockApp.placeholder')}
           />
           <View style={styles.containerButtons}>
-            <Button disabled={!isPasswordEntered} onPress={unlockApp}>
-              {t('unlockApp.title')}
-            </Button>
             <Button
               variant="secondary"
               style={styles.forgotButton}
               onPress={onConfirmDeletion}
             >
               {t('unlockApp.forgotPassword')}
+            </Button>
+            <Button disabled={!isPasswordEntered} onPress={unlockApp}>
+              {t('unlockApp.title')}
             </Button>
           </View>
         </KeyboardAvoidingView>
@@ -114,12 +114,13 @@ const styles = StyleSheet.create({
     marginHorizontal: Spacing.base,
   },
   containerButtons: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     marginTop: Spacing.base,
     rowGap: Spacing.tiny,
     alignItems: 'flex-start',
-  },
-  forgotButton: {
-    width: '100%',
   },
 })
 
