@@ -1,15 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import { AppText } from '../common/app-text'
 
-export const LearnMore = ({ symptom }) => {
+import { AppText } from '@/components/common/app-text'
+
+import { Symptom } from '@/config'
+
+interface LearnMoreProps {
+  symptom: Symptom
+}
+
+export const LearnMore = ({ symptom }: LearnMoreProps) => {
   const { t } = useTranslation()
-  const nfpKey = ['bleeding', 'temperature', 'mucus', 'cervix'].includes(
-    symptom
-  )
+  const nfpKey = NFP_SYMPTOMS.includes(symptom)
     ? 'nfpThinkForYourselfReminder'
     : 'noNfpSymptom'
+
   return (
     <AppText>
       {t(`cycleDay.symptomEditModal.learnMore.symptoms.${symptom}.description`)}
@@ -19,6 +24,4 @@ export const LearnMore = ({ symptom }) => {
   )
 }
 
-LearnMore.propTypes = {
-  symptom: PropTypes.string.isRequired,
-}
+const NFP_SYMPTOMS: Symptom[] = ['bleeding', 'temperature', 'mucus', 'cervix']
