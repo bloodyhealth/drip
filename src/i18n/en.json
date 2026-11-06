@@ -140,7 +140,7 @@
   "errorBoundary.retry": "Try again",
   "errorBoundary.title": "Something went wrong",
   "labels.bleedingPrediction.noPrediction": "As soon as you have tracked 3 menstrual cycles, drip will make predictions for the next ones.",
-  "labels.home.addDataForToday": "add data for today",
+  "labels.home.addDataForToday": "Add data for today",
   "labels.home.cycleDay": " day of your cycle",
   "labels.home.cyclePhase": " cycle phase - ",
   "links.donate": "Donate here",
