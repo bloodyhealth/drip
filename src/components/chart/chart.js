@@ -31,7 +31,7 @@ import {
   CHART_COLUMN_WIDTH,
   CHART_GRID_LINE_HORIZONTAL_WIDTH,
   CHART_SYMPTOM_HEIGHT_RATIO,
-  CHART_XAXIS_HEIGHT_RATIO,
+  CHART_X_AXIS_HEIGHT_RATIO,
 } from '../../config'
 import { Spacing } from '../../styles'
 
@@ -95,7 +95,7 @@ const CycleChart = ({ navigate, setDate }) => {
   const { width, height } = Dimensions.get('window')
   const numberOfColumnsToRender = Math.round(width / CHART_COLUMN_WIDTH)
 
-  const xAxisHeight = height * 0.7 * CHART_XAXIS_HEIGHT_RATIO
+  const xAxisHeight = height * 0.7 * CHART_X_AXIS_HEIGHT_RATIO
   const remainingHeight = height * 0.7 - xAxisHeight
   const symptomHeight = PixelRatio.roundToNearestPixel(
     remainingHeight * CHART_SYMPTOM_HEIGHT_RATIO
