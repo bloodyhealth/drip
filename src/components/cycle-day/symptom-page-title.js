@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
 import AppIcon from '../common/app-icon'
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 
 import cycleModule from '../../lib/cycle'
 import { dateToTitle } from '../helpers/format-date'

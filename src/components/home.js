@@ -2,7 +2,7 @@ import React from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 
-import AppText from './common/app-text'
+import { AppText } from './common/app-text'
 import Asterisk from './common/asterisk'
 import Button from './common/button'
 import Footnote from './common/footnote'

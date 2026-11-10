@@ -3,7 +3,7 @@ import { Modal, Pressable, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-import AppText from './app-text'
+import { AppText } from './app-text'
 import CloseIcon from './close-icon'
 
 import { Fonts, Spacing, Typography } from '../../styles'

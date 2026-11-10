@@ -10,10 +10,10 @@ import {
 
 import AppModal from '../common/app-modal'
 import AppSwitch from '../common/app-switch'
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 import AppTextInput from '../common/app-text-input'
 import Button from '../common/button'
-import Segment from '../common/segment'
+import { Segment } from '../common/segment'
 import SelectBoxGroup from './select-box-group'
 import SelectTabGroup from './select-tab-group'
 import Temperature from './temperature'
@@ -22,7 +22,7 @@ import { blank, getSymptomPage, save, shouldShow } from '../helpers/cycle-day'
 import { showToast } from '../helpers/general'
 
 import { fertilityTrackingObservable } from '../../local-storage'
-import { Colors, Containers, Sizes, Spacing } from '../../styles'
+import { Containers, Sizes, Spacing } from '../../styles'
 import { useTranslation } from 'react-i18next'
 import { LearnMore } from './learn-more'
 
@@ -166,7 +166,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
         {shouldShow(symptomConfig.selectTabGroups) &&
           symptomConfig.selectTabGroups.map((group) => {
             return (
-              <Segment key={group.key} style={styles.segmentBorder}>
+              <Segment key={group.key}>
                 <AppText style={styles.title}>{group.title}</AppText>
                 <SelectTabGroup
                   activeButton={data[group.key]}
@@ -184,7 +184,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
               Object.keys(group.options).includes('other')
 
             return (
-              <Segment key={group.key} style={styles.segmentBorder}>
+              <Segment key={group.key}>
                 <AppText style={styles.title}>{group.title}</AppText>
                 <SelectBoxGroup
                   labels={group.options}
@@ -206,7 +206,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
         {/* but if fertility is off only for bleeding */}
         {shouldShow(symptomConfig.excludeText) &&
           (symptom === 'bleeding' || isFertilityTrackingEnabled) && (
-            <Segment style={styles.segmentBorder}>
+            <Segment>
               <AppSwitch
                 onToggle={onExcludeToggle}
                 text={symptomConfig.excludeText}
@@ -215,7 +215,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             </Segment>
           )}
         {shouldShow(symptomConfig.note) && (
-          <Segment style={styles.segmentBorder}>
+          <Segment>
             <AppText>{symptomConfig.note}</AppText>
             <AppTextInput
               {...inputProps}
@@ -244,7 +244,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
         </Button>
         {shouldShowInfo && (
           <View onLayout={onInfoLayout}>
-            <Segment last style={styles.segmentBorder}>
+            <Segment last>
               <LearnMore symptom={symptom} />
             </Segment>
           </View>
@@ -273,9 +273,6 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     paddingHorizontal: Spacing.base,
-  },
-  segmentBorder: {
-    borderBottomColor: Colors.greyLight,
   },
   title: {
     fontSize: Sizes.subtitle,

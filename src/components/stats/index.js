@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ImageBackground, StyleSheet, ScrollView, View } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 import Button from '../common/button'
 import Footnote from '../common/footnote'
 import StatsOverview from './stats-overview'

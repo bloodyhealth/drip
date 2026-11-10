@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 
 import AppModal from '../common/app-modal'
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 
 import cycleModule from '../../lib/cycle'
 import { Colors, Spacing, Typography } from '../../styles'

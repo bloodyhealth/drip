@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import AppText from '../common/app-text'
+import { AppText } from './app-text'
 import Asterisk from './asterisk'
 
 import { Colors, Spacing } from '../../styles'
@@ -17,10 +17,7 @@ const Footnote = ({ children, color = 'dark' }: FootnoteProps) => {
   return (
     <View style={styles.container}>
       <Asterisk />
-      <AppText
-        linkStyle={styles.link}
-        style={[styles.text, color === 'light' && styles.textLight]}
-      >
+      <AppText style={[styles.text, color === 'light' && styles.textLight]}>
         {children}
       </AppText>
     </View>
@@ -33,9 +30,6 @@ const styles = StyleSheet.create({
     alignContent: 'flex-start',
     marginBottom: Spacing.tiny,
     marginTop: Spacing.base,
-  },
-  link: {
-    color: 'white',
   },
   text: {
     color: Colors.greyDark,

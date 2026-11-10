@@ -3,9 +3,9 @@ import { Alert, Pressable } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import AppPage from '../../common/app-page'
 import AppSwitch from '../../common/app-switch'
-import AppText from '../../common/app-text'
+import { AppText } from '../../common/app-text'
 import TemperatureSlider from './temperature-slider'
-import Segment from '../../common/segment'
+import { Segment } from '../../common/segment'
 import TrackingCategorySwitch from '../../common/tracking-category-switch'
 import SelectTabGroup from '../../cycle-day/select-tab-group'
 
@@ -27,6 +27,7 @@ import {
 import { SYMPTOMS } from '../../../config'
 import { InfertileDaysInfo } from './sections/infertile-days-info'
 import { PeriodPrediction } from './sections/period-prediction'
+import { CustomizationCalendar } from './sections/customization-calendar'
 
 const Settings = () => {
   const { t } = useTranslation()
@@ -315,9 +316,11 @@ const Settings = () => {
             buttons={secondarySymptomButtons}
             onSelect={(value) => onSelectTab(value)}
             disabled={!isFertilityTrackingEnabled}
+            variant="secondary"
           />
         </Segment>
       </Pressable>
+      <CustomizationCalendar />
       <InfertileDaysInfo />
     </AppPage>
   )

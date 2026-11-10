@@ -1,30 +1,31 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { PropsWithChildren } from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import AppText from './app-text'
+import { AppText } from './app-text'
 
 import { Colors, Containers, Spacing, Typography } from '../../styles'
 
-const Segment = ({ children, last, title, subheader }) => {
+type SegmentProps = PropsWithChildren<{
+  last?: boolean
+  title?: string
+  subheader?: string
+}>
+
+export const Segment = ({
+  children,
+  last = false,
+  title,
+  subheader,
+}: SegmentProps) => {
   const containerStyle = last ? styles.containerLast : styles.container
-  const commonStyle = Object.assign({}, containerStyle)
 
   return (
-    <View style={commonStyle}>
+    <View style={containerStyle}>
       {title && <AppText style={styles.title}>{title}</AppText>}
       {subheader && <AppText style={styles.subheader}>{subheader}</AppText>}
       {children}
     </View>
   )
-}
-
-Segment.propTypes = {
-  children: PropTypes.node,
-  last: PropTypes.bool,
-  style: PropTypes.object,
-  title: PropTypes.string,
-  subheader: PropTypes.string,
 }
 
 const styles = StyleSheet.create({
@@ -44,8 +45,6 @@ const styles = StyleSheet.create({
   subheader: {
     ...Typography.subtitle,
     fontWeight: 'bold',
-    marginBottom: Spacing.zero,
+    marginBottom: 0,
   },
 })
-
-export default Segment

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import { changeDbEncryption } from '../../../db'
 
 import AppPage from '../../common/app-page'
-import AppText from '../../common/app-text'
-import Segment from '../../common/segment'
+import { AppText } from '../../common/app-text'
+import { Segment } from '../../common/segment'
 
 import CreatePassword from './create'
 import ChangePassword from './update'

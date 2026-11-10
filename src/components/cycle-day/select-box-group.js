@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 
 import { Colors, Containers } from '../../styles'
 

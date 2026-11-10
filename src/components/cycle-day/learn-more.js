@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { getLinks } from '../../common/links'
 import { Trans, useTranslation } from 'react-i18next'
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 import AppLink from '../common/app-link'
 
 export const LearnMore = ({ symptom }) => {

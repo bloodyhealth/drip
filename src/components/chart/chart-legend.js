@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, View } from 'react-native'
 
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 
 import { Sizes, Typography } from '../../styles'
 import { CHART_YAXIS_WIDTH } from '../../config'

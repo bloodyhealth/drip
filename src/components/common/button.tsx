@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 
 import AppIcon from './app-icon'
-import AppText from './app-text'
+import { AppText } from './app-text'
 
 import { Colors, Fonts, Sizes } from '../../styles'
 import { moderateScale, scale } from '../../common/scale-utils'

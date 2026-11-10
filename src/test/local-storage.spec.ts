@@ -3,14 +3,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ADVANCE_PERIOD_NOTICE_DAYS_INIT_VALUE } from '../config'
 import {
   advanceNoticeDaysObservable,
+  FirstDayOfWeek,
+  firstDayOfWeekObservable,
   getLanguage,
   painTrackingCategoryObservable,
   periodReminderObservable,
   saveAdvanceNoticeDays,
+  saveFirstDayOfWeek,
   savePeriodPrediction,
   saveTrackingCategory,
   tempReminderObservable,
   toAdvanceNoticeDays,
+  toFirstDayOfWeek,
 } from '../local-storage'
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -160,6 +164,55 @@ describe('local-storage', () => {
       // Assert
       expect(mockedSetItem).toHaveBeenCalledWith('advanceNoticeDays', '4')
       expect(advanceNoticeDaysObservable.value).toBe(4)
+    })
+  })
+
+  describe('toFirstDayOfWeek', () => {
+    it('returns Sunday for a stored Sunday', () => {
+      // Arrange
+      const stored = 0
+
+      // Act
+      const result = toFirstDayOfWeek(stored)
+
+      // Assert
+      expect(result).toBe(FirstDayOfWeek.Sunday)
+    })
+
+    it('returns Saturday for a stored Saturday', () => {
+      // Arrange
+      const stored = 6
+
+      // Act
+      const result = toFirstDayOfWeek(stored)
+
+      // Assert
+      expect(result).toBe(FirstDayOfWeek.Saturday)
+    })
+
+    it('falls back to Monday for an unknown value', () => {
+      // Arrange
+      const stored = 'invalid'
+
+      // Act
+      const result = toFirstDayOfWeek(stored)
+
+      // Assert
+      expect(result).toBe(FirstDayOfWeek.Monday)
+    })
+  })
+
+  describe('saveFirstDayOfWeek', () => {
+    it('persists the day and updates the observable', async () => {
+      // Arrange
+      const day = FirstDayOfWeek.Sunday
+
+      // Act
+      await saveFirstDayOfWeek(day)
+
+      // Assert
+      expect(mockedSetItem).toHaveBeenCalledWith('firstDayOfWeek', '0')
+      expect(firstDayOfWeekObservable.value).toBe(FirstDayOfWeek.Sunday)
     })
   })
 })

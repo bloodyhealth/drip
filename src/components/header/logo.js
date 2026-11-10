@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 
 import { Colors, Fonts, Sizes } from '../../styles'
 

@@ -7,7 +7,7 @@ import {
   ViewStyle,
 } from 'react-native'
 
-import AppText from '../common/app-text'
+import { AppText } from './app-text'
 
 import { Colors, Containers, Typography } from '../../styles'
 

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
 
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 import DripIcon from '../../assets/icons/drip-icons'
 import SymptomEditView from './symptom-edit-view'
 

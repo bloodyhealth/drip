@@ -120,6 +120,39 @@ export async function saveUseCervixAsSecondarySymptom(
   useCervixAsSecondarySymptomObservable.set(value)
 }
 
+export enum FirstDayOfWeek {
+  Sunday = 0,
+  Monday = 1,
+  Saturday = 6,
+}
+
+export const firstDayOfWeekObservable = Observable()
+setObvWithInitValue(
+  'firstDayOfWeek',
+  firstDayOfWeekObservable,
+  FirstDayOfWeek.Monday,
+  toFirstDayOfWeek
+)
+
+const FIRST_DAYS_OF_WEEK: readonly FirstDayOfWeek[] = [
+  FirstDayOfWeek.Saturday,
+  FirstDayOfWeek.Sunday,
+  FirstDayOfWeek.Monday,
+]
+
+function isFirstDayOfWeek(value: unknown): value is FirstDayOfWeek {
+  return FIRST_DAYS_OF_WEEK.some((day) => day === value)
+}
+
+export function toFirstDayOfWeek(value: unknown): FirstDayOfWeek {
+  return isFirstDayOfWeek(value) ? value : FirstDayOfWeek.Monday
+}
+
+export async function saveFirstDayOfWeek(day: FirstDayOfWeek): Promise<void> {
+  await AsyncStorage.setItem('firstDayOfWeek', JSON.stringify(day))
+  firstDayOfWeekObservable.set(day)
+}
+
 export const hasEncryptionObservable = Observable()
 setObvWithInitValue('hasEncryption', hasEncryptionObservable, false)
 

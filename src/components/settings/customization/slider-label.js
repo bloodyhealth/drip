@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet } from 'react-native'
 
-import AppText from '../../common/app-text'
+import { AppText } from '../../common/app-text'
 
 import { Fonts, Sizes } from '../../../styles'
 

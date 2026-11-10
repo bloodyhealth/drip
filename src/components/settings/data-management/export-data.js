@@ -8,9 +8,9 @@ import { EXPORT_FILE_NAME } from './constants'
 import * as fs from '@dr.pogodin/react-native-fs'
 import { useTranslation } from 'react-i18next'
 
-import AppText from '../../common/app-text'
+import { AppText } from '../../common/app-text'
 import Button from '../../common/button'
-import Segment from '../../common/segment'
+import { Segment } from '../../common/segment'
 import Share from 'react-native-share'
 
 export default function ExportData({
