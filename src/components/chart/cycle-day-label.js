@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { LocalDate } from '@js-joda/core'
 import { StyleSheet, View } from 'react-native'
 
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 
 import { dateToShortMonth } from '../helpers/format-date'
 import cycleModule from '../../lib/cycle'

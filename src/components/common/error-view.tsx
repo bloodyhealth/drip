@@ -1,18 +1,12 @@
 import React, { ComponentType, ReactNode } from 'react'
-import {
-  Linking,
-  Platform,
-  StyleProp,
-  StyleSheet,
-  TextStyle,
-} from 'react-native'
+import { Linking, Platform, StyleSheet } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
 import AppPageJs from './app-page'
-import AppTextJs from './app-text'
+import { AppText } from './app-text'
 import Button from './button'
 import ButtonRowJs from './button-row'
-import SegmentJs from './segment'
+import { Segment } from './segment'
 
 import { getLinks } from '@/common/links'
 import { version } from '../../../package.json'
@@ -25,16 +19,7 @@ const AppPage = AppPageJs as ComponentType<{
   children?: ReactNode
   title?: string
 }>
-const AppText = AppTextJs as ComponentType<{
-  children?: ReactNode
-  style?: StyleProp<TextStyle>
-}>
 const ButtonRow = ButtonRowJs as ComponentType<{ children: ReactNode }>
-const Segment = SegmentJs as ComponentType<{
-  children?: ReactNode
-  last?: boolean
-  title?: string
-}>
 
 const osNames: Record<string, string> = {
   android: 'Android',

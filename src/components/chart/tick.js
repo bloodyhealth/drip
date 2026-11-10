@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 
 import { Sizes } from '../../styles'
 import { CHART_TICK_WIDTH } from '../../config'

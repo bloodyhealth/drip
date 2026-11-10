@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native'
 import AppPage from '../../common/app-page'
 import { useTranslation } from 'react-i18next'
 import { Language, Languages } from '../../../i18n/constants'
-import AppText from '../../common/app-text'
+import { AppText } from '../../common/app-text'
 import { Colors, Containers, Spacing } from '../../../styles'
 import { saveLanguage } from '../../../local-storage'
 

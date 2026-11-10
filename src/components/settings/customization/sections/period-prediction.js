@@ -1,5 +1,5 @@
 import AppSwitch from '../../../common/app-switch'
-import Segment from '../../../common/segment'
+import { Segment } from '../../../common/segment'
 import React, { useState } from 'react'
 import {
   periodPredictionObservable,

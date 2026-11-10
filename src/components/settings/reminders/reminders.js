@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import AppPage from '../../common/app-page'
-import Segment from '../../common/segment'
+import { Segment } from '../../common/segment'
 import TemperatureReminder from './temperature-reminder'
 import PeriodReminder from './period-reminder'
 

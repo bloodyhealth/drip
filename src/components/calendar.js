@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 
 import { getBleedingDaysSortedByDate } from '../db'
 import cycleModule from '../lib/cycle'
+import { firstDayOfWeekObservable } from '../local-storage'
 import {
   calendarTheme,
   predictionToCalFormat,
@@ -36,8 +37,8 @@ const CalendarView = ({ setDate, navigate }) => {
     <View style={styles.container}>
       <CalendarList
         key={i18n.language}
-        // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
-        firstDay={1}
+        // Note that dayNames and dayNamesShort should still start from Sunday.
+        firstDay={firstDayOfWeekObservable.value}
         onDayPress={passDateToDayView}
         markedDates={markedDates}
         markingType="custom"

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Image, StyleSheet, View } from 'react-native'
 
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 import CloseIcon from '../common/close-icon'
 
 import { Containers, Spacing } from '../../styles'

@@ -3,7 +3,7 @@ import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import { SHA512 } from 'jshashes'
 
-import AppText from '../../common/app-text'
+import { AppText } from '../../common/app-text'
 import AppTextInput from '../../common/app-text-input'
 import Button from '../../common/button'
 

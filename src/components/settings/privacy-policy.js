@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
 import AppPage from '../common/app-page'
-import AppText from '../common/app-text'
-import Segment from '../common/segment'
+import { AppText } from '../common/app-text'
+import { Segment } from '../common/segment'
 
 import { Colors, Sizes } from '../../styles'
 

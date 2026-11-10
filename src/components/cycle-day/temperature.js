@@ -5,9 +5,9 @@ import { Keyboard } from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import moment from 'moment'
 
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 import AppTextInput from '../common/app-text-input'
-import Segment from '../common/segment'
+import { Segment } from '../common/segment'
 
 import {
   getTemperatureOutOfRangeMessage,

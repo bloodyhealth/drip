@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
 import AppIcon from '../common/app-icon'
-import AppText from '../common/app-text'
-import Segment from '../common/segment'
+import { AppText } from '../common/app-text'
+import { Segment } from '../common/segment'
 
 import { Colors, Containers, Sizes } from '../../styles'
 import { useTranslation } from 'react-i18next'

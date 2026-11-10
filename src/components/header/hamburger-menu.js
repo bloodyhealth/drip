@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native'
 import PropTypes from 'prop-types'
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 
 import AppIcon from '../common/app-icon'
 import CloseIcon from '../common/close-icon'

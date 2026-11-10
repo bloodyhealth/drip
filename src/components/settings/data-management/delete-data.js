@@ -12,8 +12,8 @@ import { clearDb, isDbEmpty } from '../../../db'
 import { showToast } from '../../helpers/general'
 import { hasEncryptionObservable } from '../../../local-storage'
 import { EXPORT_FILE_NAME } from './constants'
-import Segment from '../../common/segment'
-import AppText from '../../common/app-text'
+import { Segment } from '../../common/segment'
+import { AppText } from '../../common/app-text'
 import { useTranslation } from 'react-i18next'
 
 const exportedFilePath = `${fs.DocumentDirectoryPath}/${EXPORT_FILE_NAME}`

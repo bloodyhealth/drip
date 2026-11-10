@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native'
 
-import AppText from '../common/app-text'
+import { AppText } from '../common/app-text'
 
 import { Colors, Containers } from '../../styles'
 import { useTranslation } from 'react-i18next'
@@ -12,12 +12,13 @@ export default function SelectTabGroup({
   buttons,
   onSelect,
   disabled,
+  variant = 'primary',
 }) {
   const { t } = useTranslation()
+  const isSecondary = variant === 'secondary'
   // TODO https://gitlab.com/bloodyhealth/drip/-/issues/707
   const oneTimeTransformIntoNumber =
     typeof activeButton === 'boolean' && Number(activeButton)
-  const isSecondarySymptomSwitch = buttons[0].label === t('symptoms.mucus')
 
   // Disable is only used for secondarySymptom in customization, if more come up maybe consider more tidy solution
   const showDisabledAlert = (label) => {
@@ -39,13 +40,13 @@ export default function SelectTabGroup({
         const boxStyle = [
           styles.box,
           isActive && styles.boxActive,
-          isSecondarySymptomSwitch && styles.purpleBox,
-          isSecondarySymptomSwitch && isActive && styles.activePurpleBox,
+          isSecondary && styles.purpleBox,
+          isSecondary && isActive && styles.activePurpleBox,
           disabled && styles.disabledBox,
         ]
         const textStyle = [
           styles.text,
-          isSecondarySymptomSwitch && styles.purpleText,
+          isSecondary && styles.purpleText,
           isActive && styles.textActive,
           disabled && styles.greyText,
         ]
@@ -71,6 +72,7 @@ SelectTabGroup.propTypes = {
   buttons: PropTypes.array.isRequired,
   onSelect: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
+  variant: PropTypes.oneOf(['primary', 'secondary']),
 }
 
 const styles = StyleSheet.create({
