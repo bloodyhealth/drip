@@ -58,6 +58,7 @@ export const SymptomEditView = ({
     >
       <SymptomEditForm
         data={data}
+        date={date}
         onChange={setData}
         onRemove={onRemove}
         onSave={onSave}
