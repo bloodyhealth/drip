@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Platform, StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { Keyboard } from 'react-native'
@@ -11,16 +11,27 @@ import { Segment } from '../common/segment'
 
 import {
   getTemperatureOutOfRangeMessage,
+  getPreviousTemperature,
   formatTemperature,
 } from '../helpers/cycle-day'
 
 import { Colors, Containers, Sizes, Spacing } from '../../styles'
 import { useTranslation } from 'react-i18next'
 
-const Temperature = ({ data, save }) => {
+const Temperature = ({ data, date, save }) => {
   const { t } = useTranslation()
   const [isTimePickerVisible, setIsTimePickerVisible] = useState(false)
-  const [temperature, setTemperature] = useState(formatTemperature(data.value))
+  const [temperature, setTemperature] = useState(
+    formatTemperature(data.value) || getPreviousTemperature(date)
+  )
+
+  // update state in parent component once to ensure
+  // that pre-filled values are saved on button click
+  useEffect(() => {
+    if (temperature) {
+      save(temperature, 'value')
+    }
+  }, [])
 
   function onChangeTemperature(value) {
     const formattedValue = value.replace(',', '.').trim()
@@ -108,6 +119,7 @@ const styles = StyleSheet.create({
 
 Temperature.propTypes = {
   data: PropTypes.object.isRequired,
+  date: PropTypes.string.isRequired,
   save: PropTypes.func.isRequired,
 }
 

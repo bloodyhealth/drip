@@ -31,6 +31,7 @@ import { useTranslation } from 'react-i18next'
 
 interface SymptomEditFormProps {
   data: SymptomData
+  date: string
   onChange: (data: SymptomData) => void
   onRemove: () => void
   onSave: () => void
@@ -39,6 +40,7 @@ interface SymptomEditFormProps {
 
 export const SymptomEditForm = ({
   data,
+  date,
   onChange,
   onRemove,
   onSave,
@@ -126,6 +128,7 @@ export const SymptomEditForm = ({
       {symptom === 'temperature' && (
         <Temperature
           data={data}
+          date={date}
           save={(value, field) => onSaveTemperature(value, field)}
         />
       )}
@@ -215,6 +218,7 @@ const SelectTabGroup = SelectTabGroupJs as ComponentType<{
 }>
 const Temperature = TemperatureJs as ComponentType<{
   data: SymptomData
+  date: string
   save: (value: string, field: string) => void
 }>
 
