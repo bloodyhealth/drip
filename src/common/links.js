@@ -11,10 +11,6 @@ export const getLinks = (t) => ({
     url: 'mailto:drip@mailbox.org',
     text: t('links.email'),
   },
-  wiki: {
-    url: 'https://gitlab.com/bloodyhealth/drip/wikis/home',
-    text: t('links.wiki'),
-  },
   website: {
     url: 'https://dripapp.org/',
     text: t('links.website'),
