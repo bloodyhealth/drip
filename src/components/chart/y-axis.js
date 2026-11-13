@@ -6,7 +6,7 @@ import SymptomIcon from './symptom-icon'
 import TickList from './tick-list'
 import ChartLegend from './chart-legend'
 
-import { CHART_YAXIS_WIDTH } from '../../config'
+import { CHART_Y_AXIS_WIDTH } from '../../config'
 
 const YAxis = ({
   height,
@@ -44,7 +44,7 @@ YAxis.propTypes = {
 
 const styles = StyleSheet.create({
   yAxis: {
-    width: CHART_YAXIS_WIDTH,
+    width: CHART_Y_AXIS_WIDTH,
   },
 })
 

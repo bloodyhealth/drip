@@ -5,11 +5,11 @@ import { StyleSheet, View } from 'react-native'
 import DripIcon from '../../assets/icons/drip-icons'
 
 import { Colors, Containers } from '../../styles'
-import { CHART_YAXIS_WIDTH, CHART_ICON_SIZE } from '../../config'
+import { CHART_Y_AXIS_WIDTH, CHART_ICON_SIZE } from '../../config'
 
 const SymptomIcon = ({ symptom, height }) => {
   return (
-    <View style={styles.container} width={CHART_YAXIS_WIDTH} height={height}>
+    <View style={styles.container} width={CHART_Y_AXIS_WIDTH} height={height}>
       <DripIcon
         size={CHART_ICON_SIZE}
         name={`drip-icon-${symptom}`}

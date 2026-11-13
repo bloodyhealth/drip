@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native'
 import { AppText } from '../common/app-text'
 
 import { Sizes, Typography } from '../../styles'
-import { CHART_YAXIS_WIDTH } from '../../config'
+import { CHART_Y_AXIS_WIDTH } from '../../config'
 import { useTranslation } from 'react-i18next'
 
 const ChartLegend = ({ height }) => {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'flex-end',
-    width: CHART_YAXIS_WIDTH,
+    width: CHART_Y_AXIS_WIDTH,
   },
   singleLabelContainer: {
     justifyContent: 'space-around',
