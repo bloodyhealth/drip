@@ -4,16 +4,12 @@ import AppIcon from '../../../common/app-icon'
 import { Colors, Spacing, Typography } from '../../../../styles'
 import { AppText } from '../../../common/app-text'
 import { Segment } from '../../../common/segment'
-import { Trans, useTranslation } from 'react-i18next'
-import { getLinks } from '../../../../common/links'
-import AppLink from '../../../common/app-link'
+import { useTranslation } from 'react-i18next'
 
 export const InfertileDaysInfo = () => {
   const { t } = useTranslation(null, {
     keyPrefix: 'sideMenu.settings.customization.infertileDaysInfo',
   })
-  const { t: tRoot } = useTranslation()
-  const links = getLinks(tRoot)
   return (
     <Segment last>
       <View style={styles.line}>
@@ -24,14 +20,7 @@ export const InfertileDaysInfo = () => {
         />
         <AppText style={styles.title}>{t('title')}</AppText>
       </View>
-      <AppText>
-        <Trans
-          t={t}
-          i18nKey="note"
-          components={[<AppLink key={links.wiki.url} url={links.wiki.url} />]}
-          values={{ urlText: links.wiki.text }}
-        />
-      </AppText>
+      <AppText>{t('note')}</AppText>
     </Segment>
   )
 }

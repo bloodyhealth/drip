@@ -18,7 +18,6 @@ const PrivacyPolicy = () => {
     'dataUse',
     'permissions',
     'transparency',
-    'lastUpdated',
   ]
 
   return (
@@ -29,6 +28,9 @@ const PrivacyPolicy = () => {
           <AppText>{t(`${sectionItem}.text`)}</AppText>
         </Segment>
       ))}
+      <Segment last key="privacyPolicy.lastUpdated">
+        <AppText>{t('lastUpdated.text')}</AppText>
+      </Segment>
     </AppPage>
   )
 }
