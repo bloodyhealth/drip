@@ -7,7 +7,7 @@ import { getTickPositions } from '../helpers/chart'
 import { Colors } from '../../styles'
 import {
   CHART_GRID_LINE_HORIZONTAL_WIDTH,
-  CHART_YAXIS_WIDTH,
+  CHART_Y_AXIS_WIDTH,
 } from '../../config'
 
 const HorizontalGrid = ({ height }) => {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderBottomColor: Colors.grey,
     borderBottomWidth: CHART_GRID_LINE_HORIZONTAL_WIDTH,
-    left: CHART_YAXIS_WIDTH,
+    left: CHART_Y_AXIS_WIDTH,
     position: 'absolute',
     right: 0,
   },
