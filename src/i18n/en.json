@@ -100,6 +100,8 @@
   "cycleDay.sex.contraceptives.symptoms.patch": "patch",
   "cycleDay.sex.contraceptives.symptoms.pill": "pill",
   "cycleDay.sex.contraceptives.symptoms.ring": "ring",
+  "cycleDay.sex.contraceptives.title_one": "contraceptive",
+  "cycleDay.sex.contraceptives.title_other": "contraceptives",
   "cycleDay.subTitle": "Cycle day {{cycleDay}}",
   "cycleDay.symptomEditModal.dataDeleted": "Symptom data was deleted",
   "cycleDay.symptomEditModal.dataSaved": "Symptom data was saved",

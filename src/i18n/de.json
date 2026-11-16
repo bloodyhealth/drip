@@ -100,6 +100,8 @@
   "cycleDay.sex.contraceptives.symptoms.patch": "Verhütungspflaster",
   "cycleDay.sex.contraceptives.symptoms.pill": "Pille",
   "cycleDay.sex.contraceptives.symptoms.ring": "Vaginalring",
+  "cycleDay.sex.contraceptives.title_one": "Verhütungsmittel",
+  "cycleDay.sex.contraceptives.title_other": "Verhütungsmittel",
   "cycleDay.subTitle": "Zyklustag {{cycleDay}}",
   "cycleDay.symptomEditModal.dataDeleted": "Daten wurden gelöscht.",
   "cycleDay.symptomEditModal.dataSaved": "Daten wurden gespeichert.",

@@ -408,6 +408,29 @@ const getLabelWithNote = (
   return labels.join(', ')
 }
 
+const getSexValues = (
+  sexData: SymptomData,
+  category: 'activity' | 'contraceptives'
+): string[] =>
+  SYMPTOMS.sex[category]
+    .filter((symptom: string) => Boolean(sexData[symptom]))
+    .map((symptom: string) => {
+      const value = i18n.t(`cycleDay.sex.${category}.symptoms.${symptom}`)
+      return symptom === 'other' && sexData.note
+        ? `${value} (${sexData.note})`
+        : value
+    })
+
+const getContraceptivesLabel = (contraceptives: string[]) => {
+  if (contraceptives.length === 0) return ''
+
+  const title = i18n.t('cycleDay.sex.contraceptives.title', {
+    count: contraceptives.length,
+  })
+
+  return `${title}: ${contraceptives.join(', ')}`
+}
+
 const label: Record<Symptom, GetSymptomLabel> = {
   bleeding: ({ value, exclude }) => {
     if (isNumber(value)) {
@@ -485,12 +508,13 @@ const label: Record<Symptom, GetSymptomLabel> = {
     }
   },
   sex: (sex) => {
-    sex = mapRealmObjToJsObj(sex)
+    const sexData: SymptomData = mapRealmObjToJsObj(sex)
+    const labels = [
+      getSexValues(sexData, 'activity').join(', '),
+      getContraceptivesLabel(getSexValues(sexData, 'contraceptives')),
+    ].filter(Boolean)
 
-    return getLabelWithNote(sex, [
-      ['sex', 'activity'],
-      ['sex', 'contraceptives'],
-    ])
+    return labels.length > 0 ? labels.join('; ') : null
   },
   pain: (pain) => {
     pain = mapRealmObjToJsObj(pain)
