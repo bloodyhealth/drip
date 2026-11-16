@@ -10,7 +10,7 @@ import {
   periodReminderObservable,
   tempReminderObservable,
   temperatureTrackingCategoryObservable,
-} from '../local-storage'
+} from '@/local-storage'
 import { act, fireEvent, render, screen } from './test-utils'
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
