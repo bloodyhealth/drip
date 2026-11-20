@@ -92,7 +92,9 @@ function formatStatus(phaseNameForDay, dateString, status) {
           status: i18n.t('cycleDay.fertilityStatus.fertileUntilEvening'),
           phase: 2,
           statusText: i18n.t('cycleDay.fertilityStatus.periOvuUntilEvening', {
-            rule: status.temperatureShift.rule,
+            rule: i18n.t('cycleDay.fertilityStatus.temperatureShift', {
+              count: status.temperatureShift.rule,
+            }),
           }),
         }
       }
@@ -107,7 +109,9 @@ function formatStatus(phaseNameForDay, dateString, status) {
         status: i18n.t('cycleDay.fertilityStatus.infertile'),
         phase: 3,
         statusText: i18n.t('cycleDay.fertilityStatus.postOvu', {
-          rule: status.temperatureShift.rule,
+          rule: i18n.t('cycleDay.fertilityStatus.temperatureShift', {
+            count: status.temperatureShift.rule,
+          }),
         }),
       }
     },
