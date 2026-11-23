@@ -4,16 +4,18 @@ import { StyleSheet, View } from 'react-native'
 
 import { AppText } from '../common/app-text'
 
-import { Sizes, Typography } from '../../styles'
+import { Colors, Sizes, Typography } from '../../styles'
 import { CHART_Y_AXIS_WIDTH } from '../../config'
 import { useTranslation } from 'react-i18next'
+
+import AppIcon from '../common/app-icon'
 
 const ChartLegend = ({ height }) => {
   const { t } = useTranslation()
   return (
     <View style={[styles.container, { height }]}>
       <View style={[styles.singleLabelContainer, { height: height / 2 }]}>
-        <AppText style={styles.textBold}>#</AppText>
+        <AppIcon name="cw" color={Colors.grey} />
       </View>
       <View style={[styles.singleLabelContainer, { height: height / 2 }]}>
         <AppText style={styles.text}>{t('shared.date')}</AppText>
@@ -39,9 +41,6 @@ const styles = StyleSheet.create({
   text: {
     ...Typography.label,
     fontSize: Sizes.footnote,
-  },
-  textBold: {
-    ...Typography.labelBold,
   },
 })
 
