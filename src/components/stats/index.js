@@ -39,6 +39,7 @@ const Stats = () => {
       value: standardDeviation,
       label: t('overview.standardDeviation'),
       hasAsterisk: true,
+      hasCharacter: true,
     },
     { value: numberOfCycles, label: t('overview.completedCycles') },
   ]
