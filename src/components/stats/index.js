@@ -51,11 +51,14 @@ const Stats = () => {
   return (
     <View style={styles.pageContainer}>
       <ScrollView contentContainerStyle={styles.overviewContainer}>
-        <AppText>{t('intro')}</AppText>
         {numberOfCycles === 0 ? (
-          <AppText>{t('noData')}</AppText>
+          <View>
+            <AppText style={styles.title}>{t('intro')}</AppText>
+            <AppText>{t('noData')}</AppText>
+          </View>
         ) : (
           <>
+            <AppText style={styles.titleWithoutMargin}>{t('intro')}</AppText>
             <View style={styles.container}>
               <View style={styles.columnLeft}>
                 <ImageBackground
@@ -140,6 +143,12 @@ const styles = StyleSheet.create({
   },
   pageContainer: {
     ...Containers.pageContainer,
+  },
+  title: {
+    ...Typography.title,
+  },
+  titleWithoutMargin: {
+    ...Typography.titleWithoutMargin,
   },
 })
 export default Stats
