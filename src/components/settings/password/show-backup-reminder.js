@@ -13,7 +13,7 @@ export default function showBackUpReminder(okHandler, cancelHandler, isDelete) {
 
   Alert.alert(
     t(`${translationKey}.title`),
-    t(`${translationKey}.text`) + appendix,
+    t(`${translationKey}.text`) + ' ' + appendix,
     [
       {
         text: t('shared.cancel'),
