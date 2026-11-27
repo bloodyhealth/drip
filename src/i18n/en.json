@@ -237,7 +237,7 @@
   "sideMenu.settings.customization.periodPrediction.off": "There are no predictions for menstrual cycles displayed. If turned on, the calendar and the home screen will display period predictions.",
   "sideMenu.settings.customization.periodPrediction.on": "drip predicts the starting days of the next 3 menstrual bleedings based on statistics if you previously tracked at least 3 complete cycles.",
   "sideMenu.settings.customization.periodPrediction.title": "Period predictions",
-  "sideMenu.settings.customization.secondarySymptom.alert.textFertilityTrackingDisabled": "To choose a secondary symptom please first enable the cervical mucus or cervix tracking category as well as temperature and fertility phases calculation above.",
+  "sideMenu.settings.customization.secondarySymptom.alert.textFertilityTrackingDisabled": "To choose a secondary symptom please first enable above the tracking of:\n- cervical mucus\n- cervix tracking\nas well as \n- temperature tracking and \n- fertility phases calculation.",
   "sideMenu.settings.customization.secondarySymptom.alert.textMissingSecondarySymptoms": "To change your secondary sign, enable tracking for both cervical mucus and cervix above.",
   "sideMenu.settings.customization.secondarySymptom.alert.title": "Disabled",
   "sideMenu.settings.customization.secondarySymptom.text": "The sympto-thermal method combines your basal body temperature with one secondary sign to detect your fertile days. Please choose the secondary sign you'd like to use:",
