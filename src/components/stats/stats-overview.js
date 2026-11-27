@@ -13,21 +13,21 @@ StatsOverview.propTypes = {
   data: PropTypes.array.isRequired,
 }
 
-const Row = ({ value, label, hasAsterisk, hasCharacter }) => (
+const Row = ({ value, valuePrefix, label, hasAsterisk }) => (
   <View style={styles.row}>
-    <Cell content={value} isLeft hasCharacter={hasCharacter} />
+    <Cell content={value} prefix={valuePrefix} isLeft />
     <Cell content={label} hasAsterisk={hasAsterisk} />
   </View>
 )
 
 Row.propTypes = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  valuePrefix: PropTypes.string,
   label: PropTypes.string.isRequired,
   hasAsterisk: PropTypes.bool,
-  hasCharacter: PropTypes.bool,
 }
 
-const Cell = ({ content, isLeft, hasAsterisk, hasCharacter }) => {
+const Cell = ({ content, prefix, isLeft, hasAsterisk }) => {
   const styleContainer = isLeft ? styles.cellLeft : styles.cellRight
   const styleText = isLeft ? styles.accentPurpleBig : styles.accentOrange
   const numberOfLines = isLeft ? 1 : 2
@@ -36,7 +36,7 @@ const Cell = ({ content, isLeft, hasAsterisk, hasCharacter }) => {
   return (
     <View style={styleContainer}>
       <View style={styles.row}>
-        {hasCharacter && <AppText style={styles.accentPurple}>±</AppText>}
+        {prefix && <AppText style={styles.prefix}>{prefix}</AppText>}
         <AppText
           numberOfLines={numberOfLines}
           ellipsizeMode={ellipsizeMode}
@@ -52,9 +52,9 @@ const Cell = ({ content, isLeft, hasAsterisk, hasCharacter }) => {
 
 Cell.propTypes = {
   content: PropTypes.node.isRequired,
+  prefix: PropTypes.string,
   isLeft: PropTypes.bool,
   hasAsterisk: PropTypes.bool,
-  hasCharacter: PropTypes.bool,
 }
 
 const styles = StyleSheet.create({
@@ -62,11 +62,6 @@ const styles = StyleSheet.create({
     ...Typography.accentOrange,
     fontSize: Sizes.small,
     margin: Sizes.tiny,
-  },
-  accentPurple: {
-    ...Typography.title,
-    fontSize: Sizes.small,
-    marginRight: Spacing.tiny,
   },
   accentPurpleBig: {
     ...Typography.accentPurpleBig,
@@ -78,6 +73,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   cellRight: { flex: 5 },
+  prefix: {
+    ...Typography.title,
+    fontSize: Sizes.small,
+    marginRight: Spacing.tiny,
+  },
   row: { flexDirection: 'row' },
 })
 

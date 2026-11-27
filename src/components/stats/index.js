@@ -37,9 +37,9 @@ const Stats = () => {
     { value: cycleData.maximum, label: t('overview.max') },
     {
       value: standardDeviation,
+      valuePrefix: cycleData.stdDeviation ? '±' : undefined,
       label: t('overview.standardDeviation'),
       hasAsterisk: true,
-      hasCharacter: true,
     },
     { value: numberOfCycles, label: t('overview.completedCycles') },
   ]
