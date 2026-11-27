@@ -156,8 +156,6 @@
   "password.backupReminder.ios": "Nach dem Ändern des Passworts wird die App automatisch geschlossen. Bitte öffne die App danach erneut.",
   "password.backupReminderChangePassword.text": "Sicher ist sicher: Bitte sichere deine Daten mit der Exportfunktion, bevor du etwas an deinem Passwort änderst.\nJe länger dein Passwort, desto besser! Am besten nimmst du eine Passphrase, also einen ganzen Satz oder mehrere Wörter.\nAchte bitte auch darauf, dass du dein Passwort nicht vergisst. Sonst gibt es keine Möglichkeit, deine Daten wiederherzustellen.\nWenn du deine Passwort-Einstellungen änderst, bleiben deine Daten so, wie sie sind.",
   "password.backupReminderChangePassword.title": "Wichtig bevor du dein Passwort änderst",
-  "password.backupReminderDeletePassword.text": "Wenn du dein Passwort löschst, sind deine Daten nicht mehr verschlüsselt. Speicher deine Daten daher zur Sicherheit über die Exportfunktion bevor du dein Passwort löschst. Wenn du deine Passworteinstellungen änderst, bleiben deine Daten erhalten und die App wird neu gestartet.",
-  "password.backupReminderDeletePassword.title": "Wichtig bevor du dein Passwort löschst",
   "password.buttons.create": "Passwort festlegen",
   "password.buttons.delete": "Passwort löschen",
   "password.buttons.save": "Passwort speichern",
