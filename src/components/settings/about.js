@@ -1,15 +1,15 @@
 import React from 'react'
-import { Platform, Linking } from 'react-native'
+import { Linking, Platform, StyleSheet } from 'react-native'
+import { useTranslation } from 'react-i18next'
 
 import AppPage from '../common/app-page'
 import { AppText } from '../common/app-text'
 import AppLink from '../common/app-link'
+import { getLinks } from '../../common/links'
 import { Segment } from '../common/segment'
 import Button from '../common/button'
 import ButtonRow from '../common/button-row'
-
-import { getLinks } from '../../common/links'
-import { useTranslation } from 'react-i18next'
+import { Spacing } from '../../styles'
 
 const AboutSection = () => {
   const { t } = useTranslation(null, { keyPrefix: 'sideMenu.about' })
@@ -23,7 +23,7 @@ const AboutSection = () => {
         <Button onPress={() => Linking.openURL(links.faq.url)}>
           {t('intro.faq')}
         </Button>
-        <AppText>{t('intro.contact')}</AppText>
+        <AppText style={styles.marginTop}>{t('intro.contact')}</AppText>
         <ButtonRow>
           {[links.email, links.gitlab, links.website].map((link) => (
             <Button key={link.url} onPress={() => Linking.openURL(link.url)}>
@@ -62,5 +62,11 @@ const AboutSection = () => {
     </AppPage>
   )
 }
+
+const styles = StyleSheet.create({
+  marginTop: {
+    marginTop: Spacing.base,
+  },
+})
 
 export default AboutSection

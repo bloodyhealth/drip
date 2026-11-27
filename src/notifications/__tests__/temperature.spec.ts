@@ -60,7 +60,7 @@ describe('updateTemperatureReminder', () => {
 
     // Assert
     const [notification] = scheduledCalls()[0]
-    expect(notification.title).toBe('Erinnerung an Temperaturmessung')
+    expect(notification.title).toBe('Temperaturerinnerung')
     expect(notification.body).toBe('Miss deine Basaltemperatur')
     expect(notifee.createChannel).toHaveBeenCalledWith(
       expect.objectContaining({ name: 'Temperaturerinnerung' })

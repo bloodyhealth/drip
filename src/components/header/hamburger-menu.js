@@ -1,12 +1,7 @@
 import React, { useState } from 'react'
-import {
-  Modal,
-  Platform,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { Modal, StyleSheet, TouchableOpacity, View } from 'react-native'
 import PropTypes from 'prop-types'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { AppText } from '../common/app-text'
 
 import AppIcon from '../common/app-icon'
@@ -26,6 +21,7 @@ const settingsMenuItems = [
 const HamburgerMenu = ({ navigate }) => {
   const [isOpen, setIsOpen] = useState(false)
   const closeMenu = () => setIsOpen(false)
+  const { top } = useSafeAreaInsets()
 
   const { t } = useTranslation(null, { keyPrefix: 'sideMenu.menuItems' })
 
@@ -44,7 +40,7 @@ const HamburgerMenu = ({ navigate }) => {
   return (
     <Modal animationType="fade" onRequestClose={closeMenu} transparent>
       <TouchableOpacity onPress={closeMenu} style={styles.blackBackground} />
-      <View style={styles.menu}>
+      <View style={[styles.menu, { paddingTop: top }]}>
         <View style={styles.iconContainer}>
           <CloseIcon color={'black'} onClose={closeMenu} />
         </View>
@@ -82,7 +78,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     height: '100%',
     padding: Sizes.base,
-    paddingTop: Platform.OS === 'ios' ? Sizes.huge : Sizes.base,
     position: 'absolute',
     width: '60%',
   },
