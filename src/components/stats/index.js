@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ImageBackground, StyleSheet, ScrollView, View } from 'react-native'
+import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 
 import { AppText } from '../common/app-text'
@@ -18,16 +19,14 @@ import { scale } from '../../common/scale-utils'
 const image = require('../../assets/images/cycle-icon.png')
 
 const Stats = () => {
-  const [isStatsVisible, setIsStatsVisible] = useState(false)
-
   const { t } = useTranslation(null, { keyPrefix: 'stats' })
 
   const cycleLengths = cycleModule().getAllCycleLengths()
   const numberOfCycles = cycleLengths.length
-  const cycleData =
-    numberOfCycles > 0
-      ? getCycleInfo(cycleLengths)
-      : { minimum: '—', maximum: '—', stdDeviation: '—' }
+  const hasData = numberOfCycles > 0
+  const cycleData = hasData
+    ? getCycleInfo(cycleLengths)
+    : { minimum: '—', maximum: '—', stdDeviation: '—' }
 
   const standardDeviation = cycleData.stdDeviation
     ? formatDecimal(cycleData.stdDeviation, 1)
@@ -51,52 +50,66 @@ const Stats = () => {
   return (
     <View style={styles.pageContainer}>
       <ScrollView contentContainerStyle={styles.overviewContainer}>
-        {numberOfCycles === 0 ? (
-          <View>
-            <AppText style={styles.title}>{t('intro')}</AppText>
-            <AppText>{t('noData')}</AppText>
-          </View>
+        <AppText style={hasData ? styles.titleWithoutMargin : styles.title}>
+          {t('intro')}
+        </AppText>
+        {hasData ? (
+          <StatsContent mean={cycleData.mean} data={statsData} />
         ) : (
-          <>
-            <AppText style={styles.titleWithoutMargin}>{t('intro')}</AppText>
-            <View style={styles.container}>
-              <View style={styles.columnLeft}>
-                <ImageBackground
-                  source={image}
-                  imageStyle={styles.image}
-                  style={styles.imageContainter}
-                >
-                  <AppText
-                    numberOfLines={1}
-                    ellipsizeMode="clip"
-                    style={styles.accentPurpleGiant}
-                  >
-                    {cycleData.mean}
-                  </AppText>
-                  <AppText style={styles.accentPurpleHuge}>
-                    {t('overview.days')}
-                  </AppText>
-                </ImageBackground>
-                <AppText style={styles.accentOrange}>
-                  {t('overview.average')}
-                </AppText>
-              </View>
-              <View style={styles.columnRight}>
-                <StatsOverview data={statsData} />
-              </View>
-            </View>
-            <Button onPress={() => setIsStatsVisible(true)}>
-              {t('showStats.button')}
-            </Button>
-            {isStatsVisible && (
-              <PeriodDetailsModal onClose={() => setIsStatsVisible(false)} />
-            )}
-            <Footnote>{t('footnote')}</Footnote>
-          </>
+          <AppText>{t('noData')}</AppText>
         )}
       </ScrollView>
     </View>
   )
+}
+
+const StatsContent = ({ mean, data }) => {
+  const [isPeriodDetailsModalOpen, setIsPeriodDetailsModalOpen] =
+    useState(false)
+  const { t } = useTranslation(null, { keyPrefix: 'stats' })
+
+  return (
+    <>
+      <View style={styles.container}>
+        <View style={styles.columnLeft}>
+          <ImageBackground
+            source={image}
+            imageStyle={styles.image}
+            style={styles.imageContainter}
+          >
+            <AppText
+              numberOfLines={1}
+              ellipsizeMode="clip"
+              style={styles.accentPurpleGiant}
+            >
+              {mean}
+            </AppText>
+            <AppText style={styles.accentPurpleHuge}>
+              {t('overview.days')}
+            </AppText>
+          </ImageBackground>
+          <AppText style={styles.accentOrange}>{t('overview.average')}</AppText>
+        </View>
+        <View style={styles.columnRight}>
+          <StatsOverview data={data} />
+        </View>
+      </View>
+      <Button onPress={() => setIsPeriodDetailsModalOpen(true)}>
+        {t('showStats.button')}
+      </Button>
+      {isPeriodDetailsModalOpen && (
+        <PeriodDetailsModal
+          onClose={() => setIsPeriodDetailsModalOpen(false)}
+        />
+      )}
+      <Footnote>{t('footnote')}</Footnote>
+    </>
+  )
+}
+
+StatsContent.propTypes = {
+  mean: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  data: PropTypes.array.isRequired,
 }
 
 const column = {
