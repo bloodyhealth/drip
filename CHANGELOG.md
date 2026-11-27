@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.2611.27.a
+
+### Changed
+
+- Reduce spacing below menu items
+
 ## v1.2611.27
 
 ### Added
