@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import MenuItem from './menu-item'
 
-import { Containers } from '../../styles'
+import { Containers, Spacing } from '../../styles'
 import { pages } from '../pages'
 import { useTranslation } from 'react-i18next'
 
@@ -16,7 +16,12 @@ const Menu = ({ currentPage, navigate }) => {
   const { bottom } = useSafeAreaInsets()
 
   return (
-    <View style={[styles.container, { paddingBottom: bottom }]}>
+    <View
+      style={[
+        styles.container,
+        { paddingBottom: Math.max(bottom, Spacing.small) },
+      ]}
+    >
       {menuItems.map(({ icon, labelKey, component }) => {
         return (
           <MenuItem

@@ -35,7 +35,8 @@ const text = {
 
 const styles = StyleSheet.create({
   button: {
-    padding: Spacing.base,
+    paddingHorizontal: Spacing.base,
+    paddingTop: Spacing.base,
     ...Containers.centerItems,
   },
   menuText: {
