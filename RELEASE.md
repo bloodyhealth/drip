@@ -114,7 +114,7 @@ _which is a shortcut for:_ `jarsigner -keystore ./android/app/drip-release-key.k
 
 To build an .ipa archive file for an upload to the AppStore you need to go to xCode and select Build -> "Any iOS Device" and under "Product" -> "Archive".
 
-Once the archiving process has completed you can chose to do the following:
+Once the archiving process has completed you can choose to do the following:
 
 "Distribute the app"
 

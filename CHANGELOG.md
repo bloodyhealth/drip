@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.2611.27
+
+### Added
+
+- German app language
+- Customize first day of the week in the calendar: Saturday, Sunday or Monday
+
+### Changed
+
+- Refresh button design
+
 ## v1.2601.11 iOS and F-droid only
 
 ### Fixed
